@@ -1,32 +1,40 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">Timesales</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <div id="botui">
+        <bot-ui />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import vue from 'vue'
+import Botui from 'botui'
+
+export default {
+  data() {
+    return {
+      botui: '',
+    }
+  },
+  async mounted() {
+    await this.$nextTick()
+    this.botui = new Botui('botui', { vue })
+    this.startBot()
+  },
+  methods: {
+    startBot() {
+      this.botui.message.add({
+        content: 'Hello from bot.',
+      })
+      this.botui.message.add({
+        human: true,
+        content: 'Hello from human.',
+      })
+    },
+  },
+}
 </script>
 
 <style>

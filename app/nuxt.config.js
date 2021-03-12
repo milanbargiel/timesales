@@ -17,7 +17,11 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    // Load botui css
+    { src: 'botui/build/botui.min.css', lang: 'css' },
+    { src: 'botui/build/botui-theme-default.css', lang: 'css' },
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -43,5 +47,10 @@ export default {
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      // extend webpack config to make botui work
+      config.resolve.alias.vue = 'vue/dist/vue.min.js'
+    },
+  },
 }
