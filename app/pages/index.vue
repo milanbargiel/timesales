@@ -11,8 +11,10 @@
 <script>
 import vue from 'vue'
 import Botui from 'botui'
+import Welcome from '../conversation/welcome.js'
 
 export default {
+  mixins: [Welcome],
   data() {
     return {
       botui: '',
@@ -22,6 +24,8 @@ export default {
     await this.$nextTick()
     this.botui = new Botui('botui', { vue })
     this.checkout('Time to think.')
+    this.myAwesomMethod()
+    this.$hello('petter')
   },
   methods: {
     // wrapper function to pass global variables to botui messages
