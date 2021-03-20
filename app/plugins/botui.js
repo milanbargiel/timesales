@@ -1,8 +1,17 @@
 import vue from 'vue'
 import Botui from 'botui'
 
+console.log(Botui)
+
 vue.mixin({
   methods: {
+    lookForKeyword(text) {
+      // verb infinitives work fine in the answers
+      // returns first word that is found in list
+      const str = text.toLowerCase()
+      const list = ['think', 'relax', 'be by myself', 'work', 'read']
+      return list.find((word) => str.includes(word))
+    },
     timeout(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms))
     },
@@ -11,13 +20,32 @@ vue.mixin({
       // Min value is 2 seconds
       return Math.max(sentence.length * 50, 2000)
     },
-    botMessage(content) {
-      return this.botui.message.add({
-        delay: this.timeToWrite(content),
-        loading: true,
-        content,
-      })
+    botMessage(content, customDelay) {
+      const message = this.botui.message
+        .add({
+          delay: customDelay || this.timeToWrite(content),
+          loading: true,
+          type: 'html',
+          content,
+        })
+        .then((index) => {
+          console.log(index)
+        })
+
+      return message
     },
+    // botMessage(content) {
+    //   const p = new Promise((resolve) => {
+    //     const pro = this.botui.message.add({
+    //       delay: this.timeToWrite(content),
+    //       loading: true,
+    //       type: 'html',
+    //       content,
+    //     })
+    //     resolve(pro.resolve())
+    //   })
+    //   return p
+    // },
     botYesOrNo() {
       return this.botui.action.button({
         action: [
