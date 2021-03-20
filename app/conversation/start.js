@@ -20,7 +20,10 @@ export default {
 
       await this.botMessage('Are you short of time?')
 
-      await this.botui.action
+      // Ask pushy questions untill the user answers the question
+      let askFurther = true
+
+      this.botui.action
         .button({
           action: [
             {
@@ -34,9 +37,35 @@ export default {
           ],
         })
         .then((response) => {
+          // Do not continue asking
+          askFurther = false
           // Branch dialogue based on response
           response.value ? this.shortInTime() : this.notShortInTime()
         })
+
+      await this.timeout(10000)
+
+      if (askFurther) {
+        await this.botMessage(
+          "isn't there lot's of projects you wuld like to realize if you only had the time for it?"
+        )
+      }
+
+      await this.timeout(4000)
+
+      if (askFurther) {
+        await this.botMessage(
+          'What would you do if you had all the <i>time</i> you wanted?'
+        )
+
+        this.botui.action
+          .text({
+            action: {
+              placeholder: 'Your answer',
+            },
+          })
+          .then((res) => this.checkout(res.value))
+      }
     },
   },
 }
