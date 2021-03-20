@@ -1,8 +1,6 @@
 import vue from 'vue'
 import Botui from 'botui'
 
-console.log(Botui)
-
 vue.mixin({
   methods: {
     lookForKeyword(text) {
@@ -21,31 +19,13 @@ vue.mixin({
       return Math.max(sentence.length * 50, 2000)
     },
     botMessage(content, customDelay) {
-      const message = this.botui.message
-        .add({
-          delay: customDelay || this.timeToWrite(content),
-          loading: true,
-          type: 'html',
-          content,
-        })
-        .then((index) => {
-          console.log(index)
-        })
-
-      return message
+      return this.botui.message.add({
+        delay: customDelay || this.timeToWrite(content),
+        loading: true,
+        type: 'html',
+        content,
+      })
     },
-    // botMessage(content) {
-    //   const p = new Promise((resolve) => {
-    //     const pro = this.botui.message.add({
-    //       delay: this.timeToWrite(content),
-    //       loading: true,
-    //       type: 'html',
-    //       content,
-    //     })
-    //     resolve(pro.resolve())
-    //   })
-    //   return p
-    // },
     botYesOrNo() {
       return this.botui.action.button({
         action: [

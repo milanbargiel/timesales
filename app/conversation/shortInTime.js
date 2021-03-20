@@ -1,4 +1,8 @@
+// Import checkout conversation branch
+import Checkout from '../conversation/checkout.js'
+
 export default {
+  mixins: [Checkout],
   methods: {
     async shortInTime() {
       await this.botMessage(
@@ -44,21 +48,10 @@ export default {
         },
       })
 
-      const keyword = this.keywordFilter(timeTo.value)
-
-      if (keyword) {
-        await this.botMessage('Ah, good choice. I like to ' + keyword + ' too.')
-      } else {
-        await this.botMessage('Are you sure?')
+      if (timeTo.value) {
+        // Proceed to checkout
+        this.checkout(timeTo.value)
       }
-
-      await this.botMessage(
-        'Hold on, i have a premium cusomer on the other line.'
-      )
-
-      await this.wait(10000) // wait for 10 secs
-
-      await this.botMessage('Where were we? You wanted to buy some time right?')
     },
   },
 }

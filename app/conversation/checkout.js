@@ -14,7 +14,7 @@ export default {
         'Hold on, I have a premium customer on the other line'
       )
 
-      // await this.timeout(10000)
+      await this.timeout(10000)
 
       await this.botMessage('Where were we? you wanted to buy some time right?')
 
@@ -76,9 +76,6 @@ export default {
           return this.exitConversation()
         }
       }
-
-      const minutes = {}
-      minutes.value = 2
 
       await this.botMessage('What would that time be worth to you?')
 
