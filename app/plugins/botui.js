@@ -6,9 +6,14 @@ vue.mixin({
     timeout(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms))
     },
+    timeToWrite(sentence) {
+      // Calculate time for bot to write a message
+      // Min value is 2 seconds
+      return Math.max(sentence.length * 50, 2000)
+    },
     botMessage(content) {
       return this.botui.message.add({
-        delay: 2000,
+        delay: this.timeToWrite(content),
         loading: true,
         content,
       })
