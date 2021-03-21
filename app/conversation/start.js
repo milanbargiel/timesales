@@ -23,25 +23,12 @@ export default {
       // Ask pushy questions untill the user answers the question
       let askFurther = true
 
-      this.botui.action
-        .button({
-          action: [
-            {
-              text: 'Yes',
-              value: true,
-            },
-            {
-              text: 'No',
-              value: false,
-            },
-          ],
-        })
-        .then((response) => {
-          // Do not continue asking
-          askFurther = false
-          // Branch dialogue based on response
-          response.value ? this.shortInTime() : this.notShortInTime()
-        })
+      this.botYesOrNo().then((response) => {
+        // Do not continue asking
+        askFurther = false
+        // Branch dialogue based on response
+        response.value ? this.shortInTime() : this.notShortInTime()
+      })
 
       await this.timeout(10000)
 
