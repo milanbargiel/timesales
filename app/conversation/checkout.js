@@ -16,9 +16,11 @@ export default {
 
       await this.timeout(10000)
 
-      await this.botMessage('Where were we? you wanted to buy some time right?')
+      await this.botMessage(
+        '(NAME) Where were we? you wanted to buy some <i>time</i> right?'
+      )
 
-      await this.botMessage('How much time shall it be?')
+      await this.botMessage('How much <i>time</i> shall it be?')
 
       const minutes = await this.botui.action.text({
         action: {
@@ -37,7 +39,7 @@ export default {
         )
       }
 
-      await this.botMessage('Are you a menber of the church?')
+      await this.botMessage('Are you a member of the church?')
 
       const church = await this.botui.action.button({
         action: [
@@ -77,15 +79,14 @@ export default {
         }
       }
 
-      await this.botMessage('What would that time be worth to you?')
+      await this.botMessage('What would that <i>time</i> be worth to you?')
 
-      const euro = this.botui.action
-        .text({
-          action: {
-            sub_type: 'number',
-            placeholder: 'Worth in €',
-          }
-        })
+      const euro = this.botui.action.text({
+        action: {
+          sub_type: 'number',
+          placeholder: 'Worth in €',
+        },
+      })
 
       // const euro = await (() => {
       //   // Show message after 10 sec if user does not enter a value

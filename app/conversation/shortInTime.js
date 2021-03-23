@@ -32,14 +32,14 @@ export default {
         )
 
         await this.botMessage(
-          "You tell me what you would like to do and i'll sell you some time for especially that purpose I assume it will give you just the right amount of pressure to use that time for it's intend. you don't want to lose both, money and time, right?"
+          "You tell me what you would like to do and i'll sell you some <i>time</i> for especially that purpose I assume it will give you just the right amount of pressure to use that time for it's intend. you don't want to lose both, money and time, right?"
         )
 
         await this.botMessage("so let's get to it")
       }
 
       await this.botMessage(
-        'For which purpose would you like to have some time?'
+        'For which purpose would you like to have some <i>time</i>?'
       )
 
       const timeTo = await this.botui.action.text({

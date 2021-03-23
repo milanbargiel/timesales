@@ -25,7 +25,7 @@ export default {
       )
 
       await this.botMessage(
-        "but we've found a smart solution: we invented <i>Time</i> the most volatile piece of all time."
+        "but we've found a smart solution: we invented <i>time</i> the most volatile piece of all time."
       )
 
       await this.botMessage(
@@ -39,7 +39,7 @@ export default {
       if (response.value) {
         // on yes
         await this.botMessage(
-          'Good. To make it more unique, we always connect <i>Time</i> to a special purpose. What would be the Purpose for your <i>Time</i>?'
+          'Good. To make it more unique, we always connect <i>time</i> to a special purpose. What would be the Purpose for your <i>Time</i>?'
         )
         this.botui.action
           .text({
@@ -50,7 +50,7 @@ export default {
           .then((res) => this.checkout(res.value))
       } else {
         // on no
-        await this.botMessage('Dann kann ich dir auch nicht weiterhelfen')
+        await this.botMessage('Then i cannot help you either')
         this.exitConversation()
       }
     },
