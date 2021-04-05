@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "private": true,
+      "required": true
+    },
+    "time": {
+      "type": "integer",
+      "private": false,
+      "required": true
+    },
+    "progress": {
+      "type": "decimal",
+      "default": 1,
+      "private": false,
+      "required": true,
+      "max": 1,
+      "min": 0
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "key": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal",
+      "private": true,
+      "required": true,
+      "min": 0
+    },
+    "description": {
+      "type": "text",
+      "private": true
+    }
+  }
+}
