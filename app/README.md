@@ -1,5 +1,11 @@
 # Timesales
 
+## App
+- The app is based on [Nuxt.js](https://nuxtjs.org).
+- It consists of a Chatbot that sells time to prospective buyers
+- Buyers get a certificate and a link to a webpage that shows sand for the amount of time the buyer bought
+- Pushes to the `main` branch will automatically be deployed to the test environment at Netlify https://timesalesltd.netlify.app
+
 ## Build Setup
 
 ```bash
