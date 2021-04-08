@@ -5,4 +5,19 @@
  * to customize this controller
  */
 
-module.exports = {};
+const { sanitizeEntity } = require('strapi-utils');
+
+module.exports = {
+  /**
+   * Retrieve a record.
+   *
+   * @return {Object}
+   */
+
+  async findOne(ctx) {
+    const { key } = ctx.params;
+
+    const entity = await strapi.services.order.findOne({ key });
+    return sanitizeEntity(entity, { model: strapi.models.order });
+  },
+};
