@@ -2,23 +2,7 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/orders",
-      "handler": "order.find",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/orders/count",
-      "handler": "order.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/orders/:id",
+      "path": "/orders/:key",
       "handler": "order.findOne",
       "config": {
         "policies": []
@@ -34,16 +18,8 @@
     },
     {
       "method": "PUT",
-      "path": "/orders/:id",
+      "path": "/orders/:key",
       "handler": "order.update",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "DELETE",
-      "path": "/orders/:id",
-      "handler": "order.delete",
       "config": {
         "policies": []
       }
