@@ -1,0 +1,31 @@
+name: default
+kind: pipeline
+
+steps:
+  - name: build
+    image: node
+    commands:
+      - yarn install
+      - make build
+    volumes:
+      - name: cache
+        path: /drone/src/view/node_modules
+  - name: build-wasm
+    image: tinygo/tinygo
+    commands:
+      - tinygo build -o public/build/main.wasm -target wasm ./src/backend/main.go
+  - name: deploy
+    image: alpacadb/docker-lftp
+    environment:
+      FTP_USERNAME:
+        from_secret: FTP_USERNAME
+      FTP_PASSWORD:
+        from_secret: FTP_PASSWORD
+    commands:
+      - cd public
+      - lftp -e "set sftp:auto-confirm true; set ftp:ssl-force true; set xfer:timeout 10000; debug 3; open -u $FTP_USERNAME,$FTP_PASSWORD sftp://ssh.jim-fx.com:2221; mkdir -p share/sand; cd share/sand; mirror -p --scan-all-first --overwrite --verbose -R --skip-noaccess; quit;"
+
+volumes:
+- name: cache
+  host:
+    path: /tmp/drone/cache/node_modules
