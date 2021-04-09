@@ -56,8 +56,7 @@ export default {
   },
 
   // Environment variables
-  env: {
-    baseUrl: 'https://xyz.timesales.ltd/',
-    // baseUrl: 'http://localhost:1337/',
+  publicRuntimeConfig: {
+    baseURL: 'https://xyz.timesales.ltd/',
   },
 }
