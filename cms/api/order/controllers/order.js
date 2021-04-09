@@ -8,12 +8,7 @@
 const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
-  /**
-   * Retrieve a record.
-   *
-   * @return {Object}
-   */
-
+  // Retrieve an order by its key (secret url slug) instead of numerical id
   async findOne(ctx) {
     const { key } = ctx.params;
 
