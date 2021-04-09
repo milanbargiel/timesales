@@ -12,7 +12,7 @@ export default {
     // Fetch Order From API
     try {
       const order = await $axios.$get(
-        `http://localhost:1337/orders/${params.key}`
+        `${process.env.baseUrl}orders/${params.key}`
       )
 
       return { order }

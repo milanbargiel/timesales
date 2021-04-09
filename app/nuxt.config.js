@@ -54,4 +54,9 @@ export default {
       config.resolve.alias.vue = 'vue/dist/vue.min.js'
     },
   },
+
+  // Environment variables
+  env: {
+    baseUrl: 'https://xyz.timesales.ltd/',
+  },
 }
