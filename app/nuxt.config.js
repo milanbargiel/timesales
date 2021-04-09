@@ -56,7 +56,7 @@ export default {
   },
 
   // Environment variables
-  publicRuntimeConfig: {
-    baseURL: 'https://xyz.timesales.ltd/',
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://xyz.timesales.ltd/',
   },
 }
