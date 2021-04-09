@@ -13,7 +13,7 @@
     - automatically be deployed to the frontend test environment at CDN netlify https://timesalesltd.netlify.app
     - changes in the strapi-cms will automatically be deployed to the virtual linux server at strato https://xyz.timesales.ltd
 - The order backend can be accessed at https://xyz.timesales.ltd/admin
-- A test key of an order is `agqOvHcpTv`
+- A test key of an order is agqOvHcpTv
 
 ##### API-Endpoints
 
