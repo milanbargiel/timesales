@@ -12,6 +12,8 @@
 - Pushes to the `main` branch of this repository will:
     - automatically be deployed to the frontend test environment at CDN netlify https://timesalesltd.netlify.app
     - changes in the strapi-cms will automatically be deployed to the virtual linux server at strato https://xyz.timesales.ltd
+- The order backend can be accessed at https://xyz.timesales.ltd/admin
+- A test key of an order is `agqOvHcpTv`
 
 ##### API-Endpoints
 
@@ -26,10 +28,13 @@
     "description": "Precious time for myself alone"
 }
 ```
-- Save progress (not implemented yet): `PUT https://xyz.timesales.ltd/orders/:key`
+
+- Get order: `GET https://xyz.timesales.ltd/orders/:key`
+
+- Save progress: `PUT https://xyz.timesales.ltd/orders/:key`
 
 ```json
 {
-    "progress": "[0.XX]"
+    "progress": 0.2
 }
 ```
