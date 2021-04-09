@@ -3,7 +3,7 @@
     <h1>Stream</h1>
     <p>{{ order.time }}</p>
     <p>{{ order.progress }}</p>
-    <button v-on:click="saveProgress(0.22)">Save Progress</button>
+    <button @click="saveProgress(0.22)">Save Progress</button>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     // Fetch Order From API
     try {
       const order = await $axios.$get(
-        `${process.env.baseUrl}orders/${params.key}`
+        `https://xyz.timesales.ltd/orders/${params.key}`
       )
 
       return { order } // order is saved to global scope
@@ -25,7 +25,7 @@ export default {
   methods: {
     saveProgress(progress) {
       // Endpoint only accepts numbers between 0 and 1 for progress field
-      this.$axios.$put(`${process.env.baseUrl}orders/${this.order.key}`, {
+      this.$axios.$put(`https://xyz.timesales.ltd/orders/${this.order.key}`, {
         progress,
       })
     },
