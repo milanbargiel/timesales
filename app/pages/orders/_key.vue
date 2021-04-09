@@ -3,6 +3,7 @@
     <h1>Stream</h1>
     <p>{{ order.time }}</p>
     <p>{{ order.progress }}</p>
+    <button v-on:click="saveProgress(0.22)">Save Progress</button>
   </div>
 </template>
 
@@ -15,11 +16,19 @@ export default {
         `${process.env.baseUrl}orders/${params.key}`
       )
 
-      return { order }
+      return { order } // order is saved to global scope
     } catch {
       // Redirect to 404 Page when order is not found on server
       return redirect('/404')
     }
+  },
+  methods: {
+    saveProgress(progress) {
+      // Endpoint only accepts numbers between 0 and 1 for progress field
+      this.$axios.$put(`${process.env.baseUrl}orders/${this.order.key}`, {
+        progress,
+      })
+    },
   },
 }
 </script>
