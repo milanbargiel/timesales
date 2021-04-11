@@ -43,12 +43,6 @@ export default () => {
 
   gainNode.connect(ctx.destination);
 
-  document.getElementById("sand-sound-button").addEventListener("click", () => {
-    ctx.resume().then(() => {
-      console.log('Playback resumed successfully');
-    });
-  })
-
   return {
     setVolume: (v) => {
       gainNode.gain.value = v;

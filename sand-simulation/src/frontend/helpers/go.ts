@@ -25,16 +25,16 @@ if (typeof global !== "undefined") {
 	throw new Error("cannot export Go (neither global, window nor self is defined)");
 }
 
-if (!global.require && typeof require !== "undefined") {
-	global.require = require;
-}
+// if (!global.require && typeof require !== "undefined") {
+// 	global.require = require;
+// }
 
-if (!global.fs && global.require) {
-	const fs = require("fs");
-	if (typeof fs === "object" && fs !== null && Object.keys(fs).length !== 0) {
-		global.fs = fs;
-	}
-}
+// if (!global.fs && global.require) {
+// 	const fs = require("fs");
+// 	if (typeof fs === "object" && fs !== null && Object.keys(fs).length !== 0) {
+// 		global.fs = fs;
+// 	}
+// }
 
 const enosys = () => {
 	const err = new Error("not implemented");
