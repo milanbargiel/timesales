@@ -14,3 +14,7 @@ build-wasm:
 
 build-types:
 	tsc && mv public/build/types/index.d.ts public/build/sand-bundle.d.ts && rm -rf public/build/types
+
+copy:
+	cp public/build/sand-bundle* ../app/plugins/sand-simulation
+	cp public/build/sand-backend.wasm ../app/static

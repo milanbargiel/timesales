@@ -19,6 +19,7 @@ esbuild.build({
   minify: false,
   format: "esm",
   platform: "node",
+  target: "esnext",
   sourcemap: true,
   outfile: "public/build/sand-bundle.js",
   watch: watch ? watcher : false,

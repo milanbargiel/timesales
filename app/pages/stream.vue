@@ -10,15 +10,11 @@ export default {
     }
   },
   async mounted() {
-    // load bot modules
     await this.$nextTick()
     this.sandSim = this.$sandSim('sand-simulation')
   },
   methods: {
-    toggle() {
-      // TODO: Implement that fast forwards delay processes on click
-      // console.log(this.botui.message.get(0))
-    },
+    toggle() {},
   },
 }
 </script>
