@@ -1,0 +1,6 @@
+{
+  "name": "sand-sim",
+  "version": "1.0.0",
+  "main": "sand-bundle.js",
+  "types": "sand-bundle.d.ts"
+}

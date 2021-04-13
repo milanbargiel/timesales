@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #e1e0e0;
+    }
+
+    p {
+      font-family: monospace;
+      user-select: none;
+    }
+
+
+    canvas {
+      pointer-events: none;
+      position: absolute;
+      z-index: -1;
+      top: 0px;
+      left: 0px;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 600px;
+      min-height: 600px;
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -webkit-crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p id="sand-time">Seconds Left: </p>
+  <button id="sand-pause-button">pause</button>
+  <button id="sand-sound-button">sound</button>
+
+  <script type="module">
+
+    import sandSim from "./build/sand-bundle.js";
+
+    const p = document.querySelector("#sand-time");
+
+    sandSim.init({
+      duration: 500,
+      progress: 0,
+      wasm: "build/sand-backend.wasm"
+    });
+
+    setInterval(() => {
+      p.innerHTML = sandSim.getProgress();
+    }, 500)
+
+    document.querySelector("#sand-pause-button").addEventListener("click", () => {
+      sandSim.pause();
+    })
+
+  </script>
+
+</body>
+
+
+
+</html>
