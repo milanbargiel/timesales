@@ -2,6 +2,7 @@
 $z-level-above-all: 999;
 
 // Colors
+$grey: #495057;
 $black: #000;
 
 /*
@@ -54,5 +55,26 @@ $black: #000;
   }
   100% {
     transform: translate(0, 0);
+  }
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.seconds-left {
+  margin-right: 10px;
+}
+
+.pause-button {
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
   }
 }

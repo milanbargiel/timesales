@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <div class="controls">
+    <span class="seconds-left">Seconds left: {{ timeLeft }}</span>
+    <span class="pause-button" @click="pause">{{
+      paused ? 'Continue' : 'Pause'
+    }}</span>
+  </div>
 </template>
 
 <script>
@@ -12,23 +17,45 @@ export default {
       type: Number,
       required: true,
     },
-    progress: {
+    initialProgress: {
       type: Number,
       required: true,
     },
+  },
+  data() {
+    return {
+      timeLeft: null,
+      progress: null,
+      paused: null,
+    }
   },
   mounted() {
     // Use sand simulation plugin defined in plugins/sand-simulation
     sandSim.init({
       duration: this.duration,
-      progress: this.progress,
+      progress: this.initialProgress,
       wasmPath: '/sand-backend.wasm',
     })
-
     // Periodically save progress in Strapi backend (1/s)
     setInterval(() => {
-      this.$emit('save-progress', sandSim.getProgress())
+      // Reduce count by one optimistically
+      if (!this.paused) {
+        this.timeLeft = this.timeLeft - 1
+      }
+
+      // Only save progress when it differs from previous progress
+      if (this.progress !== sandSim.getProgress()) {
+        this.progress = sandSim.getProgress()
+        this.timeLeft = this.duration * this.progress
+        this.$emit('save-progress', this.progress)
+      }
     }, 1000)
+  },
+  methods: {
+    pause() {
+      this.paused = !this.paused
+      sandSim.pause()
+    },
   },
 }
 </script>

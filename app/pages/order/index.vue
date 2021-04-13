@@ -7,7 +7,7 @@
   <div v-else>
     <SandSimulation
       :duration="order.time"
-      :progress="order.progress"
+      :initialProgress="order.progress"
       @save-progress="handleSaveProgress"
     />
   </div>
@@ -19,7 +19,6 @@ export default {
     return {
       isLoading: true,
       order: {},
-      progress: 0,
       sandSim: '',
     }
   },
@@ -45,16 +44,10 @@ export default {
           this.$router.push('/404')
         })
     },
-    handleSaveProgress(emittedProgress) {
-      // Only save progress when it differs from previous progress
-      if (this.progress === emittedProgress) {
-        return
-      }
-
-      this.progress = emittedProgress
+    handleSaveProgress(progress) {
       // Save progress in db (only accepts numbers between 0 and 1)
       this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
-        progress: this.progress,
+        progress,
       })
     },
   },

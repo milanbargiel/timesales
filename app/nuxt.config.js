@@ -19,6 +19,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    { src: 'normalize.css/normalize.css', lang: 'css' },
     { src: '@/assets/styles.scss', lang: 'scss' },
     // Load botui css
     { src: 'botui/build/botui.min.css', lang: 'css' },
