@@ -36,13 +36,13 @@ export default {
   methods: {
     saveProgress(progress) {
       // Endpoint only accepts numbers between 0 and 1 for progress field
-      this.$axios.$put(`https://xyz.timesales.ltd/orders/${this.order.key}`, {
+      this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
         progress,
       })
     },
     fetchOrder(key) {
       this.$axios
-        .$get(`https://xyz.timesales.ltd/orders/${key}`)
+        .$get(`${process.env.apiUrl}/orders/${key}`)
         .then((res) => {
           this.isLoading = false
           this.order = res

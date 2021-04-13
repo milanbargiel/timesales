@@ -55,4 +55,8 @@ export default {
       config.resolve.alias.vue = 'vue/dist/vue.min.js'
     },
   },
+
+  env: {
+    apiUrl: process.env.API_URL || 'https://xyz.timesales.ltd',
+  },
 }
