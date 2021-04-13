@@ -5,15 +5,7 @@
     <span class="dot"></span>
   </div>
   <div v-else>
-    <p>You have bought: {{ order.time }} ms</p>
-    <p>Your progress is: {{ order.progress }}</p>
-    <p>Enter a new progress here (number must be between 0 and 1)</p>
-    <p>Reload this page to see the result</p>
-    <input v-model="progress" type="number" placeholder="New progress" />
-    <!-- eslint-disable-next-line prettier/prettier -->
-    <button @click="{{ saveProgress(progress) }}">
-      Submit
-    </button>
+    <SandSimulation :duration="order.time" :progress="order.progress" />
   </div>
 </template>
 
@@ -23,6 +15,7 @@ export default {
     return {
       isLoading: true,
       order: {},
+      sandSim: '',
     }
   },
   created() {
@@ -34,12 +27,6 @@ export default {
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
-    saveProgress(progress) {
-      // Endpoint only accepts numbers between 0 and 1 for progress field
-      this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
-        progress,
-      })
-    },
     fetchOrder(key) {
       this.$axios
         .$get(`${process.env.apiUrl}/orders/${key}`)
@@ -52,6 +39,20 @@ export default {
           this.$router.push('/404')
         })
     },
+    saveProgress(progress) {
+      // Endpoint only accepts numbers between 0 and 1 for progress field
+      this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
+        progress,
+      })
+    },
   },
 }
 </script>
+
+<style>
+canvas {
+  width: 100vw;
+  height: 100vh;
+  image-rendering: pixelated;
+}
+</style>
