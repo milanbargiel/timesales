@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <h1>Stream</h1>
-    <p>{{ order.time }}</p>
-    <p>{{ order.progress }}</p>
+  <div v-if="isLoading" class="dot-container">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  <div v-else>
+    <p>You have bought: {{ order.time }} ms</p>
+    <p>Your progress is: {{ order.progress }}</p>
   </div>
 </template>
 
@@ -10,6 +14,7 @@
 export default {
   data() {
     return {
+      isLoading: true,
       order: {},
     }
   },
@@ -32,6 +37,7 @@ export default {
       this.$axios
         .$get(`https://xyz.timesales.ltd/orders/${key}`)
         .then((res) => {
+          this.isLoading = false
           this.order = res
         })
         // Redirect if order was not found
