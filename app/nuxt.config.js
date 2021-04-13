@@ -57,6 +57,6 @@ export default {
   },
 
   env: {
-    apiUrl: process.env.API_URL || 'https://xyz.timesales.ltd',
+    apiUrl: 'https://xyz.timesales.ltd',
   },
 }
