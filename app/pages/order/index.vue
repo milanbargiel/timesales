@@ -7,6 +7,13 @@
   <div v-else>
     <p>You have bought: {{ order.time }} ms</p>
     <p>Your progress is: {{ order.progress }}</p>
+    <p>Enter a new progress here (number must be between 0 and 1)</p>
+    <p>Reload this page to see the result</p>
+    <input v-model="progress" type="number" placeholder="New progress" />
+    <!-- eslint-disable-next-line prettier/prettier -->
+    <button @click="{{ saveProgress(progress) }}">
+      Submit
+    </button>
   </div>
 </template>
 
@@ -29,7 +36,7 @@ export default {
   methods: {
     saveProgress(progress) {
       // Endpoint only accepts numbers between 0 and 1 for progress field
-      this.$axios.$put(`https://xyz.timesales.ltd/orders/agqOvHcpTv`, {
+      this.$axios.$put(`https://xyz.timesales.ltd/orders/${this.order.key}`, {
         progress,
       })
     },
