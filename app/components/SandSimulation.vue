@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import sandSim from 'sand-simulation'
+
 export default {
   name: 'SandSimulation',
   props: {
@@ -15,14 +17,18 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      sandSim: '',
-    }
-  },
   mounted() {
-    // Use plugin defined in plugins/sand-simulation
-    this.sandSim = this.$sandSim(this.duration, this.progress)
+    // Use sand simulation plugin defined in plugins/sand-simulation
+    sandSim.init({
+      duration: this.duration,
+      progress: this.progress,
+      wasmPath: '/sand-backend.wasm',
+    })
+
+    // Periodically save progress in Strapi backend (1/s)
+    setInterval(() => {
+      this.$emit('save-progress', sandSim.getProgress())
+    }, 1000)
   },
 }
 </script>

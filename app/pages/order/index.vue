@@ -5,7 +5,11 @@
     <span class="dot"></span>
   </div>
   <div v-else>
-    <SandSimulation :duration="order.time" :progress="order.progress" />
+    <SandSimulation
+      :duration="order.time"
+      :progress="order.progress"
+      @save-progress="handleSaveProgress"
+    />
   </div>
 </template>
 
@@ -39,7 +43,7 @@ export default {
           this.$router.push('/404')
         })
     },
-    saveProgress(progress) {
+    handleSaveProgress(event, progress) {
       // Endpoint only accepts numbers between 0 and 1 for progress field
       this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
         progress,
