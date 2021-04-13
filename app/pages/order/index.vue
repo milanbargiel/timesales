@@ -19,6 +19,7 @@ export default {
     return {
       isLoading: true,
       order: {},
+      progress: 0,
       sandSim: '',
     }
   },
@@ -37,16 +38,23 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.order = res
+          this.progress = res.progress
         })
         // Redirect if order was not found
         .catch(() => {
           this.$router.push('/404')
         })
     },
-    handleSaveProgress(event, progress) {
-      // Endpoint only accepts numbers between 0 and 1 for progress field
+    handleSaveProgress(emittedProgress) {
+      // Only save progress when it differs from previous progress
+      if (this.progress === emittedProgress) {
+        return
+      }
+
+      this.progress = emittedProgress
+      // Save progress in db (only accepts numbers between 0 and 1)
       this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
-        progress,
+        progress: this.progress,
       })
     },
   },
