@@ -9,10 +9,11 @@
 </template>
 
 <script>
-import Start from '../conversation/start.js'
+// import Start from '../conversation/start.js'
+import FastCheckout from '../conversation/fastCheckout.js'
 
 export default {
-  mixins: [Start],
+  mixins: [FastCheckout],
   data() {
     return {
       botui: '',
@@ -22,7 +23,7 @@ export default {
     // load bot modules
     await this.$nextTick()
     this.botui = this.$botui('botui')
-    this.startConversation()
+    this.fastCheckout(10, 100)
   },
   methods: {
     toggle() {
