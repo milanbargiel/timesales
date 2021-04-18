@@ -31,11 +31,11 @@
 
   // Create order
   async create(ctx) {
-    
+
     // Charge the customer
     try {
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: ['card', 'sepa_debit', 'sofort'],
         line_items: [
         {
           price_data: {
