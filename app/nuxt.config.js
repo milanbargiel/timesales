@@ -61,5 +61,6 @@ export default {
   // Reads .env file
   publicRuntimeConfig: {
     apiURL: process.env.API_URL,
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   },
 }
