@@ -16,6 +16,8 @@ export default {
           // If `redirectToCheckout` fails due to a browser or network
           // error, you should display the localized error message to your
           // customer using `error.message`.
+          console.log(result)
+
           if (result.error) {
             alert(result.error.message)
           }
