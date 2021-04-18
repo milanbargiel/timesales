@@ -32,6 +32,8 @@ func CreateCanvas(width, height int) {
 
 			v += float64(random.IntMinMax(-20, 20))
 
+			v = (math.Sin(v/70+random.Noise1DScale(y, 0.01)*20) + 1) * 125
+
 			v = math.Min(math.Max(v, 0), 255)
 
 			c.SetCell(x, y, byte(v))
@@ -58,6 +60,9 @@ var (
 //export Update
 func Update(percentage float64) int {
 
+	// The percentage value is the current percentage
+	// passed in as a float from the frontend
+
 	if simFinished {
 		return 0
 	}
@@ -76,7 +81,14 @@ func Update(percentage float64) int {
 	// This is the difference of the
 	// actual percentage and the "should be" percentage
 	// lerping this worked great, but causes the value to be inaccurate
-	diff = h.Lerp(percentage-perc, diff, 0.995)
+	_diff := percentage - perc
+	diff = h.Lerp(_diff, diff, 0.995)
+
+	// Sometimes the diff "overshoots" when the simulation was ahead of the value for some time
+	// to stop this we set the lerped diff to 0 if the _diff is over 0;
+	if _diff > 0 {
+		diff = 0
+	}
 
 	// Error Correction
 
@@ -160,13 +172,17 @@ func Update(percentage float64) int {
 				}
 			}
 
-			c.SwitchIfEmpty(x, y, 0, -1)
+			if random.Bool() {
+				c.SwitchIfEmpty(x, y, 0, -1)
+			}
 
 			if random.Bool() {
 				c.SwitchIfEmpty(x, y, -1, -1)
 			} else {
 				c.SwitchIfEmpty(x, y, 1, -1)
 			}
+
+			c.SwitchIfEmpty(x, y, 0, -1)
 
 		}
 	}
