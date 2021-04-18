@@ -4,6 +4,7 @@
       <div id="botui">
         <bot-ui />
       </div>
+      <button id="checkout-button">Buy time</button>
     </div>
   </div>
 </template>
