@@ -4,7 +4,7 @@
       <div id="botui">
         <bot-ui />
       </div>
-      <button id="checkout-button">Buy time</button>
+      <button id="checkout-button" @click="checkout(order)">Buy time</button>
     </div>
   </div>
 </template>
@@ -12,12 +12,21 @@
 <script>
 // import Start from '../conversation/start.js'
 import FastCheckout from '../conversation/fastCheckout.js'
+import stripeCheckoutMixin from '../mixins/stripeCheckoutMixin.js'
 
 export default {
-  mixins: [FastCheckout],
+  mixins: [FastCheckout, stripeCheckoutMixin],
   data() {
     return {
       botui: '',
+      // dummy data
+      order: {
+        email: 'luciano.karuso@googlemail.com',
+        time: 2000,
+        name: 'Luciano Karuso',
+        price: 12220,
+        description: 'Time to meet with my moms',
+      },
     }
   },
   async mounted() {
@@ -29,41 +38,7 @@ export default {
   methods: {
     toggle() {
       // TODO: Implement that fast forwards delay processes on click
-      console.log(this.botui.message.get(0))
     },
   },
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

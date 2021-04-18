@@ -31,7 +31,7 @@
 
   // Create order
   async create(ctx) {
-
+    
     // Charge the customer
     try {
       const session = await stripe.checkout.sessions.create({
@@ -49,8 +49,9 @@
         },
         ],
         mode: 'payment',
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
+        // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
+        success_url: ctx.request.body.successUrl,
+        cancel_url: ctx.request.body.cancelUrl,
       });
 
       // Save the order in the database
