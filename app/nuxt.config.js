@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'https://js.stripe.com/v3' }],
+    script: [{ src: 'https://js.stripe.com/v3', defer: true }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -58,7 +58,8 @@ export default {
     },
   },
 
-  env: {
-    apiUrl: 'https://xyz.timesales.ltd',
+  // Reads .env file
+  publicRuntimeConfig: {
+    apiURL: process.env.API_URL,
   },
 }
