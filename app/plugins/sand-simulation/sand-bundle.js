@@ -19,7 +19,7 @@ var debounce_default = (callback, time2) => {
 var getDims_default = () => {
   let width = 200;
   let height = 200;
-  if (process["browser"] || typeof window !== "undefined") {
+  if (process["browser"]) {
     width = window.innerWidth;
     height = window.innerHeight;
   }

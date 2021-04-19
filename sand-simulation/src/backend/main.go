@@ -183,6 +183,8 @@ func Update(percentage float64) int {
 			}
 
 			c.SwitchIfEmpty(x, y, 0, -1)
+			c.SwitchIfEmpty(x, y, 0, -2)
+			c.SwitchIfEmpty(x, y, 0, -3)
 
 		}
 	}
