@@ -51,7 +51,7 @@ export default {
               placeholder: 'Your answer',
             },
           })
-          .then((res) => this.checkout(res.value))
+          .then((res) => this.checkout(res.value, name))
       }
     },
   },

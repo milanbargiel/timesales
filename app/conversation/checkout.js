@@ -1,6 +1,6 @@
 export default {
   methods: {
-    async checkout(purpose) {
+    async checkout(purpose, name) {
       // Look for define keywords in purpose
       const keyword = this.lookForKeyword(purpose)
 
@@ -17,7 +17,7 @@ export default {
       await this.timeout(10000)
 
       await this.botMessage(
-        '(NAME) Where were we? you wanted to buy some <i>time</i> right?'
+        `${name}, where were we? you wanted to buy some <i>time</i> right?'`
       )
 
       await this.botMessage('How much <i>time</i> shall it be?')
