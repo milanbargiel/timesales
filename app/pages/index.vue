@@ -1,33 +1,36 @@
 <template>
-  <div class="container" @click="toggle">
-    <div>
-      <div id="botui">
-        <bot-ui />
+  <div @click="toggle">
+    <div class="container">
+      <div>
+        <div id="botui">
+          <bot-ui />
+        </div>
       </div>
-      <b-button id="checkout-button" @click="checkout(order)"
-        >Buy time</b-button
+    </div>
+    <div class="controls">
+      <span class="pause-button" @click="checkout(dummyOrder)"
+        >Test Checkout</span
       >
     </div>
   </div>
 </template>
 
 <script>
-// import Start from '../conversation/start.js'
-import FastCheckout from '../conversation/fastCheckout.js'
+import Start from '../conversation/start.js'
 import stripeCheckoutMixin from '../mixins/stripeCheckoutMixin.js'
 
 export default {
-  mixins: [FastCheckout, stripeCheckoutMixin],
+  mixins: [Start, stripeCheckoutMixin],
   data() {
     return {
       botui: '',
       // dummy data
-      order: {
+      dummyOrder: {
         email: 'luciano.karuso@googlemail.com',
         time: 2000,
         name: 'Luciano Karuso',
         price: 12220,
-        description: 'Time to meet with my moms',
+        description: 'Time to meet with my mom',
       },
     }
   },
@@ -35,7 +38,7 @@ export default {
     // load bot modules
     await this.$nextTick()
     this.botui = this.$botui('botui')
-    this.fastCheckout(10, 100)
+    this.startConversation()
   },
   methods: {
     toggle() {
