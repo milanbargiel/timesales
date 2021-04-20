@@ -4,7 +4,9 @@
       <div id="botui">
         <bot-ui />
       </div>
-      <button id="checkout-button" @click="checkout(order)">Buy time</button>
+      <b-button id="checkout-button" @click="checkout(order)"
+        >Buy time</b-button
+      >
     </div>
   </div>
 </template>
