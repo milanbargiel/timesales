@@ -55,15 +55,8 @@
         cancel_url: ctx.request.body.cancelUrl,
       });
 
-      // Save the order in the database
-      try {
-        const entity = await strapi.services.order.create(ctx.request.body);
-
-        // Return Stripe Checkout Session ID
-        return { id: session.id };
-      } catch (err) {
-        console.log(err)
-      }
+      // Return session id for the link to the Stripe checkout page
+      return { id: session.id };
     } catch (err) {
       console.log(err)
     }

@@ -35,7 +35,8 @@
       "private": true
     },
     "key": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
       "type": "decimal",
@@ -45,7 +46,8 @@
     },
     "description": {
       "type": "text",
-      "private": true
+      "private": true,
+      "required": true
     }
   }
 }
