@@ -33,7 +33,7 @@ export default {
   methods: {
     fetchOrder(key) {
       this.$axios
-        .$get(`${process.env.apiUrl}/orders/${key}`)
+        .$get(`${this.$config.apiUrl}/orders/${key}`)
         .then((res) => {
           this.isLoading = false
           this.order = res
