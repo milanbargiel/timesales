@@ -1,9 +1,27 @@
 <template>
-  <div class="controls">
+  <div class="controls controls--bottom">
     <span class="seconds-left">Seconds left: {{ timeLeft }}</span>
-    <span class="text-button" @click="pause">{{
-      paused ? 'Continue' : 'Pause'
-    }}</span>
+    <div class="text-button" @click="pause">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+        <defs>
+          <style>
+            polygon,
+            rect {
+              fill: #fff;
+              stroke: #000;
+            }
+          </style>
+        </defs>
+        <g v-if="paused">
+          <polygon points="8.56 5.37 42.17 24.7 8.56 44.4 8.56 5.37" />
+        </g>
+
+        <g v-else>
+          <rect x="9" y="5" width="9" height="38" />
+          <rect x="27" y="5" width="9" height="38" />
+        </g>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -61,6 +79,11 @@ export default {
 </script>
 
 <style>
+.controls {
+  display: flex;
+  align-items: center;
+}
+
 canvas {
   pointer-events: none;
   position: absolute;
@@ -75,5 +98,11 @@ canvas {
   image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-crisp-edges;
   image-rendering: crisp-edges;
+}
+
+svg {
+  display: block;
+  width: 48px;
+  height: 48px;
 }
 </style>

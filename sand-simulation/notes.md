@@ -50,3 +50,10 @@ Auflösung nen bisschen höher
     - Pause / Unpause
     - getProgress() 
       --> fetch("api.url.com")
+
+
+# Meeting 5 [Maurits, Milan]
+- Wellen Linien
+  - Vielleicht einfach sinus wellen horizontal
+- Noch viel mehr horizontaler
+- Nicht so konisch, 
