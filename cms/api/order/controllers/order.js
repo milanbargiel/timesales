@@ -6,7 +6,9 @@
  */
 
  const { sanitizeEntity } = require('strapi-utils');
+ const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe request authentification
  const stripe = require('stripe')('sk_test_51Ig9QCHHn9ZSZEneIp03I7pkwIUj89ErFNcQ3e7GZSVc5zZzHvDRImdLz3seEJ3zCr5Rbhqoz9KwMjHG6HoyG7U200qUFctzo9');
+ const endpointSecret = 'whsec_55whyoOEPGdF3G18khK5j4tUPkqRKjwd';
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
@@ -29,9 +31,35 @@
     return sanitizeEntity(entity, { model: strapi.models.order });
   },
 
+  // A webhook that is trigger when Stripe payment is completed
+  async create(ctx) {
+    // Verify that post event comes from Stripe
+    const signature = ctx.request.headers['stripe-signature'];
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(ctx.request.body[unparsed], signature, endpointSecret);
+    } catch (error) {
+      throw error;
+    }
+
+    return true;
+
+    // let entity;
+    // if (ctx.is('multipart')) {
+    //   const { data, files } = parseMultipartData(ctx);
+    //   entity = await strapi.services.restaurant.create(data, { files });
+    // } else {
+    //   entity = await strapi.services.restaurant.create(ctx.request.body);
+    // }
+    // return sanitizeEntity(entity, { model: strapi.models.restaurant });
+  },
+
   // Create Checkout Session in Stripe and return ID
   // The Session shows data that is posted to it
   async createCheckoutSession(ctx) {
+    const payload = ctx.request.body;
+
     try {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card', 'sepa_debit', 'sofort'],
@@ -41,21 +69,21 @@
           price_data: {
             currency: 'eur',
             product_data: {
-              name: ctx.request.body.description
+              name: payload.description
             },
-            unit_amount: ctx.request.body.price // price is in cents
+            unit_amount: payload.price // price is in cents
           },
           quantity: 1,
         },
         ],
         metadata: {
-          name: ctx.request.body.name,
-          time: ctx.request.body.time
+          name: payload.name,
+          time: payload.time
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
-        success_url: ctx.request.body.successUrl,
-        cancel_url: ctx.request.body.cancelUrl
+        success_url: payload.successUrl,
+        cancel_url: payload.cancelUrl
       });
 
       // Return session id for the link to the Stripe checkout page
