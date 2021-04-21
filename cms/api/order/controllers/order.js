@@ -29,10 +29,9 @@
     return sanitizeEntity(entity, { model: strapi.models.order });
   },
 
-  // Create order
-  async create(ctx) {
-
-    // Charge the customer
+  // Get sessionID for Stripe Checkout
+  // Post data to show in Checkout session
+  async createCheckoutSession(ctx) {
     try {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card', 'sepa_debit', 'sofort'],
@@ -42,17 +41,21 @@
           price_data: {
             currency: 'eur',
             product_data: {
-              name: ctx.request.body.description,
+              name: ctx.request.body.description
             },
-            unit_amount: ctx.request.body.price, // price is in cents
+            unit_amount: ctx.request.body.price // price is in cents
           },
           quantity: 1,
         },
         ],
+        metadata: {
+          name: ctx.request.body.name,
+          time: ctx.request.body.time
+        },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
         success_url: ctx.request.body.successUrl,
-        cancel_url: ctx.request.body.cancelUrl,
+        cancel_url: ctx.request.body.cancelUrl
       });
 
       // Return session id for the link to the Stripe checkout page

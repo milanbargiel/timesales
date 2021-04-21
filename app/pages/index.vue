@@ -30,7 +30,6 @@ export default {
       // realorder
       order: {
         name: '',
-        email: 'luciano.karuso@googlemail.com', // dummy email for now
         time: 0, // in seconds
         price: 0, // in cents
         description: '',

@@ -8,7 +8,7 @@ export default {
       }
       // Redirect to Stripe Checkout page
       this.$axios
-        .$post(`${this.$config.apiUrl}/orders`, data)
+        .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
         .then((session) => {
           this.stripe.redirectToCheckout({ sessionId: session.id })
         })

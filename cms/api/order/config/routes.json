@@ -23,6 +23,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/create-checkout-session",
+      "handler": "order.createCheckoutSession",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
