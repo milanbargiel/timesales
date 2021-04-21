@@ -98,7 +98,7 @@
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
-        success_url: payload.successUrl + '?session_id={CHECKOUT_SESSION_ID}',
+        success_url: payload.successUrl + '?key={CHECKOUT_SESSION_ID}',
         cancel_url: payload.cancelUrl
       });
 

@@ -3,7 +3,7 @@ export default {
     checkout(orderData) {
       const data = {
         ...orderData,
-        successUrl: `${this.$config.baseUrl}/success`,
+        successUrl: `${this.$config.baseUrl}/order`,
         cancelUrl: `${this.$config.baseUrl}/cancel`,
       }
       // Redirect to Stripe Checkout page

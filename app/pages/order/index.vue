@@ -46,7 +46,7 @@ export default {
     },
     handleSaveProgress(progress) {
       // Save progress in db (only accepts numbers between 0 and 1)
-      this.$axios.$put(`${process.env.apiUrl}/orders/${this.order.key}`, {
+      this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
         progress,
       })
     },
