@@ -65,4 +65,11 @@ export default {
     apiUrl: process.env.API_URL,
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   },
+
+  // Allow devtool extension in Firefox
+  vue: {
+    config: {
+      devtools: true,
+    },
+  },
 }
