@@ -5,6 +5,9 @@
         <div id="botui">
           <bot-ui />
         </div>
+        <b-button v-if="showCheckoutButton" @click="checkout(order)"
+          >Proceed to checkout</b-button
+        >
       </div>
     </div>
     <div class="controls">
@@ -24,12 +27,21 @@ export default {
   data() {
     return {
       botui: '',
+      showCheckoutButton: false,
+      // realorder
+      order: {
+        name: '',
+        email: 'luciano.karuso@googlemail.com', // dummy email for now
+        time: 0, // in seconds
+        price: 0, // in cents
+        description: '',
+      },
       // dummy data
       dummyOrder: {
-        email: 'luciano.karuso@googlemail.com',
-        time: 2000,
         name: 'Luciano Karuso',
-        price: 12220,
+        email: 'luciano.karuso@googlemail.com',
+        time: 120, // 2min
+        price: 12220, // 122,20 €
         description: 'Time to meet with my mom',
       },
     }

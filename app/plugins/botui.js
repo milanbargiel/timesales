@@ -26,6 +26,23 @@ vue.mixin({
         content,
       })
     },
+    async botTextInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          placeholder,
+        },
+      }) 
+      return res.value // only return value property
+    },
+    async botNumberInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          sub_type: 'number',
+          placeholder,
+        },
+      }) 
+      return parseInt(res.value) // only return value property as a number
+    },
     botYesOrNo() {
       return this.botui.action.button({
         action: [

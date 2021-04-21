@@ -10,13 +10,10 @@ export default {
 
       await this.botMessage("What's your name?")
 
-      const name = await this.botui.action.text({
-        action: {
-          placeholder: 'Your name',
-        },
-      })
+      // Save name in data property of index page
+      this.order.name = await this.botTextInput('Your name')
 
-      await this.botMessage(name.value + ', Nice to meet you!')
+      await this.botMessage(this.order.name + ', Nice to meet you!')
 
       await this.botMessage('Are you short of time?')
 
@@ -45,13 +42,14 @@ export default {
           'What would you do if you had all the <i>time</i> you wanted?'
         )
 
-        this.botui.action
-          .text({
-            action: {
-              placeholder: 'Your answer',
-            },
-          })
-          .then((res) => this.checkout(res.value, name))
+        // Answer is used as a description for the time order
+        // Therefore, it needs to be saved in the data property
+        this.order.description = await this.botTextInput('Your answer')
+
+        // When user enters a description, proceed to checkout conversation
+        if (this.order.description) {
+          this.checkoutConversation()
+        }
       }
     },
   },
