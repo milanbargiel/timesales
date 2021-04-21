@@ -67,38 +67,38 @@ export default {
 
       this.order.price = (await this.botNumberInput('Worth in €')) * 100
 
-      // const euro = await (() => {
-      //   // Show message after 10 sec if user does not enter a value
-      //   const t1 = setTimeout(async () => {
-      //     await this.botMessage(
-      //       'Some people base their descisions on their hourly income, other choose a more idealistic approximation. I always ask myself: <i>which amount of money would hurt a little bit</i> that should be enough to make your time precious.',
-      //       100
-      //     )
-      //   }, 10000)
+      this.order.price = await (() => {
+        // Show message after 10 sec if user does not enter a value
+        const t1 = setTimeout(async () => {
+          await this.botMessage(
+            'Some people base their descisions on their hourly income, other choose a more idealistic approximation. I always ask myself: <i>which amount of money would hurt a little bit</i> that should be enough to make your time precious.',
+            100
+          )
+        }, 10000)
 
-      //   // After 25 sec show another prompt
-      //   const t2 = setTimeout(async () => {
-      //     await this.botMessage(
-      //       "ultimately you'll have to ask yourself <i>what am i willing to spend? what's appropriate and won't ruin myself?</i>",
-      //       100
-      //     )
-      //   }, 25000)
+        // After 25 sec show another prompt
+        const t2 = setTimeout(async () => {
+          await this.botMessage(
+            "ultimately you'll have to ask yourself <i>what am i willing to spend? what's appropriate and won't ruin myself?</i>",
+            100
+          )
+        }, 25000)
 
-      //   return this.botui.action
-      //     .text({
-      //       action: {
-      //         sub_type: 'number',
-      //         placeholder: 'Worth in €',
-      //       },
-      //     })
-      //     .then((response) => {
-      //       // Do not show pushy questions anymore when price is given
-      //       // TODO: Improve mechanism, that when user already gave a price bots stop writing
-      //       clearTimeout(t1)
-      //       clearTimeout(t2)
-      //       return response
-      //     })
-      // })()
+        return this.botui.action
+          .text({
+            action: {
+              sub_type: 'number',
+              placeholder: 'Worth in €',
+            },
+          })
+          .then((response) => {
+            // Do not show pushy questions anymore when price is given
+            // TODO: Improve mechanism, that when user already gave a price bots stop writing
+            clearTimeout(t1)
+            clearTimeout(t2)
+            return response
+          })
+      })()
 
       // Only continue when user enters value
       if (this.order.price) {

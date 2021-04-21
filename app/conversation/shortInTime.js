@@ -1,8 +1,4 @@
-// Import checkout conversation branch
-import Checkout from '../conversation/checkout.js'
-
 export default {
-  mixins: [Checkout],
   methods: {
     async shortInTime() {
       await this.botMessage(
