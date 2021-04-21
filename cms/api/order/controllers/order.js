@@ -44,6 +44,7 @@
     }
 
     // Handle the checkout.session.completed event
+    // checkout.session.completed: The customer has successfully authorized the debit payment by submitting the Checkout form.
     if (event.type === 'checkout.session.completed') {
 
       // Create database entry
