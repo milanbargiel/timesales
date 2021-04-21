@@ -13,6 +13,11 @@
         <b-switch v-model="debugMode">Fast</b-switch>
       </b-field>
     </div>
+    <div class="controls controls--bottom">
+      <span class="text-button" @click="checkout(dummyOrder)"
+        >Test Checkout</span
+      >
+    </div>
   </div>
 </template>
 
@@ -33,6 +38,13 @@ export default {
         time: 0, // in seconds
         price: 0, // in cents
         description: '',
+      },
+      // dummyorder
+      dummyOrder: {
+        name: 'Luciano Karuso',
+        time: 120, // in seconds
+        price: 100, // in cents
+        description: 'Time to meet with my mom.',
       },
     }
   },
