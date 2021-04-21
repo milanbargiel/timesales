@@ -18,7 +18,7 @@ export default {
     // load bot modules
     await this.$nextTick()
     this.botui = this.$botui('botui')
-    this.cancel()
+    this.cancelConversation()
   },
 }
 </script>
