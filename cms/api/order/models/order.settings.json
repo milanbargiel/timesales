@@ -35,7 +35,8 @@
       "private": true
     },
     "key": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
       "type": "integer",

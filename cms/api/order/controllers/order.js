@@ -57,7 +57,8 @@
           price: parseInt(session.amount_total),
           time: parseInt(session.metadata.time),
           description: session.metadata.description,
-          stripePaymentID: session.payment_intent
+          stripePaymentID: session.payment_intent,
+          key: session.id
         }
 
         const entity = await strapi.services.order.create(order);
@@ -97,7 +98,7 @@
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
-        success_url: payload.successUrl,
+        success_url: payload.successUrl + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url: payload.cancelUrl
       });
 

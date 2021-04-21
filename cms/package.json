@@ -9,10 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "knex": "0.21.18",
-    "nanoid": "^3.1.22",
     "pg": "8.5.1",
     "strapi": "3.5.4",
     "strapi-admin": "3.5.4",
