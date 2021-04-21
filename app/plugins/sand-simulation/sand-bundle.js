@@ -711,7 +711,11 @@ var backend;
 var canvas;
 var sound;
 var simPaused = false;
-async function init({duration: duration2, progress: progress2, wasmPath}) {
+async function init({
+  duration: duration2,
+  progress: progress2,
+  wasmPath
+}) {
   let {width, height} = getDims_default();
   let pixels = new Uint8Array(width * height);
   window["sandPixelArray"] = pixels;
@@ -719,7 +723,7 @@ async function init({duration: duration2, progress: progress2, wasmPath}) {
   await backend.CreateCanvas(width, height);
   canvas = createCanvas_default({pixels, width, height});
   sound = createSound_default();
-  timeKeeper_default.setDuration(duration2 || 120);
+  timeKeeper_default.setDuration(duration2 || 60);
   timeKeeper_default.setProgress(progress2 || 1);
   let _promise;
   let updates = 100;

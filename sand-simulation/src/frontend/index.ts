@@ -4,15 +4,21 @@ import createSound from "./createSound";
 import { debounce, getDims } from "./helpers";
 import timeKeeper from "./timeKeeper";
 
-
 let backend: Backend;
 let canvas: ReturnType<typeof createCanvas>;
 let sound: ReturnType<typeof createSound>;
 
-let simPaused = false
+let simPaused = false;
 
-async function init({ duration, progress, wasmPath }: { duration: number, progress: number, wasmPath: string }) {
-
+async function init({
+  duration,
+  progress,
+  wasmPath,
+}: {
+  duration: number;
+  progress: number;
+  wasmPath: string;
+}) {
   let { width, height } = getDims();
 
   let pixels = new Uint8Array(width * height);
@@ -25,15 +31,14 @@ async function init({ duration, progress, wasmPath }: { duration: number, progre
   backend = await createBackend(wasmPath);
   await backend.CreateCanvas(width, height);
 
-  canvas = createCanvas({ pixels, width, height })
+  canvas = createCanvas({ pixels, width, height });
 
   sound = createSound();
 
-  timeKeeper.setDuration(duration || 120);
+  timeKeeper.setDuration(duration || 60);
   timeKeeper.setProgress(progress || 1);
 
-
-  let _promise
+  let _promise;
   let updates = 100;
   let isResizing = false;
 
@@ -44,39 +49,36 @@ async function init({ duration, progress, wasmPath }: { duration: number, progre
     _promise = false;
   }
 
-
   async function render() {
     if (!simPaused && !isResizing && timeKeeper.getProgress() > -0.05) {
       timeKeeper.update();
       canvas.update();
       updateSim();
-      sound.setVolume(Math.min(0.05, updates / 4000000))
+      sound.setVolume(Math.min(0.05, updates / 4000000));
     }
     requestAnimationFrame(render);
   }
 
-  window.addEventListener("resize", debounce(async () => {
+  window.addEventListener(
+    "resize",
+    debounce(async () => {
+      const { width: _w, height: _h } = getDims();
 
-    const { width: _w, height: _h } = getDims();
+      if (_w != width || _h != height) {
+        width = _w;
+        height = _h;
 
-    if (_w != width || _h != height) {
+        pixels = new Uint8Array(width * height);
 
-      width = _w;
-      height = _h;
+        window["sandPixelArray"] = pixels;
 
-      pixels = new Uint8Array(width * height);
-
-      window["sandPixelArray"] = pixels;
-
-      canvas.resize(width, height, pixels);
-      backend.Resize(width, height);
-    }
-
-  }, 500))
-
+        canvas.resize(width, height, pixels);
+        backend.Resize(width, height);
+      }
+    }, 500)
+  );
 
   render();
-
 }
 
 function pause() {
@@ -94,5 +96,7 @@ function getProgress() {
 }
 
 export default {
-  init, pause, getProgress
-}
+  init,
+  pause,
+  getProgress,
+};
