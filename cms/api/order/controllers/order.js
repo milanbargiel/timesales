@@ -7,8 +7,8 @@
 
  const { sanitizeEntity } = require('strapi-utils');
  const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe request authentification
- const stripe = require('stripe')('sk_test_51Ig9QCHHn9ZSZEneIp03I7pkwIUj89ErFNcQ3e7GZSVc5zZzHvDRImdLz3seEJ3zCr5Rbhqoz9KwMjHG6HoyG7U200qUFctzo9');
- const endpointSecret = 'whsec_55whyoOEPGdF3G18khK5j4tUPkqRKjwd';
+ const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
+ const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
