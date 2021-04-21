@@ -11,9 +11,19 @@ vue.mixin({
       return list.find((word) => str.includes(word))
     },
     timeout(ms) {
+      // No delays in debug mode
+      if(this.debugMode) {
+        return Promise.resolve()
+      }
+
       return new Promise((resolve) => setTimeout(resolve, ms))
     },
     timeToWrite(sentence) {
+      // No delays in debug mode
+      if(this.debugMode) {
+        return 100
+      }
+
       // Calculate time for bot to write a message
       // Min value is 2 seconds
       return Math.max(sentence.length * 50, 2000)
@@ -25,6 +35,23 @@ vue.mixin({
         type: 'html',
         content,
       })
+    },
+    async botTextInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          placeholder,
+        },
+      }) 
+      return res.value // only return value property
+    },
+    async botNumberInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          sub_type: 'number',
+          placeholder,
+        },
+      }) 
+      return parseInt(res.value) // only return value property as a number
     },
     botYesOrNo() {
       return this.botui.action.button({

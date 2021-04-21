@@ -5,15 +5,4 @@
  * to customize this model
  */
 
-const { nanoid } = require('nanoid');
-
-module.exports = {
-  /**
-   * Triggered before order creation.
-   */
-  lifecycles: {
-    async beforeCreate(data) {
-      data.key = nanoid(10); // create random keys programatically
-    },
-  },
-};
+module.exports = {};

@@ -58,23 +58,85 @@ $black: #000;
   }
 }
 
+.time-container {
+  position: relative;
+}
+
 .controls {
   position: absolute;
-  bottom: 10px;
   display: flex;
   width: 100%;
   justify-content: flex-end;
   padding-right: 10px;
+
+  &--top {
+    top: 10px;
+  }
+
+  &--bottom {
+    bottom: 10px;
+  }
+}
+
+.checkout-button-container {
+  margin-bottom: 200px;
+}
+
+.debug-button {
+  display: block;
+}
+
+.test-checkout-button {
+  display: block;
 }
 
 .seconds-left {
   margin-right: 10px;
 }
 
-.pause-button {
+.text-button {
   text-decoration: underline;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+// Botui
+.bot-container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+
+.hidden {
+  visibility: hidden;
 }

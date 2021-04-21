@@ -15,6 +15,9 @@ module.exports = {
     'plugin:nuxt/recommended',
   ],
   plugins: ['prettier'],
+  globals: {
+    Stripe: true,
+  },
   // add your custom rules here
   rules: {},
 }
