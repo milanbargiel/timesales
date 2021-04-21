@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="bot-container">
     <div id="botui">
       <bot-ui />
     </div>

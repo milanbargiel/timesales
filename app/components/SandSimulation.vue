@@ -1,7 +1,7 @@
 <template>
   <div class="controls">
     <span class="seconds-left">Seconds left: {{ timeLeft }}</span>
-    <span class="pause-button" @click="pause">{{
+    <span class="text-button" @click="pause">{{
       paused ? 'Continue' : 'Pause'
     }}</span>
   </div>

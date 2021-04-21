@@ -1,19 +1,17 @@
 <template>
-  <div @click="toggle">
-    <div class="container">
-      <div>
-        <div id="botui">
-          <bot-ui />
-        </div>
-        <b-button v-if="showCheckoutButton" @click="checkout(order)"
-          >Proceed to checkout</b-button
-        >
+  <div class="time-container">
+    <div class="bot-container">
+      <div id="botui">
+        <bot-ui />
+      </div>
+      <div :class="{ hidden: !showCheckoutButton }">
+        <b-button @click="checkout(order)">Proceed to checkout</b-button>
       </div>
     </div>
-    <div class="controls">
-      <span class="pause-button" @click="checkout(dummyOrder)"
-        >Test Checkout</span
-      >
+    <div class="controls controls--top">
+      <b-field class="debug-button">
+        <b-switch v-model="debugMode">Fast</b-switch>
+      </b-field>
     </div>
   </div>
 </template>
@@ -28,6 +26,7 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      debugMode: false, // In debug mode all delay is set to 0
       // realorder
       order: {
         name: '',
@@ -36,14 +35,6 @@ export default {
         price: 0, // in cents
         description: '',
       },
-      // dummy data
-      dummyOrder: {
-        name: 'Luciano Karuso',
-        email: 'luciano.karuso@googlemail.com',
-        time: 120, // 2min
-        price: 12220, // 122,20 €
-        description: 'Time to meet with my mom',
-      },
     }
   },
   async mounted() {
@@ -51,11 +42,6 @@ export default {
     await this.$nextTick()
     this.botui = this.$botui('botui')
     this.startConversation()
-  },
-  methods: {
-    toggle() {
-      // TODO: Implement that fast forwards delay processes on click
-    },
   },
 }
 </script>

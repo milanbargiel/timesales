@@ -58,20 +58,43 @@ $black: #000;
   }
 }
 
+.time-container {
+  position: relative;
+}
+
 .controls {
   position: absolute;
-  bottom: 10px;
   display: flex;
   width: 100%;
   justify-content: flex-end;
   padding-right: 10px;
+
+  &--top {
+    top: 10px;
+  }
+
+  &--bottom {
+    bottom: 10px;
+  }
+}
+
+.checkout-button-container {
+  margin-bottom: 200px;
+}
+
+.debug-button {
+  display: block;
+}
+
+.test-checkout-button {
+  display: block;
 }
 
 .seconds-left {
   margin-right: 10px;
 }
 
-.pause-button {
+.text-button {
   text-decoration: underline;
 
   &:hover {
@@ -80,13 +103,16 @@ $black: #000;
 }
 
 // Botui
-.container {
+.bot-container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .title {
@@ -109,4 +135,8 @@ $black: #000;
 
 .links {
   padding-top: 15px;
+}
+
+.hidden {
+  visibility: hidden;
 }

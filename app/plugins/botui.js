@@ -11,9 +11,19 @@ vue.mixin({
       return list.find((word) => str.includes(word))
     },
     timeout(ms) {
+      // No delays in debug mode
+      if(this.debugMode) {
+        return Promise.resolve()
+      }
+
       return new Promise((resolve) => setTimeout(resolve, ms))
     },
     timeToWrite(sentence) {
+      // No delays in debug mode
+      if(this.debugMode) {
+        return 100
+      }
+
       // Calculate time for bot to write a message
       // Min value is 2 seconds
       return Math.max(sentence.length * 50, 2000)
