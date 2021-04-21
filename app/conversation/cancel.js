@@ -1,3 +1,5 @@
+// This conversation is triggered when the user cancels the payment in Stripe
+
 export default {
   methods: {
     async cancelConversation() {

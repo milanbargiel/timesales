@@ -1,4 +1,10 @@
+// Import conversation branches
+import ShortInTime from '../conversation/shortInTime.js'
+import NotShortInTime from '../conversation/notShortInTime.js'
+import Checkout from '../conversation/checkout.js'
+
 export default {
+  mixins: [ShortInTime, NotShortInTime, Checkout],
   methods: {
     async startConversation() {
       await this.botMessage('Hi, good to see you!')

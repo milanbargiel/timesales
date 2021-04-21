@@ -1,22 +1,15 @@
+// Import conversation branches
+import Checkout from '../conversation/checkout.js'
+
 export default {
+  mixins: [Checkout],
   methods: {
     async shortInTime() {
       await this.botMessage(
         "Why don't you have enough time? Is it because of capitalism?"
       )
 
-      const capitalism = await this.botui.action.button({
-        action: [
-          {
-            text: 'Yes',
-            value: true,
-          },
-          {
-            text: 'No',
-            value: false,
-          },
-        ],
-      })
+      const capitalism = await this.botYesOrNo()
 
       if (capitalism.value) {
         await this.botMessage(
@@ -38,15 +31,11 @@ export default {
         'For which purpose would you like to have some <i>time</i>?'
       )
 
-      const timeTo = await this.botui.action.text({
-        action: {
-          placeholder: 'Enter your text here',
-        },
-      })
+      this.order.description = await this.botTextInput('Your answer')
 
-      if (timeTo.value) {
+      if (this.order.description) {
         // Proceed to checkout
-        this.checkout(timeTo.value)
+        this.checkoutConversation()
       }
     },
   },

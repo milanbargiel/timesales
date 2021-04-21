@@ -1,13 +1,14 @@
+// Import conversation branches
+import Checkout from '../conversation/checkout.js'
+import Exit from '../conversation/exit.js'
+
 export default {
+  mixins: [Checkout, Exit],
   methods: {
     async notShortInTime() {
       await this.botMessage('No? How do you do that?')
 
-      await this.botui.action.text({
-        action: {
-          placeholder: 'Your answer',
-        },
-      })
+      await this.botTextInput('Your answer')
 
       await this.botMessage("Ok, i'll keep that secret save")
 
