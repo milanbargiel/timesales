@@ -1,8 +1,12 @@
+// Import conversation branches
+import Exit from '../conversation/exit.js'
+
 export default {
+  mixins: [Exit],
   methods: {
-    async checkout(purpose) {
-      // Look for define keywords in purpose
-      const keyword = this.lookForKeyword(purpose)
+    async checkoutConversation() {
+      // Look for define keywords in the description of the time needed
+      const keyword = this.lookForKeyword(this.order.description)
 
       if (keyword) {
         await this.botMessage(`Ah good choice, I like to ${keyword} too.`)
@@ -17,19 +21,14 @@ export default {
       await this.timeout(10000)
 
       await this.botMessage(
-        '(NAME) Where were we? you wanted to buy some <i>time</i> right?'
+        `${this.order.name}, where were we? you wanted to buy some <i>time</i> right?'`
       )
 
       await this.botMessage('How much <i>time</i> shall it be?')
 
-      const minutes = await this.botui.action.text({
-        action: {
-          sub_type: 'number',
-          placeholder: 'Time in minutes',
-        },
-      })
+      this.order.time = await this.botNumberInput('Time in seconds')
 
-      if (minutes.value > 60) {
+      if (this.order.time > 60) {
         await this.botMessage(
           'That much? very good, you draw from the full, I like that!'
         )
@@ -41,18 +40,7 @@ export default {
 
       await this.botMessage('Are you a member of the church?')
 
-      const church = await this.botui.action.button({
-        action: [
-          {
-            text: 'Yes',
-            value: true,
-          },
-          {
-            text: 'No',
-            value: false,
-          },
-        ],
-      })
+      const church = await this.botYesOrNo()
 
       if (church.value === false) {
         await this.botMessage('ok, then we can continue')
@@ -81,14 +69,9 @@ export default {
 
       await this.botMessage('What would that <i>time</i> be worth to you?')
 
-      const euro = this.botui.action.text({
-        action: {
-          sub_type: 'number',
-          placeholder: 'Worth in €',
-        },
-      })
+      this.order.price = (await this.botNumberInput('Worth in €')) * 100
 
-      // const euro = await (() => {
+      // this.order.price = await (() => {
       //   // Show message after 10 sec if user does not enter a value
       //   const t1 = setTimeout(async () => {
       //     await this.botMessage(
@@ -122,24 +105,14 @@ export default {
       // })()
 
       // Only continue when user enters value
-      if (euro.value) {
+      if (this.order.price) {
         await this.botMessage(
-          `sweet, you chose to buy ${minutes.value} minutes for ${euro.value} €.`
+          `sweet, you chose to buy ${this.order.time} seconds for ${
+            this.order.price / 100
+          } €.`
         )
 
-        const pay = await this.botui.action.button({
-          action: [
-            {
-              text: 'Buy time',
-            },
-          ],
-        })
-
-        if (pay) {
-          alert(
-            `Congratulations. You bought ${minutes.value} minutes for ${euro.value} € !`
-          )
-        }
+        this.showCheckoutButton = true
       }
     },
   },

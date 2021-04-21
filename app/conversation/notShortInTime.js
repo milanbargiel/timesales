@@ -1,18 +1,14 @@
 // Import conversation branches
-import Exit from '../conversation/exit.js'
 import Checkout from '../conversation/checkout.js'
+import Exit from '../conversation/exit.js'
 
 export default {
-  mixins: [Exit, Checkout],
+  mixins: [Checkout, Exit],
   methods: {
     async notShortInTime() {
       await this.botMessage('No? How do you do that?')
 
-      await this.botui.action.text({
-        action: {
-          placeholder: 'Your answer',
-        },
-      })
+      await this.botTextInput('Your answer')
 
       await this.botMessage("Ok, i'll keep that secret save")
 
@@ -41,13 +37,13 @@ export default {
         await this.botMessage(
           'Good. To make it more unique, we always connect <i>time</i> to a special purpose. What would be the Purpose for your <i>Time</i>?'
         )
-        this.botui.action
-          .text({
-            action: {
-              placeholder: 'Your answer',
-            },
-          })
-          .then((res) => this.checkout(res.value))
+
+        this.order.description = await this.botTextInput('Your answer')
+
+        // When user enters a description, proceed to checkout conversation
+        if (this.order.description) {
+          this.checkoutConversation()
+        }
       } else {
         // on no
         await this.botMessage('Then i cannot help you either')

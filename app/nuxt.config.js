@@ -15,6 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [{ src: 'https://js.stripe.com/v3', defer: true }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -44,6 +45,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-buefy',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -57,7 +59,17 @@ export default {
     },
   },
 
-  env: {
-    apiUrl: 'https://xyz.timesales.ltd',
+  // Reads .env file
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL,
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  },
+
+  // Allow devtool extension in Firefox
+  vue: {
+    config: {
+      devtools: true,
+    },
   },
 }

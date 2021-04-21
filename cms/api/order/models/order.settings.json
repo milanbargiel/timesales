@@ -35,17 +35,24 @@
       "private": true
     },
     "key": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
-      "type": "decimal",
+      "type": "integer",
       "private": true,
       "required": true,
       "min": 0
     },
     "description": {
       "type": "text",
-      "private": true
+      "private": true,
+      "required": true
+    },
+    "stripePaymentID": {
+      "type": "string",
+      "private": true,
+      "required": true
     }
   }
 }
