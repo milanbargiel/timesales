@@ -29,8 +29,8 @@
     return sanitizeEntity(entity, { model: strapi.models.order });
   },
 
-  // Get sessionID for Stripe Checkout
-  // Post data to show in Checkout session
+  // Create Checkout Session in Stripe and return ID
+  // The Session shows data that is posted to it
   async createCheckoutSession(ctx) {
     try {
       const session = await stripe.checkout.sessions.create({
