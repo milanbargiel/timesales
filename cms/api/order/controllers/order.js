@@ -40,19 +40,32 @@
     try {
       event = stripe.webhooks.constructEvent(ctx.request.body[unparsed], signature, endpointSecret);
     } catch (error) {
-      throw error;
+      console.log(error);
     }
 
-    return true;
+    // Handle the checkout.session.completed event
+    if (event.type === 'checkout.session.completed') {
 
-    // let entity;
-    // if (ctx.is('multipart')) {
-    //   const { data, files } = parseMultipartData(ctx);
-    //   entity = await strapi.services.restaurant.create(data, { files });
-    // } else {
-    //   entity = await strapi.services.restaurant.create(ctx.request.body);
-    // }
-    // return sanitizeEntity(entity, { model: strapi.models.restaurant });
+      // Create database entry
+      try {
+        const session = event.data.object; // Get data from Stripe session
+        
+        const order = {
+          name: session.metadata.name,
+          email: session.customer_details.email,
+          price: parseInt(session.amount_total),
+          time: parseInt(session.metadata.time),
+          description: session.metadata.description,
+          stripePaymentID: session.payment_intent
+        }
+
+        const entity = await strapi.services.order.create(order);
+
+        return sanitizeEntity(entity, { model: strapi.models.order });
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
 
   // Create Checkout Session in Stripe and return ID
@@ -78,7 +91,8 @@
         ],
         metadata: {
           name: payload.name,
-          time: payload.time
+          time: payload.time,
+          description: payload.description
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
