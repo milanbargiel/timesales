@@ -87,7 +87,7 @@
           price_data: {
             currency: 'eur',
             product_data: {
-              name: `${timeString}: ${payload.description}`
+              name: `${timeString} of time for – ${payload.description}`
             },
             unit_amount: payload.price // price is in cents
           },
