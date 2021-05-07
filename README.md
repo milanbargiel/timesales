@@ -25,6 +25,17 @@
 - Price and description is posted
 - The checkout redirects to a custom success page, that displays the sand simulation
 
+```json
+{
+    "name": "Kajetan di Napoli",
+    "time": "2000",
+    "price": "1222",
+    "successUrl": "[base-url]/order",
+    "cancelUrl": "[base-url]/cancel",
+    ""
+}
+```
+
 `POST https://xyz.timesales.ltd/orders`
 - Endpoint to create an order in the database
 - Can only be accessed in a Webhook from Stripe via authentication
@@ -37,7 +48,7 @@
     "time": "2000",
     "price": "1222",
     "description": "Precious time for myself alone",
-    "key": "_12msqid...",
+    "key": "_12msqid...", // Stripe CHECKOUT_SESSION_ID is used as the unique key
     ""
 }
 ```
@@ -50,3 +61,11 @@
     "progress": 0.2
 }
 ```
+
+##### Local development
+
+- For local development install dev dependencies in `/app` and `/cms`
+- Run the frontend Nuxt app with `npm run start`
+- Run the Stripe backend with `yarn develop`
+- Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
+
