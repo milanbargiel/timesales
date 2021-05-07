@@ -28,8 +28,8 @@
 ```json
 {
     "name": "Kajetan di Napoli",
-    "time": "2000",
-    "price": "1222",
+    "time": "2000", // seconds
+    "price": "1222", // cents
     "successUrl": "[base-url]/order",
     "cancelUrl": "[base-url]/cancel",
     ""
@@ -68,4 +68,11 @@
 - Run the frontend Nuxt app with `npm run start`
 - Run the Stripe backend with `yarn develop`
 - Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
+
+
+##### Stripe Payments Integration Guides
+- [Accept a payment](https://stripe.com/docs/payments/accept-a-payment#web)
+- [Fullfill orders](https://stripe.com/docs/payments/checkout/fulfill-orders)
+
+
 

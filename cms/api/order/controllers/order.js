@@ -9,6 +9,7 @@
  const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe request authentification
  const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
  const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
+ const humanizeDuration = require('humanize-duration'); // 
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
@@ -72,8 +73,10 @@
 
   // Create Checkout Session in Stripe and return ID
   // The Session shows data that is posted to it
+  // Reference: https://stripe.com/docs/api/checkout/sessions/object
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
+    const timeString = humanizeDuration(1000 * payload.time); // convert seconds from payload.time to ms and make it human readable
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -84,7 +87,7 @@
           price_data: {
             currency: 'eur',
             product_data: {
-              name: payload.description
+              name: `${timeString}: ${payload.description}`
             },
             unit_amount: payload.price // price is in cents
           },
