@@ -77,6 +77,7 @@
           strapi.plugins['email'].services.email.send({
             to: entity.email,
             from: 'hello@timesales.ltd',
+            bcc: 'hello@timesales.ltd', // Send a blindcopy to keep track of orders
             subject: 'Thank you for ordering time',
             text: email.text
           })
