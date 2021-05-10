@@ -10094,6 +10094,14 @@ strapi-plugin-users-permissions@3.6.0:
     strapi-utils "3.6.0"
     uuid "^3.1.0"
 
+strapi-provider-email-nodemailer@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/strapi-provider-email-nodemailer/-/strapi-provider-email-nodemailer-3.6.1.tgz#c3541a6bea7b26ca72d27534b9c3ee22efe4fa57"
+  integrity sha512-PvH/sgAWKW2Lc/3LHzSdeCXkPmviTu71UtOnCy8PXqQj0yHa4uyIgNXWmklpXPMPlJfkRzLuqK/YCg7UnH7CQQ==
+  dependencies:
+    lodash "4.17.21"
+    nodemailer "6.5.0"
+
 strapi-provider-email-sendmail@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/strapi-provider-email-sendmail/-/strapi-provider-email-sendmail-3.6.0.tgz#abc9ce8b9c6e51ccf658f6bfab98acbacb05e850"

@@ -1,8 +1,5 @@
-| Dear #{entry.name},
-| 
-| Thank you four purchase.
-|  
-| Click on this link to use your time: http://localhost:3000/order?key=#{entry.checkoutSessionID}
-| 
-| Regards
-| Time Sales Online
+p Dear #{entry.name}, 
+p Thank you four purchase.
+p 1 x #{entry.timeString}
+p Click on this link to use your time: #{entry.successUrl}
+p Kind regards, Time Sales Online

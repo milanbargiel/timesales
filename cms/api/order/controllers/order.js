@@ -65,19 +65,22 @@
 
         const entity = await strapi.services.order.create(order);
         const entry = sanitizeEntity(entity, { model: strapi.models.order });
+        
+        // Create extra fields for the success E-Mail
+        entity.timeString = `${humanizeDuration(1000 * session.metadata.time)} of time for – ${session.metadata.description}`;
+        entity.successUrl = session.success_url.replace('{CHECKOUT_SESSION_ID}', entity.key)
 
         // Send invoice per E-mail
-        // if (entry.email) {
-        //   const email = await strapi.plugins['email'].services.email.renderMail(entry, 'time-purchased');
+        if (entity.email) {
+          const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased');
 
-        //   await strapi.plugins['email'].services.email.send({
-        //     to: entry.email,
-        //     from: 'hello@timesales.ltd',
-        //     subject: 'Thank you for ordering time',
-        //     text: email.text
-        //   });
-        // }
- 
+          strapi.plugins['email'].services.email.send({
+            to: entity.email,
+            from: 'hello@timesales.ltd',
+            subject: 'Thank you for ordering time',
+            text: email.text
+          })
+        }
 
         return entry;
       } catch (error) {
@@ -91,7 +94,8 @@
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
-    const timeString = humanizeDuration(1000 * payload.time); // convert seconds from payload.time to ms and make it human readable
+    // convert seconds from payload.time to ms and make it human readable
+    const timeString = `${humanizeDuration(1000 * payload.time)} of time for – ${payload.description}`;
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -102,7 +106,7 @@
           price_data: {
             currency: 'eur',
             product_data: {
-              name: `${timeString} of time for – ${payload.description}`
+              name: timeString
             },
             unit_amount: payload.price // price is in cents
           },
@@ -111,8 +115,8 @@
         ],
         metadata: {
           name: payload.name,
-          time: payload.time,
-          description: payload.description
+          time: payload.time, // in seconds
+          description: payload.description, // original user input
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
@@ -125,18 +129,5 @@
     } catch (err) {
       console.log(err)
     }
-  },
-  async mail(ctx) {
-    const entry = { email: 'luciano.karuso@gmail.com', checkoutSessionID: 'abc123' };
-    const email = await strapi.plugins['email'].services.email.renderMail(entry, 'time-purchased');
-
-    await strapi.plugins['email'].services.email.send({
-      to: entry.email,
-      from: 'hello@timesales.ltd',
-      subject: 'Thank you for ordering time',
-      text: email.text
-    });
-
-    return {}
   },
 };
