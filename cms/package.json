@@ -10,9 +10,11 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "email-templates": "^8.0.4",
     "humanize-duration": "^3.26.0",
     "knex": "0.21.18",
     "pg": "8.5.1",
+    "pug": "^3.0.2",
     "strapi": "3.6.0",
     "strapi-admin": "3.6.0",
     "strapi-connector-bookshelf": "3.6.0",
@@ -21,6 +23,7 @@
     "strapi-plugin-email": "3.6.0",
     "strapi-plugin-upload": "3.6.0",
     "strapi-plugin-users-permissions": "3.6.0",
+    "strapi-provider-email-nodemailer": "^3.6.1",
     "strapi-utils": "3.6.0",
     "stripe": "^8.144.0"
   },
