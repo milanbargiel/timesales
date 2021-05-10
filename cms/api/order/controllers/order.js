@@ -32,7 +32,8 @@
     return sanitizeEntity(entity, { model: strapi.models.order });
   },
 
-  // A webhook that is trigger when Stripe payment is completed
+  // Create order
+  // Triggered as a webhook when Stripe payment is completed
   async create(ctx) {
     // Verify that post event comes from Stripe
     const signature = ctx.request.headers['stripe-signature'];
@@ -63,10 +64,24 @@
         }
 
         const entity = await strapi.services.order.create(order);
+        const entry = sanitizeEntity(entity, { model: strapi.models.order });
 
-        return sanitizeEntity(entity, { model: strapi.models.order });
+        // Send invoice per E-mail
+        // if (entry.email) {
+        //   const email = await strapi.plugins['email'].services.email.renderMail(entry, 'time-purchased');
+
+        //   await strapi.plugins['email'].services.email.send({
+        //     to: entry.email,
+        //     from: 'hello@timesales.ltd',
+        //     subject: 'Thank you for ordering time',
+        //     text: email.text
+        //   });
+        // }
+ 
+
+        return entry;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
   },
@@ -110,5 +125,18 @@
     } catch (err) {
       console.log(err)
     }
+  },
+  async mail(ctx) {
+    const entry = { email: 'luciano.karuso@gmail.com', checkoutSessionID: 'abc123' };
+    const email = await strapi.plugins['email'].services.email.renderMail(entry, 'time-purchased');
+
+    await strapi.plugins['email'].services.email.send({
+      to: entry.email,
+      from: 'hello@timesales.ltd',
+      subject: 'Thank you for ordering time',
+      text: email.text
+    });
+
+    return {}
   },
 };
