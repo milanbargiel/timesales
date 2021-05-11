@@ -77,7 +77,7 @@
 
         // Send invoice per E-mail
         if (entity.email) {
-          const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased');
+          const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased-mail');
 
           strapi.plugins['email'].services.email.send({
             to: entity.email,
