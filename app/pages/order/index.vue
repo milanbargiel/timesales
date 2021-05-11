@@ -5,11 +5,16 @@
     <span class="dot"></span>
   </div>
   <div v-else>
-    <SandSimulation
-      :duration="order.time"
-      :initialProgress="order.progress"
-      @save-progress="handleSaveProgress"
-    />
+    <div v-if="!showStream">
+      <ShowStreamPrompt @show-stream="(res) => (showStream = res)" />
+    </div>
+    <div v-else>
+      <SandSimulation
+        :duration="order.time"
+        :initial-progress="order.progress"
+        @save-progress="handleSaveProgress"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,16 +23,17 @@ export default {
   data() {
     return {
       isLoading: true,
+      showStream: false,
+      botui: '',
       order: {},
-      sandSim: '',
     }
   },
   created() {
+    // Fetch order data with query parameter "key" in URL
     if (typeof this.$route.query.key === 'undefined') {
       this.$router.push('/404')
     }
 
-    // If query parameter "key" is in Url fetch order data
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
@@ -37,7 +43,6 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.order = res
-          this.progress = res.progress
         })
         // Redirect if order was not found
         .catch(() => {

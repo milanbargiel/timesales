@@ -91,7 +91,6 @@
   },
 
   // Create Checkout Session in Stripe and return ID
-  // The Session shows data that is posted to it
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
