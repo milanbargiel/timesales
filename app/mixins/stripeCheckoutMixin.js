@@ -12,16 +12,6 @@ export default {
         .then((session) => {
           this.stripe.redirectToCheckout({ sessionId: session.id })
         })
-        .then((result) => {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using `error.message`.
-          console.log(result)
-
-          if (result.error) {
-            alert(result.error.message)
-          }
-        })
         .catch((error) => {
           console.error('Error:', error)
         })
