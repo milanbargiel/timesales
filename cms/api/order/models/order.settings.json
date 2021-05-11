@@ -53,6 +53,11 @@
       "type": "string",
       "private": true,
       "required": true
+    },
+    "fullName": {
+      "type": "string",
+      "required": true,
+      "private": true
     }
   }
 }

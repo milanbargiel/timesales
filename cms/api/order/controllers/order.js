@@ -52,13 +52,18 @@
       // Create database entry
       try {
         const session = event.data.object; // Get data from Stripe session
+
+        // Fetch customer object with Stripe API to get name field from checkout
+        // https://stripe.com/docs/api/customers/retrieve?lang=node
+        const customer = await stripe.customers.retrieve(session.customer);
         
         const order = {
-          name: session.metadata.name,
+          name: session.metadata.name, // name from chatbot
+          fullName: customer.name, // name from checkout
           email: session.customer_details.email,
-          price: parseInt(session.amount_total),
-          time: parseInt(session.metadata.time),
-          description: session.metadata.description,
+          price: parseInt(session.amount_total), // in cents
+          time: parseInt(session.metadata.time), // in seconds
+          description: session.metadata.description, // purpose of the time
           stripePaymentID: session.payment_intent,
           key: session.id
         }
