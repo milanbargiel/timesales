@@ -1,3 +1,8 @@
+<!-- 
+Template for the order link [url]/order?key="xxx" 
+Opens when a user gets redirected from checkout or clicks on the link from the success mail
+-->
+
 <template>
   <div v-if="isLoading" class="dot-container">
     <span class="dot"></span>
