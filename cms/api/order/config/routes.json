@@ -9,6 +9,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/create-invoice",
+      "handler": "order.createInvoice",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "POST",
       "path": "/orders",
       "handler": "order.create",

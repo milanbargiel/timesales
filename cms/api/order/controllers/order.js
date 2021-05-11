@@ -9,7 +9,7 @@
  const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe request authentification
  const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
  const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
- const humanizeDuration = require('humanize-duration'); // 
+ const humanizeDuration = require('humanize-duration');
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
@@ -136,4 +136,9 @@
       console.log(err)
     }
   },
+  async createInvoice() {
+    const entity = {};
+    const pdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+    return pdf;
+  }
 };
