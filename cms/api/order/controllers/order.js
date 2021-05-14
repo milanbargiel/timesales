@@ -63,6 +63,7 @@
           fullName: customer.name, // name from checkout
           email: session.customer_details.email,
           price: parseInt(session.amount_total), // in cents
+          tax: session.total_details.amount_tax, // should be always 7%
           time: parseInt(session.metadata.time), // in seconds
           description: session.metadata.description, // purpose of the time
           stripePaymentID: session.payment_intent,
