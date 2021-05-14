@@ -10,6 +10,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "dayjs": "^1.10.4",
     "email-templates": "^8.0.4",
     "humanize-duration": "^3.26.0",
     "knex": "0.21.18",

@@ -1,132 +1,122 @@
-<!-- https://github.com/sparksuite/simple-html-invoice-template -->
 doctype html
 head
   meta(charset='utf-8')
-  title A simple, clean, and responsive HTML invoice template
+  title Invoice #{invoiceId}
   style.
+    /* General styles */
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    td,
+    th {
+    text-align: left;
+    }
+    /* Element styles */
     .invoice-box {
+    position: relative;
     max-width: 800px;
     margin: auto;
     padding: 30px;
     border: 1px solid #eee;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 1.5;
     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    color: #555;
+    color: black;
     }
-    .invoice-box table {
-    width: 100%;
-    line-height: inherit;
+    .title {
+    margin-top: 64px;
+    margin-bottom: 64px;
+    }
+    .title h1 {
+    font-size: 48px;
+    text-decoration: underline;
+    line-height: 1;
+    margin-bottom: 10px;
+    }
+    .header {
+    display: flex;
+    margin-bottom: 64px;
+    }
+    .meta {
+    margin-left: auto;
+    }
+    .table {
+    margin-bottom: 8px;
+    }
+    .table td,
+    th {
+    border: 1px solid #dddddd;
     text-align: left;
+    padding: 8px;
     }
-    .invoice-box table td {
-    padding: 5px;
-    vertical-align: top;
+    .table th {
+    background-color: #dddddd;
     }
-    .invoice-box table tr td:nth-child(2) {
-    text-align: right;
+    .message {
+    margin-bottom: 128px;
     }
-    .invoice-box table tr.top table td {
-    padding-bottom: 20px;
-    }
-    .invoice-box table tr.top table td.title {
-    font-size: 45px;
-    line-height: 45px;
-    color: #333;
-    }
-    .invoice-box table tr.information table td {
-    padding-bottom: 40px;
-    }
-    .invoice-box table tr.heading td {
-    background: #eee;
-    border-bottom: 1px solid #ddd;
+    .sum {
     font-weight: bold;
-    }
-    .invoice-box table tr.details td {
-    padding-bottom: 20px;
-    }
-    .invoice-box table tr.item td {
-    border-bottom: 1px solid #eee;
-    }
-    .invoice-box table tr.item.last td {
-    border-bottom: none;
-    }
-    .invoice-box table tr.total td:nth-child(2) {
-    border-top: 2px solid #eee;
-    font-weight: bold;
-    }
-    @media only screen and (max-width: 600px) {
-    .invoice-box table tr.top table td {
-    width: 100%;
-    display: block;
-    text-align: center;
-    }
-    .invoice-box table tr.information table td {
-    width: 100%;
-    display: block;
-    text-align: center;
-    }
-    }
-    /** RTL **/
-    .invoice-box.rtl {
-    direction: rtl;
-    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-    .invoice-box.rtl table {
     text-align: right;
+    margin-bottom: 64px;
     }
-    .invoice-box.rtl table tr td:nth-child(2) {
-    text-align: left;
+    .footer {
+    font-size: 13px;
+    position: absolute;
+    left: 30px;
+    bottom: 32px;
+    }
+    .footer table {
+    table-layout: fixed;
+    }
+    .footer td {
+    line-height: 1.2;
+    width: 33%;
     }
 .invoice-box
-  table(cellpadding='0' cellspacing='0')
-    tr.top
-      td(colspan='2')
-        table
-          tr
-            td.title
-              img(src='https://www.sparksuite.com/images/logo.png' style='width: 100%; max-width: 300px')
-            td
-              | Invoice #: 123
-              br
-              |                                     Created: January 1, 2015
-              br
-              |                                     Due: February 1, 2015
-    tr.information
-      td(colspan='2')
-        table
-          tr
-            td
-              | Sparksuite, Inc.
-              br
-              |                                     12345 Sunny Road
-              br
-              |                                     Sunnyville, CA 12345
-            td
-              | Acme Corp.
-              br
-              |                                     John Doe
-              br
-              |                                     john@example.com
-    tr.heading
-      td Payment Method
-      td Check #
-    tr.details
-      td Check
-      td 1000
-    tr.heading
-      td Item
-      td Price
-    tr.item
-      td Website design
-      td $300.00
-    tr.item
-      td Hosting (3 months)
-      td $75.00
-    tr.item.last
-      td Domain name (1 year)
-      td $10.00
-    tr.total
-      td
-      td Total: $385.00
+  .title
+    h1 Time Sales Online
+    |  World leaders in the time business since 2018
+  .header
+    .recipient
+      | #{entry.fullName}
+      br
+      |  #{entry.email}
+    .meta
+      | Invoice: #{invoiceId}
+      br
+      |  Created: #{createdAt}
+      br
+  table.table
+    tr
+      th Amount
+      th Purpose
+      th Price in &euro;
+    tr
+      td #{duration}
+      td #{entry.description}
+      td #{price}
+  .sum Total: #{price}
+  .message
+    p The payment was made through Visa Credit Card. Thank you for your purchase!
+    p
+      | To access your time, click on this 
+      a(href='#{entry.successUrl}') link
+      | .
+    p Sincerely
+    p
+      | Time Sales Online
+      br
+      | Maurits Boettger
+  .footer
+    table
+      tr
+        td Time Sales Online
+        td Geisselstr. 95
+        td 50823 K&ouml;ln
+      tr
+        td UST ID XXXX
+        td IBAN
+        td BIC

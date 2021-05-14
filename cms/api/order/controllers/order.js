@@ -145,9 +145,13 @@
       console.log(err)
     }
   },
-  async createInvoice() {
-    const entity = {};
+  async createInvoice(ctx) {
+    const entity = await strapi.services.order.findOne({ key: 'cs_test_a1WDnmmA9OWOjbzWtWyTJW6PjYJj8CnWvHDEZZPuRGUsL0WWDivRzVuLzf' });
     const pdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+    ctx.res.writeHead(200, {
+      'Content-Type': 'application/pdf',
+      "Content-Disposition": "attachment; filename=document.pdf",
+    });
     return pdf;
   }
 };
