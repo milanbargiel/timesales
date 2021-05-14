@@ -65,15 +65,12 @@
           time: parseInt(session.metadata.time), // in seconds
           description: session.metadata.description, // purpose of the time
           stripePaymentID: session.payment_intent,
-          key: session.id
+          key: session.id,
+          successUrl: session.success_url.replace('{CHECKOUT_SESSION_ID}', session.id)
         }
 
         const entity = await strapi.services.order.create(order);
         const entry = sanitizeEntity(entity, { model: strapi.models.order });
-        
-        // Create extra fields for the success E-Mail
-        entity.timeString = `${humanizeDuration(1000 * session.metadata.time)} of time for – ${session.metadata.description}`;
-        entity.successUrl = session.success_url.replace('{CHECKOUT_SESSION_ID}', entity.key)
 
         // Send invoice per E-mail
         if (entity.email) {
@@ -146,7 +143,7 @@
     }
   },
   async createInvoice(ctx) {
-    const entity = await strapi.services.order.findOne({ key: 'cs_test_a1WDnmmA9OWOjbzWtWyTJW6PjYJj8CnWvHDEZZPuRGUsL0WWDivRzVuLzf' });
+    const entity = await strapi.services.order.findOne({ key: 'cs_test_a1SHMDztzyzOG6NxNyBD1bLj92PQcoRANktBdfIxPmk1cZ2JjVcBeDpxDG' });
     const pdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
     ctx.res.writeHead(200, {
       'Content-Type': 'application/pdf',

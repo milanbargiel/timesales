@@ -58,6 +58,11 @@
       "type": "string",
       "required": true,
       "private": true
+    },
+    "successUrl": {
+      "type": "string",
+      "required": true,
+      "private": true
     }
   }
 }

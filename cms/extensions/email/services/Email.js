@@ -8,7 +8,9 @@ const humanizeDuration = require('humanize-duration');
 
 const renderMail = (entry, templateFolder) => {
   const email = new Email();
-  return email.renderAll(`../templates/${templateFolder}`, { entry });
+  // Create extra fields for the success E-Mail
+  const timeString = `${humanizeDuration(1000 * entry.time)} of time for – ${entry.description}`;
+  return email.renderAll(`../templates/${templateFolder}`, { entry, timeString });
 };
 
 const createInvoice = async (entry, templateFolder) => {
