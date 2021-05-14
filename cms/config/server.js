@@ -7,6 +7,7 @@ module.exports = ({ env }) => ({
   url: 'http://localhost:1337',
   stripePrivateKey: env('STRIPE_PRIVATE_KEY'),
   stripeEndpointSecret: env('STRIPE_ENDPOINT_SECRET'),
+  stripeTaxRateId: env('STRIPE_TAX_RATE_ID'),
   admin: {
     auth: {
       secret: env('ADMIN_JWT_SECRET'),

@@ -9,6 +9,7 @@
  const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe request authentification
  const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
  const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
+ const taxRateId = strapi.config.get('server.stripeTaxRateId');
  const humanizeDuration = require('humanize-duration');
 
  module.exports = {
@@ -123,6 +124,7 @@
             unit_amount: payload.price // price is in cents
           },
           quantity: 1,
+          tax_rates: [ taxRateId ],
         },
         ],
         metadata: {
