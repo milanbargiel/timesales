@@ -3,8 +3,8 @@
 // NODE_ENV=production npm start
 
 module.exports = ({ env }) => ({
-  host: '0.0.0.0',
-  port: 1337,
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 1337),
   url: 'https://xyz.timesales.ltd',
   stripePrivateKey: env('STRIPE_PRIVATE_KEY'),
   stripeEndpointSecret: env('STRIPE_ENDPOINT_SECRET'),
