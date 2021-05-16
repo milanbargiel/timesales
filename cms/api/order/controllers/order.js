@@ -145,6 +145,8 @@
       console.log(err)
     }
   },
+  // For testing purpose only
+  // Todo: Remove, once the application goes live
   async createInvoice(ctx) {
     const entity = await strapi.services.order.findOne({ key: 'cs_test_a1enlSvdKwwhpvsmGRvLL9dMTRAXb6CZdsEepcY3pkvPPS35NwArHLYVnY' });
     const pdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
