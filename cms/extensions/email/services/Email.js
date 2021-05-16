@@ -6,6 +6,10 @@ const puppeteer = require('puppeteer'); // headless chrome
 const dayjs = require('dayjs');
 const humanizeDuration = require('humanize-duration');
 
+const toEur = (cents) => {
+  return (cents / 100).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+};
+
 const renderMail = (entry, templateFolder) => {
   const email = new Email();
   // Create extra fields for the success E-Mail
@@ -21,7 +25,9 @@ const createInvoice = async (entry, templateFolder) => {
     const html = compiledFunction({
       createdAt: dayjs(entry.created_at).format('DD MMMM, YYYY'), // Format creation date
       duration: humanizeDuration(1000 * entry.time),
-      price: (entry.price / 100).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }),
+      price: toEur(entry.price),
+      tax: toEur(entry.price * (entry.tax / 100)),
+      priceTotal: toEur(entry.price + (entry.price * (entry.tax / 100))), // price + tax
       invoiceId: 'RE-Time-2020-10-10-01', // Placeholder until legal issues are solved
       entry
     });

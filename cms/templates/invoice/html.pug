@@ -98,7 +98,11 @@ head
       td #{duration}
       td #{entry.description}
       td #{price}
-  .sum Total: #{price}
+    tr
+      td
+      td Umsatzsteuer 7%
+      td #{tax}
+  .sum Total: #{priceTotal}
   .message
     p Thank you for your purchase!
     p
