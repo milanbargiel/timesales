@@ -12,7 +12,6 @@
  const taxRateId = strapi.config.get('server.stripeTaxRateId');
  const humanizeDuration = require('humanize-duration');
  const pdf = require('html-pdf');
- const fs = require('fs');
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
