@@ -11,6 +11,8 @@
  const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
  const taxRateId = strapi.config.get('server.stripeTaxRateId');
  const humanizeDuration = require('humanize-duration');
+ const pdf = require('html-pdf');
+ const fs = require('fs');
 
  module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
@@ -79,9 +81,10 @@
           const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased-mail');
 
           // Create invoice
-          const invoicePdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice'); 
+          const invoiceHtml = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
 
-          strapi.plugins['email'].services.email.send({
+          pdf.create(html).toBuffer((err, invoicePdf) => {
+            strapi.plugins['email'].services.email.send({
             to: entity.email,
             from: 'hello@timesales.ltd',
             bcc: 'hello@timesales.ltd', // Send a blindcopy to keep track of orders
@@ -95,6 +98,7 @@
               }
             ]
           })
+          });
         }
 
         return entry;
@@ -149,11 +153,18 @@
   // Todo: Remove, once the application goes live
   async createInvoice(ctx) {
     const entity = await strapi.services.order.findOne({ key: 'cs_test_a1enlSvdKwwhpvsmGRvLL9dMTRAXb6CZdsEepcY3pkvPPS35NwArHLYVnY' });
-    const pdf = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+    const html = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+
+    pdf.create(html).toStream((err, stream) => {
+      stream.pipe(ctx.res);
+    });
+
     ctx.res.writeHead(200, {
       'Content-Type': 'application/pdf',
-      "Content-Disposition": "attachment; filename=document.pdf",
+      'Content-Disposition': 'attachment; filename=document.pdf',
     });
-    return pdf;
+
+    // wait for stream to finish
+    return new Promise(resolve => ctx.res.on('finish', resolve));
   }
 };
