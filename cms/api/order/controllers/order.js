@@ -161,7 +161,7 @@
 
     ctx.res.writeHead(200, {
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=document.pdf',
+      'Content-Disposition': 'attachment; filename=invoice.pdf',
     });
 
     // wait for stream to finish
