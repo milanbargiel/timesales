@@ -1,7 +1,6 @@
 const Email = require('email-templates');
 // For PDF creation
 const pug = require('pug'); // template engine
-const puppeteer = require('puppeteer'); // headless chrome
 // For human readable dates and times
 const dayjs = require('dayjs');
 const humanizeDuration = require('humanize-duration');
@@ -32,27 +31,7 @@ const createInvoice = async (entry, templateFolder) => {
       entry
     });
 
-    // launch a new chrome instance
-    const browser = await puppeteer.launch({
-      headless: true
-    });
-
-    // create a new page
-    const page = await browser.newPage();
-    
-    await page.setContent(html, {
-      waitUntil: 'domcontentloaded'
-    });
-
-    // create a pdf buffer
-    const pdfBuffer = await page.pdf({
-      format: 'A4'
-    });
-
-    // close the browser
-    await browser.close();
-
-    return pdfBuffer;
+    return html;
 };
 
 module.exports = {

@@ -20,7 +20,7 @@ head
     padding: 30px;
     border: 1px solid #eee;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    font-size: 14px;
+    font-size: 70%;
     line-height: 1.5;
     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
     color: black;
@@ -30,17 +30,20 @@ head
     margin-bottom: 64px;
     }
     .title h1 {
-    font-size: 48px;
+    font-size: 36px;
     text-decoration: underline;
     line-height: 1;
     margin-bottom: 10px;
     }
     .header {
-    display: flex;
+    overflow: auto; /* clearfix */
     margin-bottom: 64px;
     }
+    .recipient {
+    float: left;
+    }
     .meta {
-    margin-left: auto;
+    float: right;
     }
     .table {
     margin-bottom: 8px;
@@ -63,7 +66,6 @@ head
     margin-bottom: 64px;
     }
     .footer {
-    font-size: 13px;
     position: absolute;
     left: 30px;
     bottom: 32px;
@@ -106,9 +108,8 @@ head
   .message
     p Thank you for your purchase!
     p
-      | To access your time, click on this 
-      a(href='#{entry.successUrl}') link
-      | .
+      | To access your time, follow this Link: 
+      a(href='#{entry.successUrl}') #{entry.successUrl}
     p Sincerely
     p
       | Time Sales Online
