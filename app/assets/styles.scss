@@ -115,6 +115,11 @@ $black: #000;
   padding-top: 50px;
 }
 
+// Fix to show bot conversation on top of the sand simulation
+.botui-container {
+  background-color: transparent !important;
+}
+
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
