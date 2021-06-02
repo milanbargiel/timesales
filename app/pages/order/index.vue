@@ -10,7 +10,12 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
     <span class="dot"></span>
   </div>
   <div v-else>
-    <div v-if="!showStream">
+    <!-- Show feedback conversation when time is already used -->
+    <div v-if="timeIsUp">
+      <Feedback />
+    </div>
+    <!-- Else, ask if the user is ready to use the time-->
+    <div v-else-if="!showStream">
       <ShowStreamPrompt @show-stream="(res) => (showStream = res)" />
     </div>
     <div v-else>
@@ -28,6 +33,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      timeIsUp: false,
       showStream: false,
       botui: '',
       order: {},
@@ -48,6 +54,10 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.order = res
+
+          if (res.progress === 0) {
+            this.timeIsUp = true
+          }
         })
         // Redirect if order was not found
         .catch(() => {
@@ -55,6 +65,10 @@ export default {
         })
     },
     handleSaveProgress(progress) {
+      if (progress === 0) {
+        this.timeIsUp = true
+      }
+
       // Save progress in db (only accepts numbers between 0 and 1)
       this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
         progress,
