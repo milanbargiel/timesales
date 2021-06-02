@@ -14,6 +14,17 @@
     - changes in the strapi-cms will automatically be deployed to the virtual linux server at strato https://xyz.timesales.ltd
 - The order backend can be accessed at https://xyz.timesales.ltd/admin
 
+##### Local development
+
+- Run the frontend Nuxt app with `npm run start`
+- Run the Strapi backend with `yarn develop`
+- Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
+
+##### Installation for local dev
+
+- Install dev dependencies in `/app` and `/cms`
+- Install Stripe CLI and login with your account
+
 ##### API-Endpoints for cms
 
 `GET https://xyz.timesales.ltd/orders/:key`
@@ -61,13 +72,6 @@
     "progress": 0.2
 }
 ```
-
-##### Local development
-
-- For local development install dev dependencies in `/app` and `/cms`
-- Run the frontend Nuxt app with `npm run start`
-- Run the Stripe backend with `yarn develop`
-- Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
 
 
 ##### Stripe Payments Integration Guides
