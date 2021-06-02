@@ -20,7 +20,6 @@ Bisschen noise
 
 https://www.youtube.com/watch?v=lSJE-vKBnU4
 
-
 # Meeting 2 [Milan, Max]
 
 ID in der URL
@@ -41,19 +40,33 @@ Mobile soll auch sein
 
 Auflösung nen bisschen höher
 
-*Weiterleitung nach Ablaufen der Simulation*
+_Weiterleitung nach Ablaufen der Simulation_
 
 # Meeting 4 [Milan, Max]
 
-[ ] Bundle als ES6 builden
-    - Init(duration, progress)
-    - Pause / Unpause
-    - getProgress() 
-      --> fetch("api.url.com")
-
+[ ] Bundle als ES6 builden - Init(duration, progress) - Pause / Unpause - getProgress()
+--> fetch("api.url.com")
 
 # Meeting 5 [Maurits, Milan]
+
 - Wellen Linien
   - Vielleicht einfach sinus wellen horizontal
 - Noch viel mehr horizontaler
-- Nicht so konisch, 
+- Nicht so konisch,
+
+# Meeting 6 [Maurits, Max]
+
+_PERFOMANCE_
+
+- evt. Auflösung reduzieren
+- Auf dem Handy bleibt es einfach hängen
+- Die Größe vom canvas ist größer als der Screen, deswegen overflowed der screen manchmal
+
+_TON_
+
+- Ton läuft weiter, obwohl die Animation beendet ist, oder pausiert ist
+
+_FLOW_
+
+- Übergabe an Nuxt wenn die Animation durchgelaufen ist
+- Nach der Animation soll direkt das Chatbot Fenster aufploppen
