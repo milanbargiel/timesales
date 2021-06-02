@@ -49,7 +49,7 @@ export default {
             textInput.hidden = true
             await this.moreTime()
           }
-        }, 1000)
+        }, 10000)
 
         // Ask for feedback
         return this.botTextInput('Your feedback').then((response) => {
