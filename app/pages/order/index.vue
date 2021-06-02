@@ -65,14 +65,18 @@ export default {
         })
     },
     handleSaveProgress(progress) {
-      if (progress === 0) {
+      // If time is up show feedback
+      if (progress <= 0) {
         this.timeIsUp = true
+        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
+          progress: 0,
+        })
+      } else {
+        // Save progress in db (only accepts numbers between 0 and 1)
+        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
+          progress,
+        })
       }
-
-      // Save progress in db (only accepts numbers between 0 and 1)
-      this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
-        progress,
-      })
     },
   },
 }
