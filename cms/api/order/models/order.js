@@ -5,4 +5,11 @@
  * to customize this model
  */
 
-module.exports = {};
+module.exports = {
+  lifecycles: {
+    // Called before an entry is created
+    beforeCreate(data) {
+        data.invoiceId = 'RE-Time-2020-10-10-01'; // Placeholder until legal issues are solved
+    },
+  },
+};

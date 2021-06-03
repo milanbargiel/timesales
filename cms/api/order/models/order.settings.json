@@ -72,8 +72,6 @@
     },
     "invoiceId": {
       "type": "string",
-      "required": true,
-      "unique": true,
       "private": true
     }
   }

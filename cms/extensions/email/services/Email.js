@@ -20,13 +20,14 @@ const createInvoice = async (entry, templateFolder) => {
     // Create invoice html from variables
     const compiledFunction = pug.compileFile(`templates/${templateFolder}/html.pug`);
 
+    console.log(entry);
+
     const html = compiledFunction({
       createdAt: dayjs(entry.created_at).format('DD MMMM, YYYY'), // Format creation date
       duration: humanizeDuration(1000 * entry.time),
       price: toEur(entry.price),
       tax: toEur(entry.price * (entry.tax / 100)),
       priceTotal: toEur(entry.price + (entry.price * (entry.tax / 100))), // price + tax
-      invoiceId: 'RE-Time-2020-10-10-01', // Placeholder until legal issues are solved
       entry
     });
 
