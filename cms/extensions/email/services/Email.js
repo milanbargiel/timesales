@@ -20,8 +20,6 @@ const createInvoice = async (entry, templateFolder) => {
     // Create invoice html from variables
     const compiledFunction = pug.compileFile(`templates/${templateFolder}/html.pug`);
 
-    console.log(entry);
-
     const html = compiledFunction({
       createdAt: dayjs(entry.created_at).format('DD MMMM, YYYY'), // Format creation date
       duration: humanizeDuration(1000 * entry.time),
