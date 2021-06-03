@@ -1,7 +1,7 @@
 doctype html
 head
   meta(charset='utf-8')
-  title Invoice #{invoiceId}
+  title Invoice #{entry.invoiceId}
   style.
     /* General styles */
     table {
@@ -87,7 +87,7 @@ head
       br
       |  #{entry.email}
     .meta
-      | Invoice: #{invoiceId}
+      | Invoice: #{entry.invoiceId}
       br
       |  Created: #{createdAt}
       br

@@ -67,7 +67,7 @@
           tax: session.total_details.amount_tax, // should be always 7%
           time: parseInt(session.metadata.time), // in seconds
           description: session.metadata.description, // purpose of the time
-          stripePaymentID: session.payment_intent,
+          stripePaymentId: session.payment_intent,
           key: session.id,
           successUrl: session.success_url.replace('{CHECKOUT_SESSION_ID}', session.id)
         }
@@ -76,12 +76,14 @@
         const entry = sanitizeEntity(entity, { model: strapi.models.order });
 
         // Send invoice per E-mail
-        if (entity.email) {
+        if (entity) {
+          // Create email template
           const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased-mail');
 
           // Create invoice
           const invoiceHtml = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
 
+          // Send email
           pdf.create(invoiceHtml).toBuffer((err, invoicePdf) => {
             strapi.plugins['email'].services.email.send({
               to: entity.email,
