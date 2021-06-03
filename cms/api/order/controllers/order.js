@@ -76,12 +76,14 @@
         const entry = sanitizeEntity(entity, { model: strapi.models.order });
 
         // Send invoice per E-mail
-        if (entity.email) {
+        if (entity) {
+          // Create email template
           const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased-mail');
 
           // Create invoice
           const invoiceHtml = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
 
+          // Send email
           pdf.create(invoiceHtml).toBuffer((err, invoicePdf) => {
             strapi.plugins['email'].services.email.send({
               to: entity.email,
