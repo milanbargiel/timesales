@@ -67,7 +67,7 @@
           tax: session.total_details.amount_tax, // should be always 7%
           time: parseInt(session.metadata.time), // in seconds
           description: session.metadata.description, // purpose of the time
-          stripePaymentID: session.payment_intent,
+          stripePaymentId: session.payment_intent,
           key: session.id,
           successUrl: session.success_url.replace('{CHECKOUT_SESSION_ID}', session.id)
         }

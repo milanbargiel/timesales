@@ -49,7 +49,7 @@
       "private": true,
       "required": true
     },
-    "stripePaymentID": {
+    "stripePaymentId": {
       "type": "string",
       "private": true,
       "required": true
@@ -69,6 +69,12 @@
       "default": 0,
       "private": true,
       "type": "integer"
+    },
+    "invoiceId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "private": true
     }
   }
 }
