@@ -7,7 +7,7 @@
 
 module.exports = {
   lifecycles: {
-    async afterCreate(data) {
+    async afterCreate(result) {
         // Fetch all orders from today to generate invoiceId
         // 1. Format date
         let today = new Date();
@@ -24,10 +24,12 @@ module.exports = {
         }
 
         today = `${yyyy}-${mm}-${dd}`;
-        const dailyOrders = await strapi.services.order.find({ created_at_gt: today });
+        const dailyOrders = await strapi.services.order.find({ created_at_gt: today }); // the newly created order is included
 
         // 2. Save invoiceId
-        data.invoiceId = `RE-Time-${today}-${dailyOrders.length}`;
+        await strapi.services.order.update({ id: result.id }, {
+            invoiceId: `RE-Time-${today}-${dailyOrders.length}`
+        });
     },
   },
 };
