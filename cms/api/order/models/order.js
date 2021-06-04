@@ -27,8 +27,12 @@ module.exports = {
         const dailyOrders = await strapi.services.order.find({ created_at_gt: today }); // the newly created order is included
 
         // 2. Save invoiceId
+        // First in result, so it is immediately availabe for the invoice generation
+        result.invoiceId = `RE-Time-${today}-${dailyOrders.length}`;
+        
+        // Then, update in database
         await strapi.services.order.update({ id: result.id }, {
-            invoiceId: `RE-Time-${today}-${dailyOrders.length}`
+            invoiceId: result.invoiceId
         });
     },
   },
