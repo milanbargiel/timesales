@@ -57,6 +57,10 @@ var (
 	start                   = time.Now()
 )
 
+func UpdatePixel(x, y int) {
+
+}
+
 //export Update
 func Update(percentage float64) int {
 
@@ -190,30 +194,6 @@ func Update(percentage float64) int {
 			}
 
 		}
-	}
-
-	if (timeInt+1)%2 == 0 {
-
-		for i := 0; i < c.Amount; i++ {
-			x, y := c.IndexToXY(i)
-
-			//Skip Empty Cells
-			if c.GetCell(x, y) == 0 {
-				continue
-			}
-
-			c.SwitchIfEmpty(x, y, 0, -1)
-
-			if random.Bool() {
-				c.SwitchIfEmpty(x, y, -1, -1)
-			} else {
-				c.SwitchIfEmpty(x, y, 1, -1)
-			}
-
-			c.SwitchIfEmpty(x, y, 0, -1)
-
-		}
-
 	}
 
 	smallestY = largestY
