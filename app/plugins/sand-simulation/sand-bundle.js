@@ -16,24 +16,27 @@ var debounce_default = (callback, time2) => {
 };
 
 // src/frontend/helpers/getDims.ts
+var scale = 0.5;
 var getDims_default = () => {
   let width = 200;
   let height = 200;
-  if (process["browser"]) {
+  if (process["browser"] || "innerWidth" in globalThis) {
     width = window.innerWidth;
     height = window.innerHeight;
   }
-  let scale = 0.5;
   width *= scale;
   height *= scale;
-  const dpr = window.devicePixelRatio || 1;
-  width *= dpr;
-  height *= dpr;
   height = Math.round(height / 100) * 100;
   width = Math.round(width / 100) * 100;
   return {
     width,
-    height
+    height,
+    get scale() {
+      return scale;
+    },
+    set scale(v) {
+      scale = v;
+    }
   };
 };
 
@@ -533,13 +536,17 @@ var createBackend_default = (WASM_URL = "build/sand-backend.wasm") => new Promis
 });
 
 // src/frontend/shader/Main.frag
-var Main_default = "precision mediump float;\n#define GLSLIFY 1\nuniform vec2 u_resolution;uniform sampler2D u_tex;vec3 col1=vec3(0.878,0.815,0.717);vec3 col2=vec3(0.803,0.721,0.600);vec3 col3=vec3(0.933,0.874,0.705);vec3 lerpColor(vec3 cl,vec3 cr,float alpha){return cl*alpha+cr*(1.0-alpha);}float padding=0.1;vec3 applyPadding(vec3 cl,vec3 c,vec3 cr,float a){if(a<padding){float alpha=a/padding;return lerpColor(cl,c,alpha);}else if(a>1.0-padding){float alpha=(a-(1.0-padding))/padding;return lerpColor(c,cr,alpha);}return c;}void main(){vec2 texCoord=gl_FragCoord.xy/u_resolution;float floatColor=texture2D(u_tex,texCoord).r;if(floatColor==0.0){gl_FragColor.rgb=col1;}else if(floatColor<0.333){float a=floatColor/0.333;gl_FragColor.rgb=applyPadding(col3,col1,col2,a);}else if(floatColor<0.666){float a=(floatColor-0.333)/0.333;gl_FragColor.rgb=applyPadding(col1,col2,col3,a);}else{float a=(floatColor-0.666)/0.333;gl_FragColor.rgb=applyPadding(col2,col3,col1,a);}gl_FragColor.a=floatColor<0.0001?0.0:1.0;}";
+var Main_default = "precision mediump float;\n#define GLSLIFY 1\nuniform vec2 u_resolution;uniform sampler2D u_tex;vec3 col1=vec3(0.878,0.815,0.717);vec3 col2=vec3(0.803,0.721,0.600);vec3 col3=vec3(0.933,0.874,0.705);vec3 lerpColor(vec3 cl,vec3 cr,float alpha){return cl*alpha+cr*(1.0-alpha);}float padding=0.1;vec3 applyPadding(vec3 cl,vec3 c,vec3 cr,float a){if(a<padding){float alpha=a/padding;return lerpColor(cl,c,alpha);}else if(a>1.0-padding){float alpha=(a-(1.0-padding))/padding;return lerpColor(c,cr,alpha);}return c;}void main(){vec2 texCoord=gl_FragCoord.xy/u_resolution;float floatColor=texture2D(u_tex,texCoord).r;if(floatColor==0.0){gl_FragColor.rgb=col1;}else if(floatColor<0.333){float a=floatColor/0.333;gl_FragColor.rgb=applyPadding(col3,col1,col2,a);}else if(floatColor<0.666){float a=(floatColor-0.333)/0.333;gl_FragColor.rgb=applyPadding(col1,col2,col3,a);}else{float a=(floatColor-0.666)/0.333;gl_FragColor.rgb=applyPadding(col2,col3,col1,a);}gl_FragColor.a=floatColor<0.0001 ? 0.0 : 1.0;}";
 
 // src/frontend/shader/Main.vert
 var Main_default2 = "#define GLSLIFY 1\nattribute vec2 a_position;void main(){gl_Position=vec4(a_position,0,1);}";
 
 // src/frontend/createCanvas.ts
-var createCanvas_default = ({pixels, width, height}) => {
+var createCanvas_default = ({
+  pixels,
+  width,
+  height
+}) => {
   var canvas2 = document.createElement("canvas");
   document.body.append(canvas2);
   canvas2.width = width;
@@ -571,22 +578,14 @@ var createCanvas_default = ({pixels, width, height}) => {
   const positionLocation = gl.getAttribLocation(program, "a_position");
   const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
   gl.uniform2f(resolutionLocation, canvas2.width, canvas2.height);
+  const debugLocation = gl.getUniformLocation(program, "u_debug");
+  gl.uniform1f(debugLocation, 0);
+  window.setDebug = (v) => {
+    gl.uniform1f(debugLocation, v ? 1 : 0);
+  };
   const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    -1,
-    -1,
-    1,
-    -1,
-    -1,
-    1,
-    -1,
-    1,
-    1,
-    -1,
-    1,
-    1
-  ]), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
   gl.enableVertexAttribArray(positionLocation);
   gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
   gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
@@ -608,6 +607,12 @@ var createCanvas_default = ({pixels, width, height}) => {
   return {
     update: update2,
     resize,
+    get width() {
+      return width;
+    },
+    get height() {
+      return height;
+    },
     el: canvas2
   };
 };
@@ -651,6 +656,55 @@ var createSound_default = () => {
   return {
     setVolume: (v) => {
       gainNode.gain.value = v;
+    },
+    pause() {
+      ctx.state === "running" && ctx.suspend();
+    },
+    resume() {
+      ctx.state !== "running" && ctx.resume();
+    }
+  };
+};
+
+// src/frontend/perfomanceKeeper.ts
+var perfomanceKeeper_default = (resize) => {
+  let t, i = 0;
+  let measurements = [];
+  const optimalMS = 25;
+  const worstMaxMS = 100;
+  const dims = getDims_default();
+  return {
+    start: () => {
+      t = performance.now();
+    },
+    end: () => {
+      i++;
+      measurements = [...measurements.slice(-59), performance.now() - t];
+      if (i % 30 == 0) {
+        let sum = 0;
+        for (let i2 = 0; i2 < measurements.length; i2++) {
+          sum += measurements[i2];
+        }
+        const avg = Math.floor(sum / measurements.length);
+        if (avg > optimalMS - 5 && avg < optimalMS + 5)
+          return;
+        console.log("[PERF] ", avg, "ms");
+        if (avg < optimalMS) {
+          const howGoodIsIt = (optimalMS - avg) / optimalMS;
+          const s = 1 + howGoodIsIt * 0.25;
+          console.log("[PERF] increase scale by", s);
+          dims.scale *= s;
+          const {width, height} = getDims_default();
+          resize(width, height);
+        } else {
+          const howBadIsIt = Math.min(avg - optimalMS, worstMaxMS) / worstMaxMS;
+          const s = 1 - howBadIsIt * 0.25;
+          console.log("[PERF] decrease scale by", s);
+          dims.scale *= s;
+          const {width, height} = getDims_default();
+          resize(width, height);
+        }
+      }
     }
   };
 };
@@ -725,6 +779,17 @@ async function init({
   sound = createSound_default();
   timeKeeper_default.setDuration(duration2 || 60);
   timeKeeper_default.setProgress(progress2 || 1);
+  function resize(_w, _h) {
+    if (_w != width || _h != height) {
+      width = _w;
+      height = _h;
+      pixels = new Uint8Array(width * height);
+      window["sandPixelArray"] = pixels;
+      backend.Resize(width, height);
+      canvas.resize(width, height, pixels);
+    }
+  }
+  const performanceKeeper = perfomanceKeeper_default(resize);
   let _promise;
   let updates = 100;
   let isResizing = false;
@@ -737,23 +802,21 @@ async function init({
   }
   async function render() {
     if (!simPaused && !isResizing && timeKeeper_default.getProgress() > -0.05) {
-      timeKeeper_default.update();
-      canvas.update();
+      performanceKeeper.start();
       updateSim();
+      timeKeeper_default.update();
+      sound.resume();
       sound.setVolume(Math.min(0.05, updates / 4e6));
+      canvas.update();
+      performanceKeeper.end();
+    } else {
+      sound.pause();
     }
     requestAnimationFrame(render);
   }
-  window.addEventListener("resize", debounce_default(async () => {
+  window.addEventListener("resize", debounce_default(() => {
     const {width: _w, height: _h} = getDims_default();
-    if (_w != width || _h != height) {
-      width = _w;
-      height = _h;
-      pixels = new Uint8Array(width * height);
-      window["sandPixelArray"] = pixels;
-      canvas.resize(width, height, pixels);
-      backend.Resize(width, height);
-    }
+    resize(_w, _h);
   }, 500));
   render();
 }
@@ -761,9 +824,10 @@ function pause2() {
   simPaused = !simPaused;
   if (simPaused) {
     timeKeeper_default.pause();
-    sound.setVolume(0);
+    sound.pause();
   } else {
     timeKeeper_default.resume();
+    sound.resume();
   }
 }
 function getProgress2() {
