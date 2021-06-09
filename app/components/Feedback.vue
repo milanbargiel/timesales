@@ -40,7 +40,7 @@ export default {
       )
 
       const feedback = await (() => {
-        // Pushy question when user does not starts typing within 10 seconds
+        // Pushy question when user does not starts typing within 20 seconds
         const t = setTimeout(async () => {
           const textInput = this.$el.querySelector('.botui-actions-text-input')
 
@@ -49,7 +49,7 @@ export default {
             textInput.hidden = true
             await this.moreTime()
           }
-        }, 10000)
+        }, 20000)
 
         // Ask for feedback
         return this.botTextInput('Your feedback').then((response) => {
