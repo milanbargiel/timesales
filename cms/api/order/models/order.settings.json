@@ -35,16 +35,43 @@
       "private": true
     },
     "key": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
-      "type": "decimal",
+      "type": "integer",
       "private": true,
       "required": true,
       "min": 0
     },
     "description": {
       "type": "text",
+      "private": true,
+      "required": true
+    },
+    "stripePaymentId": {
+      "type": "string",
+      "private": true,
+      "required": true
+    },
+    "fullName": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "successUrl": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "tax": {
+      "required": true,
+      "default": 0,
+      "private": true,
+      "type": "integer"
+    },
+    "invoiceId": {
+      "type": "string",
       "private": true
     }
   }

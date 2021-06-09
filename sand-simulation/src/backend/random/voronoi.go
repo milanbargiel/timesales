@@ -38,7 +38,7 @@ func GetVoronoi(x, y int) float64 {
 		x += int(Noise2DScaleXY(x, y, 0.005, 0.05) * 200)
 
 		// This adds the "blur" to some parts
-		y += int(Noise2DScale(x+100, y, 0.01) * float64(IntMinMax(-20, 20)))
+		y += int(Noise2DScale(x+100, y, 0.05) * float64(IntMinMax(-30, 30)))
 
 		for j := 0; j < pointAmount; j++ {
 

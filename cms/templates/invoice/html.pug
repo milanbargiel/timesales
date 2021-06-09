@@ -1,0 +1,127 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title Invoice #{entry.invoiceId}
+  style.
+    /* General styles */
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    td,
+    th {
+    text-align: left;
+    }
+    /* Element styles */
+    .invoice-box {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 70%;
+    line-height: 1.5;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: black;
+    }
+    .title {
+    margin-top: 64px;
+    margin-bottom: 64px;
+    }
+    .title h1 {
+    font-size: 36px;
+    text-decoration: underline;
+    line-height: 1;
+    margin-bottom: 10px;
+    }
+    .header {
+    overflow: auto; /* clearfix */
+    margin-bottom: 64px;
+    }
+    .recipient {
+    float: left;
+    }
+    .meta {
+    float: right;
+    }
+    .table {
+    margin-bottom: 8px;
+    }
+    .table td,
+    th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    .table th {
+    background-color: #dddddd;
+    }
+    .message {
+    margin-bottom: 128px;
+    }
+    .sum {
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 64px;
+    }
+    .footer {
+    position: absolute;
+    left: 30px;
+    bottom: 32px;
+    }
+    .footer table {
+    table-layout: fixed;
+    }
+    .footer td {
+    line-height: 1.2;
+    width: 33%;
+    }
+.invoice-box
+  .title
+    h1 Time Sales Online
+    |  World leaders in the time business since 2018
+  .header
+    .recipient
+      | #{entry.fullName}
+      br
+      |  #{entry.email}
+    .meta
+      | Invoice: #{entry.invoiceId}
+      br
+      |  Created: #{createdAt}
+      br
+  table.table
+    tr
+      th Amount
+      th Purpose
+      th Price in &euro;
+    tr
+      td #{duration}
+      td #{entry.description}
+      td #{price}
+    tr
+      td
+      td Umsatzsteuer 7%
+      td #{tax}
+  .sum Total: #{priceTotal}
+  .message
+    p Thank you for your purchase!
+    p
+      | To access your time, follow this Link: 
+      a(href='#{entry.successUrl}') #{entry.successUrl}
+    p Sincerely
+    p
+      | Time Sales Online
+      br
+      | Maurits Boettger
+  .footer
+    table
+      tr
+        td Time Sales Online
+        td Geisselstr. 95
+        td 50823 K&ouml;ln
+      tr
+        td UST ID XXXX
+        td IBAN
+        td BIC

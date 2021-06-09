@@ -9,6 +9,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/create-invoice",
+      "handler": "order.createInvoice",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "POST",
       "path": "/orders",
       "handler": "order.create",
@@ -20,6 +28,14 @@
       "method": "PUT",
       "path": "/orders/:key",
       "handler": "order.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/create-checkout-session",
+      "handler": "order.createCheckoutSession",
       "config": {
         "policies": []
       }

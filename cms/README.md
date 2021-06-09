@@ -11,3 +11,11 @@ $ yarn develop
 ```
 
 For detailed explanation on how things work, check out [Strapi docs](https://strapi.io/documentation).
+
+## Folder structure
+
+```bash
+├── extensions
+│   └── email
+│       └── services/Email.js # Extend email plugin with renderTemplate function
+``

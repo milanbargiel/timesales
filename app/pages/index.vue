@@ -1,21 +1,51 @@
 <template>
-  <div class="container" @click="toggle">
-    <div>
+  <div class="time-container">
+    <div class="bot-container">
       <div id="botui">
         <bot-ui />
       </div>
+      <div :class="{ hidden: !showCheckoutButton }">
+        <b-button @click="checkout(order)">Proceed to checkout</b-button>
+      </div>
+    </div>
+    <div class="controls controls--top">
+      <b-field class="debug-button">
+        <b-switch v-model="debugMode">Fast</b-switch>
+      </b-field>
+    </div>
+    <div class="controls controls--bottom">
+      <span class="text-button" @click="checkout(dummyOrder)"
+        >Test Checkout</span
+      >
     </div>
   </div>
 </template>
 
 <script>
 import Start from '../conversation/start.js'
+import stripeCheckoutMixin from '../mixins/stripeCheckoutMixin.js'
 
 export default {
-  mixins: [Start],
+  mixins: [Start, stripeCheckoutMixin],
   data() {
     return {
       botui: '',
+      showCheckoutButton: false,
+      debugMode: false, // In debug mode all delay is set to 0
+      // realorder
+      order: {
+        name: '',
+        time: 0, // in seconds
+        price: 0, // in cents
+        description: '',
+      },
+      // dummyorder
+      dummyOrder: {
+        name: 'Luciano Karuso',
+        time: 120, // in seconds
+        price: 100, // in cents
+        description: 'Time to meet with my mom.',
+      },
     }
   },
   async mounted() {
@@ -24,44 +54,5 @@ export default {
     this.botui = this.$botui('botui')
     this.startConversation()
   },
-  methods: {
-    toggle() {
-      // TODO: Implement that fast forwards delay processes on click
-      console.log(this.botui.message.get(0))
-    },
-  },
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

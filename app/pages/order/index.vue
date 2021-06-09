@@ -1,3 +1,8 @@
+<!-- 
+Template for the order link [url]/order?key="xxx" 
+Opens when a user gets redirected from checkout or clicks on the link from the success mail
+-->
+
 <template>
   <div v-if="isLoading" class="dot-container">
     <span class="dot"></span>
@@ -5,11 +10,21 @@
     <span class="dot"></span>
   </div>
   <div v-else>
-    <SandSimulation
-      :duration="order.time"
-      :initialProgress="order.progress"
-      @save-progress="handleSaveProgress"
-    />
+    <!-- Show feedback conversation when time is already used -->
+    <div v-if="timeIsUp">
+      <Feedback />
+    </div>
+    <!-- Else, ask if the user is ready to use the time-->
+    <div v-else-if="!showStream">
+      <ShowStreamPrompt @show-stream="(res) => (showStream = res)" />
+    </div>
+    <div v-else>
+      <SandSimulation
+        :duration="order.time"
+        :initial-progress="order.progress"
+        @save-progress="handleSaveProgress"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,26 +33,31 @@ export default {
   data() {
     return {
       isLoading: true,
+      timeIsUp: false,
+      showStream: false,
+      botui: '',
       order: {},
-      sandSim: '',
     }
   },
   created() {
+    // Fetch order data with query parameter "key" in URL
     if (typeof this.$route.query.key === 'undefined') {
       this.$router.push('/404')
     }
 
-    // If query parameter "key" is in Url fetch order data
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
     fetchOrder(key) {
       this.$axios
-        .$get(`${process.env.apiUrl}/orders/${key}`)
+        .$get(`${this.$config.apiUrl}/orders/${key}`)
         .then((res) => {
           this.isLoading = false
           this.order = res
-          this.progress = res.progress
+
+          if (res.progress === 0) {
+            this.timeIsUp = true
+          }
         })
         // Redirect if order was not found
         .catch(() => {
@@ -45,14 +65,18 @@ export default {
         })
     },
     handleSaveProgress(progress) {
-      // Save progress in db (only accepts numbers between 0 and 1)
-      this.$axios.$put(
-        `${process.env.apiUrl}/orders/${this.order.key}`,
-        {
+      // If time is up show feedback
+      if (progress <= 0) {
+        this.timeIsUp = true
+        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
+          progress: 0,
+        })
+      } else {
+        // Save progress in db (only accepts numbers between 0 and 1)
+        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
           progress,
-        },
-        { progress: false }
-      )
+        })
+      }
     },
   },
 }

@@ -1,6 +1,5 @@
 <template>
-  <div class="controls">
-    <!-- <span class="seconds-left">Seconds left: {{ timeLeft }}</span> -->
+  <div class="controls controls--bottom">
     <div class="pause-button" @click="pause">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
         <defs>

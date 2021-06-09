@@ -32,7 +32,7 @@ func CreateCanvas(width, height int) {
 
 			v += float64(random.IntMinMax(-20, 20))
 
-			v = (math.Sin(v/70+random.Noise1DScale(y, 0.01)*20) + 1) * 125
+			v = (math.Sin(v/70+random.Noise1DScale(y, 0.01)*20)+1)*125 + 1
 
 			v = math.Min(math.Max(v, 0), 255)
 
@@ -172,7 +172,7 @@ func Update(percentage float64) int {
 				}
 			}
 
-			if random.Bool() {
+			if random.BoolPerc(0.6) {
 				c.SwitchIfEmpty(x, y, 0, -1)
 			}
 
@@ -183,10 +183,37 @@ func Update(percentage float64) int {
 			}
 
 			c.SwitchIfEmpty(x, y, 0, -1)
-			c.SwitchIfEmpty(x, y, 0, -2)
-			c.SwitchIfEmpty(x, y, 0, -3)
+			if random.Bool() {
+				c.SwitchIfEmpty(x, y, -1, -1)
+			} else {
+				c.SwitchIfEmpty(x, y, 1, -1)
+			}
 
 		}
+	}
+
+	if (timeInt+1)%2 == 0 {
+
+		for i := 0; i < c.Amount; i++ {
+			x, y := c.IndexToXY(i)
+
+			//Skip Empty Cells
+			if c.GetCell(x, y) == 0 {
+				continue
+			}
+
+			c.SwitchIfEmpty(x, y, 0, -1)
+
+			if random.Bool() {
+				c.SwitchIfEmpty(x, y, -1, -1)
+			} else {
+				c.SwitchIfEmpty(x, y, 1, -1)
+			}
+
+			c.SwitchIfEmpty(x, y, 0, -1)
+
+		}
+
 	}
 
 	smallestY = largestY
