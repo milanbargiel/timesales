@@ -41,7 +41,7 @@ export default (resize) => {
           const s = 1 + howGoodIsIt * 0.25;
           console.log("[PERF] increase scale by", s);
 
-          dims.scale *= s;
+          dims.scale = Math.min(dims.scale * s, 2);
 
           const { width, height } = getDims();
 
