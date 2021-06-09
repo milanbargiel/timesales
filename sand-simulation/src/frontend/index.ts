@@ -69,9 +69,12 @@ async function init({
       performanceKeeper.start();
       updateSim();
       timeKeeper.update();
+      sound.resume();
       sound.setVolume(Math.min(0.05, updates / 4000000));
       canvas.update();
       performanceKeeper.end();
+    } else {
+      sound.pause();
     }
 
     requestAnimationFrame(render);
@@ -92,9 +95,10 @@ function pause() {
   simPaused = !simPaused;
   if (simPaused) {
     timeKeeper.pause();
-    sound.setVolume(0);
+    sound.pause();
   } else {
     timeKeeper.resume();
+    sound.resume();
   }
 }
 
