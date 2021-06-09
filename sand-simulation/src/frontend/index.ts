@@ -2,6 +2,7 @@ import createBackend from "./createBackend";
 import createCanvas from "./createCanvas";
 import createSound from "./createSound";
 import { debounce, getDims } from "./helpers";
+import createPerformanceKeeper from "./perfomanceKeeper";
 import timeKeeper from "./timeKeeper";
 
 let backend: Backend;
@@ -38,6 +39,20 @@ async function init({
   timeKeeper.setDuration(duration || 60);
   timeKeeper.setProgress(progress || 1);
 
+  function resize(_w, _h) {
+    if (_w != width || _h != height) {
+      width = _w;
+      height = _h;
+
+      pixels = new Uint8Array(width * height);
+      window["sandPixelArray"] = pixels;
+      backend.Resize(width, height);
+      canvas.resize(width, height, pixels);
+    }
+  }
+
+  const performanceKeeper = createPerformanceKeeper(resize);
+
   let _promise;
   let updates = 100;
   let isResizing = false;
@@ -51,30 +66,22 @@ async function init({
 
   async function render() {
     if (!simPaused && !isResizing && timeKeeper.getProgress() > -0.05) {
-      timeKeeper.update();
-      canvas.update();
+      performanceKeeper.start();
       updateSim();
+      timeKeeper.update();
       sound.setVolume(Math.min(0.05, updates / 4000000));
+      canvas.update();
+      performanceKeeper.end();
     }
+
     requestAnimationFrame(render);
   }
 
   window.addEventListener(
     "resize",
-    debounce(async () => {
+    debounce(() => {
       const { width: _w, height: _h } = getDims();
-
-      if (_w != width || _h != height) {
-        width = _w;
-        height = _h;
-
-        pixels = new Uint8Array(width * height);
-
-        window["sandPixelArray"] = pixels;
-
-        canvas.resize(width, height, pixels);
-        backend.Resize(width, height);
-      }
+      resize(_w, _h);
     }, 500)
   );
 

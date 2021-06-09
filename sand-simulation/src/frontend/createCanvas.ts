@@ -106,6 +106,12 @@ export default ({
   return {
     update,
     resize,
+    get width() {
+      return width;
+    },
+    get height() {
+      return height;
+    },
     el: canvas,
   };
 };
