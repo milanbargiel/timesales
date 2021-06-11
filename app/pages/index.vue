@@ -42,6 +42,8 @@ export default {
         timePrice: '',
         memberOfChurch: '',
         afraidOfHell: '',
+        timeManagementSecret: '',
+        readyForInvestment: '',
       },
     }
   },

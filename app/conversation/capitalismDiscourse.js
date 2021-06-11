@@ -29,12 +29,8 @@ export default {
 
       await this.botMessage('What would you like to have time for?')
 
-      this.d.timeType = await this.botTextInput('Your answer')
-
-      if (this.d.timeType) {
-        // Proceed to checkout
-        this.purposeOfTime()
-      }
+      // Proceed with checkout
+      this.purposeOfTime()
     },
   },
 }

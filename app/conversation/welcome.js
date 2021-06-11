@@ -1,9 +1,9 @@
 // Import conversation branches
 import CapitalismDiscourse from '../conversation/capitalismDiscourse.js'
-import NotShortInTime from '../conversation/notShortInTime.js'
+import InvestInArt from '../conversation/investInArt.js'
 
 export default {
-  mixins: [CapitalismDiscourse, NotShortInTime],
+  mixins: [CapitalismDiscourse, InvestInArt],
   methods: {
     async welcome() {
       await this.botMessage('Hi, good to see you!')

@@ -5,6 +5,8 @@ export default {
   mixins: [MemberOfChurch],
   methods: {
     async purposeOfTime() {
+      this.d.timeType = await this.botTextInput('Your answer')
+
       // Look for predefined keywords in the description of the time needed
       const keyword = this.lookForKeyword(this.d.timeType)
 
