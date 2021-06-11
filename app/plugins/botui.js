@@ -67,6 +67,15 @@ vue.mixin({
         ],
       })
     },
+    hidePushyQuestion() {
+      // Get loading container of bot
+      const domElement = this.$el.querySelector('.botui-message-content.loading')
+      
+      // Hide parent node
+      if (domElement) {
+        domElement.parentNode.style.display = 'none'
+      }
+    }
   },
 })
 
