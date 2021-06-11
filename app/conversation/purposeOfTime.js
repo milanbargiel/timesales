@@ -36,7 +36,7 @@ export default {
       }
 
       // Go to member of church dialogue
-      this.MemberOfChurch()
+      this.memberOfChurch()
     },
   },
 }

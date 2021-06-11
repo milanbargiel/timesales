@@ -40,6 +40,8 @@ export default {
         becauseOfCapitalism: '',
         timeType: '',
         timeAmount: '',
+        memberOfChurch: '',
+        afraidOfHell: '',
       },
       // realorder
       order: {
