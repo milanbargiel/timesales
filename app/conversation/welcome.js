@@ -1,10 +1,9 @@
 // Import conversation branches
-import ShortInTime from '../conversation/shortInTime.js'
+import CapitalismDiscourse from '../conversation/capitalismDiscourse.js'
 import NotShortInTime from '../conversation/notShortInTime.js'
-import Checkout from '../conversation/checkout.js'
 
 export default {
-  mixins: [ShortInTime, NotShortInTime, Checkout],
+  mixins: [CapitalismDiscourse, NotShortInTime],
   methods: {
     async welcome() {
       await this.botMessage('Hi, good to see you!')
@@ -16,7 +15,7 @@ export default {
 
       await this.botMessage(
         this.d.name +
-          ', nice to meet you! Do you mind if we record our conversation for the improvement of our services?'
+          ', would it be okay if I record our conversation to improve the quality of service?'
       )
 
       // Save decision in data property

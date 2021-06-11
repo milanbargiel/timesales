@@ -37,6 +37,7 @@ export default {
         name: '',
         allowRecording: false,
         shortOnTime: '',
+        becauseOfCapitalism: '',
       },
       // realorder
       order: {
