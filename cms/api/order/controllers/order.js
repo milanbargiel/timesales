@@ -136,7 +136,7 @@
         metadata: {
           name: payload.name,
           time: payload.timeAmount, // in seconds
-          description: payload.description, // original user input
+          description: payload.timeType, // original user input
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
