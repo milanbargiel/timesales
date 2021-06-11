@@ -1,8 +1,8 @@
 // Import conversation branches
-import Checkout from '../conversation/checkout.js'
+import PurposeOfTime from '../conversation/purposeOfTime.js'
 
 export default {
-  mixins: [Checkout],
+  mixins: [PurposeOfTime],
   methods: {
     async capitalismDiscourse() {
       await this.botMessage(
@@ -33,7 +33,7 @@ export default {
 
       if (this.d.timeType) {
         // Proceed to checkout
-        this.checkoutConversation()
+        this.purposeOfTime()
       }
     },
   },

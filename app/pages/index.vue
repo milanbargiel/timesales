@@ -38,6 +38,8 @@ export default {
         allowRecording: false,
         shortOnTime: '',
         becauseOfCapitalism: '',
+        timeType: '',
+        timeAmount: '',
       },
       // realorder
       order: {
