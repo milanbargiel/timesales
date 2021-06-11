@@ -22,16 +22,22 @@
 </template>
 
 <script>
-import Start from '../conversation/start.js'
+import Welcome from '../conversation/welcome.js'
 import stripeCheckoutMixin from '../mixins/stripeCheckoutMixin.js'
 
 export default {
-  mixins: [Start, stripeCheckoutMixin],
+  mixins: [Welcome, stripeCheckoutMixin],
   data() {
     return {
       botui: '',
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
+      // Response data
+      d: {
+        name: '',
+        allowRecording: false,
+        shortOnTime: '',
+      },
       // realorder
       order: {
         name: '',
@@ -52,7 +58,7 @@ export default {
     // load bot modules
     await this.$nextTick()
     this.botui = this.$botui('botui')
-    this.startConversation()
+    this.welcome()
   },
 }
 </script>
