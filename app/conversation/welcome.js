@@ -1,9 +1,10 @@
 // Import conversation branches
 import CapitalismDiscourse from '../conversation/capitalismDiscourse.js'
 import InvestInArt from '../conversation/investInArt.js'
+import ProjectsToFinish from '../conversation/projectsToFinish.js'
 
 export default {
-  mixins: [CapitalismDiscourse, InvestInArt],
+  mixins: [CapitalismDiscourse, InvestInArt, ProjectsToFinish],
   methods: {
     async welcome() {
       await this.botMessage('Hi, good to see you!')
@@ -23,12 +24,21 @@ export default {
 
       await this.botMessage('Are you sometimes short on time?')
 
-      this.d.shortOnTime = await this.botYesOrNo()
+      // Ask pushy questions untill the user answers the question
+      let askFurther = true
 
-      if (this.d.shortOnTime.value === true) {
-        this.capitalismDiscourse()
-      } else {
-        this.investInArt()
+      this.botYesOrNo().then((response) => {
+        askFurther = false // Do not continue asking
+        this.d.shortOnTime = response // save value
+        response.value ? this.capitalismDiscourse() : this.investInArt()
+      })
+
+      await this.timeout(10000)
+
+      if (askFurther) {
+        this.d.shortOnTime = 'hesitant'
+        this.hidePushyQuestion()
+        this.projectsToFinish()
       }
     },
   },
