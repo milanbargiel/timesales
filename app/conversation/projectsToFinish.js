@@ -1,8 +1,9 @@
 // Import conversation branches
 import AmountOfTime from '../conversation/amountOfTime.js'
+import PrioritizationProblems from '../conversation/prioritizationProblems.js'
 
 export default {
-  mixins: [AmountOfTime],
+  mixins: [AmountOfTime, PrioritizationProblems],
   methods: {
     async projectsToFinish() {
       await this.botMessage(
@@ -13,6 +14,8 @@ export default {
 
       // On no
       if (this.d.projectsToFinish.value === false) {
+        // Go to prioritization problems dialogue
+        this.prioritizationProblems()
         return
       }
 

@@ -36,7 +36,7 @@ vue.mixin({
         content,
       })
     },
-    async botTextInput(placeholder) {
+    async botTextInput(placeholder) {
       const res = await this.botui.action.text({
         action: {
           placeholder,
@@ -44,7 +44,7 @@ vue.mixin({
       }) 
       return res.value // only return value property
     },
-    async botNumberInput(placeholder) {
+    async botNumberInput(placeholder) {
       const res = await this.botui.action.text({
         action: {
           sub_type: 'number',

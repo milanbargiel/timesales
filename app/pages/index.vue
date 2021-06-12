@@ -44,6 +44,8 @@ export default {
         afraidOfHell: '',
         timeManagementSecret: '',
         readyForInvestment: '',
+        projectsToFinish: '',
+        prioritizationProblems: '',
       },
     }
   },

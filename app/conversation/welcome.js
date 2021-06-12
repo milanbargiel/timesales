@@ -37,7 +37,8 @@ export default {
 
       if (askFurther) {
         this.d.shortOnTime = 'hesitant'
-        this.hidePushyQuestion()
+
+        // Go to projectsToFinish dialogue
         this.projectsToFinish()
       }
     },
