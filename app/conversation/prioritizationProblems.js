@@ -1,9 +1,10 @@
 // Import conversation branches
+import InControl from '../conversation/inControl.js'
 import AmountOfTime from '../conversation/amountOfTime.js'
 import PurposeOfTime from '../conversation/purposeOfTime.js'
 
 export default {
-  mixins: [AmountOfTime, PurposeOfTime],
+  mixins: [InControl, AmountOfTime, PurposeOfTime],
   methods: {
     async prioritizationProblems() {
       await this.botMessage(
@@ -15,6 +16,7 @@ export default {
       // On no
       if (this.d.prioritizationProblems.value === false) {
         // Go to in control branch
+        this.inControl()
         return
       }
 

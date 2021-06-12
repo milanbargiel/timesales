@@ -46,6 +46,8 @@ export default {
         readyForInvestment: '',
         projectsToFinish: '',
         prioritizationProblems: '',
+        workForTSO: '',
+        email: '', // Is only set when user wants to work for TSO
       },
     }
   },
