@@ -12,7 +12,8 @@ export default {
       await this.botMessage("What's your name?")
 
       // Save name in data property
-      this.d.name = await this.botTextInput('Your name')
+      const name = await this.botTextInput('Your name')
+      this.$store.commit('setResponse', { name })
 
       await this.botMessage(
         this.d.name +

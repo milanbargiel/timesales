@@ -33,21 +33,21 @@ export default {
       debugMode: false, // In debug mode all delay is set to 0
       // Response data
       d: {
-        name: '',
-        allowRecording: false,
-        shortOnTime: '',
-        becauseOfCapitalism: '',
-        timeType: '',
-        timeAmount: '',
-        timePrice: '',
-        memberOfChurch: '',
-        afraidOfHell: '',
-        timeManagementSecret: '',
-        readyForInvestment: '',
-        projectsToFinish: '',
-        prioritizationProblems: '',
-        workForTSO: '',
-        email: '', // Is only set when user wants to work for TSO
+        name: null,
+        allowRecording: null,
+        shortOnTime: null,
+        becauseOfCapitalism: null,
+        timeType: null,
+        timeAmount: null,
+        timePrice: null,
+        memberOfChurch: null,
+        afraidOfHell: null,
+        timeManagementSecret: null,
+        readyForInvestment: null,
+        projectsToFinish: null,
+        prioritizationProblems: null,
+        workForTSO: null,
+        email: null, // Is only set when user wants to work for TSO
       },
     }
   },
