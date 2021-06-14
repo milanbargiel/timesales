@@ -43,6 +43,12 @@ export default {
     // load bot modules
     await this.$nextTick()
     this.botui = this.$botui('botui')
+
+    // Reset vuex store every time component is loaded
+    // By doing so it is assured that stale data is not going to be stored in the database after a page refresh
+    this.resetState()
+
+    // Start welcome dialogue
     this.welcome()
 
     // load stripe
@@ -58,8 +64,9 @@ export default {
       })
     },
     ...mapMutations({
-      // Enables this.setResponse({ key: value })
+      // Enables this.setResponse({ key: value }) and this.resetState()
       setResponse: 'response/setResponse',
+      resetState: 'response/resetState',
     }),
     deletePreviousConversation() {
       // Remove HTML content
