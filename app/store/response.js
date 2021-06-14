@@ -20,7 +20,7 @@ const getDefaultState = () => {
   }
 }
 
-const state = getDefaultState()
+const state = () => getDefaultState()
 
 const mutations = {
   setResponse(state, object) {
