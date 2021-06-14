@@ -32,9 +32,6 @@ export default {
       botui: '',
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
-      d: {
-        name: null,
-      },
     }
   },
   computed: {
@@ -52,6 +49,14 @@ export default {
     this.stripe = Stripe(this.$config.stripePublishableKey)
   },
   methods: {
+    populateWithDummyData() {
+      this.setResponse({
+        name: 'Luciano Karuso',
+        timeType: 'Read a book with my mom',
+        timeAmount: 120, // in seconds
+        timePrice: 100, // in cents
+      })
+    },
     ...mapMutations({
       // Enables this.setResponse({ key: value })
       setResponse: 'response/setResponse',
@@ -68,12 +73,12 @@ export default {
     },
     stripeCheckout() {
       // Populate with dummy data if necessary
-      if (!this.d.name) {
+      if (!this.response.name) {
         this.populateWithDummyData()
       }
 
       const data = {
-        ...this.d,
+        ...this.response,
         successUrl: `${this.$config.baseUrl}/order`,
         cancelUrl: `${this.$config.baseUrl}/cancel`,
       }

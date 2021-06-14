@@ -14,9 +14,11 @@ export default {
       await this.botMessage('Where were we? You wanted to buy some time right?')
       await this.botMessage('How much is it going to be?')
 
-      this.d.timeAmount = await this.botNumberInput('Time in seconds')
+      await this.botNumberInput('Time in seconds').then((timeAmount) => {
+        this.setResponse({ timeAmount })
+      })
 
-      if (this.d.timeAmount > 60) {
+      if (this.response.timeAmount > 60) {
         await this.botMessage(
           'That much? Very good, you dive right in, I respect that!'
         )
@@ -28,8 +30,8 @@ export default {
 
       // Go to member of church dialogue if user comes from capitalismDiscourse
       if (
-        this.d.becauseOfCapitalism === true ||
-        this.d.becauseOfCapitalism === false
+        this.response.becauseOfCapitalism === true ||
+        this.response.becauseOfCapitalism === false
       ) {
         this.memberOfChurch()
       } else {

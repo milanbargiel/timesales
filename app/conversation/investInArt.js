@@ -8,7 +8,9 @@ export default {
     async investInArt() {
       await this.botMessage('No? How do you do that?')
 
-      this.d.timeManagementSecret = await this.botTextInput('Your answer')
+      await this.botTextInput('Your answer').then((timeManagementSecret) => {
+        this.setResponse({ timeManagementSecret })
+      })
 
       await this.botMessage("Ok, I'll keep that secret safe")
 
@@ -54,9 +56,11 @@ export default {
 
       await this.botMessage('What do you say? Are you ready for an investment?')
 
-      this.d.readyForInvestment = await this.botYesOrNo()
+      await this.botYesOrNo().then((readyForInvestment) => {
+        this.setResponse({ readyForInvestment })
+      })
 
-      if (this.d.readyForInvestment.value) {
+      if (this.response.readyForInvestment) {
         // on yes
         await this.botMessage(
           'Good. To make it more unique, we always connect <i>time</i> to a special purpose. What would be the purpose for your <i>time</i>?'

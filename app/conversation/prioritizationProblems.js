@@ -11,10 +11,12 @@ export default {
         'Do you struggle setting your priorities as you would like them to be?'
       )
 
-      this.d.prioritizationProblems = await this.botYesOrNo()
+      await this.botYesOrNo().then((prioritizationProblems) => {
+        this.setResponse({ prioritizationProblems })
+      })
 
       // On no
-      if (this.d.prioritizationProblems.value === false) {
+      if (this.response.prioritizationProblems === false) {
         // Go to in control branch
         this.inControl()
         return
@@ -33,9 +35,10 @@ export default {
 
       await this.botMessage('Anything else?')
 
-      this.botTextInput('Your answer').then((response) => {
+      // Ask for purpose of time but do not wait for answer
+      this.botTextInput('Your answer').then((timeType) => {
         // Save answer
-        this.d.timeType = response
+        this.setResponse({ timeType })
       })
 
       await this.timeout(10000)
@@ -53,7 +56,7 @@ export default {
       )
 
       // If purpose of time was already given
-      if (this.d.timeType) {
+      if (this.response.timeType) {
         await this.botMessage(
           'But first i need to know how much time it shall be'
         )

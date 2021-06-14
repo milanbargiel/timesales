@@ -9,9 +9,11 @@ export default {
         "Why don't you have enough time? Is it because of capitalism?"
       )
 
-      this.d.becauseOfCapitalism = await this.botYesOrNo()
+      await this.botYesOrNo().then((becauseOfCapitalism) => {
+        this.setResponse({ becauseOfCapitalism })
+      })
 
-      if (this.d.becauseOfCapitalism) {
+      if (this.response.becauseOfCapitalism) {
         await this.botMessage(
           "Is It really that simple? Ok, well then, let's beat capitalism with its own weapons. I'll sell you some time so you escape the hamster wheel of artificial scarcity and harmful competition."
         )

@@ -9,14 +9,18 @@ export default {
         'You seem to be yery much in control over your life. Would you like to work for us'
       )
 
-      this.d.workForTSO = await this.botYesOrNo()
+      await this.botYesOrNo().then((workForTSO) => {
+        this.setResponse({ workForTSO })
+      })
 
-      if (this.d.workForTSO.value === true) {
+      if (this.response.workForTSO === true) {
         await this.botMessage(
-          `${this.d.name}, please enter your e-mail adress here, so we can get in touch with you`
+          `${this.response.name}, please enter your e-mail adress here, so we can get in touch with you`
         )
 
-        this.d.email = await this.botTextInput('Your email')
+        await this.botEmailInput('Your email').then((email) => {
+          this.setResponse({ email })
+        })
 
         await this.botMessage('You will hear from us')
       } else {

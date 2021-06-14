@@ -53,6 +53,15 @@ vue.mixin({
       }) 
       return parseInt(res.value) // only return value property as a number
     },
+    async botEmailInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          sub_type: 'email',
+          placeholder,
+        },
+      }) 
+      return res.value // only return value property
+    },
     async botYesOrNo() {
       const res = await this.botui.action.button({
         action: [

@@ -8,9 +8,11 @@ export default {
     async memberOfChurch() {
       await this.botMessage('Are you a member of the church?')
 
-      this.d.memberOfChurch = await this.botYesOrNo()
+      await this.botYesOrNo().then((memberOfChurch) => {
+        this.setResponse({ memberOfChurch })
+      })
 
-      if (this.d.memberOfChurch.value === false) {
+      if (this.response.memberOfChurch === false) {
         await this.botMessage('Ok, then we can continue')
 
         // Go to checkout dialogue
@@ -20,20 +22,25 @@ export default {
           'The church says that time is a present of god and that it shall not be sold. You better think over it twice to make sure you’re not doing a business deal with the devil'
         )
 
-        this.d.afraidOfHell = await this.botui.action.button({
-          action: [
-            {
-              text: "I don't care",
-              value: false,
-            },
-            {
-              text: 'Right, I’m also much too much afraid of burning in hell.',
-              value: true,
-            },
-          ],
-        })
+        await this.botui.action
+          .button({
+            action: [
+              {
+                text: "I don't care",
+                value: false,
+              },
+              {
+                text:
+                  'Right, I’m also much too much afraid of burning in hell.',
+                value: true,
+              },
+            ],
+          })
+          .then((response) => {
+            this.setResponse({ afraidOfHell: response.value })
+          })
 
-        if (this.d.afraidOfHell.value === true) {
+        if (this.response.afraidOfHell === true) {
           await this.botMessage('Our paths diverge here')
           await this.botMessage('Have a good time anyways')
           return this.exit()

@@ -7,7 +7,7 @@ export default {
     async checkout() {
       await this.botMessage('What would that time be worth to you?')
 
-      this.d.timePrice = await (() => {
+      await (() => {
         // Show message after 10 sec if user does not enter a value
         const t1 = setTimeout(async () => {
           await this.botMessage(
@@ -22,29 +22,22 @@ export default {
           )
         }, 25000)
 
-        return this.botui.action
-          .text({
-            action: {
-              sub_type: 'number',
-              placeholder: 'Worth in €',
-            },
-          })
-          .then((response) => {
-            // Do not show pushy questions anymore when price is given
-            this.hidePushyQuestion()
-            clearTimeout(t1)
-            clearTimeout(t2)
-            return response.value * 100 // convert to cents
-          })
+        return this.botNumberInput('Worth in €').then((timePrice) => {
+          // Do not show pushy questions anymore when price is given
+          this.hidePushyQuestion()
+          clearTimeout(t1)
+          clearTimeout(t2)
+          this.setResponse({ timePrice: timePrice * 100 }) // convert input to cents
+        })
       })()
 
       // Only continue when user enters value
-      if (this.d.timePrice) {
+      if (this.response.timePrice) {
         await this.botMessage(
-          `Sweet! You chose to buy ${this.d.timeAmount} of time to ${
-            this.d.timeType
+          `Sweet! You chose to buy ${this.response.timeAmount} of time to ${
+            this.response.timeType
           } for ${
-            this.d.timePrice / 100
+            this.response.timePrice / 100
           } €. Do you want to proceed to checkout?`
         )
 
