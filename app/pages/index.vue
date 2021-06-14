@@ -12,10 +12,9 @@
       <b-field class="debug-button">
         <b-switch v-model="debugMode">Fast</b-switch>
       </b-field>
-      <span class="text-button" @click="stripeCheckout()">Test Checkout</span>
     </div>
     <div class="controls controls--bottom">
-      <span class="text-button" @click="checkoutBranch()">Checkout</span>
+      <span class="text-button" @click="stripeCheckout()">Test Checkout</span>
     </div>
   </div>
 </template>
@@ -55,6 +54,11 @@ export default {
     this.stripe = Stripe(this.$config.stripePublishableKey)
   },
   methods: {
+    ...mapMutations({
+      // Enables this.setResponse({ key: value }) and this.resetState()
+      setResponse: 'response/setResponse',
+      resetState: 'response/resetState',
+    }),
     populateWithDummyData() {
       this.setResponse({
         name: 'Luciano Karuso',
@@ -62,21 +66,6 @@ export default {
         timeAmount: 120, // in seconds
         timePrice: 100, // in cents
       })
-    },
-    ...mapMutations({
-      // Enables this.setResponse({ key: value }) and this.resetState()
-      setResponse: 'response/setResponse',
-      resetState: 'response/resetState',
-    }),
-    deletePreviousConversation() {
-      // Remove HTML content
-      document.querySelector('.botui-messages-container').innerHTML = ''
-    },
-    checkoutBranch() {
-      this.deletePreviousConversation()
-      this.populateWithDummyData()
-      // Directly go to checkout dialogue
-      this.checkout()
     },
     stripeCheckout() {
       // Populate with dummy data if necessary
