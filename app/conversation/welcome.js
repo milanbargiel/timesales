@@ -11,34 +11,35 @@ export default {
 
       await this.botMessage("What's your name?")
 
-      // Save name in data property
-      const name = await this.botTextInput('Your name')
-      this.$store.commit('setResponse', { name })
+      await this.botTextInput('Your name').then((name) => {
+        // Save reponses in vuex store
+        this.setResponse({ name })
+      })
 
       await this.botMessage(
-        this.d.name +
+        this.response.name +
           ', would it be okay if I record our conversation to improve the quality of service?'
       )
 
-      // Save decision in data property
-      this.d.allowRecording = await this.botYesOrNo()
+      await this.botYesOrNo().then((allowRecording) => {
+        this.setResponse({ allowRecording })
+      })
 
       await this.botMessage('Are you sometimes short on time?')
 
       // Ask pushy questions untill the user answers the question
       let askFurther = true
 
-      this.botYesOrNo().then((response) => {
+      this.botYesOrNo().then((shortOnTime) => {
         askFurther = false // Do not continue asking
-        this.d.shortOnTime = response // save value
-        response.value ? this.capitalismDiscourse() : this.investInArt()
+        this.setResponse({ shortOnTime })
+        shortOnTime ? this.capitalismDiscourse() : this.investInArt()
       })
 
       await this.timeout(10000)
 
       if (askFurther) {
-        this.d.shortOnTime = 'hesitant'
-
+        this.setResponse({ shortOnTime: 'hesitant' })
         // Go to projectsToFinish dialogue
         this.projectsToFinish()
       }

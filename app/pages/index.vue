@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
 import Welcome from '../conversation/welcome.js'
 import Checkout from '../conversation/checkout.js'
 
@@ -31,25 +32,15 @@ export default {
       botui: '',
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
-      // Response data
       d: {
         name: null,
-        allowRecording: null,
-        shortOnTime: null,
-        becauseOfCapitalism: null,
-        timeType: null,
-        timeAmount: null,
-        timePrice: null,
-        memberOfChurch: null,
-        afraidOfHell: null,
-        timeManagementSecret: null,
-        readyForInvestment: null,
-        projectsToFinish: null,
-        prioritizationProblems: null,
-        workForTSO: null,
-        email: null, // Is only set when user wants to work for TSO
       },
     }
+  },
+  computed: {
+    response() {
+      return this.$store.state.response.data
+    },
   },
   async mounted() {
     // load bot modules
@@ -61,14 +52,10 @@ export default {
     this.stripe = Stripe(this.$config.stripePublishableKey)
   },
   methods: {
-    populateWithDummyData() {
-      this.d = {
-        name: 'Luciano Karuso',
-        timeType: 'Read a book with my mom',
-        timeAmount: 120, // in seconds
-        timePrice: 100, // in cents
-      }
-    },
+    ...mapMutations({
+      // Enables this.setResponse({ key: value })
+      setResponse: 'response/setResponse',
+    }),
     deletePreviousConversation() {
       // Remove HTML content
       document.querySelector('.botui-messages-container').innerHTML = ''

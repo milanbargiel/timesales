@@ -1,5 +1,5 @@
 export const state = () => ({
-  response: {
+  data: {
     name: null,
     allowRecording: null,
     shortOnTime: null,
@@ -21,6 +21,6 @@ export const state = () => ({
 export const mutations = {
   setResponse(state, object) {
     // Merge state with given response from object
-    state.response = { ...state.response, ...object }
+    state.data = { ...state.data, ...object }
   },
 }
