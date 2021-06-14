@@ -36,9 +36,9 @@ export default {
       await this.botMessage('Anything else?')
 
       // Ask for purpose of time but do not wait for answer
-      this.botTextInput('Your answer').then((timeType) => {
+      this.botTextInput('Your answer').then((timePurpose) => {
         // Save answer
-        this.setResponse({ timeType })
+        this.setResponse({ timePurpose })
       })
 
       await this.timeout(10000)
@@ -56,7 +56,7 @@ export default {
       )
 
       // If purpose of time was already given
-      if (this.response.timeType) {
+      if (this.response.timePurpose) {
         await this.botMessage(
           'But first i need to know how much time it shall be'
         )

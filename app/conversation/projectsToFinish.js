@@ -25,12 +25,12 @@ export default {
         'So, what would you do if you had all the time you ever wanted?'
       )
 
-      await this.botTextInput('Your answer').then((timeType) => {
-        this.setResponse({ timeType })
+      await this.botTextInput('Your answer').then((timePurpose) => {
+        this.setResponse({ timePurpose })
       })
 
       await this.botMessage(
-        `Ok, if you had all the time in the world you would ${this.response.timeType}. But why don't you do it in this world of finite lifespans? Is it not important enough?`
+        `Ok, if you had all the time in the world you would ${this.response.timePurpose}. But why don't you do it in this world of finite lifespans? Is it not important enough?`
       )
 
       await this.botMessage('Shall we give it a little bit of extra value?')
@@ -44,7 +44,7 @@ export default {
       })
 
       await this.botMessage(
-        `Ok, then i'll sell you some time for ${this.response.timeType}.`
+        `Ok, then i'll sell you some time for ${this.response.timePurpose}.`
       )
 
       // Go to amount of time dialogue

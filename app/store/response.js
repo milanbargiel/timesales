@@ -5,7 +5,7 @@ const getDefaultState = () => {
       allowRecording: null,
       shortOnTime: null,
       becauseOfCapitalism: null,
-      timeType: null,
+      timePurpose: null,
       timeAmount: null,
       timePrice: null,
       memberOfChurch: null,

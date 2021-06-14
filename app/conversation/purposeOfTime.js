@@ -5,12 +5,12 @@ export default {
   mixins: [AmountOfTime],
   methods: {
     async purposeOfTime() {
-      await this.botTextInput('Your answer').then((timeType) => {
-        this.setResponse({ timeType })
+      await this.botTextInput('Your answer').then((timePurpose) => {
+        this.setResponse({ timePurpose })
       })
 
       // Look for predefined keywords in the description of the time needed
-      const keyword = this.lookForKeyword(this.response.timeType)
+      const keyword = this.lookForKeyword(this.response.timePurpose)
 
       if (keyword) {
         await this.botMessage(`Ah good choice, I like to ${keyword} too.`)

@@ -58,7 +58,7 @@ export default {
     populateWithDummyData() {
       this.setResponse({
         name: 'Luciano Karuso',
-        timeType: 'Read a book with my mom',
+        timePurpose: 'Read a book with my mom',
         timeAmount: 120, // in seconds
         timePrice: 100, // in cents
       })

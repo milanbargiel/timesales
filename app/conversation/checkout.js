@@ -35,7 +35,7 @@ export default {
       if (this.response.timePrice) {
         await this.botMessage(
           `Sweet! You chose to buy ${this.response.timeAmount} of time to ${
-            this.response.timeType
+            this.response.timePurpose
           } for ${
             this.response.timePrice / 100
           } €. Do you want to proceed to checkout?`
