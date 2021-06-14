@@ -36,7 +36,7 @@ vue.mixin({
         content,
       })
     },
-    async botTextInput(placeholder) {
+    async botTextInput(placeholder) {
       const res = await this.botui.action.text({
         action: {
           placeholder,
@@ -44,7 +44,7 @@ vue.mixin({
       }) 
       return res.value // only return value property
     },
-    async botNumberInput(placeholder) {
+    async botNumberInput(placeholder) {
       const res = await this.botui.action.text({
         action: {
           sub_type: 'number',
@@ -53,8 +53,17 @@ vue.mixin({
       }) 
       return parseInt(res.value) // only return value property as a number
     },
-    botYesOrNo() {
-      return this.botui.action.button({
+    async botEmailInput(placeholder) {
+      const res = await this.botui.action.text({
+        action: {
+          sub_type: 'email',
+          placeholder,
+        },
+      }) 
+      return res.value // only return value property
+    },
+    async botYesOrNo() {
+      const res = await this.botui.action.button({
         action: [
           {
             text: 'Yes',
@@ -66,7 +75,17 @@ vue.mixin({
           },
         ],
       })
+      return res.value
     },
+    hidePushyQuestion() {
+      // Get loading container of bot
+      const domElement = this.$el.querySelector('.botui-message-content.loading')
+      
+      // Hide parent node
+      if (domElement) {
+        domElement.parentNode.style.display = 'none'
+      }
+    }
   },
 })
 

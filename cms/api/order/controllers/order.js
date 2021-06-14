@@ -114,7 +114,7 @@
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
     // convert seconds from payload.time to ms and make it human readable
-    const timeString = `${humanizeDuration(1000 * payload.time)} of time for – ${payload.description}`;
+    const timeString = `${humanizeDuration(1000 * payload.timeAmount)} of time for – ${payload.timePurpose}`;
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -127,7 +127,7 @@
             product_data: {
               name: timeString
             },
-            unit_amount: payload.price // price is in cents
+            unit_amount: payload.timePrice // price is in cents
           },
           quantity: 1,
           tax_rates: [ taxRateId ],
@@ -135,8 +135,8 @@
         ],
         metadata: {
           name: payload.name,
-          time: payload.time, // in seconds
-          description: payload.description, // original user input
+          time: payload.timeAmount, // in seconds
+          description: payload.timePurpose, // original user input
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud

@@ -1,6 +1,6 @@
 export default {
   methods: {
-    async exitConversation() {
+    async exit() {
       await this.botMessage('Goodbye then.')
     },
   },
