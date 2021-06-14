@@ -53,8 +53,8 @@ vue.mixin({
       }) 
       return parseInt(res.value) // only return value property as a number
     },
-    botYesOrNo() {
-      return this.botui.action.button({
+    async botYesOrNo() {
+      const res = await this.botui.action.button({
         action: [
           {
             text: 'Yes',
@@ -66,6 +66,7 @@ vue.mixin({
           },
         ],
       })
+      return res.value
     },
     hidePushyQuestion() {
       // Get loading container of bot
