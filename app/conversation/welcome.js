@@ -18,7 +18,7 @@ export default {
 
       await this.botMessage(
         this.response.name +
-          ', would it be okay if I record our conversation to improve the quality of service?'
+          ', nice to meet you. Would it be okay if I record our conversation to improve the quality of service?'
       )
 
       await this.botYesOrNo().then((allowRecording) => {
