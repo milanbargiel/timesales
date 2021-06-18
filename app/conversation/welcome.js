@@ -31,7 +31,9 @@ export default {
       let askFurther = true
 
       this.botYesOrNo().then((shortOnTime) => {
-        askFurther = false // Do not continue asking
+        // Do not continue asking
+        askFurther = false
+        this.hidePushyQuestion()
         this.setResponse({ shortOnTime })
         shortOnTime ? this.capitalismDiscourse() : this.investInArt()
       })
