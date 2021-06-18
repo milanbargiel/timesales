@@ -10,14 +10,14 @@ export default {
       await (() => {
         // Show message after 10 sec if user does not enter a value
         const t1 = setTimeout(async () => {
-          await this.botMessage(
+          await this.botMessageHtml(
             'Some people base their decisions on their hourly income, others choose a more idealistic approximation. I always ask myself <i>what amount of money would hurt a little bit?</i> That should be enough to make your time precious to you.'
           )
         }, 10000)
 
         // After 25 sec show another prompt
         const t2 = setTimeout(async () => {
-          await this.botMessage(
+          await this.botMessageHtml(
             "Ultimately you'll have to ask yourself: <i>What am I willing to spend? What's appropriate and won't ruin me?</i>"
           )
         }, 25000)
