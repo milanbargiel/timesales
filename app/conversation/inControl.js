@@ -22,7 +22,7 @@ export default {
           this.setResponse({ email })
         })
 
-        await this.botMessage('You will hear from us')
+        await this.botMessage('Thank you! You will hear from us.')
       } else {
         await this.botMessage('Our paths diverge here')
         await this.botMessage('Have a good time anways')

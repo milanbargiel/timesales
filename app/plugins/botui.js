@@ -1,5 +1,6 @@
 import vue from 'vue'
 import Botui from 'botui'
+import { escape } from 'html-escaper'
 
 vue.mixin({
   methods: {
@@ -29,6 +30,18 @@ vue.mixin({
       return Math.max(sentence.length * 50, 2000)
     },
     botMessage(content, customDelay) {
+      // Returns html escaped content e.g. <i> becomes "&lti&lt"
+      // This done to allow special characters in names
+      // Todo: Build a proper validation that does not allow special characters for user inputs
+      return this.botui.message.add({
+        delay: customDelay || this.timeToWrite(content),
+        loading: true,
+        type: 'html',
+        content: escape(content), // Replace special characters e.g. < => "&lt;" 
+      })
+    },
+     botMessageHtml(content, customDelay) {
+      // Allows html as for example <i>time</i>
       return this.botui.message.add({
         delay: customDelay || this.timeToWrite(content),
         loading: true,
@@ -41,7 +54,7 @@ vue.mixin({
         action: {
           placeholder,
         },
-      }) 
+      })
       return res.value // only return value property
     },
     async botNumberInput(placeholder) {

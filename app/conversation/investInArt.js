@@ -50,7 +50,7 @@ export default {
         ],
       })
 
-      await this.botMessage(
+      await this.botMessageHtml(
         "However,  we've found a smart solution: we invented <i>time</i>, the most volatile piece of all time. It has many advantages: It's lightweight, always available like your files in the cloud, doesn’t take up space, and has no other special needs."
       )
 
@@ -62,7 +62,7 @@ export default {
 
       if (this.response.readyForInvestment) {
         // on yes
-        await this.botMessage(
+        await this.botMessageHtml(
           'Good. To make it more unique, we always connect <i>time</i> to a special purpose. What would be the purpose for your <i>time</i>?'
         )
 
