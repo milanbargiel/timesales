@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     async moreTime() {
-      await this.botMessage('Do you want to have some more <i>time</i>?')
+      await this.botMessageHtml('Do you want to have some more <i>time</i>?')
       const response = await this.botYesOrNo()
 
       if (response.value === true) {
