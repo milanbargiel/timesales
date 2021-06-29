@@ -1,8 +1,8 @@
 // Import conversation branches
-import AmountOfTime from '../conversation/amountOfTime.js'
+import holdOn from '../conversation/holdOn.js'
 
 export default {
-  mixins: [AmountOfTime],
+  mixins: [holdOn],
   methods: {
     async purposeOfTime() {
       await this.botTextInput('Your answer').then((timePurpose) => {
@@ -18,8 +18,8 @@ export default {
         await this.botMessage('Excellent choice')
       }
 
-      // Go to amount of time dialogue
-      this.amountOfTime()
+      // Go to hold on dialogue
+      this.holdOn()
     },
   },
 }
