@@ -35,6 +35,7 @@ export default {
       botui: '',
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
+      shortCheckout: false,
     }
   },
   computed: {
@@ -56,6 +57,7 @@ export default {
       this.welcome()
     } else {
       // Start short checkout
+      this.shortCheckout = true
       await this.botMessage('What would you like to have time for?')
       this.purposeOfTime()
     }

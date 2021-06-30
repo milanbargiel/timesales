@@ -1,8 +1,9 @@
 // Import conversation branches
-import holdOn from '../conversation/holdOn.js'
+import HoldOn from '../conversation/holdOn.js'
+import AmountOfTime from '../conversation/amountOfTime.js'
 
 export default {
-  mixins: [holdOn],
+  mixins: [HoldOn, AmountOfTime],
   methods: {
     async purposeOfTime() {
       await this.botTextInput('Your answer').then((timePurpose) => {
@@ -18,8 +19,14 @@ export default {
         await this.botMessage('Excellent choice')
       }
 
-      // Go to hold on dialogue
-      this.holdOn()
+      // When in short checkout go directly to amount of time dialogue
+      // Else, first show hold On dialogue
+      if (this.shortCheckout) {
+        await this.botMessage('How much time shall it be?')
+        this.amountOfTime()
+      } else {
+        this.holdOn()
+      }
     },
   },
 }

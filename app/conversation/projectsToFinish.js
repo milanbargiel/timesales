@@ -1,9 +1,9 @@
 // Import conversation branches
-import holdOn from '../conversation/holdOn.js'
+import HoldOn from '../conversation/holdOn.js'
 import PrioritizationProblems from '../conversation/prioritizationProblems.js'
 
 export default {
-  mixins: [holdOn, PrioritizationProblems],
+  mixins: [HoldOn, PrioritizationProblems],
   methods: {
     async projectsToFinish() {
       await this.botMessage(
