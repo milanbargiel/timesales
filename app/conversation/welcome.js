@@ -27,24 +27,20 @@ export default {
 
       await this.botMessage('Are you sometimes short on time?')
 
-      // Ask pushy questions untill the user answers the question
-      let askFurther = true
+      // When user does not answer question afters 10 secs proceed to projects to finish dialogue
+      const question = this.timeout(10000, this.botYesOrNo())
 
-      this.botYesOrNo().then((shortOnTime) => {
-        // Do not continue asking
-        askFurther = false
-        this.hidePushyQuestion()
-        this.setResponse({ shortOnTime })
-        shortOnTime ? this.capitalismDiscourse() : this.investInArt()
+      question.then((response) => {
+        if (response === undefined) {
+          this.botui.action.hide() // Remove answer possibility to this question
+          this.setResponse({ shortOnTime: 'hesitant' })
+          this.projectsToFinish()
+        } else {
+          const shortOnTime = response
+          this.setResponse({ shortOnTime })
+          shortOnTime ? this.capitalismDiscourse() : this.investInArt()
+        }
       })
-
-      await this.timeout(10000)
-
-      if (askFurther) {
-        this.setResponse({ shortOnTime: 'hesitant' })
-        // Go to projectsToFinish dialogue
-        this.projectsToFinish()
-      }
     },
   },
 }

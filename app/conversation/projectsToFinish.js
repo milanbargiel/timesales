@@ -1,9 +1,9 @@
 // Import conversation branches
-import AmountOfTime from '../conversation/amountOfTime.js'
+import HoldOn from '../conversation/holdOn.js'
 import PrioritizationProblems from '../conversation/prioritizationProblems.js'
 
 export default {
-  mixins: [AmountOfTime, PrioritizationProblems],
+  mixins: [HoldOn, PrioritizationProblems],
   methods: {
     async projectsToFinish() {
       await this.botMessage(
@@ -47,8 +47,8 @@ export default {
         `Ok, then i'll sell you some time for ${this.response.timePurpose}.`
       )
 
-      // Go to amount of time dialogue
-      this.amountOfTime()
+      // Go to hold on dialogue
+      this.holdOn()
     },
   },
 }

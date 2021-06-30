@@ -6,6 +6,10 @@
       </div>
       <div :class="{ hidden: !showCheckoutButton }">
         <b-button @click="stripeCheckout()">Proceed to checkout</b-button>
+        <p class="help">
+          By clicking on the button "Proceed to checkout" you agree to our
+          privacy policy.
+        </p>
       </div>
     </div>
     <div class="controls controls--top">
@@ -31,6 +35,7 @@ export default {
       botui: '',
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
+      shortCheckout: false,
     }
   },
   computed: {
@@ -47,8 +52,15 @@ export default {
     // By doing so it is assured that stale data is not going to be stored in the database after a page refresh
     this.resetState()
 
-    // Start welcome dialogue
-    this.welcome()
+    if (typeof this.$route.query.shortCheckout === 'undefined') {
+      // Start welcome dialogue
+      this.welcome()
+    } else {
+      // Start short checkout
+      this.shortCheckout = true
+      await this.botMessage('What would you like to have time for?')
+      this.purposeOfTime()
+    }
 
     // load stripe
     this.stripe = Stripe(this.$config.stripePublishableKey)
@@ -69,7 +81,7 @@ export default {
     },
     stripeCheckout() {
       // Populate with dummy data if necessary
-      if (!this.response.name) {
+      if (!this.response.name && !this.response.timePurpose) {
         this.populateWithDummyData()
       }
 

@@ -10,30 +10,30 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
     <span class="dot"></span>
   </div>
   <div v-else>
-    <!-- Show feedback conversation when time is already used -->
-    <div v-if="timeIsUp">
-      <Feedback />
-    </div>
-    <!-- Else, ask if the user is ready to use the time-->
-    <div v-else-if="!showStream">
-      <ShowStreamPrompt @show-stream="(res) => (showStream = res)" />
-    </div>
-    <div v-else>
+    <div v-if="showStream">
       <SandSimulation
         :duration="order.time"
         :initial-progress="order.progress"
         @save-progress="handleSaveProgress"
       />
     </div>
+    <div v-else class="bot-container">
+      <div id="botui">
+        <bot-ui />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import StreamPreamble from '../../conversation/streamPreamble.js'
+import Feedback from '../../conversation/feedback.js'
+
 export default {
+  mixins: [StreamPreamble, Feedback],
   data() {
     return {
       isLoading: true,
-      timeIsUp: false,
       showStream: false,
       botui: '',
       order: {},
@@ -48,26 +48,44 @@ export default {
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
+    async loadBot() {
+      // load bot modules
+      await this.$nextTick()
+      this.botui = this.$botui('botui')
+    },
     fetchOrder(key) {
       this.$axios
         .$get(`${this.$config.apiUrl}/orders/${key}`)
-        .then((res) => {
+        .then(async (res) => {
           this.isLoading = false
           this.order = res
+          await this.loadBot()
 
           if (res.progress === 0) {
-            this.timeIsUp = true
+            // Start feedback dialogue
+            this.feedback()
+          } else {
+            // Start stream preamble dialogue
+            this.streamPreamble()
           }
         })
         // Redirect if order was not found
-        .catch(() => {
+        .catch((e) => {
           this.$router.push('/404')
         })
     },
-    handleSaveProgress(progress) {
-      // If time is up show feedback
+    beginStream() {
+      // Is fired from stream preamble dialogue
+      this.showStream = true
+    },
+    async handleSaveProgress(progress) {
+      // If time is up show feedback dialogue
       if (progress <= 0) {
-        this.timeIsUp = true
+        this.showStream = false
+        await this.loadBot()
+        this.feedback()
+
+        // Save value in database
         this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
           progress: 0,
         })

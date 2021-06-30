@@ -11,13 +11,29 @@ vue.mixin({
       const list = ['think', 'relax', 'be by myself', 'work', 'read']
       return list.find((word) => str.includes(word))
     },
-    timeout(ms) {
+    timeout(ms, promise) {
       // No delays in debug mode
-      if(this.debugMode) {
+      if (this.debugMode) {
         return Promise.resolve()
       }
 
-      return new Promise((resolve) => setTimeout(resolve, ms))
+      // Set timeout
+      let timeout = new Promise((resolve, reject) => {
+        let id = setTimeout(() => {
+          clearTimeout(id);
+          resolve() // Return undefined if answer was not given in time
+        }, ms)
+      })
+
+      // Returns a race between our timeout and the passed in promise
+      if (!promise) {
+        return timeout
+      } else {
+        return Promise.race([
+          promise,
+          timeout
+        ])
+      }
     },
     timeToWrite(sentence) {
       // No delays in debug mode

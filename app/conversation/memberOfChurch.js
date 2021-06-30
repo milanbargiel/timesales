@@ -30,8 +30,7 @@ export default {
                 value: false,
               },
               {
-                text:
-                  'Right, I’m also much too much afraid of burning in hell.',
+                text: 'Right, I’m also much too much afraid of burning in hell.',
                 value: true,
               },
             ],
