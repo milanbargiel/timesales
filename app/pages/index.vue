@@ -51,8 +51,14 @@ export default {
     // By doing so it is assured that stale data is not going to be stored in the database after a page refresh
     this.resetState()
 
-    // Start welcome dialogue
-    this.welcome()
+    if (typeof this.$route.query.shortCheckout === 'undefined') {
+      // Start welcome dialogue
+      this.welcome()
+    } else {
+      // Start short checkout
+      await this.botMessage('What would you like to have time for?')
+      this.purposeOfTime()
+    }
 
     // load stripe
     this.stripe = Stripe(this.$config.stripePublishableKey)

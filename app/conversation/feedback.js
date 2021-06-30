@@ -3,11 +3,12 @@ export default {
     async moreTime() {
       await this.botMessageHtml('Do you want to have some more <i>time</i>?')
       const response = await this.botYesOrNo()
-      if (response.value === true) {
-        // Go to checkout flow on index page
-        this.$router.push('/')
+      if (response === true) {
+        this.timeout(2000)
+        // Go to checkout short checkout flow on index page
+        this.$router.push('/?shortCheckout')
       } else {
-        await this.botMessage('Great. I hope to welcome you soon again.)')
+        await this.botMessage('Alright. See you another time then.')
       }
     },
     async feedback() {
