@@ -79,7 +79,7 @@ export default {
     },
     stripeCheckout() {
       // Populate with dummy data if necessary
-      if (!this.response.name) {
+      if (!this.response.name && !this.response.timePurpose) {
         this.populateWithDummyData()
       }
 
