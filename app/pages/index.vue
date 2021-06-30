@@ -6,6 +6,10 @@
       </div>
       <div :class="{ hidden: !showCheckoutButton }">
         <b-button @click="stripeCheckout()">Proceed to checkout</b-button>
+        <p class="help">
+          By clicking on the button "Proceed to checkout" you agree to our
+          privacy policy.
+        </p>
       </div>
     </div>
     <div class="controls controls--top">
