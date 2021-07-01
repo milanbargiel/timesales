@@ -5,9 +5,44 @@ export default {
   mixins: [MemberOfChurch],
   methods: {
     async amountOfTime() {
-      await this.botNumberInput('Time in seconds').then((timeAmount) => {
-        this.setResponse({ timeAmount })
-      })
+      await this.botui.action
+        .button({
+          autoHide: false,
+          action: [
+            {
+              text: 'Seconds',
+              value: 'seconds',
+            },
+            {
+              text: 'Minutes',
+              value: 'minutes',
+            },
+            {
+              text: 'Hours',
+              value: 'hours',
+            },
+            {
+              text: 'Days',
+              value: 'days',
+            },
+            {
+              text: 'Weeks',
+              value: 'weeks',
+            },
+            {
+              text: 'Years',
+              value: 'years',
+            },
+          ],
+        })
+        .then((res) => {
+          this.setResponse({ timeUnit: res.value })
+        })
+      await this.botNumberInput(`Number of ${this.response.timeUnit}`).then(
+        (timeAmount) => {
+          this.setResponse({ timeAmount })
+        }
+      )
 
       if (this.response.timeAmount > 60) {
         await this.botMessage(
