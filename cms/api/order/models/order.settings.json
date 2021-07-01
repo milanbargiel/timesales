@@ -16,9 +16,21 @@
       "private": true,
       "required": true
     },
-    "time": {
-      "type": "integer",
+    "timeAmount": {
+      "type": "biginteger",
       "private": false,
+      "required": true
+    },
+    "timeUnit": {
+      "type": "enumeration",
+      "enum": [
+        "seconds",
+        "minutes",
+        "hours",
+        "days",
+        "weeks",
+        "years"
+      ],
       "required": true
     },
     "progress": {
