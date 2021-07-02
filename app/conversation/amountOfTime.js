@@ -4,6 +4,20 @@ import MemberOfChurch from '../conversation/memberOfChurch.js'
 export default {
   mixins: [MemberOfChurch],
   methods: {
+    async timeInput() {
+      await this.botNumberInput(`Number of ${this.response.timeUnit}`).then(
+        async (timeAmount) => {
+          if (timeAmount <= 0) {
+            await this.botMessage(
+              'Your input was not correct. Please choose a value bigger than 0.'
+            )
+            await this.timeInput() // recursion
+          } else {
+            this.setResponse({ timeAmount })
+          }
+        }
+      )
+    },
     async amountOfTime() {
       await this.botui.action
         .button({
@@ -38,11 +52,9 @@ export default {
         .then((res) => {
           this.setResponse({ timeUnit: res.value })
         })
-      await this.botNumberInput(`Number of ${this.response.timeUnit}`).then(
-        (timeAmount) => {
-          this.setResponse({ timeAmount })
-        }
-      )
+
+      // Ask for timeAmount in input field with basic validation
+      await this.timeInput()
 
       if (this.response.timeAmount > 60) {
         await this.botMessage(
