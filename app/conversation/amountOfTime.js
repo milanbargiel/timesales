@@ -1,4 +1,5 @@
 // Import conversation branches
+import timestring from 'timestring' // to convert time
 import MemberOfChurch from '../conversation/memberOfChurch.js'
 
 export default {
@@ -56,7 +57,12 @@ export default {
       // Ask for timeAmount in input field with basic validation
       await this.timeInput()
 
-      if (this.response.timeAmount > 60) {
+      const timeInSeconds = timestring(
+        `${this.response.timeAmount} ${this.response.timeUnit}`
+      )
+
+      if (timeInSeconds >= 18000) {
+        // 18000 sec = 5 hours
         await this.botMessage(
           'That much? Very good, you dive right in, I respect that!'
         )
