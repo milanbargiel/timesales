@@ -75,7 +75,8 @@ export default {
       this.setResponse({
         name: 'Luciano Karuso',
         timePurpose: 'Read a book with my mom',
-        timeAmount: 120, // in seconds
+        timeAmount: 120,
+        timeUnit: 'seconds',
         timePrice: 100, // in cents
       })
     },
