@@ -12,7 +12,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
   <div v-else>
     <div v-if="showStream">
       <SandSimulation
-        :duration="order.time"
+        :duration="order.duration"
         :initial-progress="order.progress"
         @save-progress="handleSaveProgress"
       />
@@ -26,6 +26,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 </template>
 
 <script>
+import timestring from 'timestring' // to convert time to sec for sand sim
 import StreamPreamble from '../../conversation/streamPreamble.js'
 import Feedback from '../../conversation/feedback.js'
 
@@ -59,6 +60,10 @@ export default {
         .then(async (res) => {
           this.isLoading = false
           this.order = res
+          this.order.duration = timestring(
+            `${res.timeAmount} ${res.timeUnit}`,
+            's'
+          ) // sand sim need seconds
           await this.loadBot()
 
           if (res.progress === 0) {
