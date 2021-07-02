@@ -4,7 +4,8 @@ import Exit from '../conversation/exit.js'
 export default {
   mixins: [Exit],
   methods: {
-    humanizeTime(timeUnit, timeAmount) {
+    humanizeTime(timeAmount, timeUnit) {
+      // Singularize timeunit when 1 e.g second(s)
       return `${timeAmount} ${
         timeAmount === 1 ? timeUnit.slice(0, -1) : timeUnit
       }`
@@ -40,8 +41,8 @@ export default {
       if (this.response.timePrice) {
         await this.botMessage(
           `Sweet! You chose to buy ${this.humanizeTime(
-            this.response.timeUnit,
-            this.response.timeAmount
+            this.response.timeAmount,
+            this.response.timeUnit
           )} of time to ${this.response.timePurpose} for ${
             this.response.timePrice / 100
           } €. Do you want to proceed to checkout?`
