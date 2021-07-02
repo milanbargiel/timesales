@@ -1,9 +1,10 @@
 // Import conversation branches
 import timestring from 'timestring' // to convert time
 import MemberOfChurch from '../conversation/memberOfChurch.js'
+import Exit from '../conversation/exit.js'
 
 export default {
-  mixins: [MemberOfChurch],
+  mixins: [MemberOfChurch, Exit],
   methods: {
     async timeInput() {
       await this.botNumberInput(`Number of ${this.response.timeUnit}`).then(
@@ -57,11 +58,18 @@ export default {
       // Ask for timeAmount in input field with basic validation
       await this.timeInput()
 
-      const timeInSeconds = timestring(
-        `${this.response.timeAmount} ${this.response.timeUnit}`
-      )
+      const time = `${this.response.timeAmount} ${this.response.timeUnit}`
 
-      if (timeInSeconds >= 18000) {
+      const timeInSeconds = timestring(time)
+      const timeInYears = timestring(time, 'y')
+
+      if (timeInYears > 80) {
+        await this.botMessage(
+          'More than a lifetime? That is excessive! And would be irresponsible on our part if we sold you that much time.'
+        )
+
+        return this.exit()
+      } else if (timeInSeconds >= 18000) {
         // 18000 sec = 5 hours
         await this.botMessage(
           'That much? Very good, you dive right in, I respect that!'
