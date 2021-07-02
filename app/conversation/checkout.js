@@ -4,6 +4,12 @@ import Exit from '../conversation/exit.js'
 export default {
   mixins: [Exit],
   methods: {
+    humanizeTime(timeAmount, timeUnit) {
+      // Singularize timeunit when 1 e.g second(s)
+      return `${timeAmount} ${
+        timeAmount === 1 ? timeUnit.slice(0, -1) : timeUnit
+      }`
+    },
     async checkout() {
       await this.botMessage('What would that time be worth to you?')
 
@@ -34,9 +40,10 @@ export default {
       // Only continue when user enters value
       if (this.response.timePrice) {
         await this.botMessage(
-          `Sweet! You chose to buy ${this.response.timeAmount} of time to ${
-            this.response.timePurpose
-          } for ${
+          `Sweet! You chose to buy ${this.humanizeTime(
+            this.response.timeAmount,
+            this.response.timeUnit
+          )} of time to ${this.response.timePurpose} for ${
             this.response.timePrice / 100
           } €. Do you want to proceed to checkout?`
         )

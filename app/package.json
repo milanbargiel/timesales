@@ -18,7 +18,8 @@
     "html-escaper": "^3.0.3",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.6",
-    "sand-simulation": "file:plugins/sand-simulation"
+    "sand-simulation": "file:plugins/sand-simulation",
+    "timestring": "^6.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
