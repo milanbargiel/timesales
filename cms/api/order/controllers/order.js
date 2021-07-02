@@ -10,13 +10,7 @@ const unparsed = require('koa-body/unparsed.js'); // Used to extract Stripe requ
 const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
 const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
 const taxRateId = strapi.config.get('server.stripeTaxRateId');
-const humanizeDuration = require('humanize-duration');
 const pdf = require('html-pdf');
-
-// Singularize timeunit when 1 e.g second(s)
-const humanizeTime = (timeAmount, timeUnit) => {
- return `${timeAmount} ${timeAmount === 1 ? timeUnit.slice(0, -1) : timeUnit}`
-}
 
 module.exports = {
   // Retrieve an order by its key (secret url slug) instead of numerical id
@@ -70,7 +64,8 @@ module.exports = {
           email: session.customer_details.email,
           price: parseInt(session.amount_subtotal), // in cents, without tax
           tax: session.total_details.amount_tax, // should be always 7%
-          time: parseInt(session.metadata.time), // in seconds
+          timeAmount: parseInt(session.metadata.timeAmount),
+          timeUnit: session.metadata.timeUnit,
           description: session.metadata.description, // purpose of the time
           stripePaymentId: session.payment_intent,
           key: session.id,
@@ -118,8 +113,8 @@ module.exports = {
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
-    // convert seconds from payload.time to ms and make it human readable
-    const timeString = `${humanizeTime(payload.timeAmount, payload.timeUnit)} of time for – ${payload.timePurpose}`;
+    // Use custom strapi service to convert time format e.g. second(s)
+    const timeString = `${strapi.services.order.time(payload.timeAmount, payload.timeUnit)} of time for – ${payload.timePurpose}`;
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -140,7 +135,8 @@ module.exports = {
         ],
         metadata: {
           name: payload.name,
-          time: payload.timeAmount, // in seconds
+          timeAmount: payload.timeAmount,
+          timeUnit: payload.timeUnit,
           description: payload.timePurpose, // original user input
         },
         mode: 'payment',
