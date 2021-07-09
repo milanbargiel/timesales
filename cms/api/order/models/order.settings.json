@@ -45,6 +45,11 @@
     "response": {
       "unique": true,
       "model": "response"
+    },
+    "stripePaymentId": {
+      "type": "string",
+      "required": true,
+      "private": true
     }
   }
 }

@@ -58,35 +58,52 @@ module.exports = {
         // https://stripe.com/docs/api/customers/retrieve?lang=node
         const customer = await stripe.customers.retrieve(session.customer);
         
-        const order = {
-          name: session.metadata.name, // name from chatbot
-          fullName: customer.name, // name from checkout
-          email: session.customer_details.email,
-          price: parseInt(session.amount_subtotal), // in cents, without tax
-          tax: session.total_details.amount_tax, // should be always 7%
+
+        // Save response data
+        const response = {
+          id: session.metadata.responseId,
+          timePrice: parseInt(session.amount_subtotal), // in cents, without tax
           timeAmount: parseInt(session.metadata.timeAmount),
-          timeUnit: session.metadata.timeUnit,
-          description: session.metadata.description, // purpose of the time
-          stripePaymentId: session.payment_intent,
-          key: session.id,
-          successUrl: session.success_url.replace('{CHECKOUT_SESSION_ID}', session.id)
+          timeUnit: session.metadata.timeUnit, // 'seconds', 'minutes' etc
+          timePurpose: session.metadata.timePurpose, // purpose of the time ordered
         }
 
-        const entity = await strapi.services.order.create(order);
-        const entry = sanitizeEntity(entity, { model: strapi.models.order });
+        let responseEntity;
+
+        if (response.id) {
+          // Update data when entry was already saved
+          responseEntity = await strapi.services.order.update({ id: response.id }, {
+            ...response
+          });
+        } else {
+          // Create entry
+          responseEntity = await strapi.services.response.create(response);
+        }
+
+        // Save order data
+        const order = {
+          response: responseEntity.id, // Connect order and corresponding response
+          orderName: customer.name, // name from stripe checkout
+          orderEmail: session.customer_details.email,
+          stripePaymentId: session.payment_intent, // to identify payment in stripe dashboard
+          key: session.id,
+          streamUrl: session.success_url.replace('{CHECKOUT_SESSION_ID}', session.id)
+        }
+
+        const orderEntity = await strapi.services.order.create(order);
 
         // Send invoice per E-mail
-        if (entity) {
+        if (orderEntity && responseEntity) {
           // Create email template
-          const email = await strapi.plugins['email'].services.email.renderMail(entity, 'time-purchased-mail');
+          const email = await strapi.plugins['email'].services.email.renderMail(orderEntity, responseEntity, 'time-purchased-mail');
 
           // Create invoice
-          const invoiceHtml = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+          const invoiceHtml = await strapi.plugins['email'].services.email.createInvoice(orderEntity, responseEntity, 'invoice');
 
           // Send email
           pdf.create(invoiceHtml).toBuffer((err, invoicePdf) => {
             strapi.plugins['email'].services.email.send({
-              to: entity.email,
+              to: orderEntity.orderEmail,
               from: 'hello@timesales.ltd',
               bcc: 'hello@timesales.ltd', // Send a blindcopy to keep track of orders
               subject: 'Thank you for ordering time',
@@ -101,8 +118,6 @@ module.exports = {
             })
           });
         }
-
-        return entry;
       } catch (error) {
         console.log(error);
       }
@@ -114,7 +129,7 @@ module.exports = {
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
     // Use custom strapi service to convert time format e.g. second(s)
-    const timeString = `${strapi.services.order.time(payload.timeAmount, payload.timeUnit)} of time for – ${payload.timePurpose}`;
+    const timeString = `${strapi.services.response.time(payload.timeAmount, payload.timeUnit)} of time for – ${payload.timePurpose}`;
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -134,10 +149,11 @@ module.exports = {
         },
         ],
         metadata: {
+          responseId: payload.id, // response id if answers were already saved in cms
           name: payload.name,
           timeAmount: payload.timeAmount,
           timeUnit: payload.timeUnit,
-          description: payload.timePurpose, // original user input
+          timePurpose: payload.timePurpose, // original user input
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud

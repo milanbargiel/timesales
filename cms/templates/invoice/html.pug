@@ -1,7 +1,7 @@
 doctype html
 head
   meta(charset='utf-8')
-  title Invoice #{entry.invoiceId}
+  title Invoice #{order.invoiceId}
   style.
     /* General styles */
     table {
@@ -83,11 +83,11 @@ head
     |  World leaders in the time business since 2018
   .header
     .recipient
-      | #{entry.fullName}
+      | #{order.orderName}
       br
-      |  #{entry.email}
+      |  #{order.orderEmail}
     .meta
-      | Invoice: #{entry.invoiceId}
+      | Invoice: #{order.invoiceId}
       br
       |  Created: #{createdAt}
       br
@@ -98,7 +98,7 @@ head
       th Price in &euro;
     tr
       td #{duration}
-      td #{entry.description}
+      td #{response.timePurpose}
       td #{price}
     tr
       td
@@ -109,7 +109,7 @@ head
     p Thank you for your purchase!
     p
       | To access your custom time stream, please follow this Link: 
-      a(href='#{entry.successUrl}') #{entry.successUrl}
+      a(href='#{order.streamUrl}') #{order.streamUrl}
     p On behalf of Time Sales Online
     p Maurits Boettger
   .footer
