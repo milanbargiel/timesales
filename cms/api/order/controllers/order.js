@@ -91,6 +91,7 @@ module.exports = {
         }
 
         const orderEntity = await strapi.services.order.create(order);
+        const orderEntry = sanitizeEntity(orderEntity, { model: strapi.models.order });
 
         // Send invoice per E-mail
         if (orderEntity && responseEntity) {
@@ -118,6 +119,8 @@ module.exports = {
             })
           });
         }
+
+        return orderEntry;
       } catch (error) {
         console.log(error);
       }

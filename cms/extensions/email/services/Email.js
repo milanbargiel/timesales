@@ -24,7 +24,8 @@ const createInvoice = async (order, response, templateFolder) => {
       price: toEur(response.timePrice),
       tax: toEur(response.timePrice * (7 / 100)), // always 7% tax vat
       priceTotal: toEur(response.timePrice + (response.timePrice * (7 / 100))), // price + tax
-      entry
+      order,
+      response
     });
 
     return html;
