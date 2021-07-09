@@ -12,7 +12,7 @@ export default {
       )
 
       await this.botYesOrNo().then((prioritizationProblems) => {
-        this.setResponse({ prioritizationProblems })
+        this.saveResponse({ prioritizationProblems })
       })
 
       // On no
@@ -38,7 +38,7 @@ export default {
       // Ask for purpose of time but do not wait for answer
       this.botTextInput('Your answer').then((timePurpose) => {
         // Save answer
-        this.setResponse({ timePurpose })
+        this.saveResponse({ timePurpose })
       })
 
       await this.timeout(10000)

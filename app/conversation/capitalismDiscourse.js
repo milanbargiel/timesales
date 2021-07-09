@@ -10,7 +10,7 @@ export default {
       )
 
       await this.botYesOrNo().then((becauseOfCapitalism) => {
-        this.setResponse({ becauseOfCapitalism })
+        this.saveResponse({ becauseOfCapitalism })
       })
 
       if (this.response.becauseOfCapitalism) {

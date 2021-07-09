@@ -71,11 +71,12 @@ export default {
       resetState: 'response/resetState',
     }),
     ...mapActions({
-      // Enables this.setResponse({ key: value })
-      setResponse: 'response/saveResponse',
+      // Enables the action this.saveResponse({ key: value })
+      // That saves data in vuex store and on remote databe if user opts in
+      saveResponse: 'response/saveResponse',
     }),
     populateWithDummyData() {
-      this.setResponse({
+      this.saveResponse({
         name: 'Luciano Karuso',
         timePurpose: 'Read a book with my mom',
         timeAmount: 120,

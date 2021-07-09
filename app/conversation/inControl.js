@@ -9,17 +9,17 @@ export default {
         'You seem to be yery much in control over your life. Would you like to work for us'
       )
 
-      await this.botYesOrNo().then((workForTSO) => {
-        this.setResponse({ workForTSO })
+      await this.botYesOrNo().then((workForUs) => {
+        this.saveResponse({ workForUs })
       })
 
-      if (this.response.workForTSO === true) {
+      if (this.response.workForUs === true) {
         await this.botMessage(
           `${this.response.name}, please enter your e-mail adress here, so we can get in touch with you`
         )
 
-        await this.botEmailInput('Your email').then((email) => {
-          this.setResponse({ email })
+        await this.botEmailInput('Your email').then((applicationEmail) => {
+          this.saveResponse({ applicationEmail })
         })
 
         await this.botMessage('Thank you! You will hear from us.')

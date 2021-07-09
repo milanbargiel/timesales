@@ -33,7 +33,7 @@ export default {
           this.hidePushyQuestion()
           clearTimeout(t1)
           clearTimeout(t2)
-          this.setResponse({ timePrice: timePrice * 100 }) // convert input to cents
+          this.saveResponse({ timePrice: timePrice * 100 }) // convert input to cents
         })
       })()
 
