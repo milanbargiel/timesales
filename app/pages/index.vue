@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+import { mapMutations, mapActions } from 'vuex' // helper for mapping vuex store mutations to methods
 import Welcome from '../conversation/welcome.js'
 import Checkout from '../conversation/checkout.js'
 
@@ -67,9 +67,12 @@ export default {
   },
   methods: {
     ...mapMutations({
-      // Enables this.setResponse({ key: value }) and this.resetState()
-      setResponse: 'response/setResponse',
+      // Enables this.resetState()
       resetState: 'response/resetState',
+    }),
+    ...mapActions({
+      // Enables this.setResponse({ key: value })
+      setResponse: 'response/saveResponse',
     }),
     populateWithDummyData() {
       this.setResponse({
