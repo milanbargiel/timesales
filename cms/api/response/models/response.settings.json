@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "responses",
+  "info": {
+    "name": "Response"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "private": true
+    },
+    "allowRecording": {
+      "type": "boolean",
+      "private": true
+    },
+    "shortOnTime": {
+      "type": "enumeration",
+      "enum": [
+        "true",
+        "false",
+        "hesitant"
+      ]
+    },
+    "becauseOfCapitalism": {
+      "type": "boolean",
+      "private": true
+    },
+    "timePurpose": {
+      "type": "text",
+      "private": true
+    },
+    "timeAmount": {
+      "type": "biginteger",
+      "private": true
+    },
+    "timeUnit": {
+      "type": "enumeration",
+      "enum": [
+        "seconds",
+        "minutes",
+        "hours",
+        "days",
+        "weeks",
+        "years"
+      ],
+      "private": true
+    },
+    "timePrice": {
+      "type": "biginteger",
+      "private": true
+    },
+    "memberOfChurch": {
+      "type": "boolean",
+      "private": true
+    },
+    "afraidOfHell": {
+      "type": "boolean"
+    },
+    "timeManagementSecret": {
+      "type": "text",
+      "private": true
+    },
+    "readyForInvestment": {
+      "type": "boolean",
+      "private": true
+    },
+    "projectsToFinish": {
+      "type": "boolean",
+      "private": true
+    },
+    "prioritizationProblems": {
+      "type": "boolean",
+      "private": true
+    },
+    "workForUs": {
+      "type": "boolean",
+      "private": true
+    },
+    "applicationEmail": {
+      "type": "email",
+      "private": true
+    }
+  }
+}
