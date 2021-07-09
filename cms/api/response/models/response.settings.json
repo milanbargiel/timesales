@@ -53,7 +53,8 @@
     },
     "timePrice": {
       "type": "biginteger",
-      "private": true
+      "private": true,
+      "min": 0
     },
     "memberOfChurch": {
       "type": "boolean",
