@@ -11,26 +11,9 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "email": {
+    "orderEmail": {
       "type": "email",
       "private": true,
-      "required": true
-    },
-    "timeAmount": {
-      "type": "biginteger",
-      "private": false,
-      "required": true
-    },
-    "timeUnit": {
-      "type": "enumeration",
-      "enum": [
-        "seconds",
-        "minutes",
-        "hours",
-        "days",
-        "weeks",
-        "years"
-      ],
       "required": true
     },
     "progress": {
@@ -41,7 +24,7 @@
       "max": 1,
       "min": 0
     },
-    "name": {
+    "orderName": {
       "type": "string",
       "required": true,
       "private": true
@@ -50,37 +33,10 @@
       "type": "string",
       "required": true
     },
-    "price": {
-      "type": "integer",
-      "private": true,
-      "required": true,
-      "min": 0
-    },
-    "description": {
-      "type": "text",
-      "private": true,
-      "required": true
-    },
-    "stripePaymentId": {
-      "type": "string",
-      "private": true,
-      "required": true
-    },
-    "fullName": {
+    "streamUrl": {
       "type": "string",
       "required": true,
       "private": true
-    },
-    "successUrl": {
-      "type": "string",
-      "required": true,
-      "private": true
-    },
-    "tax": {
-      "required": true,
-      "default": 0,
-      "private": true,
-      "type": "integer"
     },
     "invoiceId": {
       "type": "string",
