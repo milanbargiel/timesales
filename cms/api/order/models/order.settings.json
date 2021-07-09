@@ -41,6 +41,10 @@
     "invoiceId": {
       "type": "string",
       "private": true
+    },
+    "response": {
+      "unique": true,
+      "model": "response"
     }
   }
 }
