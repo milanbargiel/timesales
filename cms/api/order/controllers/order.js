@@ -17,8 +17,8 @@ module.exports = {
   async findOne(ctx) {
     const { key } = ctx.params;
 
-    const entity = await strapi.services.order.findOne({ key });
-    return sanitizeEntity(entity, { model: strapi.models.order });
+    const orderEntity = await strapi.services.order.findOne({ key });
+    return sanitizeEntity(orderEntity, { model: strapi.models.order });
   },
 
   // Update progress field of an order

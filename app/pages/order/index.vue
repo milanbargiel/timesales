@@ -58,10 +58,11 @@ export default {
       this.$axios
         .$get(`${this.$config.apiUrl}/orders/${key}`)
         .then(async (res) => {
+          console.log(res)
           this.isLoading = false
           this.order = res
           this.order.duration = timestring(
-            `${res.timeAmount} ${res.timeUnit}`,
+            `${res.response.timeAmount} ${res.response.timeUnit}`,
             's'
           ) // sand sim need seconds
           await this.loadBot()

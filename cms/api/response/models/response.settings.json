@@ -25,7 +25,8 @@
         "true",
         "false",
         "hesitant"
-      ]
+      ],
+      "private": true
     },
     "becauseOfCapitalism": {
       "type": "boolean",
