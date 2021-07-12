@@ -4,13 +4,6 @@ import { escape } from 'html-escaper'
 
 vue.mixin({
   methods: {
-    lookForKeyword(text) {
-      // verb infinitives work fine in the answers
-      // returns first word that is found in list
-      const str = text.toLowerCase()
-      const list = ['think', 'relax', 'be by myself', 'work', 'read']
-      return list.find((word) => str.includes(word))
-    },
     timeout(ms, promise) {
       // No delays in debug mode
       if (this.debugMode) {

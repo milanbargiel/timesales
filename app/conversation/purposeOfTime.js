@@ -10,14 +10,7 @@ export default {
         this.saveResponse({ timePurpose })
       })
 
-      // Look for predefined keywords in the description of the time needed
-      const keyword = this.lookForKeyword(this.response.timePurpose)
-
-      if (keyword) {
-        await this.botMessage(`Ah good choice, I like to ${keyword} too.`)
-      } else {
-        await this.botMessage('Excellent choice')
-      }
+      await this.botMessage(this.keywordReply(this.response.timePurpose))
 
       // When in short checkout go directly to amount of time dialogue
       // Else, first show hold On dialogue
@@ -27,6 +20,9 @@ export default {
       } else {
         this.holdOn()
       }
+    },
+    standardReply(keyword) {
+      return `Ah good choice, I like to ${keyword} too.`
     },
     keywordReply(text) {
       const str = text.toLowerCase()
@@ -49,6 +45,9 @@ export default {
         'play',
         'art',
         'project',
+        'relax',
+        'be by myself',
+        'read',
       ]
 
       const keyword = list.find((stem) => str.includes(stem))
@@ -104,9 +103,22 @@ export default {
         case 'project':
           reply =
             'Cool idea, you are in the right place. This is the perfect starting point for your project'
+          break
+        case 'relax':
+          reply = this.standardReply('relax')
+          break
+        case 'be by myself':
+          reply = this.standardReply('be by myself')
+          break
+        case 'read':
+          reply = this.standardReply('read')
+          break
+        default:
+          reply = 'Excellent choice.'
+          break
       }
 
-      return reply || 'Excellent choice.'
+      return reply
     },
   },
 }
