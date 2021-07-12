@@ -56,8 +56,7 @@ module.exports = {
 
         // Fetch customer object with Stripe API to get name field from checkout
         // https://stripe.com/docs/api/customers/retrieve?lang=node
-        const customer = await stripe.customers.retrieve(session.customer);
-        
+        const customer = await stripe.customers.retrieve(session.customer);        
 
         // Save response data
         const response = {
@@ -65,7 +64,8 @@ module.exports = {
           timePrice: parseInt(session.amount_subtotal), // in cents, without tax
           timeAmount: parseInt(session.metadata.timeAmount),
           timeUnit: session.metadata.timeUnit, // 'seconds', 'minutes' etc
-          timePurpose: session.metadata.timePurpose, // purpose of the time ordered
+          timePurpose: session.metadata.timePurpose, // purpose of the time
+          orderSummary: session.metadata.orderSummary, // Order summary
         }
 
         let responseEntity;
@@ -157,6 +157,7 @@ module.exports = {
           timeAmount: payload.timeAmount,
           timeUnit: payload.timeUnit,
           timePurpose: payload.timePurpose, // original user input
+          orderSummary: payload.orderSummary,
         },
         mode: 'payment',
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud

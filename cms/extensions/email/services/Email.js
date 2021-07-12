@@ -8,7 +8,9 @@ const toEur = (cents) => {
 
 const renderMail = (order, response, templateFolder) => {
   const email = new Email();
-  return email.renderAll(`../templates/${templateFolder}`, { order });
+  console.log(order)
+  console.log(response)
+  return email.renderAll(`../templates/${templateFolder}`, { order, response });
 };
 
 const createInvoice = async (order, response, templateFolder) => {
