@@ -52,6 +52,10 @@
       ],
       "private": false
     },
+    "timeOrderDescription": {
+      "type": "text",
+      "private": true
+    },
     "timePrice": {
       "type": "biginteger",
       "private": true,
