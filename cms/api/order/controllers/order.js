@@ -76,6 +76,8 @@ module.exports = {
             ...response
           });
         } else {
+          // Allow recording is false
+          response.allowRecording = false;
           // Create entry
           responseEntity = await strapi.services.response.create(response);
         }
