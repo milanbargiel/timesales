@@ -1,7 +1,6 @@
 const Email = require('email-templates'); // For PDF creation
 const pug = require('pug'); // template engine
 const dayjs = require('dayjs');
-const timestring = require('timestring');
 
 const toEur = (cents) => {
   return (cents / 100).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
