@@ -8578,6 +8578,11 @@ std-env@^2.2.1, std-env@^2.3.0:
   dependencies:
     ci-info "^3.0.0"
 
+stemmer@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/stemmer/-/stemmer-2.0.0.tgz#05fcaf174c423b0fec85e660759ebd4867d811c9"
+  integrity sha512-0YS2oMdTZ/wAWUHMMpf7AAJ8Gm6dHXyHddJ0zCu2DIfOfIbdwqAm1bbk4+Vti6gxNIcOrnm5jAP7vYTzQDvc5A==
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -9014,6 +9019,11 @@ timers-browserify@^2.0.4:
   integrity sha512-9phl76Cqm6FhSX9Xe1ZUAMLtm1BLkKj2Qd5ApyWkXzsMRaA7dgr81kf4wJmQf/hAvg8EEyJxDo3du/0KlhPiKQ==
   dependencies:
     setimmediate "^1.0.4"
+
+timestring@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/timestring/-/timestring-6.0.0.tgz#b0c7c331981ecf2066ce88bcfb8ee3ae32e7a0f6"
+  integrity sha512-wMctrWD2HZZLuIlchlkE2dfXJh7J2KDI9Dwl+2abPYg0mswQHfOAyQW3jJg1pY5VfttSINZuKcXoB3FGypVklA==
 
 timsort@^0.3.0:
   version "0.3.0"
