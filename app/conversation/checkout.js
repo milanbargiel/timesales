@@ -107,11 +107,16 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
+        // Create order summary
         const orderSummary = this.createOrderSummary(
           this.response.timePurpose,
           this.response.timeAmount,
           this.response.timePurpose
         )
+
+        // Save it in DB
+        this.saveResponse({ orderSummary }) // convert input to cents
+
         await this.botMessage(
           `Sweet! You chose to buy ${orderSummary}. Do you want to proceed to checkout?`
         )
