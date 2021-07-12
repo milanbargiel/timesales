@@ -42,14 +42,10 @@ const actions = {
     if (state.data.allowRecording) {
       // Update response
       if (state.data.id) {
-        this.$axios
-          .put(`${this.$config.apiUrl}/responses/${state.data.id}`, state.data)
-          .then((response) => {
-            console.log(response)
-          })
-          .catch((error) => {
-            console.error('Error:', error)
-          })
+        this.$axios.put(
+          `${this.$config.apiUrl}/responses/${state.data.id}`,
+          state.data
+        )
       } else {
         // Create response
         this.$axios

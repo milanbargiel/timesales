@@ -58,7 +58,6 @@ export default {
       this.$axios
         .$get(`${this.$config.apiUrl}/orders/${key}`)
         .then(async (res) => {
-          console.log(res)
           this.isLoading = false
           this.order = res
           this.order.duration = timestring(
