@@ -72,7 +72,7 @@ module.exports = {
 
         if (response.id) {
           // Update data when entry was already saved
-          responseEntity = await strapi.services.order.update({ id: response.id }, {
+          responseEntity = await strapi.services.response.update({ id: response.id }, {
             ...response
           });
         } else {
