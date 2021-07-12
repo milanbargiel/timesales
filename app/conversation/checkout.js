@@ -40,9 +40,6 @@ export default {
 
       if (preposition) {
         // Return [timeAmount] [timeUnit] + to / for + everything after preposition
-        console.log(
-          timePurpose.substring(text.indexOf(preposition), text.length)
-        )
         return `${timeString} ${timePurpose.substring(
           text.indexOf(preposition),
           text.length
