@@ -1,3 +1,4 @@
+import { stemmer } from 'stemmer'
 // Import conversation branches
 import HoldOn from '../conversation/holdOn.js'
 import AmountOfTime from '../conversation/amountOfTime.js'
@@ -25,7 +26,7 @@ export default {
       return `Ah good choice, I like to ${keyword} too.`
     },
     keywordReply(text) {
-      const str = text.toLowerCase()
+      const str = stemmer(text.toLowerCase())
 
       // Word stems with porter stemmer
       // https://9ol.es/porter_js_demo.html
