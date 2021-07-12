@@ -56,6 +56,8 @@ export default {
       progress: this.initialProgress,
       wasmPath: '/sand-backend.wasm',
     })
+
+    console.log(sandSim.getProgress())
     // Periodically save progress in Strapi backend (1/s)
     setInterval(() => {
       // Reduce count by one optimistically
