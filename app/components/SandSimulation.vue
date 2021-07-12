@@ -58,6 +58,7 @@ export default {
     })
 
     console.log(sandSim.getProgress())
+
     // Periodically save progress in Strapi backend (1/s)
     setInterval(() => {
       // Reduce count by one optimistically
@@ -69,6 +70,8 @@ export default {
       if (this.progress !== sandSim.getProgress()) {
         this.progress = sandSim.getProgress()
         this.timeLeft = this.duration * this.progress
+        console.log(typeof this.progress)
+        console.log(this.progress)
         this.$emit('save-progress', this.progress)
       }
     }, 1000)
