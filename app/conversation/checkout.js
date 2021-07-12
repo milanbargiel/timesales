@@ -11,7 +11,7 @@ export default {
       }`
     },
     // Function to generate a string that sums up the purpose and amount of time
-    createTimeOrder(timePurpose, timeAmount, timeUnit) {
+    createOrderSummary(timePurpose, timeAmount, timeUnit) {
       // Convert time purpose to lower case for case insensitive searches
       const text = timePurpose.toLowerCase()
 
@@ -107,12 +107,13 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
+        const orderSummary = this.createOrderSummary(
+          this.response.timePurpose,
+          this.response.timeAmount,
+          this.response.timePurpose
+        )
         await this.botMessage(
-          `Sweet! You chose to buy ${this.createTimeOrder(
-            this.response.timePurpose,
-            this.response.timeAmount,
-            this.response.timePurpose
-          )}. Do you want to proceed to checkout?`
+          `Sweet! You chose to buy ${orderSummary}. Do you want to proceed to checkout?`
         )
 
         this.showCheckoutButton = true

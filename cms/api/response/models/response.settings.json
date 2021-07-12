@@ -52,7 +52,7 @@
       ],
       "private": false
     },
-    "timeOrderDescription": {
+    "orderSummary": {
       "type": "text",
       "private": true
     },
