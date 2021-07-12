@@ -133,8 +133,6 @@ module.exports = {
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
   async createCheckoutSession(ctx) {
     const payload = ctx.request.body;
-    // Use custom strapi service to convert time format e.g. second(s)
-    const timeString = `${strapi.services.response.time(payload.timeAmount, payload.timeUnit)} of time for – ${payload.timePurpose}`;
 
     try {
       const session = await stripe.checkout.sessions.create({
@@ -145,7 +143,7 @@ module.exports = {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: timeString
+              name: payload.orderSummary
             },
             unit_amount: payload.timePrice // price is in cents
           },

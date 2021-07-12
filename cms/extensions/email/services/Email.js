@@ -1,7 +1,6 @@
 const Email = require('email-templates'); // For PDF creation
 const pug = require('pug'); // template engine
 const dayjs = require('dayjs');
-const timestring = require('timestring');
 
 const toEur = (cents) => {
   return (cents / 100).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
@@ -9,9 +8,7 @@ const toEur = (cents) => {
 
 const renderMail = (order, response, templateFolder) => {
   const email = new Email();
-  // Create extra fields for the success E-Mail
-  const timeString = `${strapi.services.response.time(response.timeAmount, response.timeUnit)} of time for – ${response.timePurpose}`;
-  return email.renderAll(`../templates/${templateFolder}`, { order, timeString });
+  return email.renderAll(`../templates/${templateFolder}`, { order });
 };
 
 const createInvoice = async (order, response, templateFolder) => {

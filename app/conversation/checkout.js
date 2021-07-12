@@ -10,6 +10,59 @@ export default {
         timeAmount === 1 ? timeUnit.slice(0, -1) : timeUnit
       }`
     },
+    // Function to generate a string that sums up the purpose and amount of time
+    createOrderSummary(timePurpose, timeAmount, timeUnit) {
+      // Convert time purpose to lower case for case insensitive searches
+      const text = timePurpose.toLowerCase()
+
+      // Search for to 'to', 'for' and 'ing'
+      const containsTo = text.includes('to')
+      const containsFor = text.includes('for')
+      const containsIng = text.includes('ing')
+
+      // Convert time
+      const timeString = this.humanizeTime(
+        this.response.timeAmount,
+        this.response.timeUnit
+      )
+
+      // 1. Text contains the prepositions 'to' or 'for'
+      let preposition
+
+      if (containsTo || containsFor) {
+        // If both preposition exist, take the first one in the sentence
+        if (containsTo && containsFor) {
+          preposition = text.indexOf('to') < text.indexOf('for') ? 'to' : 'for'
+        } else {
+          preposition = containsTo ? 'to' : 'for'
+        }
+      }
+
+      if (preposition) {
+        // Return [timeAmount] [timeUnit] + to / for + everything after preposition
+        return `${timeString} ${timePurpose.substring(
+          text.indexOf(preposition),
+          text.length
+        )}`
+      }
+
+      // 2. Text contains no prepositions but a verb in gerundium form 'ing'
+      if (containsIng) {
+        // Find the index of the word with ing
+        const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
+        // Include everything from the word with 'ing' to the end
+        return `${timeString} for ${timePurpose.substring(
+          wordIndex,
+          text.length
+        )}`
+      }
+
+      // 3. Neither a preposition nor a gerundium
+      // First letter of timePurpose in lower case
+      return `${timeString} to ${
+        timePurpose.charAt(0).toLowerCase() + timePurpose.slice(1)
+      }`
+    },
     async priceInput(timeout1, timeout2) {
       await this.botNumberInput('Worth in €').then(async (price) => {
         // Do not show pushy questions anymore when price is given
@@ -54,13 +107,18 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
+        // Create order summary
+        const orderSummary = this.createOrderSummary(
+          this.response.timePurpose,
+          this.response.timeAmount,
+          this.response.timePurpose
+        )
+
+        // Save it in DB
+        this.saveResponse({ orderSummary }) // convert input to cents
+
         await this.botMessage(
-          `Sweet! You chose to buy ${this.humanizeTime(
-            this.response.timeAmount,
-            this.response.timeUnit
-          )} of time to ${this.response.timePurpose} for ${
-            this.response.timePrice / 100
-          } €. Do you want to proceed to checkout?`
+          `Sweet! You chose to buy ${orderSummary}. Do you want to proceed to checkout?`
         )
 
         this.showCheckoutButton = true

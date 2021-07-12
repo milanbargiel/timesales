@@ -8,6 +8,7 @@ const getDefaultState = () => {
       becauseOfCapitalism: null,
       timePurpose: null,
       timeAmount: null,
+      orderSummary: null, // Is generated in checkout from timePurpose and timeAmount
       timePrice: null,
       memberOfChurch: null,
       afraidOfHell: null,
