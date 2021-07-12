@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/responses",
+      "handler": "response.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/responses/:id",
+      "handler": "response.update",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

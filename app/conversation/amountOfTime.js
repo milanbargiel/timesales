@@ -15,7 +15,7 @@ export default {
             )
             await this.timeInput() // recursion
           } else {
-            this.setResponse({ timeAmount })
+            this.saveResponse({ timeAmount })
           }
         }
       )
@@ -52,7 +52,7 @@ export default {
           ],
         })
         .then((res) => {
-          this.setResponse({ timeUnit: res.value })
+          this.saveResponse({ timeUnit: res.value })
         })
 
       // Ask for timeAmount in input field with basic validation

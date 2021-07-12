@@ -11,7 +11,7 @@ export default {
       )
 
       await this.botYesOrNo().then((projectsToFinish) => {
-        this.setResponse({ projectsToFinish })
+        this.saveResponse({ projectsToFinish })
       })
 
       // On no
@@ -26,7 +26,7 @@ export default {
       )
 
       await this.botTextInput('Your answer').then((timePurpose) => {
-        this.setResponse({ timePurpose })
+        this.saveResponse({ timePurpose })
       })
 
       await this.botMessage(

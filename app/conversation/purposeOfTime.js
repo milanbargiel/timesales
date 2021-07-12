@@ -7,7 +7,7 @@ export default {
   methods: {
     async purposeOfTime() {
       await this.botTextInput('Your answer').then((timePurpose) => {
-        this.setResponse({ timePurpose })
+        this.saveResponse({ timePurpose })
       })
 
       // Look for predefined keywords in the description of the time needed

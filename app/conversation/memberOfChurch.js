@@ -9,7 +9,7 @@ export default {
       await this.botMessage('Are you a member of the church?')
 
       await this.botYesOrNo().then((memberOfChurch) => {
-        this.setResponse({ memberOfChurch })
+        this.saveResponse({ memberOfChurch })
       })
 
       if (this.response.memberOfChurch === false) {
@@ -30,13 +30,14 @@ export default {
                 value: false,
               },
               {
-                text: 'Right, I’m also much too much afraid of burning in hell.',
+                text:
+                  'Right, I’m also much too much afraid of burning in hell.',
                 value: true,
               },
             ],
           })
           .then((response) => {
-            this.setResponse({ afraidOfHell: response.value })
+            this.saveResponse({ afraidOfHell: response.value })
           })
 
         if (this.response.afraidOfHell === true) {

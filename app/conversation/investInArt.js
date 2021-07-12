@@ -9,7 +9,7 @@ export default {
       await this.botMessage('No? How do you do that?')
 
       await this.botTextInput('Your answer').then((timeManagementSecret) => {
-        this.setResponse({ timeManagementSecret })
+        this.saveResponse({ timeManagementSecret })
       })
 
       await this.botMessage("Ok, I'll keep that secret safe")
@@ -57,7 +57,7 @@ export default {
       await this.botMessage('What do you say? Are you ready for an investment?')
 
       await this.botYesOrNo().then((readyForInvestment) => {
-        this.setResponse({ readyForInvestment })
+        this.saveResponse({ readyForInvestment })
       })
 
       if (this.response.readyForInvestment) {

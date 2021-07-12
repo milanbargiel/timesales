@@ -13,7 +13,7 @@ export default {
 
       await this.botTextInput('Your name').then((name) => {
         // Save reponses in vuex store
-        this.setResponse({ name })
+        this.saveResponse({ name })
       })
 
       await this.botMessage(
@@ -22,7 +22,7 @@ export default {
       )
 
       await this.botYesOrNo().then((allowRecording) => {
-        this.setResponse({ allowRecording })
+        this.saveResponse({ allowRecording })
       })
 
       await this.botMessage('Are you sometimes short on time?')
@@ -33,11 +33,11 @@ export default {
       question.then((response) => {
         if (response === undefined) {
           this.botui.action.hide() // Remove answer possibility to this question
-          this.setResponse({ shortOnTime: 'hesitant' })
+          this.saveResponse({ shortOnTime: 'hesitant' })
           this.projectsToFinish()
         } else {
           const shortOnTime = response
-          this.setResponse({ shortOnTime })
+          this.saveResponse({ shortOnTime })
           shortOnTime ? this.capitalismDiscourse() : this.investInArt()
         }
       })
