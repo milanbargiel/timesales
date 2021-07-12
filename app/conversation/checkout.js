@@ -10,10 +10,29 @@ export default {
         timeAmount === 1 ? timeUnit.slice(0, -1) : timeUnit
       }`
     },
+    async priceInput(timeout1, timeout2) {
+      await this.botNumberInput('Worth in €').then(async (price) => {
+        // Do not show pushy questions anymore when price is given
+        this.hidePushyQuestion()
+        clearTimeout(timeout1)
+        clearTimeout(timeout2)
+
+        // Validate input
+        if (price <= 0 || price > 999999999999) {
+          // Limit is set by Stripe
+          await this.botMessage(
+            'Your input is not valid. Please choose a more appropriate price.'
+          )
+          await this.priceInput() // recursion
+        } else {
+          this.saveResponse({ timePrice: price * 100 }) // convert input to cents
+        }
+      })
+    },
     async checkout() {
       await this.botMessage('What would that time be worth to you?')
 
-      await (() => {
+      await (async () => {
         // Show message after 10 sec if user does not enter a value
         const t1 = setTimeout(async () => {
           await this.botMessageHtml(
@@ -28,13 +47,9 @@ export default {
           )
         }, 25000)
 
-        return this.botNumberInput('Worth in €').then((timePrice) => {
-          // Do not show pushy questions anymore when price is given
-          this.hidePushyQuestion()
-          clearTimeout(t1)
-          clearTimeout(t2)
-          this.saveResponse({ timePrice: timePrice * 100 }) // convert input to cents
-        })
+        // Ask for price in input field with basic validation
+        // Pass timeouts to function to cancel them, when user sets the price
+        await this.priceInput(t1, t2)
       })()
 
       // Only continue when user enters value
