@@ -18,12 +18,16 @@ const createInvoice = async (order, response, templateFolder) => {
     // Create invoice html from variables
     const compiledFunction = pug.compileFile(`templates/${templateFolder}/html.pug`);
 
+    // Convert price to integer for calculations
+    // Todo: Make sure that value is already an integer when saved into database
+    const timePrice = parseInt(response.timePrice)
+
     const html = compiledFunction({
       createdAt: dayjs(order.created_at).format('DD MMMM, YYYY'), // Format creation date
       duration: strapi.services.response.time(response.timeAmount, response.timeUnit), // e.g. 1 second
-      price: toEur(response.timePrice),
-      tax: toEur(response.timePrice * (7 / 100)), // always 7% tax vat
-      priceTotal: toEur(response.timePrice + (response.timePrice * (7 / 100))), // price + tax
+      price: toEur(timePrice),
+      tax: toEur(Math.round(timePrice * (7/100))), // always 7% tax vat
+      priceTotal: toEur(Math.round(timePrice + (timePrice * (7/100)))), // price + tax
       order,
       response
     });
