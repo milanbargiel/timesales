@@ -48,6 +48,9 @@ export default {
   },
   mounted() {
     // Use sand simulation plugin defined in plugins/sand-simulation
+    console.log('Duration', this.duration)
+    console.log('Progress', this.initialProgress)
+
     sandSim.init({
       duration: this.duration,
       progress: this.initialProgress,
