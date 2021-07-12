@@ -9,9 +9,7 @@ const toEur = (cents) => {
 
 const renderMail = (order, response, templateFolder) => {
   const email = new Email();
-  // Create extra fields for the success E-Mail
-  const timeString = `${strapi.services.response.time(response.timeAmount, response.timeUnit)} of time for – ${response.timePurpose}`;
-  return email.renderAll(`../templates/${templateFolder}`, { order, timeString });
+  return email.renderAll(`../templates/${templateFolder}`, { order });
 };
 
 const createInvoice = async (order, response, templateFolder) => {
