@@ -21,11 +21,11 @@ export default {
       }
 
       // On yes
-      await this.botMessage('I know it seems difficult, but actually it can be pretty simple.')
-
       await this.botMessage(
-        'What are the most important things in your life?'
+        'I know it seems difficult, but actually it can be pretty simple.'
       )
+
+      await this.botMessage('What are the most important things in your life?')
 
       await this.botMessage('Friends and family?')
 
