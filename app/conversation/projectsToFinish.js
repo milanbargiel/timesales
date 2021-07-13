@@ -22,7 +22,7 @@ export default {
       }
 
       await this.botMessage(
-        'So, what would you do if you had all the time you ever wanted?'
+        'So, what would you do if you had all the time you ever wished for?'
       )
 
       await this.botTextInput('Your answer').then((timePurpose) => {
@@ -30,7 +30,7 @@ export default {
       })
 
       await this.botMessage(
-        `Ok, if you had all the time in the world you would ${this.response.timePurpose}. But why don't you do it in this world of finite lifespans? Is it not important enough?`
+        `Ok, if you had all the time in the world you would ${this.response.timePurpose}. Why don't you do it in this world of finite lifespans? Is it not important enough?`
       )
 
       await this.botMessage('Shall we give it a little bit of extra value?')
@@ -44,7 +44,7 @@ export default {
       })
 
       await this.botMessage(
-        `Ok, then i'll sell you some time for ${this.response.timePurpose}.`
+        `Ok, then I'll sell you some time for ${this.response.timePurpose}.`
       )
 
       // Go to hold on dialogue
