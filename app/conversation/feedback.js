@@ -38,9 +38,11 @@ export default {
         })
       })()
 
-      // Ask, if the user wants to buy more time
-      // Save feedback TODO: Request to actually save the feedback in the database
       if (feedback) {
+        // Save feedback in remote db
+        this.saveFeedback(feedback)
+
+        // Ask, if the user wants to buy more time
         await this.moreTime()
       }
     },

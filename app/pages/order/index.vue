@@ -101,6 +101,12 @@ export default {
         })
       }
     },
+    saveFeedback(feedback) {
+      this.$axios.$post(`${this.$config.apiUrl}/feedbacks`, {
+        order: this.order.id,
+        opinion: feedback,
+      })
+    },
   },
 }
 </script>
