@@ -95,6 +95,11 @@ module.exports = {
         const orderEntity = await strapi.services.order.create(order);
         const orderEntry = sanitizeEntity(orderEntity, { model: strapi.models.order });
 
+        // Update relation to response with id from order
+        await strapi.services.response.update({ id: responseEntity.id }, {
+          order: orderEntity.id
+        });
+
         // Send invoice per E-mail
         if (orderEntity && responseEntity) {
           // Create email template

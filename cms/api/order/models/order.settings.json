@@ -44,12 +44,17 @@
     },
     "response": {
       "unique": true,
-      "model": "response"
+      "model": "response",
+      "via": "order"
     },
     "stripePaymentId": {
       "type": "string",
       "required": true,
       "private": true
+    },
+    "feedbacks": {
+      "via": "order",
+      "collection": "feedback"
     }
   }
 }
