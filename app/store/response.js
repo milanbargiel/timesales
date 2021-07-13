@@ -1,7 +1,7 @@
 const getDefaultState = () => {
   return {
     data: {
-      id: null, // id in strapi cms
+      id: null, // response id in strapi cms
       name: null,
       allowRecording: null,
       shortOnTime: null,
