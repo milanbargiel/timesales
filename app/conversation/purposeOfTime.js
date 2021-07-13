@@ -28,8 +28,6 @@ export default {
     keywordReply(text) {
       const str = stemmer(text.toLowerCase())
 
-      console.log(str)
-
       // Word stems with porter stemmer
       // https://9ol.es/porter_js_demo.html
       const list = [

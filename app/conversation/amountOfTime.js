@@ -70,11 +70,14 @@ export default {
 
         // Ask again
         await this.timeInput()
-      } else if (timeInSeconds >= 18000) {
-        // 18000 sec = 5 hours
+      } else if (timeInSeconds >= 86400) {
+        // 86400 sec = 1 day
         await this.botMessage(
           'That much? Very good, you dive right in, I respect that!'
         )
+      } else if (timeInSeconds >= 300) {
+        // 300 sec = 5min
+        await this.botMessage('Very well.')
       } else {
         await this.botMessage(
           "So little? That's what I call a timid investment."
