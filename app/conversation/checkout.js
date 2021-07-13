@@ -85,6 +85,10 @@ export default {
     async checkout() {
       await this.botMessage('What would that time be worth to you?')
 
+      await this.botMessage(
+        'Keep in mind that 7% VAT will be added on checkout.'
+      )
+
       await (async () => {
         // Show message after 10 sec if user does not enter a value
         const t1 = setTimeout(async () => {
