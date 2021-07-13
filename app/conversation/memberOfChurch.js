@@ -30,8 +30,7 @@ export default {
                 value: false,
               },
               {
-                text:
-                  'Right, I’m also much too much afraid of burning in hell.',
+                text: 'Right, I’m also much too much afraid of burning in hell.',
                 value: true,
               },
             ],
@@ -41,8 +40,8 @@ export default {
           })
 
         if (this.response.afraidOfHell === true) {
-          await this.botMessage('Our paths diverge here')
-          await this.botMessage('Have a good time anyways')
+          await this.botMessage('Our paths diverge here.')
+          await this.botMessage('Have a good time anyways.')
           return this.exit()
         } else {
           // Go to checkout dialogue
