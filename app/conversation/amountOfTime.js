@@ -65,15 +65,19 @@ export default {
 
       if (timeInYears > 80) {
         await this.botMessage(
-          'More than a lifetime? That is excessive! And would be irresponsible on our part if we sold you that much time.'
+          "More than a lifetime? That's excessive! It would be irresponsible on our part if we sold you that much time. Please choose a smaller amount of time."
         )
 
-        return this.exit()
-      } else if (timeInSeconds >= 18000) {
-        // 18000 sec = 5 hours
+        // Ask again
+        await this.timeInput()
+      } else if (timeInSeconds >= 86400) {
+        // 86400 sec = 1 day
         await this.botMessage(
           'That much? Very good, you dive right in, I respect that!'
         )
+      } else if (timeInSeconds >= 300) {
+        // 300 sec = 5min
+        await this.botMessage('Very well.')
       } else {
         await this.botMessage(
           "So little? That's what I call a timid investment."

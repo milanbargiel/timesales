@@ -1,7 +1,7 @@
-import { stemmer } from 'stemmer'
 // Import conversation branches
 import HoldOn from '../conversation/holdOn.js'
 import AmountOfTime from '../conversation/amountOfTime.js'
+const stemmer = require('porter-stemmer-english')
 
 export default {
   mixins: [HoldOn, AmountOfTime],

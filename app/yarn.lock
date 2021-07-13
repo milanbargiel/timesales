@@ -6846,6 +6846,11 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+porter-stemmer-english@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/porter-stemmer-english/-/porter-stemmer-english-1.0.1.tgz#98f3b164e27635d8e2177c7c503234e3a0956f21"
+  integrity sha512-Z4o2Pu4KvfnWZtrE/DA1xUOZRPnkbb+aTLMNS88TslJ9ZWkMRicNxOzs8JEAB1mwYS3ZBbrL+/WTgDjHIL3Zeg==
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -8577,11 +8582,6 @@ std-env@^2.2.1, std-env@^2.3.0:
   integrity sha512-4qT5B45+Kjef2Z6pE0BkskzsH0GO7GrND0wGlTM1ioUe3v0dGYx9ZJH0Aro/YyA8fqQ5EyIKDRjZojJYMFTflw==
   dependencies:
     ci-info "^3.0.0"
-
-stemmer@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/stemmer/-/stemmer-2.0.0.tgz#05fcaf174c423b0fec85e660759ebd4867d811c9"
-  integrity sha512-0YS2oMdTZ/wAWUHMMpf7AAJ8Gm6dHXyHddJ0zCu2DIfOfIbdwqAm1bbk4+Vti6gxNIcOrnm5jAP7vYTzQDvc5A==
 
 stream-browserify@^2.0.1:
   version "2.0.2"

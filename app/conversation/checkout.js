@@ -83,7 +83,23 @@ export default {
       })
     },
     async checkout() {
-      await this.botMessage('What would that time be worth to you?')
+      // Create order summary
+      const orderSummary = this.createOrderSummary(
+        this.response.timePurpose,
+        this.response.timeAmount,
+        this.response.timePurpose
+      )
+
+      // Save it in DB
+      this.saveResponse({ orderSummary }) // convert input to cents
+
+      await this.botMessage(
+        `${orderSummary}. What would that time be worth to you?`
+      )
+
+      await this.botMessage(
+        'Keep in mind that 7% VAT will be added on checkout.'
+      )
 
       await (async () => {
         // Show message after 10 sec if user does not enter a value
@@ -107,18 +123,8 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
-        // Create order summary
-        const orderSummary = this.createOrderSummary(
-          this.response.timePurpose,
-          this.response.timeAmount,
-          this.response.timePurpose
-        )
-
-        // Save it in DB
-        this.saveResponse({ orderSummary }) // convert input to cents
-
         await this.botMessage(
-          `Sweet! You chose to buy ${orderSummary}. Do you want to proceed to checkout?`
+          `Sweet! You chose to buy ${this.response.orderSummary}. Do you want to proceed to checkout?`
         )
 
         this.showCheckoutButton = true

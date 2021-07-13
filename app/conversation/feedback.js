@@ -15,7 +15,7 @@ export default {
       await this.botMessage('Did you enjoy your time?')
 
       await this.botMessage(
-        'Leave your thoughts, remarks, critique. (We reserve the rights to use them anonymised)'
+        'Leave your thoughts, remarks, and suggestions. (We reserve the right to use them anonymously)'
       )
 
       const feedback = await (() => {
