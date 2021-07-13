@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feedbacks",
+  "info": {
+    "name": "Feedback"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "order": {
+      "model": "order",
+      "via": "feedback"
+    },
+    "opinion": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
