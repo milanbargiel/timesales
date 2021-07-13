@@ -1,7 +1,7 @@
-import { stemmer } from 'stemmer'
 // Import conversation branches
 import HoldOn from '../conversation/holdOn.js'
 import AmountOfTime from '../conversation/amountOfTime.js'
+const stemmer = require('porter-stemmer-english')
 
 export default {
   mixins: [HoldOn, AmountOfTime],
@@ -27,6 +27,8 @@ export default {
     },
     keywordReply(text) {
       const str = stemmer(text.toLowerCase())
+
+      console.log(str)
 
       // Word stems with porter stemmer
       // https://9ol.es/porter_js_demo.html
