@@ -91,6 +91,10 @@
     "applicationEmail": {
       "type": "email",
       "private": true
+    },
+    "order": {
+      "via": "response",
+      "model": "order"
     }
   }
 }

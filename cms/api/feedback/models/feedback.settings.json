@@ -11,8 +11,8 @@
   },
   "attributes": {
     "order": {
-      "model": "order",
-      "via": "feedback"
+      "via": "feedback",
+      "model": "order"
     },
     "opinion": {
       "type": "text",
