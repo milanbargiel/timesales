@@ -176,9 +176,9 @@ head
       br
       br
       div.bold Bank Details
-      | DEXXXXXXXXXXXXXXXXXX
+      | #{bankInfo.iban}
       br
-      | COXXXXXXXXXX
+      | #{bankInfo.bic}
   table.table
     tr
       td.bold #{response.orderSummary}
@@ -209,6 +209,6 @@ head
   .footer
     table
       tr
-        td Steuer Nr.: XXXXXXXXXXXX
-        td IBAN: XXXXXXXXXXXX
-        td BIC: XXXXXXXXXXXX
+        td Steuer Nr.: #{bankInfo.taxId}
+        td IBAN: #{bankInfo.iban}
+        td BIC: #{bankInfo.bic}

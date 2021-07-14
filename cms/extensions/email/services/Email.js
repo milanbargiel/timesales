@@ -22,6 +22,7 @@ const createInvoice = async (order, response, templateFolder) => {
     // Todo: Make sure that value is already an integer when saved into database
     const timePrice = parseInt(response.timePrice)
 
+    // Create QR-Code from Stream URL
     const qrcode = new QRCode({
       content: order.streamUrl,
       padding: 0, // no border
@@ -32,12 +33,21 @@ const createInvoice = async (order, response, templateFolder) => {
       ecl: 'M',
     }).svg();
 
+    // Read sensitive bank data from .env file
+    const bankInfo = {
+      taxId: process.env.TAX_ID,
+      iban: process.env.IBAN,
+      bic: process.env.BIC,
+    }
+
+    // Create invocie HTML
     const html = compiledFunction({
       createdAt: dayjs(order.created_at).format('DD MMMM, YYYY'), // Format creation date
       duration: strapi.services.response.time(response.timeAmount, response.timeUnit), // e.g. 1 second
       price: toEur(timePrice),
       tax: toEur(Math.round(timePrice * (7/100))), // always 7% tax vat
       priceTotal: toEur(Math.round(timePrice + (timePrice * (7/100)))), // price + tax
+      bankInfo,
       qrcode,
       order,
       response
