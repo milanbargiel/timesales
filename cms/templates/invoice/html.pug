@@ -5,6 +5,7 @@
 - var priceTotal = '2,14 €' 
 - var tax = '0,14 €'
 
+include signature.pug
 doctype html
 head
   meta(charset='utf-8')
@@ -36,19 +37,15 @@ head
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: black;
+    font-size: 70%;
     }
-    .invoice-box h2 {
-    font-family: Arial Black, sans-serif;
-    margin: 0;
-    font-size: 16px;
-    }
-    .title {
+    .title-box {
     margin-bottom: 64px;
     text-align: center;
     }
-    .title h1 {
+    .title {
     font-family: Arial Black, sans-serif;
-    font-size: 80px;
+    font-size: 74px;
     text-decoration: underline;
     line-height: 1;
     margin-bottom: 10px;
@@ -62,21 +59,21 @@ head
     overflow: auto; /* clearfix */
     margin-bottom: 64px;
     }
-    .recipient {
+    .left {
     float: left;
     }
-    .meta {
+    .right {
     float: right;
     }
-    .text-box {
-    margin-bottom: 128px;
+    .thank-you {
+    margin-top: 256px;
     }
     .bold {
     font-family: Arial Black, sans-serif;
     font-weight: 700;
     }
     .table {
-    margin-bottom: 128px;
+    margin-bottom: 64px;
     }
     .table-last-row td {
     padding-top: 10px;
@@ -105,12 +102,18 @@ head
     top:-1px;
     }
     .link-box {
-    margin-bottom: 128px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 16px;
+    }
+    .qr-code {
+    width: 200px;
+    margin-right: 16px;
     }
     /* SIGNATURE */
     .signature-box {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 64px;
     }
     .signature {
     width: 200px;
@@ -122,44 +125,47 @@ head
     */
     display: flex;
     justify-content: space-between;
+    margin-bottom: 4px;
     }
 .invoice-box
-  .title
-    h1 Time Sales Online
-    span.subtitle  World leaders in the time business since 2018
+  .title-box
+    div.title Time Sales Online
+    div.subtitle  World leaders in the time business since 2018
   .header
-    .recipient
-      h2 To:
-      | #{order.orderName}
-      br
-      |  #{order.orderEmail}
-    .meta
-      h2 Date
+    .left
+      div
+        div.bold To:
+        | #{order.orderName}
+        br
+        |  #{order.orderEmail}
+      div.thank-you
+        div.bold Invoice
+        | Thank you for your purchase at Time Sales Online.
+        br
+        | The payment has been accepted.
+    .right
+      div.bold Date
       |  #{createdAt}
       br
       br
-      h2 Adress
+      div.bold Adress
       | Geisselstraße 95
+      br
       | 50823 Köln
       br
       br
-      h2 Contact us
+      div.bold Contact us
       | hello@timesales.ltd
       br
       br
-      h2 Order ID
+      div.bold Order ID
       | #{order.invoiceId}
       br
       br
-      h2 Bank Details
+      div.bold Bank Details
       | DEXXXXXXXXXXXXXXXXXX
       br
       | COXXXXXXXXXX
-  .text-box
-    h2 Invoice
-    | Thank you for your purchase at Time Sales Online.
-    br
-    | The payment has been accepted.
   table.table
     tr
       td.bold #{response.orderSummary}
@@ -174,13 +180,17 @@ head
       td Total:
       td.bold.sum #{priceTotal}
   .link-box
-    | To access your custom time stream, scan the code or please follow this link:
-    a(href='#{order.streamUrl}') #{order.streamUrl}
-    br
-    br
-    | On behalf of Time Sales Online
+    div.qr-code
+    div
+      | To access your custom time stream, scan the code or please follow this link:
+      br
+      a(href='#{order.streamUrl}') #{order.streamUrl}
+  | On behalf of Time Sales Online
+  br
+  br
+  br
   .signature-box
-    img.signature(src="../signature.svg")
+    +svg-signature(fill="blue", width="200", height="200")
     span.subtitle Thank you for your trust.
   .footer
     div SteuerNr.:XXXXXXXXX
