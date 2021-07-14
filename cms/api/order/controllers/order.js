@@ -179,8 +179,8 @@ module.exports = {
   // For testing purpose only
   // Todo: Remove, once the application goes live
   async createInvoice(ctx) {
-    const entity = await strapi.services.order.findOne({ key: 'cs_test_a1enlSvdKwwhpvsmGRvLL9dMTRAXb6CZdsEepcY3pkvPPS35NwArHLYVnY' });
-    const html = await strapi.plugins['email'].services.email.createInvoice(entity, 'invoice');
+    const order = await strapi.services.order.findOne({ key: 'cs_test_a1hcicGNPfSr0dHy5lblTTMjDrulqqeCSpBnfc3aI9U5eifD0uKDNxYk7S' });
+    const html = await strapi.plugins['email'].services.email.createInvoice(order, order.response, 'invoice');
 
     pdf.create(html).toStream((err, stream) => {
       stream.pipe(ctx.res);
