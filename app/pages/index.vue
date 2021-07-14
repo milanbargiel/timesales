@@ -82,6 +82,7 @@ export default {
         timeAmount: 120,
         timeUnit: 'seconds',
         timePrice: 100, // in cents
+        orderSummary: '200 seconds to read a book with my mom',
       })
     },
     stripeCheckout() {
