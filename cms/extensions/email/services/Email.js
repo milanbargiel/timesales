@@ -24,8 +24,9 @@ const createInvoice = async (order, response, templateFolder) => {
 
     const qrcode = new QRCode({
       content: order.streamUrl,
-      width: 200,
-      height: 200,
+      padding: 0, // no border
+      width: 70,
+      height: 70,
       color: '#000000',
       background: '#ffffff',
       ecl: 'M',

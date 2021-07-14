@@ -35,29 +35,27 @@ head
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     line-height: 1.3;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 11px;
     color: black;
-    font-size: 70%;
     }
     .title-box {
-    margin-bottom: 64px;
+    margin-bottom: 32px;
     text-align: center;
     }
     .title {
     font-family: Arial Black, sans-serif;
-    font-size: 74px;
-    text-decoration: underline;
+    font-size: 52px;
+    border-bottom: 2px solid black;
     line-height: 1;
-    margin-bottom: 10px;
     }
     .subtitle {
     font-family: 'Kalice', sans-serif;
-    font-size: 27px;
+    font-size: 18px;
     display: block;
     }
     .header {
     overflow: auto; /* clearfix */
-    margin-bottom: 64px;
+    margin-bottom: 50px;
     }
     .left {
     float: left;
@@ -66,14 +64,14 @@ head
     float: right;
     }
     .thank-you {
-    margin-top: 256px;
+    margin-top: 180px;
     }
     .bold {
     font-family: Arial Black, sans-serif;
     font-weight: 700;
     }
     .table {
-    margin-bottom: 64px;
+    margin-bottom: 50px;
     }
     .table-last-row td {
     padding-top: 10px;
@@ -95,36 +93,45 @@ head
     .sum:after {
     content: "";
     width:30%;
-    height:4px;
+    height:5px;
     background-color: white;
     position: absolute;
     right:0;
-    top:-1px;
+    top:-2px;
     }
     .link-box {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 16px;
+    overflow:hidden; /* clearfix */
+    margin-bottom: 12px;
     }
     .qr-code {
-    margin-right: 16px;
+    margin-right: 12px;
+    float: left;
+    width: 70px;
+    height: 70px;
+    background-color: grey;
+    }
+
+    .qr-explain-box {
+    width: calc(100% - 82px);
+    float: right;
+    }
+    .qr-explain {
+    /* Position text at the bottom */
+    display: table-cell;
+    height: 70px;
+    vertical-align: bottom;
     }
     /* SIGNATURE */
     .signature-box {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 20px;
     }
     .signature {
     width: 200px;
     }
-    .footer {
-    /* position: absolute;
-    left: 30px;
-    bottom: 32px;
-    */
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 4px;
+    .footer td {
+    text-align: center;
+    padding-bottom: 6px;
     }
 .invoice-box
   .title-box
@@ -181,18 +188,20 @@ head
   .link-box
     div.qr-code
       | !{qrcode}
-    div
-      | To access your custom time stream, scan the code or please follow this link:
-      br
-      a(href='#{order.streamUrl}') #{order.streamUrl}
+    div.qr-explain-box
+      div.qr-explain
+        | To access your custom time stream, scan the code or please follow this link:
+        br
+        a(href='#{order.streamUrl}') #{order.streamUrl}
   | On behalf of Time Sales Online
   br
   br
-  br
   .signature-box
-    +svg-signature(fill="blue", width="200", height="200")
+    +svg-signature(fill="blue", width="120", height="50")
     span.subtitle Thank you for your trust.
   .footer
-    div SteuerNr.:XXXXXXXXX
-    div IBAN: XXXXXXXXX
-    div BIC: XXXXXXXXXX
+    table
+      tr
+        td Steuer Nr.: XXXXXXXXXXXX
+        td IBAN: XXXXXXXXXXXX
+        td BIC: XXXXXXXXXXXX
