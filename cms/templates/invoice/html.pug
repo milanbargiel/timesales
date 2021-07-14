@@ -45,8 +45,6 @@ head
     .title {
     margin-bottom: 64px;
     text-align: center;
-    font-family: 'Kalice', sans-serif;
-    font-size: 27px;
     }
     .title h1 {
     font-family: Arial Black, sans-serif;
@@ -54,6 +52,11 @@ head
     text-decoration: underline;
     line-height: 1;
     margin-bottom: 10px;
+    }
+    .subtitle {
+    font-family: 'Kalice', sans-serif;
+    font-size: 27px;
+    display: block;
     }
     .header {
     overflow: auto; /* clearfix */
@@ -104,23 +107,26 @@ head
     .link-box {
     margin-bottom: 128px;
     }
+    /* SIGNATURE */
+    .signature-box {
+    text-align: center;
+    margin-bottom: 32px;
+    }
+    .signature {
+    width: 200px;
+    }
     .footer {
     /* position: absolute;
     left: 30px;
     bottom: 32px;
     */
-    }
-    .footer table {
-    table-layout: fixed;
-    }
-    .footer td {
-    line-height: 1.2;
-    width: 33%;
+    display: flex;
+    justify-content: space-between;
     }
 .invoice-box
   .title
     h1 Time Sales Online
-    |  World leaders in the time business since 2018
+    span.subtitle  World leaders in the time business since 2018
   .header
     .recipient
       h2 To:
@@ -146,9 +152,9 @@ head
       br
       br
       h2 Bank Details
-      | DE85200411440506230200
+      | DEXXXXXXXXXXXXXXXXXX
       br
-      | COBADEHD044
+      | COXXXXXXXXXX
   .text-box
     h2 Invoice
     | Thank you for your purchase at Time Sales Online.
@@ -170,15 +176,13 @@ head
   .link-box
     | To access your custom time stream, scan the code or please follow this link:
     a(href='#{order.streamUrl}') #{order.streamUrl}
-  .signature
+    br
+    br
     | On behalf of Time Sales Online
+  .signature-box
+    img.signature(src="../signature.svg")
+    span.subtitle Thank you for your trust.
   .footer
-    table
-      tr
-        td Time Sales Online
-        td Geisselstr. 95
-        td 50823 K&ouml;ln
-      tr
-        td UST ID XXXX
-        td IBAN
-        td BIC
+    div SteuerNr.:XXXXXXXXX
+    div IBAN: XXXXXXXXX
+    div BIC: XXXXXXXXXX
