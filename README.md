@@ -24,6 +24,7 @@
 
 - Install dev dependencies in `/app` and `/cms`
 - Install Stripe CLI and login with your account
+- Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project
 
 ##### API-Endpoints for cms
 
