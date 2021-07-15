@@ -61,7 +61,7 @@ head
     float: right;
     }
     .thank-you {
-    margin-top: 200px;
+    margin-top: 93px;
     }
     .bold {
     font-family: Arial Black, sans-serif;
@@ -70,7 +70,7 @@ head
 
     /* TABLE */
     .table {
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     }
     .table-last-row td {
     padding-top: 10px;
@@ -125,7 +125,7 @@ head
     /* SIGNATURE & FOOTER */
     .signature-box {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     }
     .signature {
     width: 200px;
@@ -161,6 +161,10 @@ head
       |  #{createdAt}
       br
       br
+      div.bold Order ID
+      | #{order.invoiceId}
+      br
+      br
       div.bold Adress
       | Geisselstraße 95
       br
@@ -168,17 +172,7 @@ head
       br
       br
       div.bold Contact us
-      | hello@timesales.ltd
-      br
-      br
-      div.bold Order ID
-      | #{order.invoiceId}
-      br
-      br
-      div.bold Bank Details
-      | #{bankInfo.iban}
-      br
-      | #{bankInfo.bic}
+      | hello@timesales.ltd    
   table.table
     tr
       td.bold #{response.orderSummary}
@@ -201,6 +195,7 @@ head
         br
         a(href='#{order.streamUrl}') #{order.streamUrl}
   | On behalf of Time Sales Online
+  br
   br
   br
   br
