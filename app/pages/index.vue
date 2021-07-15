@@ -12,14 +12,14 @@
         </p>
       </div>
     </div>
-    <div class="controls controls--top">
-      <b-field class="debug-button">
-        <b-switch v-model="debugMode">Fast</b-switch>
+    <footer class="footer">
+      <a href="#">Legal matters</a>
+      <a href="/?shortCheckout">Short checkout</a>
+      <b-field>
+        <b-switch>Default</b-switch>
       </b-field>
-    </div>
-    <div class="controls controls--bottom">
-      <span class="text-button" @click="stripeCheckout()">Test Checkout</span>
-    </div>
+      <span class="text-button" @click="debugMode = !debugMode">Fast</span>
+    </footer>
   </div>
 </template>
 

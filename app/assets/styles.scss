@@ -1,4 +1,3 @@
-// Constants
 $z-level-above-all: 999;
 
 // Colors
@@ -60,22 +59,6 @@ $black: #000;
 
 .time-container {
   position: relative;
-}
-
-.controls {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  padding-right: 10px;
-
-  &--top {
-    top: 10px;
-  }
-
-  &--bottom {
-    bottom: 10px;
-  }
 }
 
 .checkout-button-container {

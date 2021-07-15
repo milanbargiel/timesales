@@ -17,7 +17,6 @@
     "core-js": "^3.8.3",
     "html-escaper": "^3.0.3",
     "nuxt": "^2.14.12",
-    "nuxt-buefy": "^0.4.6",
     "porter-stemmer-english": "^1.0.1",
     "sand-simulation": "file:plugins/sand-simulation",
     "timestring": "^6.0.0"
