@@ -1,5 +1,5 @@
 <template>
-  <div class="time-container">
+  <div class="tsl">
     <div class="bot-container">
       <div id="botui">
         <bot-ui />

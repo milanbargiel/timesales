@@ -1,4 +1,5 @@
 // Colors
+$white: #f7f8f8;
 $very-light-grey: #dbdbdb;
 $light-grey: #b5b5b5;
 $grey: #495057;
@@ -42,8 +43,25 @@ body {
 }
 
 // Fix to show bot conversation on top of the sand simulation
-.botui-container {
+.tsl .botui-container {
+  font-size: inherit;
+  font-family: inherit;
   background-color: transparent !important;
+
+  .botui-message-content,
+  .botui-actions-text-input {
+    color: $black;
+  }
+
+  .botui-message-content.human {
+    color: $white;
+  }
+
+  .botui-actions-text-submit {
+    padding: $space-s;
+    height: 2.5em;
+    width: 2.5em;
+  }
 }
 
 // Buttons
