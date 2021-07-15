@@ -5,7 +5,9 @@
         <bot-ui />
       </div>
       <div :class="{ hidden: !showCheckoutButton }">
-        <b-button @click="stripeCheckout()">Proceed to checkout</b-button>
+        <button class="button" @click="stripeCheckout()">
+          Proceed to checkout
+        </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
           privacy policy.
@@ -15,9 +17,6 @@
     <footer class="footer">
       <a href="#">Legal matters</a>
       <a href="/?shortCheckout">Short checkout</a>
-      <b-field>
-        <b-switch>Default</b-switch>
-      </b-field>
       <span class="text-button" @click="debugMode = !debugMode">Fast</span>
     </footer>
   </div>

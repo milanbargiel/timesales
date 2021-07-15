@@ -1,6 +1,8 @@
 $z-level-above-all: 999;
 
 // Colors
+$very-light-grey: #dbdbdb;
+$light-grey: #b5b5b5;
 $grey: #495057;
 $black: #000;
 
@@ -127,4 +129,30 @@ $black: #000;
 
 .hidden {
   visibility: hidden;
+}
+
+.button {
+  align-items: center;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  border-radius: .375em;
+  border: 1px solid $very-light-grey;
+  background-color: #fff;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  padding: calc(.5em - 1px) 1em;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $light-grey;
+  }
+}
+
+.help {
+  font-size: .75rem;
+  margin-top: .5rem;
 }
