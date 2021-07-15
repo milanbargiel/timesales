@@ -42,10 +42,11 @@ body {
   padding-top: 50px;
 }
 
-// Fix to show bot conversation on top of the sand simulation
+// Botui overwrites
 .tsl .botui-container {
   font-size: inherit;
   font-family: inherit;
+  // Fix to show bot conversation on top of the sand simulation
   background-color: transparent !important;
 
   .botui-message-content,
