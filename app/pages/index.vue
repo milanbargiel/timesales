@@ -15,9 +15,21 @@
       </div>
     </div>
     <footer class="footer">
-      <a href="#">Legal matters</a>
-      <a href="/?shortCheckout">Short checkout</a>
-      <span class="text-button" @click="debugMode = !debugMode">Fast</span>
+      <div class="navigation">
+        <a href="#">Imprint</a>
+        <a href="#">Data privacy</a>
+        <a href="#">Terms and conditions</a>
+      </div>
+      <div class="creators">
+        <a class="underlined-link" href="#">Milan Bargiel</a>
+        <a class="underlined-link" href="#">Ludwig Lederer</a>
+        <a class="underlined-link" href="#">Katherina Gorodynska</a>
+        <img
+          class="patron-logo"
+          src="~/assets/lab-k-nrw.svg"
+          alt="Landesbüro für Bildende Kunst (LaB K)"
+        />
+      </div>
     </footer>
   </div>
 </template>
