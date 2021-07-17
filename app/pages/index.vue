@@ -1,6 +1,12 @@
 <template>
   <div class="tsl">
-    <header v-if="showHeader" class="header pop-up" @click="showHeader = false">
+    <div class="review-container">
+      <div class="review">
+        “That was a great service, I would really recommend it” – Peter
+      </div>
+      <div class="review">“It was horrible” – Anna</div>
+    </div>
+    <header v-if="showHeader" class="header" @click="showHeader = false">
       <h1 class="title">Time Sales Online</h1>
     </header>
     <div class="bot-container">
