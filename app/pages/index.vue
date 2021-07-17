@@ -27,7 +27,11 @@
         </p>
       </div>
     </div>
-    <div class="purchase-ticker">
+    <div
+      v-if="showPurchaseTicker"
+      class="purchase-ticker"
+      @click="showPurchaseTicker = false"
+    >
       <div class="purchase">
         Dan has just bought time for <span class="euro">20 €</span>
       </div>
@@ -70,6 +74,7 @@ export default {
       shortCheckout: false,
       showHeader: true,
       showReviews: true,
+      showPurchaseTicker: true,
     }
   },
   computed: {
