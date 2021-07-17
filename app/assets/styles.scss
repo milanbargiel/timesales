@@ -11,6 +11,9 @@ $space-s: .5rem;
 $space-m: 1rem;
 $space-l: 2rem;
 
+// breakpoints
+$bp-tablet: 680px;
+
 @import 'loading-dots';
 
 // General
@@ -41,7 +44,11 @@ body {
 .title {
   font-family: Arial Black, sans-serif;
   line-height: 1;
-  font-size: 66px;
+  font-size: 50px;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 66px;
+  }
 
   &::before {
     content: 'x';
@@ -151,4 +158,5 @@ body {
 
 .patron-logo {
   margin-top: $space-s;
+  max-width: 200px;
 }
