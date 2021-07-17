@@ -40,8 +40,7 @@ body {
 }
 
 .review-container {
-  width: 100%;
-  position: absolute;
+  cursor: pointer;
 }
 
 .review {
@@ -99,13 +98,16 @@ body {
   display: none;
 }
 
+// Overall container
+.tsl {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 // Botui
 .bot-container {
-  margin: 0 auto;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  justify-content: center;
+  margin: auto; // always center the chat
   align-items: center;
   text-align: center;
   padding-bottom: 50px;
@@ -171,8 +173,6 @@ body {
 
 // Footer
 .footer {
-  position: absolute;
-  bottom: 0;
   border-top: 1px solid $black;
   width: 100%;
   padding: $space-s $space-m;
