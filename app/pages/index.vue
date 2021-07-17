@@ -1,5 +1,8 @@
 <template>
   <div class="tsl">
+    <header class="header pop-up">
+      <h1 class="title">Time Sales Online</h1>
+    </header>
     <div class="bot-container">
       <div id="botui">
         <bot-ui />

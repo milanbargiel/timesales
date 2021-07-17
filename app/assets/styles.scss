@@ -9,6 +9,7 @@ $black: #000;
 $space-xs: .25rem;
 $space-s: .5rem;
 $space-m: 1rem;
+$space-l: 2rem;
 
 @import 'loading-dots';
 
@@ -18,10 +19,46 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  margin: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.3;
+}
+
+.header {
+  display: inline-block;
+  position: absolute;
+  top: $space-m;
+  left: $space-m;
+  float: left;
+  max-width: 230px; // force line break
+}
+
+.title {
+  font-family: Arial Black, sans-serif;
+  line-height: 1;
+  font-size: 66px;
+
+  &::before {
+    content: 'x';
+    position: absolute;
+    top: -$space-l;
+    right: 0;
+  }
+}
+
+.pop-up {
+  cursor: pointer;
+  transition-duration: 172ms;
+  transition-property: transform;
+
+  &:hover {
+    transform: translateY(-0.25em);
+  }
 }
 
 // Helper classes
