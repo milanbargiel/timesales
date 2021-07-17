@@ -1,6 +1,6 @@
 <template>
   <div class="tsl">
-    <header class="header pop-up">
+    <header v-if="showHeader" class="header pop-up" @click="showHeader = false">
       <h1 class="title">Time Sales Online</h1>
     </header>
     <div class="bot-container">
@@ -50,6 +50,7 @@ export default {
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
       shortCheckout: false,
+      showHeader: true,
     }
   },
   computed: {
