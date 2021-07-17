@@ -4,6 +4,7 @@ $very-light-grey: #dbdbdb;
 $light-grey: #b5b5b5;
 $grey: #495057;
 $black: #000;
+$coral: #cc7d7a;
 
 // Spaces
 $space-xs: .25rem;
@@ -14,12 +15,16 @@ $space-l: 2rem;
 // breakpoints
 $bp-tablet: 680px;
 
-// Kalice font face
+// Fonts
 @font-face {
   font-family: 'Kalice';
   src: url(~assets/Kalice-Regular.otf) format("opentype");
   font-weight: 400;
 }
+
+$standard-font: 'Arial', sans-serif;
+$standard-font-bold: 'Arial Black', sans-serif;
+$special-font: 'Kalice', sans-serif;
 
 @import 'loading-dots';
 
@@ -34,33 +39,9 @@ h1 {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: $standard-font;
   font-size: 16px;
   line-height: 1.3;
-}
-
-.review-container {
-  cursor: pointer;
-}
-
-.review {
-  border-bottom: 1px solid $black;
-  font-family: 'Kalice', sans-serif;
-  font-size: 20px;
-  text-align: center;
-  padding: 0 $space-l;
-  position: relative;
-
-  &::after {
-    content: 'x';
-    position: absolute;
-    top: 0;
-    right: $space-s;
-  }
-
-  &:first-child {
-    border-top: 1px solid $black;
-  }
 }
 
 .header {
@@ -77,7 +58,7 @@ body {
 }
 
 .title {
-  font-family: Arial Black, sans-serif;
+  font-family: $standard-font-bold;
   line-height: 1;
   font-size: 50px;
 
@@ -169,6 +150,52 @@ body {
   text-decoration: underline;
   display: inline-block;
   margin-bottom: $space-s;
+}
+
+.purchase {
+  background-color: $coral;
+  text-align: center;
+  border-top: 1px solid black;
+  padding: $space-xs $space-l;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  position: relative;
+
+  &::after {
+    content: 'x';
+    position: absolute;
+    top: $space-xs;
+    right: $space-m;
+    font-family: $special-font;
+  }
+}
+
+.review-container {
+  cursor: pointer;
+}
+
+.review {
+  border-bottom: 1px solid $black;
+  font-family: $special-font;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 $space-l;
+  position: relative;
+
+  &::after {
+    content: 'x';
+    position: absolute;
+    top: 0;
+    right: $space-s;
+  }
+
+  &:first-child {
+    border-top: 1px solid $black;
+  }
+}
+
+.euro {
+  font-family: $special-font;
 }
 
 // Footer
