@@ -1,6 +1,10 @@
 <template>
   <div class="tsl">
-    <div class="review-container">
+    <div
+      v-if="showReviews"
+      class="review-container"
+      @click="showReviews = false"
+    >
       <div class="review">
         “That was a great service, I would really recommend it” – Peter
       </div>
@@ -57,6 +61,7 @@ export default {
       debugMode: false, // In debug mode all delay is set to 0
       shortCheckout: false,
       showHeader: true,
+      showReviews: true,
     }
   },
   computed: {
