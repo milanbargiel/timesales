@@ -13,7 +13,7 @@
     <header v-if="showHeader" class="header" @click="showHeader = false">
       <h1 class="title">Time Sales Online</h1>
     </header>
-    <div class="pop-up">
+    <div v-if="showPopUp" class="pop-up" @click="showPopUp = false">
       <img
         class="pop-up-image"
         src="~/assets/pop-up-placeholder.png"
@@ -81,6 +81,7 @@ export default {
       shortCheckout: false,
       showHeader: true,
       showReviews: true,
+      showPopUp: true,
       showPurchaseTicker: true,
     }
   },

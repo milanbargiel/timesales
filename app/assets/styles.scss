@@ -232,6 +232,14 @@ body {
     top: $space-s;
     right: $space-s;
   }
+
+  @media screen and (min-width: $bp-tablet) {
+    max-width: 420px;
+    // Horizontally center pop-up
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 .pop-up-image {
