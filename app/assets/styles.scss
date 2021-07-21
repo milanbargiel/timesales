@@ -4,7 +4,7 @@ $very-light-grey: #dbdbdb;
 $light-grey: #b5b5b5;
 $grey: #495057;
 $black: #000;
-$coral: #cc7d7a;
+$coral: #e399a0;
 
 // Spaces
 $space-xs: .25rem;
@@ -157,8 +157,8 @@ body {
   text-align: center;
   border-top: 1px solid black;
   padding: $space-xs $space-l;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   position: relative;
 
   &::after {
@@ -167,6 +167,23 @@ body {
     top: $space-xs;
     right: $space-m;
     font-family: $special-font;
+  }
+
+  // For stacked purchases:
+  // Pseudo element that fills blank space inbetween purchases
+  &:not(:first-child) {
+    &::before {
+      background-color: $coral;
+      content: '';
+      position: absolute;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      top: -1px;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
   }
 }
 
