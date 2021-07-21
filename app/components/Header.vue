@@ -1,5 +1,6 @@
 <template>
   <header class="header">
-    <h1 class="title">Time Sales Online</h1>
+    <button class="close-btn close-btn--header">x</button>
+    <h1>Time Sales Online</h1>
   </header>
 </template>

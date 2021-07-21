@@ -37,7 +37,19 @@ a {
   text-decoration: none;
 }
 
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
 h1 {
+  font-family: inherit;
+  font-size: inherit;
   margin: 0;
 }
 
@@ -48,33 +60,19 @@ body {
 }
 
 .header {
+  font-family: $standard-font-bold;
+  font-size: 50px;
+  line-height: 1;
   display: inline-block;
   position: absolute;
   top: $space-l;
   left: $space-m;
-  cursor: pointer;
   max-width: 170px; // force line break
   z-index: $z-on-top;
 
   @media screen and (min-width: $bp-tablet) {
-    max-width: 230px;
-  }
-}
-
-.title {
-  font-family: $standard-font-bold;
-  line-height: 1;
-  font-size: 50px;
-
-  @media screen and (min-width: $bp-tablet) {
     font-size: 66px;
-  }
-
-  &::before {
-    content: 'x';
-    position: absolute;
-    top: -$space-l;
-    right: 0;
+    max-width: 230px;
   }
 }
 
@@ -144,6 +142,40 @@ body {
   }
 }
 
+.close-btn {
+  line-height: 1.1;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $grey;
+  }
+
+  &--header {
+    top: -$space-l;
+  }
+
+  &--review {
+    right: $space-s;
+  }
+
+  &--pop-up {
+    line-height: 0.5; // adjust line-height for proper placement
+    font-size: 1.25rem;
+    top: $space-s;
+    right: $space-s;
+  }
+
+  &--purchase {
+    top: $space-xs;
+    right: $space-m;
+    font-family: $special-font;
+  }
+}
+
 .help {
   font-size: .75rem;
   margin-top: $space-s;
@@ -165,14 +197,6 @@ body {
   border-top-right-radius: 10px;
   position: relative;
 
-  &::after {
-    content: 'x';
-    position: absolute;
-    top: $space-xs;
-    right: $space-m;
-    font-family: $special-font;
-  }
-
   // For stacked purchases:
   // Pseudo element that fills blank space inbetween purchases
   &:not(:first-child) {
@@ -191,11 +215,6 @@ body {
   }
 }
 
-.review-container,
-.purchase-ticker {
-  cursor: pointer;
-}
-
 .review {
   border-bottom: 1px solid $black;
   font-family: $special-font;
@@ -203,13 +222,6 @@ body {
   text-align: center;
   padding: 0 $space-l;
   position: relative;
-
-  &::after {
-    content: 'x';
-    position: absolute;
-    top: 0;
-    right: $space-s;
-  }
 
   &:first-child {
     border-top: 1px solid $black;
@@ -224,14 +236,6 @@ body {
   position: absolute;
   top: 20%;
   z-index: $z-on-top-all;
-
-  &::before {
-    font-size: 1.25rem;
-    content: 'x';
-    position: absolute;
-    top: $space-s;
-    right: $space-s;
-  }
 
   @media screen and (min-width: $bp-tablet) {
     max-width: 420px;
