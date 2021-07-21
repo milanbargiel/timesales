@@ -245,6 +245,7 @@ body {
     // Default values for position that are randomly generated
     top: $space-l;
     right: 0;
+    z-index: $z-on-top;
   }
 }
 
