@@ -1,25 +1,10 @@
 <template>
   <div class="tsl">
-    <div
-      v-if="showReviews"
-      class="review-container"
-      @click="showReviews = false"
-    >
-      <div class="review">
-        “That was a great service, I would really recommend it” – Peter
-      </div>
-      <div class="review">“It was horrible” – Anna</div>
-    </div>
-    <header v-if="showHeader" class="header" @click="showHeader = false">
-      <h1 class="title">Time Sales Online</h1>
-    </header>
-    <div v-if="showPopUp" class="pop-up" @click="showPopUp = false">
-      <img
-        class="pop-up-image"
-        src="~/assets/pop-up-placeholder.png"
-        alt="Placeholder image"
-      />
-    </div>
+    <!-- Components are auto imported by nuxt-->
+    <Reviews v-if="showReviews" @click.native="showReviews = false" />
+    <Header v-if="showHeader" @click.native="showHeader = false" />
+    <PopUp v-if="showPopUp" @click.native="showPopUp = false" />
+    <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">
         <bot-ui />
@@ -34,35 +19,11 @@
         </p>
       </div>
     </div>
-    <div
+    <PurchaseTicker
       v-if="showPurchaseTicker"
-      class="purchase-ticker"
-      @click="showPurchaseTicker = false"
-    >
-      <div class="purchase">
-        Dan has just bought time for <span class="euro">20 €</span>
-      </div>
-      <div class="purchase">
-        Sarah has just bought time for <span class="euro">10 €</span>
-      </div>
-    </div>
-    <footer class="footer">
-      <div class="navigation">
-        <a href="#">Imprint</a>
-        <a href="#">Data privacy</a>
-        <a href="#">Terms and conditions</a>
-      </div>
-      <div class="creators">
-        <a class="underlined-link" href="#">Milan Bargiel</a>
-        <a class="underlined-link" href="#">Ludwig Lederer</a>
-        <a class="underlined-link" href="#">Katherina Gorodynska</a>
-        <img
-          class="patron-logo"
-          src="~/assets/lab-k-nrw.svg"
-          alt="Landesbüro für Bildende Kunst (LaB K)"
-        />
-      </div>
-    </footer>
+      @click.native="showPurchaseTicker = false"
+    />
+    <Footer />
   </div>
 </template>
 
