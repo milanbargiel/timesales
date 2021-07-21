@@ -1,7 +1,7 @@
 <template>
   <div class="review">
     <button class="close-btn close-btn--review">x</button>
-    {{ reviewText }}
+    “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
   </div>
 </template>
 
@@ -9,6 +9,10 @@
 export default {
   props: {
     reviewText: {
+      type: String,
+      required: true,
+    },
+    reviewAuthor: {
       type: String,
       required: true,
     },
