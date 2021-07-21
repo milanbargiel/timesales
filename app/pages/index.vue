@@ -3,7 +3,7 @@
     <!-- Components are auto imported by nuxt-->
     <Reviews
       v-if="showReviews"
-      data="this.reviews"
+      :data="reviews"
       @click.native="showReviews = false"
     />
     <Header v-if="showHeader" @click.native="showHeader = false" />

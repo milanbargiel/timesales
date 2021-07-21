@@ -2,10 +2,10 @@
   <div class="review-container">
     <!-- Iterate over data array and pass fields to review component -->
     <Review
-      v-for="(text, author, index) in data"
+      v-for="(review, index) in data"
       :key="`review-${index}`"
-      :review-text="text"
-      :review-author="author"
+      :review-text="review.text"
+      :review-author="review.author"
     />
   </div>
 </template>
