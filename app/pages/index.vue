@@ -1,7 +1,11 @@
 <template>
   <div class="tsl">
     <!-- Components are auto imported by nuxt-->
-    <Reviews v-if="showReviews" @click.native="showReviews = false" />
+    <Reviews
+      v-if="showReviews"
+      data="this.reviews"
+      @click.native="showReviews = false"
+    />
     <Header v-if="showHeader" @click.native="showHeader = false" />
     <PopUp v-if="showPopUp" @click.native="showPopUp = false" />
     <!-- Bot Conversation-->
@@ -44,6 +48,16 @@ export default {
       showReviews: true,
       showPopUp: true,
       showPurchaseTicker: true,
+      reviews: [
+        {
+          text: 'That was a great service, I would really recommend it',
+          author: 'Peter',
+        },
+        {
+          text: 'It was horrible',
+          author: 'Anna',
+        },
+      ],
     }
   },
   computed: {
