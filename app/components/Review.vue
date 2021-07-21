@@ -18,12 +18,9 @@ export default {
     },
   },
   data() {
-    return { windowWidth: null }
+    return { isDesktop: false }
   },
   computed: {
-    isDesktop() {
-      return this.windowWidth >= 680 // breakpoint as defined in stylesheets
-    },
     positionStyles() {
       const position = {
         top: this.getRandomInt(0, 70) + '%',
@@ -34,12 +31,12 @@ export default {
     },
   },
   mounted() {
-    // Set windowWidth when component is mounted
-    this.windowWidth = window.innerWidth
+    // Set isDesktop when component is mounted
+    this.isDesktop = window.innerWidth >= 680 // breakpoint as defined in stylesheets
 
     // Listen for changes
     window.addEventListener('resize', () => {
-      this.windowWidth = window.innerWidth
+      this.isDesktop = window.innerWidth >= 680
     })
   },
   methods: {
