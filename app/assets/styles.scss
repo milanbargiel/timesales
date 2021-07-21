@@ -12,8 +12,11 @@ $space-s: .5rem;
 $space-m: 1rem;
 $space-l: 2rem;
 
-// breakpoints
+// Breakpoints
 $bp-tablet: 680px;
+
+// General
+$z-on-top: 999;
 
 // Fonts
 @font-face {
@@ -28,7 +31,6 @@ $special-font: 'Kalice', sans-serif;
 
 @import 'loading-dots';
 
-// General
 a {
   color: $black;
   text-decoration: none;
@@ -51,6 +53,7 @@ body {
   left: $space-m;
   cursor: pointer;
   max-width: 170px; // force line break
+  z-index: $z-on-top;
 
   @media screen and (min-width: $bp-tablet) {
     max-width: 230px;
