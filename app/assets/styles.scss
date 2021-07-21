@@ -16,7 +16,8 @@ $space-l: 2rem;
 $bp-tablet: 680px;
 
 // General
-$z-on-top: 999;
+$z-on-top: 100;
+$z-on-top-all: 999;
 
 // Fonts
 @font-face {
@@ -217,6 +218,25 @@ body {
 
 .euro {
   font-family: $special-font;
+}
+
+.pop-up {
+  position: absolute;
+  top: 20%;
+  z-index: $z-on-top-all;
+
+  &::before {
+    font-size: 1.25rem;
+    content: 'x';
+    position: absolute;
+    top: $space-s;
+    right: $space-s;
+  }
+}
+
+.pop-up-image {
+  display: inline-block;
+  width: 100%;
 }
 
 // Footer

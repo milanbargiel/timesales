@@ -13,6 +13,13 @@
     <header v-if="showHeader" class="header" @click="showHeader = false">
       <h1 class="title">Time Sales Online</h1>
     </header>
+    <div class="pop-up">
+      <img
+        class="pop-up-image"
+        src="~/assets/pop-up-placeholder.png"
+        alt="Placeholder image"
+      />
+    </div>
     <div class="bot-container">
       <div id="botui">
         <bot-ui />
