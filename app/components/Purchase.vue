@@ -1,7 +1,8 @@
 <template>
   <div class="purchase">
     <button class="close-btn close-btn--purchase">x</button>
-    {{ parsePurchaseText }}
+    <!-- Paste parsed HTML content -->
+    <span v-html="parsePurchaseText"></span>
   </div>
 </template>
 
@@ -15,7 +16,12 @@ export default {
   },
   computed: {
     parsePurchaseText() {
-      return this.purchaseText
+      // Replace '*' with span html tag
+      const html = this.purchaseText.replace(
+        /\*([^*]+?)\*/g,
+        '<span class="special-font">$1</span>'
+      )
+      return html
     },
   },
 }
