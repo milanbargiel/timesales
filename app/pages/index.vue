@@ -46,9 +46,9 @@ export default {
       debugMode: false, // In debug mode all delay is set to 0
       shortCheckout: false,
       showHeader: false,
-      showReviews: true,
-      showPopUp: false,
-      showPurchases: true,
+      showReviews: false,
+      showPopUp: true,
+      showPurchases: false,
       reviews: [],
       purchases: [],
     }
