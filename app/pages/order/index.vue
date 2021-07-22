@@ -4,11 +4,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 -->
 
 <template>
-  <div v-if="isLoading" class="dot-container">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+  <Loading v-if="isLoading" />
   <div v-else>
     <div v-if="showStream">
       <SandSimulation
