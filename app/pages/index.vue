@@ -7,7 +7,7 @@
       @click.native="showReviews = false"
     />
     <Header v-if="showHeader" @click.native="showHeader = false" />
-    <PopUp v-if="showPopUp" @click.native="showPopUp = false" />
+    <PopUp v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
     <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">
@@ -51,6 +51,7 @@ export default {
       showPurchases: false,
       reviews: [],
       purchases: [],
+      popUps: [],
     }
   },
   computed: {
@@ -62,6 +63,7 @@ export default {
     // Load data from backend
     this.fetchReviews()
     this.fetchPurchases()
+    this.fetchPopUps()
   },
   async mounted() {
     // load bot modules
@@ -135,6 +137,21 @@ export default {
           res.forEach((item) => {
             this.purchases.push({
               text: item.text,
+            })
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
+    fetchPopUps() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/pop-ups`)
+        .then((res) => {
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.popUps.push({
+              imageUrl: item.image.url,
             })
           })
         })
