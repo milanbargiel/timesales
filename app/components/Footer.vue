@@ -4,7 +4,8 @@
       <a href="#">Imprint</a>
       <a href="#">Data privacy</a>
       <a href="#">Terms and conditions</a>
-      <div class="debug-links">
+      <span class="debug-link" @click="shortCheckout">Short Checkout</span>
+      <div class="debug-toggle">
         <label class="switch">
           <input v-model="debugMode" type="checkbox" @click="toggleDebugMode" />
           <div></div>
@@ -39,6 +40,9 @@ export default {
       // Enables this.toggleDebugMode()
       toggleDebugMode: 'toggleDebugMode',
     }),
+    shortCheckout() {
+      this.$router.go({ path: '/', query: { shortCheckout: true } })
+    },
   },
 }
 </script>

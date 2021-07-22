@@ -304,7 +304,11 @@ body {
   max-width: 200px;
 }
 
-.debug-links {
+.debug-link {
+  cursor: pointer;
+}
+
+.debug-toggle {
   font-size: .75rem;
   display: flex;
   margin-top: $space-l;
