@@ -43,7 +43,6 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
-      debugMode: false, // In debug mode all delay is set to 0
       showHeader: true,
       showReviews: true,
       showPopUp: true,
@@ -56,6 +55,9 @@ export default {
   computed: {
     response() {
       return this.$store.state.response.data
+    },
+    debugMode() {
+      return this.$store.state.debugMode // In debug mode all delay is set to 0
     },
   },
   created() {

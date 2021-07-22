@@ -5,11 +5,11 @@
       <a href="#">Data privacy</a>
       <a href="#">Terms and conditions</a>
       <div class="debug-links">
-        Fast conversation
         <label class="switch">
-          <input type="checkbox" />
+          <input v-model="debugMode" type="checkbox" @click="toggleDebugMode" />
           <div></div>
         </label>
+        Fast conversation
       </div>
     </div>
     <div class="creators">
@@ -24,3 +24,21 @@
     </div>
   </footer>
 </template>
+
+<script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+
+export default {
+  computed: {
+    debugMode() {
+      return this.$store.state.debugMode
+    },
+  },
+  methods: {
+    ...mapMutations({
+      // Enables this.toggleDebugMode()
+      toggleDebugMode: 'toggleDebugMode',
+    }),
+  },
+}
+</script>
