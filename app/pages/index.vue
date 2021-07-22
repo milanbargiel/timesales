@@ -91,22 +91,7 @@ export default {
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
     }),
-    populateWithDummyData() {
-      this.saveResponse({
-        name: 'Luciano Karuso',
-        timePurpose: 'Read a book with my mom',
-        timeAmount: 120,
-        timeUnit: 'seconds',
-        timePrice: 100, // in cents
-        orderSummary: '200 seconds to read a book with my mom',
-      })
-    },
     stripeCheckout() {
-      // Populate with dummy data if necessary
-      if (!this.response.name && !this.response.timePurpose) {
-        this.populateWithDummyData()
-      }
-
       const data = {
         ...this.response,
         successUrl: `${this.$config.baseUrl}/order`,
@@ -123,19 +108,22 @@ export default {
         })
     },
     fetchReviews() {
-      this.$axios.$get(`${this.$config.apiUrl}/feedbacks`).then((res) => {
-        this.isLoading = false
+      this.$axios
+        .$get(`${this.$config.apiUrl}/feedbacks`)
+        .then((res) => {
+          this.isLoading = false
 
-        // Push backend review data to local storage
-        res.forEach((item) => {
-          this.reviews.push({
-            text: item.opinion,
-            author: item.fakeAuthor,
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.reviews.push({
+              text: item.opinion,
+              author: item.fakeAuthor,
+            })
           })
         })
-
-        console.log(this.reviews)
-      })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     },
   },
 }
