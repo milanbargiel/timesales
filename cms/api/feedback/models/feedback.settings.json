@@ -12,6 +12,7 @@
   },
   "attributes": {
     "order": {
+      "private": true,
       "model": "order",
       "via": "feedbacks"
     },
