@@ -1,14 +1,10 @@
 const state = () => ({
-  debugMode: false,
   reviews: [],
   purchases: [],
   popUps: [],
 })
 
 const mutations = {
-  toggleDebugMode(state) {
-    state.debugMode = !state.debugMode
-  },
   setReviews(state, reviews) {
     state.reviews = reviews
   },

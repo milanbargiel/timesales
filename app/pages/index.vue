@@ -54,16 +54,16 @@ export default {
       return this.$store.state.response.data
     },
     debugMode() {
-      return this.$store.state.debugMode // In debug mode all delay is set to 0
+      return this.$store.state.ui.debugMode // In debug mode all delay is set to 0
     },
     reviews() {
-      return this.$store.state.reviews
+      return this.$store.state.popUps.reviews
     },
     purchases() {
-      return this.$store.state.purchases
+      return this.$store.state.popUps.purchases
     },
     popUps() {
-      return this.$store.state.popUps
+      return this.$store.state.popUps.popUps
     },
   },
   created() {
@@ -101,7 +101,7 @@ export default {
       // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
-      getAllPopUpData: 'getAllPopUpData',
+      getAllPopUpData: 'popUps/getAllPopUpData',
     }),
     stripeCheckout() {
       const data = {
