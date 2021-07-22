@@ -4,6 +4,13 @@
       <a href="#">Imprint</a>
       <a href="#">Data privacy</a>
       <a href="#">Terms and conditions</a>
+      <div class="debug-links">
+        Fast conversation
+        <label class="switch">
+          <input type="checkbox" />
+          <div></div>
+        </label>
+      </div>
     </div>
     <div class="creators">
       <a class="underlined-link" href="#">Milan Bargiel</a>
