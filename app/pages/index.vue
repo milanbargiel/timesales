@@ -44,26 +44,20 @@ export default {
       showCheckoutButton: false,
       debugMode: false, // In debug mode all delay is set to 0
       shortCheckout: false,
-      showHeader: true,
+      showHeader: false,
       showReviews: true,
-      showPopUp: true,
-      showPurchaseTicker: true,
-      reviews: [
-        {
-          text: 'That was a great service, I would really recommend it',
-          author: 'Peter',
-        },
-        {
-          text: 'It was horrible',
-          author: 'Anna',
-        },
-      ],
+      showPopUp: false,
+      showPurchaseTicker: false,
+      reviews: [],
     }
   },
   computed: {
     response() {
       return this.$store.state.response.data
     },
+  },
+  created() {
+    this.fetchReviews()
   },
   async mounted() {
     // load bot modules
@@ -127,6 +121,21 @@ export default {
         .catch((error) => {
           console.error('Error:', error)
         })
+    },
+    fetchReviews() {
+      this.$axios.$get(`${this.$config.apiUrl}/feedbacks`).then((res) => {
+        this.isLoading = false
+
+        // Push backend review data to local storage
+        res.forEach((item) => {
+          this.reviews.push({
+            text: item.opinion,
+            author: item.fakeAuthor,
+          })
+        })
+
+        console.log(this.reviews)
+      })
     },
   },
 }
