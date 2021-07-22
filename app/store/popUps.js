@@ -17,7 +17,7 @@ const mutations = {
 }
 
 const actions = {
-  getAllPopUpData({ commit, dispatch }) {
+  fetchAllPopUpData({ commit, dispatch }) {
     dispatch('fetchReviews')
     dispatch('fetchPurchases')
     dispatch('fetchPopUps')
@@ -39,6 +39,10 @@ const actions = {
     let popUps = await this.$axios.$get(`${this.$config.apiUrl}/pop-ups`)
     popUps = popUps.map((item) => ({ imageUrl: item.image.url }))
     commit('setPopUps', popUps)
+  },
+  async getConfig({ commit }) {
+    const config = await this.$axios.$get(`${this.$config.apiUrl}/config`)
+    commit('setConfig', config)
   },
 }
 

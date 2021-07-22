@@ -69,6 +69,8 @@ export default {
   created() {
     // Trigger vuex action that loads all data from backend
     this.getAllPopUpData()
+    // Get configuration to control the frequencies of pop ups
+    this.getConfig()
   },
   async mounted() {
     // load bot modules
@@ -101,7 +103,8 @@ export default {
       // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
-      getAllPopUpData: 'popUps/getAllPopUpData',
+      getAllPopUpData: 'popUps/fetchAllPopUpData',
+      getConfig: 'ui/fetchConfig',
     }),
     stripeCheckout() {
       const data = {
