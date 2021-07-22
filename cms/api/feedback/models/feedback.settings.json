@@ -18,6 +18,10 @@
     "opinion": {
       "type": "text",
       "required": true
+    },
+    "fakeAuthor": {
+      "type": "string",
+      "required": false
     }
   }
 }
