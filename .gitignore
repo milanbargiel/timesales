@@ -89,8 +89,5 @@ sw.*
 # Vim swap files
 *.swp
 
-# Fonts
-Kalice-Regular.otf
-
 # Signature
 signature.pug
