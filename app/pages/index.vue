@@ -47,9 +47,6 @@ export default {
       showReviews: true,
       showPopUp: true,
       showPurchases: true,
-      reviews: [],
-      purchases: [],
-      popUps: [],
     }
   },
   computed: {
@@ -59,12 +56,19 @@ export default {
     debugMode() {
       return this.$store.state.debugMode // In debug mode all delay is set to 0
     },
+    reviews() {
+      return this.$store.state.reviews
+    },
+    purchases() {
+      return this.$store.state.purchases
+    },
+    popUps() {
+      return this.$store.state.popUps
+    },
   },
   created() {
-    // Load data from backend
-    this.fetchReviews()
-    this.fetchPurchases()
-    this.fetchPopUps()
+    // Trigger vuex action that loads all data from backend
+    this.getAllPopUpData()
   },
   async mounted() {
     // load bot modules
@@ -94,9 +98,10 @@ export default {
       resetState: 'response/resetState',
     }),
     ...mapActions({
-      // Enables the action this.saveResponse({ key: value })
+      // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
+      getAllPopUpData: 'getAllPopUpData',
     }),
     stripeCheckout() {
       const data = {
@@ -109,52 +114,6 @@ export default {
         .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
         .then((session) => {
           this.stripe.redirectToCheckout({ sessionId: session.id })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchReviews() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/feedbacks`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.reviews.push({
-              text: item.opinion,
-              author: item.fakeAuthor,
-            })
-          })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchPurchases() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/purchases`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.purchases.push({
-              text: item.text,
-            })
-          })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchPopUps() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/pop-ups`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.popUps.push({
-              imageUrl: item.image.url,
-            })
-          })
         })
         .catch((error) => {
           console.error('Error:', error)
