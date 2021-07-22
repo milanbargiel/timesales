@@ -23,9 +23,10 @@
         </p>
       </div>
     </div>
-    <PurchaseTicker
-      v-if="showPurchaseTicker"
-      @click.native="showPurchaseTicker = false"
+    <Purchases
+      v-if="showPurchases"
+      :data="purchases"
+      @click.native="showPurchases = false"
     />
     <Footer />
   </div>
@@ -47,8 +48,9 @@ export default {
       showHeader: false,
       showReviews: true,
       showPopUp: false,
-      showPurchaseTicker: false,
+      showPurchases: true,
       reviews: [],
+      purchases: [],
     }
   },
   computed: {
@@ -57,8 +59,9 @@ export default {
     },
   },
   created() {
-    // Load reviews from backend
+    // Load data from backend
     this.fetchReviews()
+    this.fetchPurchases()
   },
   async mounted() {
     // load bot modules
@@ -112,13 +115,26 @@ export default {
       this.$axios
         .$get(`${this.$config.apiUrl}/feedbacks`)
         .then((res) => {
-          this.isLoading = false
-
           // Push backend review data to local storage
           res.forEach((item) => {
             this.reviews.push({
               text: item.opinion,
               author: item.fakeAuthor,
+            })
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
+    fetchPurchases() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/purchases`)
+        .then((res) => {
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.purchases.push({
+              text: item.text,
             })
           })
         })
