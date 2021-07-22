@@ -1,147 +1,356 @@
-// Constants
-$z-level-above-all: 999;
-
 // Colors
+$white: #f7f8f8;
+$very-light-grey: #dbdbdb;
+$light-grey: #b5b5b5;
 $grey: #495057;
 $black: #000;
+$coral: #e399a0;
 
-/*
-  Animation of loading dots
-*/
-.dot-container {
-  position: absolute;
-  z-index: $z-level-above-all;
-  width: 100%;
-  text-align: center;
-  padding-top: 47vh;
-  height: 50vh;
+// Spaces
+$space-xs: .25rem;
+$space-s: .5rem;
+$space-m: 1rem;
+$space-l: 2rem;
+
+// Breakpoints
+$bp-tablet: 680px;
+
+// General
+$z-on-top: 100;
+$z-on-top-all: 999;
+
+// Fonts
+@font-face {
+  font-family: 'Kalice';
+  src: url(~assets/Kalice-Regular.otf) format("opentype");
+  font-weight: 400;
 }
 
-.dot {
-  width: .5rem;
-  height: .5rem;
-  border-radius: .5rem;
+$standard-font: 'Arial', sans-serif;
+$standard-font-bold: 'Arial Black', sans-serif;
+$special-font: 'Kalice', sans-serif;
+
+@import 'loading-dots';
+
+a {
+  color: $black;
+  text-decoration: none;
+}
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+h1 {
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+}
+
+body {
+  font-family: $standard-font;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.header {
+  font-family: $standard-font-bold;
+  font-size: 50px;
+  line-height: 1;
   display: inline-block;
-  background-color: $black;
-
-  &:nth-last-child(1) {
-    margin-left: .3rem;
-    animation: loading .6s .3s linear infinite;
-  }
-  &:nth-last-child(2) {
-    margin-left: .3rem;
-    animation: loading .6s .2s linear infinite;
-  }
-  &:nth-last-child(3) {
-    animation: loading .6s .1s linear infinite;
-  }
-}
-
-@keyframes loading {
-  0% {
-    transform: translate(0, 0);
-    background-color: lighten($black, 10%);
-  }
-
-  25% {
-    transform: translate(0, -3px);
-  }
-  50% {
-    transform: translate(0, 0);
-    background-color: lighten($black, 10%);
-  }
-  75% {
-    transform: translate(0, 3);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-.time-container {
-  position: relative;
-}
-
-.controls {
   position: absolute;
+  top: $space-l;
+  left: $space-m;
+  max-width: 170px; // force line break
+  z-index: $z-on-top;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 72px;
+    max-width: 270px;
+  }
+}
+
+// Helper classes
+.hidden {
+  display: none;
+}
+
+// Overall container
+.tsl {
+  min-height: 100vh;
   display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  padding-right: 10px;
-
-  &--top {
-    top: 10px;
-  }
-
-  &--bottom {
-    bottom: 10px;
-  }
-}
-
-.checkout-button-container {
-  margin-bottom: 200px;
-}
-
-.debug-button {
-  display: block;
-}
-
-.test-checkout-button {
-  display: block;
-}
-
-.seconds-left {
-  margin-right: 10px;
-}
-
-.text-button {
-  text-decoration: underline;
-
-  &:hover {
-    cursor: pointer;
-  }
+  flex-direction: column;
 }
 
 // Botui
 .bot-container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin: auto; // always center the chat
   align-items: center;
   text-align: center;
   padding-bottom: 50px;
   padding-top: 50px;
 }
 
-// Fix to show bot conversation on top of the sand simulation
-.botui-container {
+// Botui overwrites
+.tsl .botui-container {
+  font-size: inherit;
+  font-family: inherit;
+  // Fix to show bot conversation on top of the sand simulation
   background-color: transparent !important;
+
+  .botui-message-content,
+  .botui-actions-text-input {
+    color: $black;
+  }
+
+  .botui-message-content.human {
+    color: $white;
+  }
+
+  .botui-actions-text-submit {
+    padding: $space-s;
+    height: 2.5em;
+    width: 2.5em;
+  }
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+// Buttons
+.button {
+  align-items: center;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  border-radius: .375em;
+  border: 1px solid $very-light-grey;
+  background-color: #fff;
+  border-width: 1px;
+  cursor: pointer;
+  text-align: center;
+  padding: calc(.5em - 1px) 1em;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $light-grey;
+  }
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.close-btn {
+  line-height: 1.1;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $grey;
+  }
+
+  &--header {
+    top: -$space-l;
+  }
+
+  &--review {
+    right: $space-s;
+
+    @media screen and (min-width: $bp-tablet) {
+      line-height: 1.3;
+      top: -$space-l;
+      right: 0;
+    }
+  }
+
+  &--pop-up {
+    line-height: 0.5; // adjust line-height for proper placement
+    top: $space-s;
+    right: $space-s;
+  }
+
+  &--purchase {
+    top: $space-xs;
+    right: $space-m;
+    font-family: $special-font;
+  }
 }
 
-.links {
-  padding-top: 15px;
+.help {
+  font-size: .75rem;
+  margin-top: $space-s;
 }
 
-.hidden {
-  visibility: hidden;
+.underlined-link {
+  line-height: 1;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: $space-s;
 }
+
+.purchase {
+  background-color: $coral;
+  text-align: center;
+  border-top: 1px solid black;
+  padding: $space-xs $space-l;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+
+  // For stacked purchases:
+  // Pseudo element that fills blank space inbetween purchases
+  &:not(:first-child) {
+    &::before {
+      background-color: $coral;
+      content: '';
+      position: absolute;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      top: -1px;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
+  }
+
+  @media screen and (min-width: $bp-tablet) {
+    padding-bottom: $space-s;
+  }
+}
+
+.review {
+  border-bottom: 1px solid $black;
+  font-family: $special-font;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 $space-l;
+  position: relative;
+
+  &:first-child {
+    border-top: 1px solid $black;
+  }
+
+  // On desktop show reviews as pop-ups
+  @media screen and (min-width: $bp-tablet) {
+    padding-left: 0;
+    padding-right: $space-m;
+    border: none !important;
+    font-size: 30px;
+    position: absolute;
+    max-width: 340px;
+    text-align: left;
+    // Default values for position that are randomly generated
+    top: $space-l;
+    right: 0;
+    z-index: $z-on-top;
+  }
+}
+
+// On desktop put author in seperate line 
+@media screen and (min-width: $bp-tablet) {
+  .review-author {
+    display: block;
+  }
+}
+
+.special-font {
+  font-family: $special-font;
+}
+
+.pop-up {
+  font-size: 1.25rem; // For close button
+  position: absolute;
+  top: 20%;
+  z-index: $z-on-top-all;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 1.5rem;
+    max-width: 480px;
+    // Horizontally center pop-up
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+.pop-up-image {
+  display: inline-block;
+  width: 100%;
+}
+
+// Footer
+.footer {
+  border-top: 1px solid $black;
+  width: 100%;
+  padding: $space-s $space-m;
+  display: flex;
+}
+
+.navigation,
+.creators {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.patron-logo {
+  margin-top: $space-s;
+  max-width: 200px;
+}
+
+.debug-link {
+  cursor: pointer;
+}
+
+.debug-toggle {
+  font-size: .75rem;
+  display: flex;
+  margin-top: $space-l;
+  align-items: center;
+}
+
+/** Switch */
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #BDB9A6;
+  border-radius: 1em;
+  margin-right: $space-s;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: #FFF;
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 50ms;
+     -moz-transition: all 50ms;
+          transition: all 50ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+          background: black;
+}
+

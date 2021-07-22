@@ -13,7 +13,7 @@ vue.mixin({
       // Set timeout
       let timeout = new Promise((resolve, reject) => {
         let id = setTimeout(() => {
-          clearTimeout(id);
+          clearTimeout(id)
           resolve() // Return undefined if answer was not given in time
         }, ms)
       })
@@ -30,7 +30,7 @@ vue.mixin({
     },
     timeToWrite(sentence) {
       // No delays in debug mode
-      if(this.debugMode) {
+      if (this.debugMode) {
         return 100
       }
 
@@ -49,7 +49,7 @@ vue.mixin({
         content: escape(content), // Replace special characters e.g. < => "&lt;" 
       })
     },
-     botMessageHtml(content, customDelay) {
+    botMessageHtml(content, customDelay) {
       // Allows html as for example <i>time</i>
       return this.botui.message.add({
         delay: customDelay || this.timeToWrite(content),
@@ -72,7 +72,7 @@ vue.mixin({
           sub_type: 'number',
           placeholder,
         },
-      }) 
+      })
       return parseInt(res.value) // only return value property as a number
     },
     async botEmailInput(placeholder) {
@@ -81,7 +81,7 @@ vue.mixin({
           sub_type: 'email',
           placeholder,
         },
-      }) 
+      })
       return res.value // only return value property
     },
     async botYesOrNo() {
@@ -102,7 +102,7 @@ vue.mixin({
     hidePushyQuestion() {
       // Get loading container of bot
       const domElement = this.$el.querySelector('.botui-message-content.loading')
-      
+
       // Hide parent node
       if (domElement) {
         domElement.parentNode.style.display = 'none'

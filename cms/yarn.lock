@@ -2698,6 +2698,11 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chance-de@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/chance-de/-/chance-de-1.0.2.tgz#ad8440fa915750e778a914f482df1ae51b731014"
+  integrity sha1-rYRA+pFXUOd4qRT0gt8a5RtzEBQ=
+
 character-parser@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/character-parser/-/character-parser-2.2.0.tgz#c7ce28f36d4bcd9744e5ffc2c5fcde1c73261fc0"

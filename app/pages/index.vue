@@ -1,25 +1,34 @@
 <template>
-  <div class="time-container">
+  <div class="tsl">
+    <!-- Components are auto imported by nuxt-->
+    <Reviews
+      v-if="showReviews"
+      :data="reviews"
+      @click.native="showReviews = false"
+    />
+    <Header v-if="showHeader" @click.native="showHeader = false" />
+    <PopUp v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
+    <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">
         <bot-ui />
       </div>
       <div :class="{ hidden: !showCheckoutButton }">
-        <b-button @click="stripeCheckout()">Proceed to checkout</b-button>
+        <button class="button" @click="stripeCheckout()">
+          Proceed to checkout
+        </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
           privacy policy.
         </p>
       </div>
     </div>
-    <div class="controls controls--top">
-      <b-field class="debug-button">
-        <b-switch v-model="debugMode">Fast</b-switch>
-      </b-field>
-    </div>
-    <div class="controls controls--bottom">
-      <span class="text-button" @click="stripeCheckout()">Test Checkout</span>
-    </div>
+    <Purchases
+      v-if="showPurchases"
+      :data="purchases"
+      @click.native="showPurchases = false"
+    />
+    <Footer />
   </div>
 </template>
 
@@ -34,14 +43,28 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
-      debugMode: false, // In debug mode all delay is set to 0
-      shortCheckout: false,
+      showHeader: true,
+      showReviews: true,
+      showPopUp: true,
+      showPurchases: true,
+      reviews: [],
+      purchases: [],
+      popUps: [],
     }
   },
   computed: {
     response() {
       return this.$store.state.response.data
     },
+    debugMode() {
+      return this.$store.state.debugMode // In debug mode all delay is set to 0
+    },
+  },
+  created() {
+    // Load data from backend
+    this.fetchReviews()
+    this.fetchPurchases()
+    this.fetchPopUps()
   },
   async mounted() {
     // load bot modules
@@ -75,22 +98,7 @@ export default {
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
     }),
-    populateWithDummyData() {
-      this.saveResponse({
-        name: 'Luciano Karuso',
-        timePurpose: 'Read a book with my mom',
-        timeAmount: 120,
-        timeUnit: 'seconds',
-        timePrice: 100, // in cents
-        orderSummary: '200 seconds to read a book with my mom',
-      })
-    },
     stripeCheckout() {
-      // Populate with dummy data if necessary
-      if (!this.response.name && !this.response.timePurpose) {
-        this.populateWithDummyData()
-      }
-
       const data = {
         ...this.response,
         successUrl: `${this.$config.baseUrl}/order`,
@@ -101,6 +109,52 @@ export default {
         .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
         .then((session) => {
           this.stripe.redirectToCheckout({ sessionId: session.id })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
+    fetchReviews() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/feedbacks`)
+        .then((res) => {
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.reviews.push({
+              text: item.opinion,
+              author: item.fakeAuthor,
+            })
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
+    fetchPurchases() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/purchases`)
+        .then((res) => {
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.purchases.push({
+              text: item.text,
+            })
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
+    fetchPopUps() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/pop-ups`)
+        .then((res) => {
+          // Push backend review data to local storage
+          res.forEach((item) => {
+            this.popUps.push({
+              imageUrl: item.image.url,
+            })
+          })
         })
         .catch((error) => {
           console.error('Error:', error)

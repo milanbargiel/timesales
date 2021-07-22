@@ -8,16 +8,21 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "order": {
+      "private": true,
       "model": "order",
       "via": "feedbacks"
     },
     "opinion": {
       "type": "text",
       "required": true
+    },
+    "fakeAuthor": {
+      "type": "string",
+      "required": false
     }
   }
 }
