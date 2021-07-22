@@ -57,6 +57,7 @@ export default {
     },
   },
   created() {
+    // Load reviews from backend
     this.fetchReviews()
   },
   async mounted() {
