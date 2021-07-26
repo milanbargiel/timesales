@@ -202,6 +202,13 @@ body {
   margin-bottom: $space-s;
 }
 
+.purchase-ticker {
+  // Position purchase notifications at the bottom
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .purchase {
   background-color: $coral;
   text-align: center;
@@ -230,6 +237,17 @@ body {
 
   @media screen and (min-width: $bp-tablet) {
     padding-bottom: $space-s;
+  }
+}
+
+// Make the review container position absolute so it does not interfere with the positioning of the chatbot
+.review-container {
+  position: absolute;
+  width: 100%;
+
+  @media screen and (min-width: $bp-tablet) {
+    position: static;
+    width: auto;
   }
 }
 
