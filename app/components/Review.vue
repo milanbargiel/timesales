@@ -1,8 +1,15 @@
 <template>
-  <div class="review" :style="positionStyles">
-    <button class="close-btn close-btn--review">x</button>
-    “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
-  </div>
+  <transition name="fade">
+    <div v-if="showReview" class="review" :style="positionStyles">
+      <button class="close-btn close-btn--review" @click="showReview = false">
+        x
+      </button>
+      <div>
+        “{{ reviewText }}”
+        <span class="review-author">– {{ reviewAuthor }}</span>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -16,9 +23,16 @@ export default {
       type: String,
       required: true,
     },
+    reviewDelay: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
-    return { isDesktop: false }
+    return {
+      isDesktop: false,
+      showReview: false,
+    }
   },
   computed: {
     positionStyles() {
@@ -38,6 +52,12 @@ export default {
     window.addEventListener('resize', () => {
       this.isDesktop = window.innerWidth >= 680
     })
+
+    // Show review after delay
+    setTimeout(
+      () => (this.showReview = true),
+      this.reviewDelay * 1000 // seconds to milliseconds
+    )
   },
   methods: {
     getRandomInt(min, max) {

@@ -81,6 +81,15 @@ body {
   display: none;
 }
 
+// Transitions
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 // Overall container
 .tsl {
   min-height: 100vh;
@@ -193,6 +202,13 @@ body {
   margin-bottom: $space-s;
 }
 
+.purchase-ticker {
+  // Position purchase notifications at the bottom
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .purchase {
   background-color: $coral;
   text-align: center;
@@ -224,6 +240,17 @@ body {
   }
 }
 
+// Make the review container position absolute so it does not interfere with the positioning of the chatbot
+.review-container {
+  position: absolute;
+  width: 100%;
+
+  @media screen and (min-width: $bp-tablet) {
+    position: static;
+    width: auto;
+  }
+}
+
 .review {
   border-bottom: 1px solid $black;
   font-family: $special-font;
@@ -231,6 +258,8 @@ body {
   text-align: center;
   padding: 0 $space-l;
   position: relative;
+  z-index: $z-on-top-all;
+  background: white;
 
   &:first-child {
     border-top: 1px solid $black;
@@ -248,7 +277,7 @@ body {
     // Default values for position that are randomly generated
     top: $space-l;
     right: 0;
-    z-index: $z-on-top;
+    background: transparent;
   }
 }
 

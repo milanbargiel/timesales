@@ -1,9 +1,16 @@
 <template>
-  <div class="purchase">
-    <button class="close-btn close-btn--purchase">x</button>
-    <!-- Paste parsed HTML content -->
-    <span v-html="parsePurchaseText"></span>
-  </div>
+  <transition name="fade">
+    <div v-if="showPurchase" class="purchase">
+      <button
+        class="close-btn close-btn--purchase"
+        @click="showPurchase = false"
+      >
+        x
+      </button>
+      <!-- Paste parsed HTML content -->
+      <span v-html="parsePurchaseText"></span>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -13,6 +20,15 @@ export default {
       type: String,
       required: true,
     },
+    purchaseDelay: {
+      type: Number,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      showPurchase: false,
+    }
   },
   computed: {
     parsePurchaseText() {
@@ -23,6 +39,13 @@ export default {
       )
       return html
     },
+  },
+  mounted() {
+    // Show purchase after delay
+    setTimeout(
+      () => (this.showPurchase = true),
+      this.purchaseDelay * 1000 // seconds to milliseconds
+    )
   },
 }
 </script>

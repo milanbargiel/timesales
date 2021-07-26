@@ -32,13 +32,13 @@ import { mapMutations } from 'vuex' // helper for mapping vuex store mutations t
 export default {
   computed: {
     debugMode() {
-      return this.$store.state.debugMode
+      return this.$store.state.ui.debugMode
     },
   },
   methods: {
     ...mapMutations({
       // Enables this.toggleDebugMode()
-      toggleDebugMode: 'toggleDebugMode',
+      toggleDebugMode: 'ui/toggleDebugMode',
     }),
     shortCheckout() {
       this.$router.go({ path: '/', query: { shortCheckout: true } })
