@@ -1,12 +1,15 @@
 <template>
-  <div v-if="showReview" class="review" :style="positionStyles">
-    <button class="close-btn close-btn--review" @click="showReview = false">
-      x
-    </button>
-    <div>
-      “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
+  <transition name="fade">
+    <div v-if="showReview" class="review" :style="positionStyles">
+      <button class="close-btn close-btn--review" @click="showReview = false">
+        x
+      </button>
+      <div>
+        “{{ reviewText }}”
+        <span class="review-author">– {{ reviewAuthor }}</span>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

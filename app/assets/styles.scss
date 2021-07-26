@@ -81,6 +81,15 @@ body {
   display: none;
 }
 
+// Transitions
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 // Overall container
 .tsl {
   min-height: 100vh;
@@ -250,6 +259,7 @@ body {
     // Default values for position that are randomly generated
     top: $space-l;
     right: 0;
+    background: transparent;
   }
 }
 

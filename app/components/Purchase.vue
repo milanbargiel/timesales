@@ -1,11 +1,16 @@
 <template>
-  <div v-if="showPurchase" class="purchase">
-    <button class="close-btn close-btn--purchase" @click="showPurchase = false">
-      x
-    </button>
-    <!-- Paste parsed HTML content -->
-    <span v-html="parsePurchaseText"></span>
-  </div>
+  <transition name="fade">
+    <div v-if="showPurchase" class="purchase">
+      <button
+        class="close-btn close-btn--purchase"
+        @click="showPurchase = false"
+      >
+        x
+      </button>
+      <!-- Paste parsed HTML content -->
+      <span v-html="parsePurchaseText"></span>
+    </div>
+  </transition>
 </template>
 
 <script>
