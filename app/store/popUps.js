@@ -41,10 +41,10 @@ const actions = {
     let reviews = await this.$axios.$get(`${this.$config.apiUrl}/feedbacks`)
     reviews = reviews.map((item, index) => {
       // For first element set delay of reviewFirstAppearance
-      // For all following set reviewFrequency
+      // For all following set frequency
       let delay =
         index > 0
-          ? state.config.reviewFrequency
+          ? (index + 1) * state.config.reviewFrequency
           : state.config.reviewFirstAppearance
 
       // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
@@ -62,10 +62,10 @@ const actions = {
     let purchases = await this.$axios.$get(`${this.$config.apiUrl}/purchases`)
     purchases = purchases.map((item, index) => {
       // For first element set delay of purchaseFirstAppearance
-      // For all following set purchaseFrequency
+      // For all following set frequency
       let delay =
         index > 0
-          ? state.config.purchaseFrequency
+          ? (index + 1) * state.config.purchaseFrequency
           : state.config.purchaseFirstAppearance
 
       // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
@@ -82,10 +82,10 @@ const actions = {
     let popUps = await this.$axios.$get(`${this.$config.apiUrl}/pop-ups`)
     popUps = popUps.map((item, index) => {
       // For first element set delay of purchaseFirstAppearance
-      // For all following set purchaseFrequency
+      // For all following set frequency
       let delay =
         index > 0
-          ? state.config.popUpFrequency
+          ? (index + 1) * state.config.popUpFrequency
           : state.config.popUpFirstAppearance
 
       // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
