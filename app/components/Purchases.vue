@@ -4,6 +4,7 @@
       v-for="(purchase, index) in data"
       :key="`purchase-${index}`"
       :purchase-text="purchase.text"
+      :purchase-delay="purchase.delay"
     />
   </div>
 </template>

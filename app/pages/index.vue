@@ -7,7 +7,7 @@
       @click.native="showReviews = false"
     />
     <Header v-if="showHeader" @click.native="showHeader = false" />
-    <PopUp v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
+    <PopUps v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
     <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">

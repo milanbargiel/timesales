@@ -6,7 +6,7 @@
       :key="`review-${index}`"
       :review-text="review.text"
       :review-author="review.author"
-      :delay="review.delay"
+      :review-delay="review.delay"
     />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="review" :style="positionStyles">
+  <div v-if="showReview" class="review" :style="positionStyles">
     <button class="close-btn close-btn--review">x</button>
     “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
   </div>
@@ -16,13 +16,16 @@ export default {
       type: String,
       required: true,
     },
-    delay: {
+    reviewDelay: {
       type: Number,
       required: true,
     },
   },
   data() {
-    return { isDesktop: false }
+    return {
+      isDesktop: false,
+      showReview: false,
+    }
   },
   computed: {
     positionStyles() {
@@ -43,7 +46,11 @@ export default {
       this.isDesktop = window.innerWidth >= 680
     })
 
-    console.log(this.delay)
+    // Show review after delay
+    setTimeout(
+      () => (this.showReview = true),
+      this.reviewDelay * 1000 // seconds to milliseconds
+    )
   },
   methods: {
     getRandomInt(min, max) {
