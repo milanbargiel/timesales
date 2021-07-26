@@ -1,6 +1,6 @@
 <template>
   <div v-if="showPurchase" class="purchase">
-    <button @click="showPurchase = false" class="close-btn close-btn--purchase">
+    <button class="close-btn close-btn--purchase" @click="showPurchase = false">
       x
     </button>
     <!-- Paste parsed HTML content -->

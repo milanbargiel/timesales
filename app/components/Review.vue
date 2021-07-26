@@ -1,6 +1,6 @@
 <template>
   <div v-if="showReview" class="review" :style="positionStyles">
-    <button @click="showReview = false" class="close-btn close-btn--review">
+    <button class="close-btn close-btn--review" @click="showReview = false">
       x
     </button>
     “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
