@@ -41,15 +41,14 @@ const actions = {
     let reviews = await this.$axios.$get(`${this.$config.apiUrl}/feedbacks`)
     reviews = reviews.map((item, index) => {
       // For first element set delay of reviewFirstAppearance
-      let delay = state.config.reviewFirstAppearance
+      // For all following set reviewFrequency
+      let delay =
+        index > 0
+          ? state.config.reviewFrequency
+          : state.config.reviewFirstAppearance
 
-      // For all following set frequency
-      if (index > 0) {
-        delay = state.config.reviewFrequency
-      } else if (state.showAllPopUps || !delay) {
-        // Debug mode or not set
-        delay = 0
-      }
+      // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
+      delay = state.config.showAllPopUps ? 0 : delay
 
       return {
         text: item.opinion,
@@ -62,16 +61,15 @@ const actions = {
   async fetchPurchases({ commit, state }) {
     let purchases = await this.$axios.$get(`${this.$config.apiUrl}/purchases`)
     purchases = purchases.map((item, index) => {
-      // For first element set delay of reviewFirstAppearance
-      let delay = state.config.purchaseFirstAppearance
+      // For first element set delay of purchaseFirstAppearance
+      // For all following set purchaseFrequency
+      let delay =
+        index > 0
+          ? state.config.purchaseFrequency
+          : state.config.purchaseFirstAppearance
 
-      // For all following set frequency
-      if (index > 0) {
-        delay = state.config.purchaseFrequency
-      } else if (state.showAllPopUps || !delay) {
-        // Debug mode or not set
-        delay = 0
-      }
+      // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
+      delay = state.config.showAllPopUps ? 0 : delay
 
       return {
         text: item.text,
@@ -83,16 +81,15 @@ const actions = {
   async fetchPopUps({ commit, state }) {
     let popUps = await this.$axios.$get(`${this.$config.apiUrl}/pop-ups`)
     popUps = popUps.map((item, index) => {
-      // For first element set delay of reviewFirstAppearance
-      let delay = state.config.popUpFirstAppearance
+      // For first element set delay of purchaseFirstAppearance
+      // For all following set purchaseFrequency
+      let delay =
+        index > 0
+          ? state.config.popUpFrequency
+          : state.config.popUpFirstAppearance
 
-      // For all following set frequency
-      if (index > 0) {
-        delay = state.config.popUpFrequency
-      } else if (state.showAllPopUps || !delay) {
-        // Debug mode or not set
-        delay = 0
-      }
+      // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
+      delay = state.config.showAllPopUps ? 0 : delay
 
       return {
         imageUrl: item.image.url,
