@@ -16,6 +16,10 @@ export default {
       type: String,
       required: true,
     },
+    delay: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return { isDesktop: false }
@@ -38,6 +42,8 @@ export default {
     window.addEventListener('resize', () => {
       this.isDesktop = window.innerWidth >= 680
     })
+
+    console.log(this.delay)
   },
   methods: {
     getRandomInt(min, max) {
