@@ -1,6 +1,8 @@
 <template>
   <div v-if="showPopUp" class="pop-up">
-    <button class="close-btn close-btn--pop-up">x</button>
+    <button @click="showPopUp = false" class="close-btn close-btn--pop-up">
+      x
+    </button>
     <img class="pop-up-image" :src="popUpImageUrl" alt="Image" />
   </div>
 </template>

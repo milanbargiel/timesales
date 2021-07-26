@@ -1,13 +1,9 @@
 <template>
   <div class="tsl">
     <!-- Components are auto imported by nuxt-->
-    <Reviews
-      v-if="showReviews"
-      :data="reviews"
-      @click.native="showReviews = false"
-    />
+    <Reviews :data="reviews" />
     <Header v-if="showHeader" @click.native="showHeader = false" />
-    <PopUps v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
+    <PopUps :data="popUps" />
     <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">
@@ -23,11 +19,7 @@
         </p>
       </div>
     </div>
-    <Purchases
-      v-if="showPurchases"
-      :data="purchases"
-      @click.native="showPurchases = false"
-    />
+    <Purchases :data="purchases" />
     <Footer />
   </div>
 </template>
@@ -44,9 +36,6 @@ export default {
       botui: '',
       showCheckoutButton: false,
       showHeader: true,
-      showReviews: true,
-      showPopUp: true,
-      showPurchases: true,
     }
   },
   computed: {
