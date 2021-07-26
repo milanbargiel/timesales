@@ -40,10 +40,6 @@ const actions = {
     popUps = popUps.map((item) => ({ imageUrl: item.image.url }))
     commit('setPopUps', popUps)
   },
-  async getConfig({ commit }) {
-    const config = await this.$axios.$get(`${this.$config.apiUrl}/config`)
-    commit('setConfig', config)
-  },
 }
 
 export default {

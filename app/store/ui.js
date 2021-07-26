@@ -21,7 +21,7 @@ const mutations = {
 }
 
 const actions = {
-  async getConfig({ commit }) {
+  async fetchConfig({ commit }) {
     const config = await this.$axios.$get(`${this.$config.apiUrl}/config`)
     commit('setConfig', config)
   },

@@ -65,6 +65,9 @@ export default {
     popUps() {
       return this.$store.state.popUps.popUps
     },
+    config() {
+      return this.$store.state.ui.config
+    },
   },
   created() {
     // Trigger vuex action that loads all data from backend
