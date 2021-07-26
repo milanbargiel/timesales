@@ -3,7 +3,9 @@
     <button class="close-btn close-btn--review" @click="showReview = false">
       x
     </button>
-    “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
+    <div>
+      “{{ reviewText }}” <span class="review-author">– {{ reviewAuthor }}</span>
+    </div>
   </div>
 </template>
 

@@ -231,6 +231,8 @@ body {
   text-align: center;
   padding: 0 $space-l;
   position: relative;
+  z-index: $z-on-top-all;
+  background: white;
 
   &:first-child {
     border-top: 1px solid $black;
@@ -248,7 +250,6 @@ body {
     // Default values for position that are randomly generated
     top: $space-l;
     right: 0;
-    z-index: $z-on-top;
   }
 }
 
