@@ -2,7 +2,7 @@
   <div class="tsl">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
-    <Header v-if="showHeader" @click.native="showHeader = false" />
+    <Header />
     <PopUps :data="popUps" />
     <!-- Bot Conversation-->
     <div class="bot-container">
@@ -35,7 +35,6 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
-      showHeader: true,
     }
   },
   computed: {
