@@ -204,7 +204,7 @@ body {
 
 .purchase-ticker {
   // Position purchase notifications at the bottom
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
@@ -242,7 +242,7 @@ body {
 
 // Make the review container position absolute so it does not interfere with the positioning of the chatbot
 .review-container {
-  position: absolute;
+  position: fixed;
   width: 100%;
 
   @media screen and (min-width: $bp-tablet) {
@@ -294,7 +294,7 @@ body {
 
 .pop-up {
   font-size: 1.25rem; // For close button
-  position: absolute;
+  position: fixed;
   top: 20%;
   z-index: $z-on-top-all;
 
