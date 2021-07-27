@@ -71,7 +71,7 @@ export default {
 
   generate: {
     fallback: false,
-    exclude: [/^\/order/]
+    exclude: [/order/],
   },
 
   // Allow devtool extension in Firefox
