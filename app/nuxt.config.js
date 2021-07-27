@@ -69,6 +69,11 @@ export default {
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   },
 
+  generate: {
+    fallback: true,
+    exclude: [/^\/order/]
+  },
+
   // Allow devtool extension in Firefox
   vue: {
     config: {
