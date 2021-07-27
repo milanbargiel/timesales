@@ -70,8 +70,8 @@ export default {
   },
 
   generate: {
-    fallback: '200.html',
-    exclude: [/order/],
+    exclude: [/^\/order/],
+    fallback: 'spa.html',
   },
 
   // Allow devtool extension in Firefox
