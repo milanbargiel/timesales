@@ -14,7 +14,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
           @save-progress="handleSaveProgress"
         />
       </div>
-      <div v-else class="tsl">
+      <div v-else class="content">
         <div class="bot-container">
           <div id="botui">
             <bot-ui />

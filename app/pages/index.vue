@@ -1,5 +1,5 @@
 <template>
-  <div class="tsl">
+  <div class="content">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
     <PopUps :data="popUps" />
