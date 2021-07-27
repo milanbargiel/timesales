@@ -79,7 +79,6 @@ body {
   font-size: 50px;
   line-height: 1;
   display: inline-block;
-  position: absolute;
   top: $space-l;
   left: $space-m;
   max-width: 170px; // force line break
@@ -117,8 +116,11 @@ body {
   margin: auto; // always center the chat
   align-items: center;
   text-align: center;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding: 200px 0;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding: 250px 0;
+  }
 }
 
 // Botui overwrites
@@ -222,6 +224,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: $z-on-top-all;
 }
 
 .purchase {
@@ -334,6 +337,9 @@ body {
   width: 100%;
   padding: $space-s $space-m;
   display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
 }
 
 .navigation,
