@@ -1,5 +1,5 @@
 <template>
-  <div class="controls controls--bottom">
+  <div class="sim-controls">
     <div class="pause-button" @click="pause">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
         <defs>
@@ -86,11 +86,6 @@ export default {
 </script>
 
 <style>
-.controls {
-  display: flex;
-  align-items: center;
-}
-
 canvas {
   pointer-events: none;
   position: absolute;

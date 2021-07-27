@@ -405,3 +405,8 @@ body {
           background: black;
 }
 
+.sim-controls {
+  position: absolute;
+  bottom: $space-s;
+  right: $space-s;
+}
