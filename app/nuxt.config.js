@@ -69,6 +69,7 @@ export default {
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   },
 
+  // Exlude order page from static file generation and use custom fallback instead of default 404 one.
   generate: {
     exclude: [/^\/order/],
     fallback: 'spa.html',
