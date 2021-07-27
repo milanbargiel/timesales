@@ -1,20 +1,26 @@
 <template>
   <transition name="fade">
-    <header class="header">
-      <button class="close-btn close-btn--header" @click="showHeader = false">
-        x
-      </button>
+    <header v-if="showHeader" class="header">
+      <button class="close-btn close-btn--header" @click="hideHeader">x</button>
       <h1>Time Sales Online</h1>
     </header>
   </transition>
 </template>
 
 <script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+
 export default {
-  data() {
-    return {
-      showHeader: true,
-    }
+  computed: {
+    showHeader() {
+      return this.$store.state.ui.showHeader
+    },
+  },
+  methods: {
+    ...mapMutations({
+      // Enables this.hideHeader()
+      hideHeader: 'ui/hideHeader',
+    }),
   },
 }
 </script>

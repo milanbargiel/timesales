@@ -15,19 +15,18 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
         />
       </div>
       <div v-else class="tsl">
-        <Header />
         <div class="bot-container">
           <div id="botui">
             <bot-ui />
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
 import timestring from 'timestring' // to convert time to sec for sand sim
 import StreamPreamble from '../../conversation/streamPreamble.js'
 import Feedback from '../../conversation/feedback.js'
@@ -51,6 +50,13 @@ export default {
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
+    ...mapMutations({
+      // Enable state mutation as methods
+      showFooter: 'ui/showFooter',
+      hideFooter: 'ui/hideFooter',
+      showHeader: 'ui/showHeader',
+      hideHeader: 'ui/hideHeader',
+    }),
     async loadBot() {
       // load bot modules
       await this.$nextTick()
@@ -84,11 +90,16 @@ export default {
     beginStream() {
       // Is fired from stream preamble dialogue
       this.showStream = true
+      // Do not show header and footer when sand sim runs
+      this.hideHeader()
+      this.hideFooter()
     },
     async handleSaveProgress(progress) {
       // If time is up show feedback dialogue
       if (progress <= 0) {
         this.showStream = false
+        this.showHeader()
+        this.showFooter()
         await this.loadBot()
         this.feedback()
 

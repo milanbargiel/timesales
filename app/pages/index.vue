@@ -2,7 +2,6 @@
   <div class="tsl">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
-    <Header />
     <PopUps :data="popUps" />
     <!-- Bot Conversation-->
     <div class="bot-container">
@@ -20,7 +19,6 @@
       </div>
     </div>
     <Purchases :data="purchases" />
-    <Footer />
   </div>
 </template>
 
