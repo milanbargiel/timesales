@@ -42,11 +42,6 @@ export default {
     }
   },
   created() {
-    // Fetch order data with query parameter "key" in URL
-    if (typeof this.$route.query.key === 'undefined') {
-      this.$router.push('/404')
-    }
-
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
