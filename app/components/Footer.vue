@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer v-if="showFooter" class="footer">
     <div class="navigation">
       <a href="#">Imprint</a>
       <a href="#">Data privacy</a>
@@ -33,6 +33,10 @@ export default {
   computed: {
     debugMode() {
       return this.$store.state.ui.debugMode
+    },
+    // In sand simulation on the order page the footer is hidden
+    showFooter() {
+      return this.$store.state.ui.showFooter
     },
   },
   methods: {

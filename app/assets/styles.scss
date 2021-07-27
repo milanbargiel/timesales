@@ -32,6 +32,21 @@ $special-font: 'Kalice', sans-serif;
 
 @import 'loading-dots';
 
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 a {
   color: $black;
   text-decoration: none;
@@ -90,11 +105,12 @@ body {
   opacity: 0;
 }
 
-// Overall container
-.tsl {
+// Content container
+.content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 0 $space-m;
 }
 
 // Botui
@@ -102,12 +118,15 @@ body {
   margin: auto; // always center the chat
   align-items: center;
   text-align: center;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding: 200px 0;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding: 250px 0;
+  }
 }
 
 // Botui overwrites
-.tsl .botui-container {
+.content .botui-container {
   font-size: inherit;
   font-family: inherit;
   // Fix to show bot conversation on top of the sand simulation
@@ -203,10 +222,12 @@ body {
 }
 
 .purchase-ticker {
-  // Position purchase notifications at the bottom
+  // Position purchase notifications at the bottom in full width
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: $z-on-top-all;
 }
 
 .purchase {
@@ -240,17 +261,16 @@ body {
   }
 }
 
-// Make the review container position absolute so it does not interfere with the positioning of the chatbot
-.review-container {
-  position: fixed;
-  width: 100%;
-
-  @media screen and (min-width: $bp-tablet) {
-    position: static;
-    width: auto;
+// Review container is fixed at the top on mobile devices
+@media screen and (max-width: $bp-tablet) {
+  .review-container {
+    position: fixed;
+    top: 0;
+    // Full width
+    left: 0;
+    right: 0; 
   }
 }
-
 .review {
   border-bottom: 1px solid $black;
   font-family: $special-font;
@@ -319,6 +339,9 @@ body {
   width: 100%;
   padding: $space-s $space-m;
   display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
 }
 
 .navigation,
@@ -383,3 +406,8 @@ body {
           background: black;
 }
 
+.sim-controls {
+  position: absolute;
+  bottom: $space-s;
+  right: $space-s;
+}
