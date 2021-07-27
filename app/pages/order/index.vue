@@ -4,18 +4,24 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 -->
 
 <template>
-  <Loading v-if="isLoading" />
-  <div v-else>
-    <div v-if="showStream">
-      <SandSimulation
-        :duration="order.duration"
-        :initial-progress="order.progress"
-        @save-progress="handleSaveProgress"
-      />
-    </div>
-    <div v-else class="bot-container">
-      <div id="botui">
-        <bot-ui />
+  <div>
+    <Loading v-if="isLoading" />
+    <div v-else>
+      <div v-if="showStream">
+        <SandSimulation
+          :duration="order.duration"
+          :initial-progress="order.progress"
+          @save-progress="handleSaveProgress"
+        />
+      </div>
+      <div v-else class="tsl">
+        <Header />
+        <div class="bot-container">
+          <div id="botui">
+            <bot-ui />
+          </div>
+        </div>
+        <Footer />
       </div>
     </div>
   </div>
