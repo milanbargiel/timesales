@@ -59,6 +59,7 @@ export default {
       // extend webpack config to make botui work
       config.resolve.alias.vue = 'vue/dist/vue.min.js'
     },
+    transpile: ['sand-simulation'],
   },
 
   // Reads .env file
