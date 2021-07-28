@@ -59,6 +59,7 @@ export default {
       // extend webpack config to make botui work
       config.resolve.alias.vue = 'vue/dist/vue.min.js'
     },
+    transpile: ['sand-simulation'],
   },
 
   // Reads .env file
@@ -66,6 +67,12 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     apiUrl: process.env.API_URL,
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  },
+
+  // Exlude order page from static file generation and use custom fallback instead of default 404 one.
+  generate: {
+    exclude: [/^\/order/],
+    fallback: 'spa.html',
   },
 
   // Allow devtool extension in Firefox

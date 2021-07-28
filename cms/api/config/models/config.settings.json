@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "name": "Config"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "reviewFirstAppearance": {
+      "type": "integer"
+    },
+    "reviewFrequency": {
+      "type": "integer"
+    },
+    "purchaseFirstAppearance": {
+      "type": "integer"
+    },
+    "purchaseFrequency": {
+      "type": "integer"
+    },
+    "popUpFirstAppearance": {
+      "type": "integer"
+    },
+    "popUpFrequency": {
+      "type": "integer"
+    },
+    "showAllPopUps": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

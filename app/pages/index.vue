@@ -1,13 +1,8 @@
 <template>
-  <div class="tsl">
+  <div class="content">
     <!-- Components are auto imported by nuxt-->
-    <Reviews
-      v-if="showReviews"
-      :data="reviews"
-      @click.native="showReviews = false"
-    />
-    <Header v-if="showHeader" @click.native="showHeader = false" />
-    <PopUp v-if="showPopUp" :data="popUps" @click.native="showPopUp = false" />
+    <Reviews :data="reviews" />
+    <PopUps :data="popUps" />
     <!-- Bot Conversation-->
     <div class="bot-container">
       <div id="botui">
@@ -23,12 +18,7 @@
         </p>
       </div>
     </div>
-    <Purchases
-      v-if="showPurchases"
-      :data="purchases"
-      @click.native="showPurchases = false"
-    />
-    <Footer />
+    <Purchases :data="purchases" />
   </div>
 </template>
 
@@ -43,13 +33,6 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
-      showHeader: true,
-      showReviews: true,
-      showPopUp: true,
-      showPurchases: true,
-      reviews: [],
-      purchases: [],
-      popUps: [],
     }
   },
   computed: {
@@ -57,14 +40,21 @@ export default {
       return this.$store.state.response.data
     },
     debugMode() {
-      return this.$store.state.debugMode // In debug mode all delay is set to 0
+      return this.$store.state.ui.debugMode // In debug mode all delay is set to 0
+    },
+    reviews() {
+      return this.$store.state.popUps.reviews
+    },
+    purchases() {
+      return this.$store.state.popUps.purchases
+    },
+    popUps() {
+      return this.$store.state.popUps.popUps
     },
   },
   created() {
-    // Load data from backend
-    this.fetchReviews()
-    this.fetchPurchases()
-    this.fetchPopUps()
+    // Trigger vuex action that loads all data from backend
+    this.getAllPopUpData()
   },
   async mounted() {
     // load bot modules
@@ -94,9 +84,10 @@ export default {
       resetState: 'response/resetState',
     }),
     ...mapActions({
-      // Enables the action this.saveResponse({ key: value })
+      // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
+      getAllPopUpData: 'popUps/fetchAllPopUpData',
     }),
     stripeCheckout() {
       const data = {
@@ -109,52 +100,6 @@ export default {
         .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
         .then((session) => {
           this.stripe.redirectToCheckout({ sessionId: session.id })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchReviews() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/feedbacks`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.reviews.push({
-              text: item.opinion,
-              author: item.fakeAuthor,
-            })
-          })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchPurchases() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/purchases`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.purchases.push({
-              text: item.text,
-            })
-          })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
-    },
-    fetchPopUps() {
-      this.$axios
-        .$get(`${this.$config.apiUrl}/pop-ups`)
-        .then((res) => {
-          // Push backend review data to local storage
-          res.forEach((item) => {
-            this.popUps.push({
-              imageUrl: item.image.url,
-            })
-          })
         })
         .catch((error) => {
           console.error('Error:', error)

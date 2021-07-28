@@ -4,24 +4,29 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 -->
 
 <template>
-  <Loading v-if="isLoading" />
-  <div v-else>
-    <div v-if="showStream">
-      <SandSimulation
-        :duration="order.duration"
-        :initial-progress="order.progress"
-        @save-progress="handleSaveProgress"
-      />
-    </div>
-    <div v-else class="bot-container">
-      <div id="botui">
-        <bot-ui />
+  <div>
+    <Loading v-if="isLoading" />
+    <div v-else>
+      <div v-if="showStream">
+        <SandSimulation
+          :duration="order.duration"
+          :initial-progress="order.progress"
+          @save-progress="handleSaveProgress"
+        />
+      </div>
+      <div v-else class="content">
+        <div class="bot-container">
+          <div id="botui">
+            <bot-ui />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
 import timestring from 'timestring' // to convert time to sec for sand sim
 import StreamPreamble from '../../conversation/streamPreamble.js'
 import Feedback from '../../conversation/feedback.js'
@@ -37,14 +42,16 @@ export default {
     }
   },
   created() {
-    // Fetch order data with query parameter "key" in URL
-    if (typeof this.$route.query.key === 'undefined') {
-      this.$router.push('/404')
-    }
-
     this.fetchOrder(this.$route.query.key)
   },
   methods: {
+    ...mapMutations({
+      // Enable state mutation as methods
+      showFooter: 'ui/showFooter',
+      hideFooter: 'ui/hideFooter',
+      showHeader: 'ui/showHeader',
+      hideHeader: 'ui/hideHeader',
+    }),
     async loadBot() {
       // load bot modules
       await this.$nextTick()
@@ -78,11 +85,16 @@ export default {
     beginStream() {
       // Is fired from stream preamble dialogue
       this.showStream = true
+      // Do not show header and footer when sand sim runs
+      this.hideHeader()
+      this.hideFooter()
     },
     async handleSaveProgress(progress) {
       // If time is up show feedback dialogue
       if (progress <= 0) {
         this.showStream = false
+        this.showHeader()
+        this.showFooter()
         await this.loadBot()
         this.feedback()
 
