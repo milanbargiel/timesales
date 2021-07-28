@@ -344,9 +344,28 @@ body {
   background-color: white;
 }
 
-.navigation,
+.navigation {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  // Three columns layout
+  @media screen and (min-width: $bp-tablet) {
+    width: 33%;
+  }
+}
+
 .creators {
   width: 50%;
+
+  @media screen and (min-width: $bp-tablet) {
+    width: 66%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.people {
   display: flex;
   flex-direction: column;
 }

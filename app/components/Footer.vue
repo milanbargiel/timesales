@@ -14,9 +14,11 @@
       </div>
     </div>
     <div class="creators">
-      <a class="underlined-link" href="#">Milan Bargiel</a>
-      <a class="underlined-link" href="#">Ludwig Lederer</a>
-      <a class="underlined-link" href="#">Katherina Gorodynska</a>
+      <div class="people">
+        <a class="underlined-link" href="#">Milan Bargiel</a>
+        <a class="underlined-link" href="#">Ludwig Lederer</a>
+        <a class="underlined-link" href="#">Katherina Gorodynska</a>
+      </div>
       <img
         class="patron-logo"
         src="~/assets/lab-k-nrw.svg"
