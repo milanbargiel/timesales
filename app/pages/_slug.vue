@@ -9,12 +9,12 @@
 
 <script>
 export default {
-  async asyncData({ params, $axios, $config: { apiUrl } }) {
+  async asyncData({ params, redirect, $axios, $config: { apiUrl } }) {
     const page = await $axios
       .$get(`${apiUrl}/pages/${params.slug}`)
       .then((content) => content)
       .catch((e) => {
-        console.log(e)
+        redirect('/404')
       })
     return { page }
   },
