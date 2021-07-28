@@ -11,12 +11,11 @@
         <a class="link link--underlined" href="#">Biomigrant</a>
       </div>
       <div class="navigation">
+        <div>{{ posts }}</div>
         <NuxtLink class="link" to="/">Buy time</NuxtLink>
-        <NuxtLink class="link" to="/imprint">Imprint</NuxtLink>
-        <NuxtLink class="link" to="/data-privacy">Data privacy</NuxtLink>
-        <NuxtLink class="link" to="/terms-and-conditions"
-          >Terms and conditions</NuxtLink
-        >
+        <NuxtLink v-for="link in links" :key="link.slug" :to="link.slug">{{
+          link.title
+        }}</NuxtLink>
       </div>
       <div class="patrons">
         <img
@@ -52,7 +51,15 @@ export default {
   data() {
     return {
       footerUnfolded: false,
+      links: [],
     }
+  },
+  // Fetch links from public pages from backend
+  // Happens during static page generation
+  async fetch() {
+    this.links = await fetch(`${this.$nuxt.context.$config.apiUrl}/pages`).then(
+      (res) => res.json()
+    )
   },
   computed: {
     debugMode() {

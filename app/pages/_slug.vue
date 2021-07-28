@@ -10,9 +10,11 @@
 
 <script>
 export default {
-  // Static pages are created from dynamic Strapi data on Netlify deploy
+  // Get page data from Backend
+  // Static pages are created from Api when running 'npm run generate'
+  // This happens on netlify deployment
   // A webhook triggers a redeploy from Strapi, when content is changed
-  // In development mode, dynamic routes work out of the box
+  // In development mode, dynamic routes are fetched on all pages refreshes
   async asyncData({ params, redirect, $axios, $config: { apiUrl } }) {
     const page = await $axios
       .$get(`${apiUrl}/pages/${params.slug}`)
