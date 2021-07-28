@@ -405,7 +405,7 @@ body {
 
 .patron-logo {
   margin-top: $space-s;
-  max-width: 200px;
+  max-width: 220px;
 }
 
 .footer-toggle {
@@ -420,6 +420,7 @@ body {
   font-size: .75rem;
   display: flex;
   align-items: center;
+  margin-top: $space-s;
 
   @media screen and (min-width: $bp-tablet) {
     margin-left: $space-xl;
