@@ -158,6 +158,11 @@ body {
 }
 
 // Buttons
+// Footer active link
+.nuxt-link-exact-active {
+  font-weight: bold;
+}
+
 .button {
   align-items: center;
   box-shadow: none;

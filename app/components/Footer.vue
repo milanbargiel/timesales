@@ -11,6 +11,7 @@
         <a class="link link--underlined" href="#">Biomigrant</a>
       </div>
       <div class="navigation">
+        <NuxtLink class="link" to="/">Buy time</NuxtLink>
         <NuxtLink class="link" to="/imprint">Imprint</NuxtLink>
         <NuxtLink class="link" to="/data-privacy">Data privacy</NuxtLink>
         <NuxtLink class="link" to="/terms-and-conditions"
