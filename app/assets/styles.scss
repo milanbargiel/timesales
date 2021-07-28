@@ -343,14 +343,20 @@ body {
 }
 
 // Footer
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px; // to reserve space for toggle
+}
+
 .footer {
   border-top: 1px solid $black;
   width: 100%;
   padding: $space-s $space-m;
   display: flex;
   flex-wrap: wrap;
-  position: fixed;
-  bottom: 0;
   background-color: white;
 }
 
@@ -414,7 +420,10 @@ body {
   font-size: .75rem;
   display: flex;
   align-items: center;
-  margin-left: $space-xl;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin-left: $space-xl;
+  }
 }
 
 .sim-controls {
