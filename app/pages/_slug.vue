@@ -9,9 +9,9 @@
 
 <script>
 export default {
-  async asyncData({ params, $axios }) {
+  async asyncData({ params, $axios, $config: { apiUrl } }) {
     const page = await $axios
-      .$get(`http://localhost:1337/pages/${params.slug}`)
+      .$get(`${apiUrl}/pages/${params.slug}`)
       .then((content) => content)
       .catch((e) => {
         console.log(e)
