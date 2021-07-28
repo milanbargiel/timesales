@@ -37,8 +37,8 @@ export default {
   computed: {
     positionStyles() {
       const position = {
-        top: this.getRandomInt(0, 70) + '%',
-        right: this.getRandomInt(0, 80) + '%',
+        top: this.getRandomInt(7, 85) + '%',
+        right: this.getRandomInt(0, 70) + '%',
       }
 
       return this.isDesktop ? position : ''
