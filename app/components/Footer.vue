@@ -11,9 +11,11 @@
         <a class="link link--underlined" href="#">Biomigrant</a>
       </div>
       <div class="navigation">
-        <a class="link" href="#">Imprint</a>
-        <a class="link" href="#">Data privacy</a>
-        <a class="link" href="#">Terms and conditions</a>
+        <NuxtLink class="link" to="/imprint">Imprint</NuxtLink>
+        <NuxtLink class="link" to="/data-privacy">Data privacy</NuxtLink>
+        <NuxtLink class="link" to="/terms-and-conditions"
+          >Terms and conditions</NuxtLink
+        >
       </div>
       <div class="patrons">
         <img

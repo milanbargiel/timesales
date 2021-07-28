@@ -1,6 +1,6 @@
 <!-- Template for dynamic pages-->
 <template>
-  <div>
+  <div class="content">
     <h1>{{ page.title }}</h1>
     <!-- eslint-disable vue/no-v-html -->
     <!-- $md.render parses markdown to html -->
@@ -21,11 +21,6 @@ export default {
         redirect('/404')
       })
     return { page }
-  },
-  data() {
-    return {
-      apiUrl: process.env.strapiBaseUri,
-    }
   },
 }
 </script>
