@@ -361,13 +361,25 @@ body {
   @media screen and (min-width: $bp-tablet) {
     width: 66%;
     display: flex;
-    justify-content: space-between;
   }
 }
 
 .people {
+  // stack links on top of each other
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin: 0 auto; // center elements in middle column
+    width: 33%;
+  }
+}
+
+.patrons {
+  @media screen and (min-width: $bp-tablet) {
+    width: 33%;
+    margin-left: auto;
+  }
 }
 
 .patron-logo {
@@ -375,15 +387,17 @@ body {
   max-width: 200px;
 }
 
-.debug-link {
-  cursor: pointer;
-}
-
 .debug-toggle {
   font-size: .75rem;
   display: flex;
-  margin-top: $space-l;
+  margin-top: $space-s;
   align-items: center;
+}
+
+.sim-controls {
+  position: absolute;
+  bottom: $space-s;
+  right: $space-s;
 }
 
 /** Switch */
@@ -423,10 +437,4 @@ body {
      -moz-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
           background: black;
-}
-
-.sim-controls {
-  position: absolute;
-  bottom: $space-s;
-  right: $space-s;
 }

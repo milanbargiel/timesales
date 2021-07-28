@@ -4,14 +4,6 @@
       <a href="#">Imprint</a>
       <a href="#">Data privacy</a>
       <a href="#">Terms and conditions</a>
-      <span class="debug-link" @click="shortCheckout">Short Checkout</span>
-      <div class="debug-toggle">
-        <label class="switch">
-          <input v-model="debugMode" type="checkbox" @click="toggleDebugMode" />
-          <div></div>
-        </label>
-        Fast conversation
-      </div>
     </div>
     <div class="creators">
       <div class="people">
@@ -19,11 +11,24 @@
         <a class="underlined-link" href="#">Ludwig Lederer</a>
         <a class="underlined-link" href="#">Katherina Gorodynska</a>
       </div>
-      <img
-        class="patron-logo"
-        src="~/assets/lab-k-nrw.svg"
-        alt="Landesbüro für Bildende Kunst (LaB K)"
-      />
+      <div class="patrons">
+        <img
+          class="patron-logo"
+          src="~/assets/lab-k-nrw.svg"
+          alt="Landesbüro für Bildende Kunst (LaB K)"
+        />
+        <div class="debug-toggle">
+          <label class="switch">
+            <input
+              v-model="debugMode"
+              type="checkbox"
+              @click="toggleDebugMode"
+            />
+            <div></div>
+          </label>
+          Fast conversation
+        </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -46,9 +51,6 @@ export default {
       // Enables this.toggleDebugMode()
       toggleDebugMode: 'ui/toggleDebugMode',
     }),
-    shortCheckout() {
-      this.$router.go({ path: '/', query: { shortCheckout: true } })
-    },
   },
 }
 </script>
