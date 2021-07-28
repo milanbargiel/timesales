@@ -1,15 +1,18 @@
 <template>
   <footer v-if="showFooter" class="footer">
     <div class="navigation">
-      <a href="#">Imprint</a>
-      <a href="#">Data privacy</a>
-      <a href="#">Terms and conditions</a>
+      <a class="link" href="#">Imprint</a>
+      <a class="link" href="#">Data privacy</a>
+      <a class="link" href="#">Terms and conditions</a>
     </div>
     <div class="creators">
       <div class="people">
-        <a class="underlined-link" href="#">Milan Bargiel</a>
-        <a class="underlined-link" href="#">Ludwig Lederer</a>
-        <a class="underlined-link" href="#">Katherina Gorodynska</a>
+        <div class="people-header">Partners:</div>
+        <a class="link link--underlined" href="#">Milan Bargiel</a>
+        <a class="link link--underlined" href="#">Jim-Fx</a>
+        <a class="link link--underlined" href="#">Katherina Gorodynska</a>
+        <a class="link link--underlined" href="#">Ludwig Lederer</a>
+        <a class="link link--underlined" href="#">Biomigrant</a>
       </div>
       <div class="patrons">
         <img

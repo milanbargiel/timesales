@@ -214,11 +214,15 @@ body {
   margin-top: $space-s;
 }
 
-.underlined-link {
+.link {
   line-height: 1;
-  text-decoration: underline;
+  text-decoration: none;
   display: inline-block;
-  margin-bottom: $space-s;
+  margin-bottom: $space-xs;
+
+  &--underlined {
+    text-decoration: underline;
+  }
 }
 
 .purchase-ticker {
@@ -373,6 +377,10 @@ body {
     margin: 0 auto; // center elements in middle column
     width: 33%;
   }
+}
+
+.people-header {
+  margin-bottom: $space-m;
 }
 
 .patrons {
