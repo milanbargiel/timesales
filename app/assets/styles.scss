@@ -11,6 +11,7 @@ $space-xs: .25rem;
 $space-s: .5rem;
 $space-m: 1rem;
 $space-l: 2rem;
+$space-xl: 4rem;
 
 // Breakpoints
 $bp-tablet: 680px;
@@ -347,6 +348,7 @@ body {
   width: 100%;
   padding: $space-s $space-m;
   display: flex;
+  flex-wrap: wrap;
   position: fixed;
   bottom: 0;
   background-color: white;
@@ -359,39 +361,39 @@ body {
 
   // Three columns layout
   @media screen and (min-width: $bp-tablet) {
-    width: 33%;
-    margin: 0 auto;
+    width: 25%;
+    order: 1;
   }
 }
 
 .creators {
   width: 50%;
-
-  @media screen and (min-width: $bp-tablet) {
-    width: 66%;
-    display: flex;
-  }
-}
-
-.people {
   // stack links on top of each other
   display: flex;
   flex-direction: column;
 
   @media screen and (min-width: $bp-tablet) {
-    margin: 0 auto; // center elements in middle column
-    width: 33%;
+    width: 25%;
+    display: flex;
+    order: 2;
   }
 }
 
-.people-header {
+.creators-header {
   margin-bottom: $space-m;
 }
 
 .patrons {
+  overflow: hidden;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-top: $space-s;
+
   @media screen and (min-width: $bp-tablet) {
-    width: 33%;
-    margin: auto;
+    width: 50%;
+    flex-direction: row;
+    order: 3;
   }
 }
 
@@ -411,8 +413,8 @@ body {
 .debug-toggle {
   font-size: .75rem;
   display: flex;
-  margin-top: auto;
   align-items: center;
+  margin-left: $space-xl;
 }
 
 .sim-controls {

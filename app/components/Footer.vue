@@ -1,36 +1,30 @@
 <template>
   <footer v-if="showFooter" class="footer">
+    <div class="creators">
+      <div class="creators-header">Partners:</div>
+      <a class="link link--underlined" href="#">Milan Bargiel</a>
+      <a class="link link--underlined" href="#">Jim-Fx</a>
+      <a class="link link--underlined" href="#">Katherina Gorodynska</a>
+      <a class="link link--underlined" href="#">Ludwig Lederer</a>
+      <a class="link link--underlined" href="#">Biomigrant</a>
+    </div>
     <div class="navigation">
       <a class="link" href="#">Imprint</a>
       <a class="link" href="#">Data privacy</a>
       <a class="link" href="#">Terms and conditions</a>
     </div>
-    <div class="creators">
-      <div class="people">
-        <div class="people-header">Partners:</div>
-        <a class="link link--underlined" href="#">Milan Bargiel</a>
-        <a class="link link--underlined" href="#">Jim-Fx</a>
-        <a class="link link--underlined" href="#">Katherina Gorodynska</a>
-        <a class="link link--underlined" href="#">Ludwig Lederer</a>
-        <a class="link link--underlined" href="#">Biomigrant</a>
-      </div>
-      <div class="patrons">
-        <img
-          class="patron-logo"
-          src="~/assets/lab-k-nrw.svg"
-          alt="Landesbüro für Bildende Kunst (LaB K)"
-        />
-        <div class="debug-toggle">
-          <label class="switch">
-            <input
-              v-model="debugMode"
-              type="checkbox"
-              @click="toggleDebugMode"
-            />
-            <div></div>
-          </label>
-          Fast conversation
-        </div>
+    <div class="patrons">
+      <img
+        class="patron-logo"
+        src="~/assets/lab-k-nrw.svg"
+        alt="Landesbüro für Bildende Kunst (LaB K)"
+      />
+      <div class="debug-toggle">
+        <label class="switch">
+          <input v-model="debugMode" type="checkbox" @click="toggleDebugMode" />
+          <div></div>
+        </label>
+        Fast conversation
       </div>
     </div>
     <Triangle class="footer-toggle" />
