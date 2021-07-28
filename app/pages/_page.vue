@@ -1,0 +1,28 @@
+<!-- Template for dynamic pages-->
+<template>
+  <div>
+    <h1>{{ page.title }}</h1>
+    <!-- eslint-disable vue/no-v-html -->
+    <div v-if="page.content" v-html="page.content" />
+  </div>
+</template>
+
+<script>
+export default {
+  async asyncData({ params, $axios }) {
+    const page = await $axios
+      .$get(`http://localhost:1337/pages/1`)
+      .then((content) => content)
+      .catch((e) => {
+        console.log(e)
+      })
+    console.log(page)
+    return { page }
+  },
+  data() {
+    return {
+      apiUrl: process.env.strapiBaseUri,
+    }
+  },
+}
+</script>
