@@ -11,12 +11,11 @@
 export default {
   async asyncData({ params, $axios }) {
     const page = await $axios
-      .$get(`http://localhost:1337/pages/1`)
+      .$get(`http://localhost:1337/pages/${params.slug}`)
       .then((content) => content)
       .catch((e) => {
         console.log(e)
       })
-    console.log(page)
     return { page }
   },
   data() {
