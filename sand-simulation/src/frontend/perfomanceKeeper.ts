@@ -21,7 +21,7 @@ export default (resize) => {
       measurements = [...measurements.slice(-59), performance.now() - t];
 
       // Every half second
-      if (i % 30 == 0) {
+      if (i % 60 == 0) {
         // Calculate the average execution time
         let sum = 0;
         for (let i = 0; i < measurements.length; i++) {
