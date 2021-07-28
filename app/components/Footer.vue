@@ -11,7 +11,6 @@
         <a class="link link--underlined" href="#">Biomigrant</a>
       </div>
       <div class="navigation">
-        <div>{{ posts }}</div>
         <NuxtLink class="link" to="/">Buy time</NuxtLink>
         <NuxtLink v-for="link in links" :key="link.slug" :to="link.slug">{{
           link.title
