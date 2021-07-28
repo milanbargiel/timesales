@@ -57,6 +57,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -91,5 +92,14 @@ export default {
     config: {
       devtools: true,
     },
+  },
+  // Configuration for markdown parser
+  // https://markdown-it.github.io/
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+    html: true,
   },
 }
