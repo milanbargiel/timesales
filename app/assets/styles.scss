@@ -11,6 +11,7 @@ $space-xs: .25rem;
 $space-s: .5rem;
 $space-m: 1rem;
 $space-l: 2rem;
+$space-xl: 4rem;
 
 // Breakpoints
 $bp-tablet: 680px;
@@ -72,6 +73,10 @@ body {
   font-family: $standard-font;
   font-size: 16px;
   line-height: 1.3;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 15px;
+  }
 }
 
 .header {
@@ -118,10 +123,10 @@ body {
   margin: auto; // always center the chat
   align-items: center;
   text-align: center;
-  padding: 200px 0;
+  padding: 150px 0;
 
   @media screen and (min-width: $bp-tablet) {
-    padding: 250px 0;
+    padding: 200px 0;
   }
 }
 
@@ -214,11 +219,15 @@ body {
   margin-top: $space-s;
 }
 
-.underlined-link {
+.link {
   line-height: 1;
-  text-decoration: underline;
+  text-decoration: none;
   display: inline-block;
-  margin-bottom: $space-s;
+  margin-bottom: $space-xs;
+
+  &--underlined {
+    text-decoration: underline;
+  }
 }
 
 .purchase-ticker {
@@ -334,37 +343,94 @@ body {
 }
 
 // Footer
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px; // to reserve space for toggle
+}
+
 .footer {
   border-top: 1px solid $black;
   width: 100%;
   padding: $space-s $space-m;
   display: flex;
-  position: fixed;
-  bottom: 0;
+  flex-wrap: wrap;
   background-color: white;
 }
 
-.navigation,
-.creators {
+.navigation {
   width: 50%;
   display: flex;
   flex-direction: column;
+
+  // Three columns layout
+  @media screen and (min-width: $bp-tablet) {
+    width: 25%;
+    order: 1;
+  }
+}
+
+.creators {
+  width: 50%;
+  // stack links on top of each other
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: $bp-tablet) {
+    width: 25%;
+    display: flex;
+    order: 2;
+  }
+}
+
+.creators-header {
+  margin-bottom: $space-m;
+}
+
+.patrons {
+  overflow: hidden;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-top: $space-s;
+
+  @media screen and (min-width: $bp-tablet) {
+    width: 50%;
+    flex-direction: row;
+    order: 3;
+  }
 }
 
 .patron-logo {
   margin-top: $space-s;
-  max-width: 200px;
+  max-width: 220px;
 }
 
-.debug-link {
+.footer-toggle {
   cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: $space-s;
+  right: $space-m;
 }
 
 .debug-toggle {
   font-size: .75rem;
   display: flex;
-  margin-top: $space-l;
   align-items: center;
+  margin-top: $space-s;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin-left: $space-xl;
+  }
+}
+
+.sim-controls {
+  position: absolute;
+  bottom: $space-s;
+  right: $space-s;
 }
 
 /** Switch */
@@ -404,10 +470,4 @@ body {
      -moz-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
           background: black;
-}
-
-.sim-controls {
-  position: absolute;
-  bottom: $space-s;
-  right: $space-s;
 }
