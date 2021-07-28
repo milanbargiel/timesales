@@ -679,31 +679,29 @@ var perfomanceKeeper_default = (resize) => {
     },
     end: () => {
       i++;
-      measurements = [...measurements.slice(-59), performance.now() - t];
-      if (i % 30 == 0) {
+      measurements = [...measurements.slice(-119), performance.now() - t];
+      if (i % 60 == 0) {
         let sum = 0;
         for (let i2 = 0; i2 < measurements.length; i2++) {
           sum += measurements[i2];
         }
         const avg = Math.floor(sum / measurements.length);
-        if (avg > optimalMS - 5 && avg < optimalMS + 5)
+        if (avg > optimalMS - 20 && avg < optimalMS + 20)
           return;
         console.log("[PERF] ", avg, "ms");
         if (avg < optimalMS) {
           const howGoodIsIt = (optimalMS - avg) / optimalMS;
           const s = 1 + howGoodIsIt * 0.25;
           console.log("[PERF] increase scale by", s);
-          dims.scale *= s;
-          const {width, height} = getDims_default();
-          resize(width, height);
+          dims.scale = Math.min(dims.scale * s, 2);
         } else {
           const howBadIsIt = Math.min(avg - optimalMS, worstMaxMS) / worstMaxMS;
           const s = 1 - howBadIsIt * 0.25;
           console.log("[PERF] decrease scale by", s);
           dims.scale *= s;
-          const {width, height} = getDims_default();
-          resize(width, height);
         }
+        const {width, height} = getDims_default();
+        resize(width, height);
       }
     }
   };
@@ -793,15 +791,17 @@ async function init({
   let _promise;
   let updates = 100;
   let isResizing = false;
+  let isSimFinished = false;
   async function updateSim() {
     if (_promise)
       return;
+    isSimFinished = await backend.IsFinished();
     _promise = await backend.Update(timeKeeper_default.getProgress());
     updates = _promise;
     _promise = false;
   }
   async function render() {
-    if (!simPaused && !isResizing && timeKeeper_default.getProgress() > -0.05) {
+    if (!simPaused && !isResizing && !isSimFinished) {
       performanceKeeper.start();
       updateSim();
       timeKeeper_default.update();
