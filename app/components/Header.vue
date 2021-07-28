@@ -2,7 +2,7 @@
   <transition name="fade">
     <header v-if="showHeader" class="header">
       <button class="close-btn close-btn--header" @click="hideHeader">x</button>
-      <h1>Time Sales Online</h1>
+      <h1 class="header-title">Time Sales Online</h1>
     </header>
   </transition>
 </template>
