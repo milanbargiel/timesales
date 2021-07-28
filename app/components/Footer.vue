@@ -33,6 +33,7 @@
         </div>
       </div>
     </div>
+    <Triangle class="footer-toggle" />
   </footer>
 </template>
 

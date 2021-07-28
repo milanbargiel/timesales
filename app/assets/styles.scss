@@ -360,6 +360,7 @@ body {
   // Three columns layout
   @media screen and (min-width: $bp-tablet) {
     width: 33%;
+    margin: 0 auto;
   }
 }
 
@@ -390,7 +391,7 @@ body {
 .patrons {
   @media screen and (min-width: $bp-tablet) {
     width: 33%;
-    margin-left: auto;
+    margin: auto;
   }
 }
 
@@ -399,10 +400,18 @@ body {
   max-width: 200px;
 }
 
+.footer-toggle {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: $space-s;
+  right: $space-m;
+}
+
 .debug-toggle {
   font-size: .75rem;
   display: flex;
-  margin-top: $space-s;
+  margin-top: auto;
   align-items: center;
 }
 
