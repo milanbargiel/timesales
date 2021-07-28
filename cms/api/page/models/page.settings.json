@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "pages",
   "info": {
-    "name": "Pages"
+    "name": "Page",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -16,6 +17,10 @@
     },
     "content": {
       "type": "richtext",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
       "required": true
     }
   }
