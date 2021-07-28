@@ -45,7 +45,6 @@ html {
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
 }
 
 a {
@@ -63,12 +62,6 @@ button {
 	outline: inherit;
 }
 
-h1 {
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-}
-
 body {
   font-family: $standard-font;
   font-size: 16px;
@@ -80,20 +73,27 @@ body {
 }
 
 .header {
-  font-family: $standard-font-bold;
-  font-size: 50px;
-  line-height: 1;
   display: inline-block;
   position: absolute;
   top: $space-l;
   left: $space-m;
   max-width: 170px; // force line break
   z-index: $z-on-top;
+  font-family: $standard-font-bold;
+  font-size: 50px;
+  line-height: 1;
 
   @media screen and (min-width: $bp-tablet) {
     font-size: 72px;
     max-width: 270px;
   }
+}
+
+.header-title {
+  // unstyle default h1
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0; 
 }
 
 // Helper classes
@@ -116,6 +116,10 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 $space-m;
+
+  &--page {
+    max-width: 720px;
+  }
 }
 
 // Botui
@@ -154,6 +158,11 @@ body {
 }
 
 // Buttons
+// Footer active link
+.nuxt-link-exact-active {
+  font-weight: bold;
+}
+
 .button {
   align-items: center;
   box-shadow: none;
