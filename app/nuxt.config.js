@@ -1,3 +1,12 @@
+import axios from 'axios'
+// Dynamically generate routes
+// These routes will be statically generated and deployed to the CDN netlify
+const dynamicRoutes = () => {
+  return axios.get(`${process.env.API_URL}/pages`).then((res) => {
+    return res.data.map((page) => `/${page.slug}`)
+  })
+}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -70,9 +79,11 @@ export default {
   },
 
   // Exlude order page from static file generation and use custom fallback instead of default 404 one.
+  // Deploy static pages of dynamic routes during generation
   generate: {
     exclude: [/^\/order/],
     fallback: 'spa.html',
+    routes: dynamicRoutes,
   },
 
   // Allow devtool extension in Firefox
