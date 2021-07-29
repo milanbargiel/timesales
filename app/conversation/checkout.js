@@ -125,10 +125,6 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
-        await this.botMessage(
-          `Sweet! You chose to buy ${this.response.orderSummary}. Do you want to proceed to checkout?`
-        )
-
         this.showCheckoutButton = true
       }
     },

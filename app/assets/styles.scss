@@ -614,3 +614,14 @@ svg {
   width: 30px;
   height: 30px;
 }
+
+// Checkout
+.order-summary {
+  font-family: $special-font;
+  font-size: 20px;
+  margin-bottom: $space-l;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 30px;
+  }
+}

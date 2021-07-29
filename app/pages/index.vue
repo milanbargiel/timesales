@@ -9,6 +9,9 @@
         <bot-ui />
       </div>
       <div :class="{ hidden: !showCheckoutButton }">
+        <div class="order-summary">
+          {{ response.orderSummary }} for {{ response.timePrice / 100 }}€
+        </div>
         <button class="button" @click="stripeCheckout()">
           Proceed to checkout
         </button>
