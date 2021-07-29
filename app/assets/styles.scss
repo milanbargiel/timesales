@@ -115,6 +115,9 @@ body {
 // Content container
 .content {
   min-height: 100vh;
+  // Trick for correct height sizing on mobile
+  // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   padding: 0 $space-m;
