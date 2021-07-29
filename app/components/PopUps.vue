@@ -17,11 +17,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      showPopUp: false,
-    }
-  },
   methods: {
     imageUrl(index) {
       const baseUrl = this.$config.apiUrl
