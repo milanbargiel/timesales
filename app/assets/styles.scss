@@ -13,6 +13,8 @@ $space-m: 1rem;
 $space-l: 2rem;
 $space-xl: 4rem;
 
+$column-width: 680px;
+
 // Breakpoints
 $bp-tablet: 680px;
 $bp-desktop: 1200px;
@@ -129,9 +131,12 @@ body {
   align-items: center;
   text-align: center;
   padding: 150px 0;
+  width: 100%;
+  max-width: $column-width;
 
   @media screen and (min-width: $bp-tablet) {
     padding: 200px 0;
+    width: 50%;
   }
 }
 
@@ -148,7 +153,8 @@ body {
   }
 
   .botui-message-content.human {
-    color: $white;
+    // color: $white;
+    margin-right: $space-m;
   }
 
   .botui-actions-text-submit {
