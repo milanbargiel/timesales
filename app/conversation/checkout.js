@@ -71,7 +71,9 @@ export default {
         clearTimeout(timeout2)
 
         // Validate input
-        if (price <= 0 || price > 999999999999) {
+        // Stripe allows transfers of 10000€ max
+        // With 7% VAT 9300€ is the maximum input for users
+        if (price <= 0 || price > 9300) {
           // Limit is set by Stripe
           await this.botMessage(
             'Your input is not valid. Please choose a more appropriate price.'
