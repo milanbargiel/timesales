@@ -15,6 +15,7 @@ $space-xl: 4rem;
 
 // Breakpoints
 $bp-tablet: 680px;
+$bp-desktop: 1200px;
 
 // General
 $z-on-top: 100;
@@ -381,6 +382,15 @@ body {
   }
 }
 
+.footer-branding {
+  display: none;
+
+  @media screen and (min-width: $bp-tablet) {
+    display: block;
+    margin-top: auto;
+  }
+}
+
 .creators {
   width: 50%;
   // stack links on top of each other
@@ -400,21 +410,66 @@ body {
 
 .patrons {
   overflow: hidden;
-  width: 70%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  margin-top: $space-s;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: $space-s 0;
 
   @media screen and (min-width: $bp-tablet) {
+    margin: 0;
     width: 50%;
-    flex-direction: row;
+    justify-content: space-between;
     order: 3;
   }
 }
 
 .patron-logo {
   margin-top: $space-s;
-  max-width: 220px;
+  
+  @media screen and (min-width: $bp-tablet) {
+    margin-top: 0;
+    margin-left: $space-l;
+  }
+
+  &--nrw {
+    max-width: 220px;
+
+    @media screen and (min-width: $bp-tablet) {
+      max-width: 35%;
+    }
+
+    @media screen and (min-width: $bp-desktop) {
+      max-width: 30%;
+    }
+  }
+
+  &--lab-k {
+    max-width: 60px;
+    margin-left: $space-m;
+    margin-right: $space-m;
+
+    @media screen and (min-width: $bp-tablet) {
+      max-width: 10%;
+    }
+
+    @media screen and (min-width: $bp-desktop) {
+      max-width: 8%;
+    }
+  }
+
+  &--advocates {
+    max-width: 150px;
+
+    @media screen and (min-width: $bp-tablet) {
+      max-width: 25%;
+    }
+
+    @media screen and (min-width: $bp-desktop) {
+      max-width: 20%;
+      margin-right: $space-xl;
+    }
+  }
 }
 
 .footer-toggle {
@@ -426,14 +481,13 @@ body {
 }
 
 .debug-toggle {
+  position: fixed;
+  top: 0;
+  right: $space-s;
   font-size: .75rem;
   display: flex;
   align-items: center;
   margin-top: $space-s;
-
-  @media screen and (min-width: $bp-tablet) {
-    margin-left: $space-xl;
-  }
 }
 
 .sim-controls {
