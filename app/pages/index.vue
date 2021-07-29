@@ -8,7 +8,7 @@
       <div id="botui">
         <bot-ui />
       </div>
-      <div :class="{ hidden: !showCheckoutButton }">
+      <div v-if="showCheckoutButton">
         <div class="order-summary">
           {{ response.orderSummary }} for {{ response.timePrice / 100 }}€
         </div>
