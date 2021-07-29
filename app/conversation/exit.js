@@ -13,7 +13,7 @@ export default {
         })
         .then(() => {
           // Reloads the component
-          this.$router.go()
+          this.$router.push({ path: '/' })
         })
     },
   },
