@@ -15,6 +15,9 @@
         <NuxtLink v-for="link in links" :key="link.slug" :to="link.slug">{{
           link.title
         }}</NuxtLink>
+        <div class="footer-branding">
+          World leaders in the time business since 2018.
+        </div>
       </div>
       <div class="patrons">
         <img

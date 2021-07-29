@@ -382,6 +382,15 @@ body {
   }
 }
 
+.footer-branding {
+  display: none;
+
+  @media screen and (min-width: $bp-tablet) {
+    display: block;
+    margin-top: auto;
+  }
+}
+
 .creators {
   width: 50%;
   // stack links on top of each other
