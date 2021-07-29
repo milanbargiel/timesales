@@ -388,6 +388,7 @@ body {
   @media screen and (min-width: $bp-tablet) {
     display: block;
     margin-top: auto;
+    margin-right: $space-xs;
   }
 }
 
@@ -451,6 +452,7 @@ body {
 
     @media screen and (min-width: $bp-tablet) {
       max-width: 10%;
+      margin: 0;
     }
 
     @media screen and (min-width: $bp-desktop) {
@@ -463,6 +465,7 @@ body {
 
     @media screen and (min-width: $bp-tablet) {
       max-width: 25%;
+      margin-right: $space-l;
     }
 
     @media screen and (min-width: $bp-desktop) {
