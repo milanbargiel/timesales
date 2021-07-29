@@ -16,7 +16,7 @@ $space-xl: 4rem;
 $column-width: 680px;
 
 // Breakpoints
-$bp-tablet: 680px;
+$bp-tablet: 800px;
 $bp-desktop: 1200px;
 
 // General
@@ -447,10 +447,12 @@ body {
 .patrons {
   overflow: hidden;
   width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: $space-s 0;
+  align-items: center;
 
   @media screen and (min-width: $bp-tablet) {
     margin: 0;
@@ -465,47 +467,30 @@ body {
   
   @media screen and (min-width: $bp-tablet) {
     margin-top: 0;
-    margin-left: $space-l;
   }
 
   &--nrw {
-    max-width: 220px;
-
-    @media screen and (min-width: $bp-tablet) {
-      max-width: 35%;
-    }
-
-    @media screen and (min-width: $bp-desktop) {
-      max-width: 30%;
-    }
+    width: 170px;
+    height: 37px;
   }
 
   &--lab-k {
-    max-width: 60px;
-    margin-left: $space-m;
+    width: 50px;
+    height: 17px;
+    margin-left: $space-l;
     margin-right: $space-m;
 
     @media screen and (min-width: $bp-tablet) {
-      max-width: 10%;
       margin: 0;
-    }
-
-    @media screen and (min-width: $bp-desktop) {
-      max-width: 8%;
     }
   }
 
   &--advocates {
-    max-width: 150px;
-
-    @media screen and (min-width: $bp-tablet) {
-      max-width: 25%;
-      margin-right: $space-l;
-    }
+    width: 130px;
+    height: 26px;
 
     @media screen and (min-width: $bp-desktop) {
-      max-width: 20%;
-      margin-right: $space-xl;
+      margin-right: 2 * $space-xl;
     }
   }
 }
