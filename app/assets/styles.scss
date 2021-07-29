@@ -121,7 +121,8 @@ body {
   padding: 0 $space-m;
 
   &--page {
-    max-width: 720px;
+    margin: $space-xl auto;
+    max-width: $column-width;
   }
 }
 
