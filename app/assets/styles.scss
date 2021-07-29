@@ -119,16 +119,23 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 $space-m;
+}
 
-  &--page {
-    margin: $space-xl auto;
-    max-width: $column-width;
-  }
+// Helper classes to center content within content container
+.centered-content {
+  margin: auto;
+  width: 100%;
+}
+
+.page-content {
+  margin: $space-xl auto;
+  max-width: $column-width;
+  width: 100%;
 }
 
 // Botui
 .bot-container {
-  margin: auto; // always center the chat
+  margin: auto;
   align-items: center;
   text-align: center;
   padding: 150px 0;

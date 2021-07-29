@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="centered-content">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
     <PopUps :data="popUps" />

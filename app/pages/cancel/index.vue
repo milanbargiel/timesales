@@ -1,9 +1,7 @@
 <template>
-  <div class="content">
-    <div class="bot-container">
-      <div id="botui">
-        <bot-ui />
-      </div>
+  <div class="bot-container">
+    <div id="botui">
+      <bot-ui />
     </div>
   </div>
 </template>

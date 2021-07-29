@@ -1,6 +1,6 @@
 <!-- Template for dynamic pages-->
 <template>
-  <div class="content content--page">
+  <div class="page-content">
     <h1>{{ page.title }}</h1>
     <!-- eslint-disable vue/no-v-html -->
     <!-- $md.render parses markdown to html -->
