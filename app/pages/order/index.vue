@@ -116,11 +116,3 @@ export default {
   },
 }
 </script>
-
-<style>
-canvas {
-  width: 100vw;
-  height: 100vh;
-  image-rendering: pixelated;
-}
-</style>

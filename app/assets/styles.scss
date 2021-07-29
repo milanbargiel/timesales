@@ -590,3 +590,26 @@ body {
           transform: translate3d(100%, 0, 0);
           background: black;
 }
+
+canvas {
+    // Trick for correct height sizing on mobile
+  // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
