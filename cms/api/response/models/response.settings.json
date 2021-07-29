@@ -47,8 +47,7 @@
         "minutes",
         "hours",
         "days",
-        "weeks",
-        "years"
+        "weeks"
       ],
       "private": false
     },

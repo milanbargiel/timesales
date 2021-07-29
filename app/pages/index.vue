@@ -8,13 +8,16 @@
       <div id="botui">
         <bot-ui />
       </div>
-      <div :class="{ hidden: !showCheckoutButton }">
+      <div v-if="showCheckoutButton">
+        <div class="order-summary">
+          {{ response.orderSummary }} for {{ response.timePrice / 100 }}€
+        </div>
         <button class="button" @click="stripeCheckout()">
           Proceed to checkout
         </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
-          privacy policy.
+          <a href="/data-privacy" target="_blank">privacy policy</a>.
         </p>
       </div>
     </div>

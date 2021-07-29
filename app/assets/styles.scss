@@ -31,8 +31,20 @@ $z-on-top-all: 999;
   font-weight: 400;
 }
 
-$standard-font: 'Arial', sans-serif;
-$standard-font-bold: 'Arial Black', sans-serif;
+@font-face {
+  font-family: 'Archivo';
+  src: url(~assets/Archivo-Regular.ttf) format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Archivo Black';
+  src: url(~assets/Archivo-Black.ttf) format("truetype");
+  font-weight: 700;
+}
+
+$standard-font: 'Arial', 'Archivo', sans-serif;
+$standard-font-bold: 'Arial Black', 'Archivo Black', sans-serif;
 $special-font: 'Kalice', sans-serif;
 
 @import 'loading-dots';
@@ -99,11 +111,6 @@ body {
   margin: 0; 
 }
 
-// Helper classes
-.hidden {
-  display: none;
-}
-
 // Transitions
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s;
@@ -141,7 +148,7 @@ body {
   margin: auto;
   align-items: center;
   text-align: center;
-  padding: 150px 0;
+  padding: 120px 0;
   width: 100%;
   max-width: $column-width;
 
@@ -157,6 +164,10 @@ body {
   font-family: inherit;
   // Fix to show bot conversation on top of the sand simulation
   background-color: transparent !important;
+
+  .botui-messages-container {
+    padding: $space-s 0;
+  }
 
   .botui-message-content,
   .botui-actions-text-input {
@@ -252,7 +263,8 @@ body {
 
 .help {
   font-size: .75rem;
-  margin-top: $space-s;
+  margin: $space-s auto;
+  max-width: 70%;
 }
 
 .link {
@@ -612,4 +624,15 @@ svg {
   display: block;
   width: 30px;
   height: 30px;
+}
+
+// Checkout
+.order-summary {
+  font-family: $special-font;
+  font-size: 20px;
+  margin-bottom: $space-l;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 30px;
+  }
 }
