@@ -14,7 +14,7 @@
         </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
-          privacy policy.
+          <a href="/data-privacy" target="_blank">privacy policy</a>.
         </p>
       </div>
     </div>
