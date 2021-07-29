@@ -13,7 +13,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Timesales',
+    title: 'Time Sales Online',
     htmlAttrs: {
       lang: 'en',
     },
@@ -23,7 +23,7 @@ export default {
       { name: 'robots', content: 'noindex,nofollow' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     script: [{ src: 'https://js.stripe.com/v3', defer: true }],
   },
 
