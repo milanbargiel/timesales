@@ -35,7 +35,7 @@
           src="~/assets/vom-berg-partner-rechtsanwaelte.svg"
           alt="Vom Berg & Partner Rechtsanwälte Logo"
         />
-        <!-- <div class="debug-toggle">
+        <div class="debug-toggle">
           <label class="switch">
             <input
               v-model="debugMode"
@@ -45,7 +45,7 @@
             <div></div>
           </label>
           Fast conversation
-        </div> -->
+        </div>
       </div>
     </footer>
     <Triangle

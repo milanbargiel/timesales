@@ -481,14 +481,13 @@ body {
 }
 
 .debug-toggle {
+  position: fixed;
+  top: 0;
+  right: $space-s;
   font-size: .75rem;
   display: flex;
   align-items: center;
   margin-top: $space-s;
-
-  @media screen and (min-width: $bp-tablet) {
-    margin-left: $space-xl;
-  }
 }
 
 .sim-controls {
