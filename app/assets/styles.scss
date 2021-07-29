@@ -18,6 +18,7 @@ $column-width: 680px;
 // Breakpoints
 $bp-tablet: 800px;
 $bp-desktop: 1200px;
+$bp-hd: 1400px;
 
 // General
 $z-on-top: 100;
@@ -447,7 +448,6 @@ body {
 .patrons {
   overflow: hidden;
   width: 100%;
-  max-width: 640px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -459,6 +459,11 @@ body {
     width: 50%;
     justify-content: space-between;
     order: 3;
+    max-width: $column-width;
+  }
+
+  @media screen and (min-width: $bp-hd) {
+    max-width: 880px;
   }
 }
 
@@ -472,6 +477,16 @@ body {
   &--nrw {
     width: 170px;
     height: 37px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 230px;
+      height: 50px;
+    }
+
+    @media screen and (min-width: $bp-hd) {
+      width: 280px;
+      height: 60px;
+    }
   }
 
   &--lab-k {
@@ -483,6 +498,16 @@ body {
     @media screen and (min-width: $bp-tablet) {
       margin: 0;
     }
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 60px;
+      height: 20px;
+    }
+
+    @media screen and (min-width: $bp-hd) {
+      width: 70px;
+      height: 23px;
+    }
   }
 
   &--advocates {
@@ -490,7 +515,15 @@ body {
     height: 26px;
 
     @media screen and (min-width: $bp-desktop) {
-      margin-right: 2 * $space-xl;
+      width: 150px;
+      height: 30px;
+      margin-right: $space-xl;
+    }
+
+    @media screen and (min-width: $bp-hd) {
+      width: 165px;
+      height: 33px;
+      margin-right: $space-xl;
     }
   }
 }
