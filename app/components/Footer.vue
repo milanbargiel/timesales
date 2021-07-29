@@ -18,11 +18,21 @@
       </div>
       <div class="patrons">
         <img
-          class="patron-logo"
-          src="~/assets/lab-k-nrw.svg"
-          alt="Landesbüro für Bildende Kunst (LaB K)"
+          class="patron-logo patron-logo--nrw"
+          src="~/assets/kulturministerium-nrw.svg"
+          alt="Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen Logo"
         />
-        <div class="debug-toggle">
+        <img
+          class="patron-logo patron-logo--lab-k"
+          src="~/assets/LaB-K-Logo.svg"
+          alt="Landesbüro für Bildende Kunst (LaB K) Logo"
+        />
+        <img
+          class="patron-logo patron-logo--advocates"
+          src="~/assets/vom-berg-partner-rechtsanwaelte.svg"
+          alt="Vom Berg & Partner Rechtsanwälte Logo"
+        />
+        <!-- <div class="debug-toggle">
           <label class="switch">
             <input
               v-model="debugMode"
@@ -32,7 +42,7 @@
             <div></div>
           </label>
           Fast conversation
-        </div>
+        </div> -->
       </div>
     </footer>
     <Triangle
