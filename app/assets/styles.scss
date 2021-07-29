@@ -31,8 +31,20 @@ $z-on-top-all: 999;
   font-weight: 400;
 }
 
-$standard-font: 'Arial', sans-serif;
-$standard-font-bold: 'Arial Black', sans-serif;
+@font-face {
+  font-family: 'Archivo';
+  src: url(~assets/Archivo-Regular.ttf) format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Archivo Black';
+  src: url(~assets/Archivo-Black.ttf) format("truetype");
+  font-weight: 700;
+}
+
+$standard-font: 'Arial', 'Archivo', sans-serif;
+$standard-font-bold: 'Arial Black', 'Archivo Black', sans-serif;
 $special-font: 'Kalice', sans-serif;
 
 @import 'loading-dots';
