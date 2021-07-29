@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="popup-container">
     <PopUp
       v-for="(popUp, index) in data"
       :key="`popUp-${index}`"

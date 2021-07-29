@@ -319,7 +319,7 @@ body {
   text-align: center;
   padding: 0 $space-l;
   position: relative;
-  z-index: $z-on-top-all;
+  z-index: $z-on-top;
   background: white;
 
   &:first-child {
@@ -353,24 +353,34 @@ body {
   font-family: $special-font;
 }
 
-.pop-up {
-  font-size: 1.25rem; // For close button
-  position: fixed;
-  top: 20%;
+.popup-container {
   z-index: $z-on-top-all;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+
+  @media screen and (min-width: $bp-tablet) {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.pop-up {
+  box-shadow: 0 1em 1em rgba(0,0,0,.1);
+  font-size: 1.25rem; // For close button
+  margin: 0 auto; // horizontally center
+  position: relative;
 
   @media screen and (min-width: $bp-tablet) {
     font-size: 1.5rem;
     max-width: 480px;
-    // Horizontally center pop-up
-    left: 0;
-    right: 0;
-    margin: auto;
   }
 }
 
 .pop-up-image {
-  display: inline-block;
+  display: block;
   width: 100%;
 }
 
