@@ -26,7 +26,14 @@
         </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
-          <a href="/data-privacy" target="_blank">privacy policy</a>.
+          <a href="/terms-and-conditions" target="_blank"
+            >Terms and conditions</a
+          >
+          and our <a href="/data-privacy" target="_blank">privacy policy</a>. I
+          hereby confirm that Time Sales Online shall commence with the
+          execution of the contract before the expiration of the withdrawal
+          period. I hereby confirm that I am aware of the fact that my right of
+          withdrawal expires with the conclusion of the purchase contract.
         </p>
       </div>
     </div>
