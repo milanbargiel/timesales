@@ -1,10 +1,19 @@
+import axios from 'axios'
+// Dynamically generate routes
+// These routes will be statically generated and deployed to the CDN netlify
+const dynamicRoutes = () => {
+  return axios.get(`${process.env.API_URL}/pages`).then((res) => {
+    return res.data.map((page) => `/${page.slug}`)
+  })
+}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Timesales',
+    title: 'Time Sales Online',
     htmlAttrs: {
       lang: 'en',
     },
@@ -14,7 +23,7 @@ export default {
       { name: 'robots', content: 'noindex,nofollow' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     script: [{ src: 'https://js.stripe.com/v3', defer: true }],
   },
 
@@ -48,6 +57,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -70,9 +80,11 @@ export default {
   },
 
   // Exlude order page from static file generation and use custom fallback instead of default 404 one.
+  // Deploy static pages of dynamic routes during generation
   generate: {
     exclude: [/^\/order/],
     fallback: 'spa.html',
+    routes: dynamicRoutes,
   },
 
   // Allow devtool extension in Firefox
@@ -80,5 +92,14 @@ export default {
     config: {
       devtools: true,
     },
+  },
+  // Configuration for markdown parser
+  // https://markdown-it.github.io/
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+    html: true,
   },
 }

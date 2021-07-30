@@ -7,7 +7,12 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "downloadDump:clearUploads": "rm public/uploads/*",
+    "downloadDump:clearLocalDatabase": "psql timesales -c 'DROP SCHEMA public CASCADE;'",
+    "downloadDump:images": "scp -r timesalesServer:~/timesales/cms/public/uploads/* public/uploads",
+    "downloadDump:dump": "ssh timesalesServer 'pg_dump --clean -Z 9 -U timesales timesales' | zcat | psql timesales",
+    "downloadDump": "npm-run-all --serial downloadDump:*"
   },
   "dependencies": {
     "chance-de": "^1.0.2",
@@ -15,6 +20,7 @@
     "email-templates": "^8.0.4",
     "html-pdf": "^3.0.1",
     "knex": "0.21.18",
+    "npm-run-all": "^4.1.5",
     "pg": "8.5.1",
     "pug": "^3.0.2",
     "qrcode-svg": "^1.1.0",

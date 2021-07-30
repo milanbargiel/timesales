@@ -4,7 +4,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 -->
 
 <template>
-  <div>
+  <div class="centered-content">
     <Loading v-if="isLoading" />
     <div v-else>
       <div v-if="showStream">
@@ -14,11 +14,9 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
           @save-progress="handleSaveProgress"
         />
       </div>
-      <div v-else class="content">
-        <div class="bot-container">
-          <div id="botui">
-            <bot-ui />
-          </div>
+      <div v-else class="bot-container">
+        <div id="botui">
+          <bot-ui />
         </div>
       </div>
     </div>
@@ -118,11 +116,3 @@ export default {
   },
 }
 </script>
-
-<style>
-canvas {
-  width: 100vw;
-  height: 100vh;
-  image-rendering: pixelated;
-}
-</style>

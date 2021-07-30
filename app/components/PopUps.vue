@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="popup-container">
     <PopUp
       v-for="(popUp, index) in data"
       :key="`popUp-${index}`"
@@ -16,11 +16,6 @@ export default {
       type: Array,
       required: true,
     },
-  },
-  data() {
-    return {
-      showPopUp: false,
-    }
   },
   methods: {
     imageUrl(index) {

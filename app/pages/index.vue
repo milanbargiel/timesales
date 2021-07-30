@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="centered-content">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
     <PopUps :data="popUps" />
@@ -8,13 +8,15 @@
       <div id="botui">
         <bot-ui />
       </div>
-      <div :class="{ hidden: !showCheckoutButton }">
+      <div v-if="showCheckoutButton">
+        <!-- eslint-disable vue/no-v-html -->
+        <div class="order-summary" v-html="orderSummaryHtml"></div>
         <button class="button" @click="stripeCheckout()">
           Proceed to checkout
         </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
-          privacy policy.
+          <a href="/data-privacy" target="_blank">privacy policy</a>.
         </p>
       </div>
     </div>
@@ -50,6 +52,15 @@ export default {
     },
     popUps() {
       return this.$store.state.popUps.popUps
+    },
+    orderSummaryHtml() {
+      const words = this.response.orderSummary.split(' ')
+      const timeString = words.slice(0, 2).join(' ')
+      const timeDescription = words.slice(2).join(' ')
+      const timePrice = this.response.timePrice / 100 // convert to euro
+
+      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice}€</span>`
+      return html
     },
   },
   created() {

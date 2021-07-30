@@ -84,25 +84,3 @@ export default {
   },
 }
 </script>
-
-<style>
-canvas {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: crisp-edges;
-}
-
-svg {
-  display: block;
-  width: 30px;
-  height: 30px;
-}
-</style>

@@ -45,10 +45,6 @@ export default {
               text: 'Weeks',
               value: 'weeks',
             },
-            {
-              text: 'Years',
-              value: 'years',
-            },
           ],
         })
         .then((res) => {

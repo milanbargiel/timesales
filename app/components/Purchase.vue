@@ -8,6 +8,7 @@
         x
       </button>
       <!-- Paste parsed HTML content -->
+      <!-- eslint-disable vue/no-v-html -->
       <span v-html="parsePurchaseText"></span>
     </div>
   </transition>
