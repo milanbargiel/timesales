@@ -23,9 +23,9 @@ export default {
       // Convert time purpose to lower case for case insensitive searches
       let text = timePurpose.toLowerCase()
       const firstWord = text.split(' ')[0]
-      text = text.replace('my', 'your')
-      text = text.replace('you', 'the Time Sales bot')
-      text = text.replace('i', 'you')
+      text = text.replace(/\b(my)\b/i, 'your')
+      text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
+      text = text.replace(/\b(i)\b/i, 'you')
 
       // 0. Text begins with the indefine article "a" or "an"
       const startsWithIndefiniteArticle =
@@ -34,7 +34,7 @@ export default {
       if (startsWithIndefiniteArticle) {
         return `${timeString} for ${
           // First letter sentence in lower case
-          timePurpose.charAt(0).toLowerCase() + timePurpose.slice(1)
+          text.charAt(0).toLowerCase() + text.slice(1)
         }`
       }
 
@@ -57,7 +57,7 @@ export default {
 
       if (preposition) {
         // Return [timeAmount] [timeUnit] + to / for + everything after preposition
-        return `${timeString} ${timePurpose.substring(
+        return `${timeString} ${text.substring(
           text.indexOf(preposition),
           text.length
         )}`
@@ -68,17 +68,12 @@ export default {
         // Find the index of the word with ing
         const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
         // Include everything from the word with 'ing' to the end
-        return `${timeString} for ${timePurpose.substring(
-          wordIndex,
-          text.length
-        )}`
+        return `${timeString} for ${text.substring(wordIndex, text.length)}`
       }
 
       // 3. Neither a preposition nor a gerundium
       // First letter of timePurpose in lower case
-      return `${timeString} to ${
-        timePurpose.charAt(0).toLowerCase() + timePurpose.slice(1)
-      }`
+      return `${timeString} to ${text.charAt(0).toLowerCase() + text.slice(1)}`
     },
     async priceInput(timeout1, timeout2) {
       this.showTaxInfo = true // Text: Keep in mind that 7% VAT will be added on checkout.
