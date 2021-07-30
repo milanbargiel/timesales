@@ -21,8 +21,11 @@ export default {
       )
 
       // Convert time purpose to lower case for case insensitive searches
-      const text = timePurpose.toLowerCase()
+      let text = timePurpose.toLowerCase()
       const firstWord = text.split(' ')[0]
+      text = text.replace('my', 'your')
+      text = text.replace('you', 'the Time Sales bot')
+      text = text.replace('i', 'you')
 
       // 0. Text begins with the indefine article "a" or "an"
       const startsWithIndefiniteArticle =
