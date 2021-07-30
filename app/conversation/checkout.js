@@ -1,3 +1,5 @@
+import timestring from 'timestring' // to convert time
+
 // Import conversation branches
 import Exit from '../conversation/exit.js'
 
@@ -93,18 +95,6 @@ export default {
           } else {
             this.showTaxInfo = false
             this.saveResponse({ timePrice: price * 100 }) // convert input to cents
-            let tax = Math.round(price * 0.07 * 100) / 100 // 7% tax rounded to decimals
-
-            // Convert to EUR currency String with always to decimals
-            tax = tax.toLocaleString('de-DE', {
-              style: 'currency',
-              currency: 'EUR',
-            })
-
-            await this.botui.message.add({
-              human: true, // show it as right aligned to UI
-              content: `${price} + ${tax} taxes`,
-            })
           }
         })
     },
@@ -145,6 +135,38 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
+        const timePriceInEuro = this.response.timePrice / 100
+
+        let tax = Math.round(timePriceInEuro * 0.07 * 100) / 100 // 7% tax rounded to decimals
+
+        // Convert to EUR currency String with always to decimals
+        tax = tax.toLocaleString('de-DE', {
+          style: 'currency',
+          currency: 'EUR',
+        })
+
+        // Show price calculation with taxes as human input
+        await this.botui.message.add({
+          human: true,
+          content: `${timePriceInEuro} + ${tax} taxes`,
+        })
+
+        const time = `${this.response.timeAmount} ${this.response.timeUnit}`
+        const timeInMinutes = timestring(time, 'm')
+        const timeQuotient = timeInMinutes / timePriceInEuro
+
+        if (timeQuotient <= 1) {
+          await this.botMessage(
+            'Very good, this will be some real quality time.'
+          )
+        } else if (timeQuotient > 1 && timeQuotient < 30) {
+          await this.botMessage("That's a reasonable price!")
+        } else {
+          await this.botMessage(
+            'Well, at that price I am not sure you will have a good time.'
+          )
+        }
+
         this.showCheckoutButton = true
       }
     },
