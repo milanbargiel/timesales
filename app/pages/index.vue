@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-content">
+  <div ref="entirePage" class="centered-content">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
     <PopUps :data="popUps" />
@@ -141,6 +141,11 @@ export default {
         .catch((error) => {
           console.error('Error:', error)
         })
+    },
+    scrollToBottom() {
+      // Triggered by checkout
+      const pageHeight = this.$refs.entirePage.clientHeight
+      window.scrollTo(0, pageHeight)
     },
   },
 }

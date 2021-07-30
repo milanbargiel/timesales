@@ -168,6 +168,11 @@ export default {
         }
 
         this.showCheckoutButton = true
+
+        // Wait for next DOM rendering cycle so that checkout button is already rendered
+        this.$nextTick(() => {
+          this.scrollToBottom()
+        })
       }
     },
   },
