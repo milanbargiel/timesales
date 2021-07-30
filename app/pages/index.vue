@@ -8,6 +8,16 @@
       <div id="botui">
         <bot-ui />
       </div>
+      <div v-if="showPrivacyInfo">
+        <p class="help">
+          By clicking "no" we only save data relevant to the order. For futher
+          details please refer to our
+          <a href="/data-privacy" target="_blank">privacy policy</a>.
+        </p>
+      </div>
+      <div v-if="showTaxInfo">
+        <p class="help">Keep in mind that 7% VAT will be added on checkout.</p>
+      </div>
       <div v-if="showCheckoutButton">
         <!-- eslint-disable vue/no-v-html -->
         <div class="order-summary" v-html="orderSummaryHtml"></div>
@@ -35,6 +45,8 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      showPrivacyInfo: false,
+      showTaxInfo: false,
     }
   },
   computed: {
