@@ -6,6 +6,7 @@ import PurposeOfTime from '../conversation/purposeOfTime.js'
 export default {
   mixins: [InControl, AmountOfTime, PurposeOfTime],
   methods: {
+    async timeForNeglectedPriorities() {},
     async prioritizationProblems() {
       await this.botMessage('Do you struggle to set your priorities?')
 
@@ -39,7 +40,15 @@ export default {
         this.saveResponse({ timePurpose })
       })
 
-      await this.timeout(10000)
+      // Wait for 15 seconds. If user does not answers by then, remove input field and continue.
+      const question = this.timeout(15000, this.botTextInput('Your answer'))
+
+      await question.then((response) => {
+        if (response !== undefined) {
+          this.saveResponse({ timePurpose: response })
+        }
+        this.botui.action.hide() // hide question
+      })
 
       await this.botMessage(
         "Sometimes we tend to underrate those things. I think it's time to boost their value."
