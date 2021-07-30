@@ -10,8 +10,8 @@ const chance = new Chance()
 module.exports = {
  lifecycles: {
     async beforeCreate(data) {
-      // Generate fake name for feedback
-      data.fakeAuthor = chance.first({nationality: 'de'});
+      // Generate fake name for feedback when no name is set
+      data.fakeAuthor = data.fakeAuthor || chance.first({nationality: 'de'});
       
       // Do not publish feedback immediately
       data.published_at = null;
