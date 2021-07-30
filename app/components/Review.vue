@@ -27,6 +27,10 @@ export default {
       type: Number,
       required: true,
     },
+    reviewTtl: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -37,13 +41,14 @@ export default {
   },
   mounted() {
     // Show review after delay
-    setTimeout(
-      () => {
-        this.setRandomPosition()
-        this.showReview = true
-      },
-      this.reviewDelay * 1000 // seconds to milliseconds
-    )
+    const ttl = this.reviewTtl * 1000 // seconds to milliseconds
+    const delay = this.reviewDelay * 1000
+
+    setTimeout(() => {
+      this.setRandomPosition()
+      this.showReview = true // show pop up after delay
+      setTimeout(() => (this.showReview = false), ttl) // kill pop up after ttl
+    }, delay)
   },
   methods: {
     getRandomInt(min, max) {
