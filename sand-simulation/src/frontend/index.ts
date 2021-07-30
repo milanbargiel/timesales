@@ -22,6 +22,8 @@ async function init({
 }) {
   let { width, height } = getDims();
 
+  console.log("INIT STREAM", { ...arguments[0] });
+
   let pixels = new Uint8Array(width * height);
 
   // This is ugly but i have not found a
@@ -66,20 +68,19 @@ async function init({
     _promise = false;
   }
 
-  async function render() {
+  async function update() {
     if (!simPaused && !isResizing && !isSimFinished) {
-      performanceKeeper.start();
-      updateSim();
+      /*-->*/ await performanceKeeper.start();
+      await updateSim();
       timeKeeper.update();
-      sound.resume();
       sound.setVolume(Math.min(0.05, updates / 4000000));
       canvas.update();
-      performanceKeeper.end();
+      /*-->*/ await performanceKeeper.end();
     } else {
       sound.pause();
     }
 
-    requestAnimationFrame(render);
+    requestAnimationFrame(update);
   }
 
   window.addEventListener(
@@ -90,7 +91,7 @@ async function init({
     }, 500)
   );
 
-  render();
+  update();
 }
 
 function pause() {
@@ -104,12 +105,26 @@ function pause() {
   }
 }
 
+function play() {
+  if (simPaused) {
+    simPaused = false;
+    timeKeeper.resume();
+    sound.resume();
+  }
+}
+
 function getProgress() {
   return timeKeeper.getProgress();
 }
 
+window.addEventListener("blur", pause);
+window.addEventListener("focus", play);
+window.addEventListener("mouseover", play);
+window.addEventListener("mouseout", play);
+
 export default {
   init,
+  play,
   pause,
   getProgress,
 };
