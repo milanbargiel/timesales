@@ -57,8 +57,8 @@ export default {
         // Top value between scroll position and window height - offset
         this.top =
           this.getRandomInt(window.pageYOffset, window.innerHeight - 200) + 'px'
-        // Right value is randomly choosen from 0 - 20 / 50 - 70 percent
-        // 30 - 60 is a dead zone
+        // Right value is randomly choosen from 0 - 15 / 60 - 75 percent
+        // 15 - 60 is a dead zone
         const right =
           Math.random() < 0.5
             ? this.getRandomInt(0, 15)
