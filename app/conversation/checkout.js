@@ -147,6 +147,7 @@ export default {
 
         // Show price calculation with taxes as human input
         await this.botui.message.add({
+          delay: 10,
           human: true,
           content: `${timePriceInEuro} + ${tax} taxes`,
         })
