@@ -5,6 +5,7 @@
       :key="`popUp-${index}`"
       :pop-up-image-url="imageUrl(index)"
       :pop-up-delay="popUp.delay"
+      :pop-up-ttl="popUp.ttl"
     />
   </div>
 </template>
