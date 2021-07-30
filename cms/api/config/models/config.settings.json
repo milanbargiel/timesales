@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "configs",
   "info": {
-    "name": "Config"
+    "name": "Config",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -31,6 +32,12 @@
     "showAllPopUps": {
       "type": "boolean",
       "default": false
+    },
+    "minTimeToLive": {
+      "type": "integer"
+    },
+    "maxTimeToLive": {
+      "type": "integer"
     }
   }
 }

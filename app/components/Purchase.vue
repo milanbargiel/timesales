@@ -25,6 +25,10 @@ export default {
       type: Number,
       required: true,
     },
+    purchaseTtl: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -42,11 +46,13 @@ export default {
     },
   },
   mounted() {
-    // Show purchase after delay
-    setTimeout(
-      () => (this.showPurchase = true),
-      this.purchaseDelay * 1000 // seconds to milliseconds
-    )
+    const ttl = this.purchaseTtl * 1000 // seconds to milliseconds
+    const delay = this.purchaseDelay * 1000
+
+    setTimeout(() => {
+      this.showPurchase = true // show pop up after delay
+      setTimeout(() => (this.showPurchase = false), ttl) // kill pop up after ttl
+    }, delay)
   },
 }
 </script>

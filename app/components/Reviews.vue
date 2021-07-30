@@ -7,6 +7,7 @@
       :review-text="review.text"
       :review-author="review.author"
       :review-delay="review.delay"
+      :review-ttl="review.ttl"
     />
   </div>
 </template>

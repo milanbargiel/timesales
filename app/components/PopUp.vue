@@ -20,6 +20,10 @@ export default {
       type: Number,
       required: true,
     },
+    popUpTtl: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -28,10 +32,13 @@ export default {
   },
   mounted() {
     // Show popUp after delay
-    setTimeout(
-      () => (this.showPopUp = true),
-      this.popUpDelay * 1000 // seconds to milliseconds
-    )
+    const ttl = this.popUpTtl * 1000 // seconds to milliseconds
+    const delay = this.popUpDelay * 1000
+
+    setTimeout(() => {
+      this.showPopUp = true // show pop up after delay
+      setTimeout(() => (this.showPopUp = false), ttl) // kill pop up after ttl
+    }, delay)
   },
 }
 </script>

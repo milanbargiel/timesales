@@ -9,6 +9,8 @@ const state = () => ({
     purchaseFrequency: null,
     popUpFirstAppearance: null,
     popUpFrequency: null,
+    minTimeToLive: null,
+    maxTimeToLive: null,
     showAllPopUps: false,
   },
 })
@@ -26,6 +28,12 @@ const mutations = {
   setConfig(state, config) {
     state.config = config
   },
+}
+
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 const actions = {
@@ -55,10 +63,17 @@ const actions = {
         // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
         delay = state.config.showAllPopUps ? 0 : delay
 
+        // Calculate random time to live
+        const ttl = getRandomInt(
+          state.config.minTimeToLive,
+          state.config.maxTimeToLive
+        )
+
         return {
           text: item.opinion,
           author: item.fakeAuthor,
           delay,
+          ttl,
         }
       })
     commit('setReviews', reviews)
@@ -80,9 +95,16 @@ const actions = {
         // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
         delay = state.config.showAllPopUps ? 0 : delay
 
+        // Calculate random time to live
+        const ttl = getRandomInt(
+          state.config.minTimeToLive,
+          state.config.maxTimeToLive
+        )
+
         return {
           text: item.text,
           delay,
+          ttl,
         }
       })
     commit('setPurchases', purchases)
@@ -104,9 +126,16 @@ const actions = {
         // Debug mode: Set delay to 0 when showAllPopUps is activated in backend
         delay = state.config.showAllPopUps ? 0 : delay
 
+        // Calculate random time to live
+        const ttl = getRandomInt(
+          state.config.minTimeToLive,
+          state.config.maxTimeToLive
+        )
+
         return {
           imageUrl: item.image.url,
           delay,
+          ttl,
         }
       })
     commit('setPopUps', popUps)
