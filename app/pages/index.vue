@@ -9,9 +9,8 @@
         <bot-ui />
       </div>
       <div v-if="showCheckoutButton">
-        <div class="order-summary">
-          {{ response.orderSummary }} for {{ response.timePrice / 100 }}€
-        </div>
+        <!-- eslint-disable vue/no-v-html -->
+        <div class="order-summary" v-html="orderSummaryHtml"></div>
         <button class="button" @click="stripeCheckout()">
           Proceed to checkout
         </button>
@@ -53,6 +52,15 @@ export default {
     },
     popUps() {
       return this.$store.state.popUps.popUps
+    },
+    orderSummaryHtml() {
+      const words = this.response.orderSummary.split(' ')
+      const timeString = words.slice(0, 2).join(' ')
+      const timeDescription = words.slice(2).join(' ')
+      const timePrice = this.response.timePrice / 100 // convert to euro
+
+      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice}€</span>`
+      return html
     },
   },
   created() {
