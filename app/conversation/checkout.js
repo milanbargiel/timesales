@@ -1,3 +1,5 @@
+import timestring from 'timestring' // to convert time
+
 // Import conversation branches
 import Exit from '../conversation/exit.js'
 
@@ -64,25 +66,37 @@ export default {
       }`
     },
     async priceInput(timeout1, timeout2) {
-      await this.botNumberInput('Worth in €').then(async (price) => {
-        // Do not show pushy questions anymore when price is given
-        this.hidePushyQuestion()
-        clearTimeout(timeout1)
-        clearTimeout(timeout2)
+      this.showTaxInfo = true // Text: Keep in mind that 7% VAT will be added on checkout.
 
-        // Validate input
-        // Stripe allows transfers of 10000€ max
-        // With 7% VAT 9300€ is the maximum input for users
-        if (price <= 0 || price > 9300) {
-          // Limit is set by Stripe
-          await this.botMessage(
-            'Your input is not valid. Please choose a more appropriate price.'
-          )
-          await this.priceInput() // recursion
-        } else {
-          this.saveResponse({ timePrice: price * 100 }) // convert input to cents
-        }
-      })
+      await this.botui.action
+        .text({
+          addMessage: false, // Use a custom response instead
+          action: {
+            sub_type: 'number',
+            placeholder: 'Worth in €',
+          },
+        })
+        .then(async (res) => {
+          const price = parseInt(res.value)
+          // Do not show pushy questions anymore when price is given
+          this.hidePushyQuestion()
+          clearTimeout(timeout1)
+          clearTimeout(timeout2)
+
+          // Validate input
+          // Stripe allows transfers of 10000€ max
+          // With 7% VAT 9300€ is the maximum input for users
+          if (price <= 0 || price > 9300) {
+            // Limit is set by Stripe
+            await this.botMessage(
+              'Your inquiry qualifies for premium customer service, please contact us via email or choose a smaller price to continue.'
+            )
+            await this.priceInput() // recursion
+          } else {
+            this.showTaxInfo = false
+            this.saveResponse({ timePrice: price * 100 }) // convert input to cents
+          }
+        })
     },
     async checkout() {
       // Create order summary
@@ -97,10 +111,6 @@ export default {
 
       await this.botMessage(
         `${orderSummary}. What would that time be worth to you?`
-      )
-
-      await this.botMessage(
-        'Keep in mind that 7% VAT will be added on checkout.'
       )
 
       await (async () => {
@@ -125,7 +135,45 @@ export default {
 
       // Only continue when user enters value
       if (this.response.timePrice) {
+        const timePriceInEuro = this.response.timePrice / 100
+
+        let tax = Math.round(timePriceInEuro * 0.07 * 100) / 100 // 7% tax rounded to decimals
+
+        // Convert to EUR currency String with always to decimals
+        tax = tax.toLocaleString('de-DE', {
+          style: 'currency',
+          currency: 'EUR',
+        })
+
+        // Show price calculation with taxes as human input
+        await this.botui.message.add({
+          delay: 10,
+          human: true,
+          content: `${timePriceInEuro} + ${tax} taxes`,
+        })
+
+        const time = `${this.response.timeAmount} ${this.response.timeUnit}`
+        const timeInMinutes = timestring(time, 'm')
+        const timeQuotient = timeInMinutes / timePriceInEuro
+
+        if (timeQuotient <= 1) {
+          await this.botMessage(
+            'Very good, this will be some real quality time.'
+          )
+        } else if (timeQuotient > 1 && timeQuotient < 30) {
+          await this.botMessage("That's a reasonable price!")
+        } else {
+          await this.botMessage(
+            'Well, at that price I am not sure you will have a good time.'
+          )
+        }
+
         this.showCheckoutButton = true
+
+        // Wait for next DOM rendering cycle so that checkout button is already rendered
+        this.$nextTick(() => {
+          this.scrollToBottom()
+        })
       }
     },
   },

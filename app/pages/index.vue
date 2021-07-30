@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-content">
+  <div ref="entirePage" class="centered-content">
     <!-- Components are auto imported by nuxt-->
     <Reviews :data="reviews" />
     <PopUps :data="popUps" />
@@ -7,6 +7,16 @@
     <div class="bot-container">
       <div id="botui">
         <bot-ui />
+      </div>
+      <div v-if="showPrivacyInfo">
+        <p class="help">
+          By clicking "no" we only save data relevant to the order. For futher
+          details please refer to our
+          <a href="/data-privacy" target="_blank">privacy policy</a>.
+        </p>
+      </div>
+      <div v-if="showTaxInfo">
+        <p class="help">Keep in mind that 7% VAT will be added on checkout.</p>
       </div>
       <div v-if="showCheckoutButton">
         <!-- eslint-disable vue/no-v-html -->
@@ -16,7 +26,14 @@
         </button>
         <p class="help">
           By clicking on the button "Proceed to checkout" you agree to our
-          <a href="/data-privacy" target="_blank">privacy policy</a>.
+          <a href="/terms-and-conditions" target="_blank"
+            >Terms and conditions</a
+          >
+          and our <a href="/data-privacy" target="_blank">privacy policy</a>. I
+          hereby confirm that Time Sales Online shall commence with the
+          execution of the contract before the expiration of the withdrawal
+          period. I hereby confirm that I am aware of the fact that my right of
+          withdrawal expires with the conclusion of the purchase contract.
         </p>
       </div>
     </div>
@@ -35,6 +52,8 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      showPrivacyInfo: false,
+      showTaxInfo: false,
     }
   },
   computed: {
@@ -57,9 +76,16 @@ export default {
       const words = this.response.orderSummary.split(' ')
       const timeString = words.slice(0, 2).join(' ')
       const timeDescription = words.slice(2).join(' ')
-      const timePrice = this.response.timePrice / 100 // convert to euro
+      const tax = Math.round(this.response.timePrice * 0.07) // 7% tax rounded to decimals
+      let timePrice = (this.response.timePrice + tax) / 100
 
-      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice}€</span>`
+      // Convert to EUR currency String
+      timePrice = timePrice.toLocaleString('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+      })
+
+      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice.toLocaleString()}</span>`
       return html
     },
   },
@@ -115,6 +141,11 @@ export default {
         .catch((error) => {
           console.error('Error:', error)
         })
+    },
+    scrollToBottom() {
+      // Triggered by checkout
+      const pageHeight = this.$refs.entirePage.clientHeight
+      window.scrollTo(0, pageHeight)
     },
   },
 }

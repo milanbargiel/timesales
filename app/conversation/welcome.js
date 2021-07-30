@@ -21,7 +21,10 @@ export default {
           ', nice to meet you. Would it be okay if I record our conversation for quality control purposes?'
       )
 
-      await this.botYesOrNo('privacy-consent-info').then((allowRecording) => {
+      this.showPrivacyInfo = true
+
+      await this.botYesOrNo().then((allowRecording) => {
+        this.showPrivacyInfo = false
         this.saveResponse({ allowRecording })
       })
 

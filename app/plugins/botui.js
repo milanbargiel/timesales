@@ -84,9 +84,8 @@ vue.mixin({
       })
       return res.value // only return value property
     },
-    async botYesOrNo(cssClass) {
+    async botYesOrNo() {
       const res = await this.botui.action.button({
-        cssClass: cssClass || null,
         action: [
           {
             text: 'Yes',

@@ -55,6 +55,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -184,15 +185,6 @@ body {
     height: 2.5em;
     width: 2.5em;
   }
-}
-
-// Botui addons
-.privacy-consent-info::after {
-  content: 'By clicking "no" we only save data relevant to the order. For futher details please refer to our privacy policy.';
-  display: block;
-  font-size: 0.75rem;
-  margin: 0.5rem auto;
-  max-width: 68%;
 }
 
 // Buttons
@@ -470,11 +462,6 @@ body {
     width: 50%;
     justify-content: space-between;
     order: 3;
-    max-width: $column-width;
-  }
-
-  @media screen and (min-width: $bp-hd) {
-    max-width: 880px;
   }
 }
 
@@ -534,7 +521,7 @@ body {
     @media screen and (min-width: $bp-hd) {
       width: 165px;
       height: 33px;
-      margin-right: $space-xl;
+      margin-right: 1.5 * $space-xl;
     }
   }
 }
