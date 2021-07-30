@@ -81,6 +81,9 @@ func Update(percentage float64) int {
 		println("SIM FINISHED")
 		simFinished = true
 	}
+	if simFinished {
+		return 0
+	}
 
 	// This is the difference of the
 	// actual percentage and the "should be" percentage
@@ -215,6 +218,11 @@ func Resize(width, height int) {
 	c.Resize(width, height)
 	smallestY = 100000
 
+}
+
+//export IsFinished
+func IsFinished() bool {
+	return simFinished
 }
 
 func main() {

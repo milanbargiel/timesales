@@ -17,11 +17,11 @@ export default (resize) => {
     end: () => {
       i++;
 
-      // Measure the execution time
-      measurements = [...measurements.slice(-59), performance.now() - t];
+      // Make sure we only collect 120 measurements, eg 2 seconds
+      measurements = [...measurements.slice(-119), performance.now() - t];
 
-      // Every half second
-      if (i % 30 == 0) {
+      // Every second
+      if (i % 60 == 0) {
         // Calculate the average execution time
         let sum = 0;
         for (let i = 0; i < measurements.length; i++) {
@@ -29,8 +29,8 @@ export default (resize) => {
         }
         const avg = Math.floor(sum / measurements.length);
 
-        // Dont do anything if we are around 5 ms of the optimal ms
-        if (avg > optimalMS - 5 && avg < optimalMS + 5) return;
+        // Dont do anything if we are around 20ms of the optimal ms
+        if (avg > optimalMS - 20 && avg < optimalMS + 20) return;
         console.log("[PERF] ", avg, "ms");
 
         if (avg < optimalMS) {
@@ -41,23 +41,18 @@ export default (resize) => {
           const s = 1 + howGoodIsIt * 0.25;
           console.log("[PERF] increase scale by", s);
 
-          dims.scale *= s;
-
-          const { width, height } = getDims();
-
-          resize(width, height);
+          dims.scale = Math.min(dims.scale * s, 2);
         } else {
           const howBadIsIt = Math.min(avg - optimalMS, worstMaxMS) / worstMaxMS;
 
           const s = 1 - howBadIsIt * 0.25;
           console.log("[PERF] decrease scale by", s);
-
           dims.scale *= s;
-
-          const { width, height } = getDims();
-
-          resize(width, height);
         }
+
+        // Apply the scale calculated above
+        const { width, height } = getDims();
+        resize(width, height);
       }
     },
   };

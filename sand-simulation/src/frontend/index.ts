@@ -56,16 +56,18 @@ async function init({
   let _promise;
   let updates = 100;
   let isResizing = false;
+  let isSimFinished = false;
 
   async function updateSim() {
     if (_promise) return;
+    isSimFinished = await backend.IsFinished();
     _promise = await backend.Update(timeKeeper.getProgress());
     updates = _promise;
     _promise = false;
   }
 
   async function render() {
-    if (!simPaused && !isResizing && timeKeeper.getProgress() > -0.05) {
+    if (!simPaused && !isResizing && !isSimFinished) {
       performanceKeeper.start();
       updateSim();
       timeKeeper.update();

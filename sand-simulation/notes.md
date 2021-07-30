@@ -70,3 +70,11 @@ _FLOW_
 
 - Übergabe an Nuxt wenn die Animation durchgelaufen ist
 - Nach der Animation soll direkt das Chatbot Fenster aufploppen
+
+# Meeting 7 [Maurits, Ludwig, Katja, Milan, Max] 26.07
+
+_PERFOMANCE_
+- Auch auf performanten Geräten wird die Pixelgröße runterskaliert
+- Teilweise bleibt nach dem Ablaufen der Animation noch etwas Sand übrig
+    -> Könnte daran liegen das die Animation und der Timekeeper asynchron gestartet werden
+    -> Evt. nach Ablauf der Zeit die Animation vortführen, damit die restlichen Sandkörner auch noch verschwinden

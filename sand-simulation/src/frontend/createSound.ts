@@ -16,6 +16,7 @@ export default () => {
   const pinkNoise = (function () {
     let b0, b1, b2, b3, b4, b5, b6;
     b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
+    //const node = new AudioWorkletNode(ctx, "");
     const node = ctx.createScriptProcessor(bufferSize, 1, 1);
     node.onaudioprocess = function (e) {
       const output = e.outputBuffer.getChannelData(0);
