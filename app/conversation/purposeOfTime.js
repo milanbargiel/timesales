@@ -31,7 +31,7 @@ export default {
       const list = [
         'futur',
         'social media',
-        'netlfix',
+        'netflix',
         'instagram',
         'tiktok',
         'travel',
