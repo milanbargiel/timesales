@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="showReview" class="review" :style="positionStyles">
+    <div v-if="showReview" class="review" :style="{ top, right }">
       <button class="close-btn close-btn--review" @click="showReview = false">
         x
       </button>
@@ -30,32 +30,18 @@ export default {
   },
   data() {
     return {
-      isDesktop: false,
+      top: 0,
+      right: 0,
       showReview: false,
     }
   },
-  computed: {
-    positionStyles() {
-      const position = {
-        top: this.getRandomInt(7, 85) + '%',
-        right: this.getRandomInt(0, 70) + '%',
-      }
-
-      return this.isDesktop ? position : ''
-    },
-  },
   mounted() {
-    // Set isDesktop when component is mounted
-    this.isDesktop = window.innerWidth >= 680 // breakpoint as defined in stylesheets
-
-    // Listen for changes
-    window.addEventListener('resize', () => {
-      this.isDesktop = window.innerWidth >= 680
-    })
-
     // Show review after delay
     setTimeout(
-      () => (this.showReview = true),
+      () => {
+        this.setRandomPosition()
+        this.showReview = true
+      },
       this.reviewDelay * 1000 // seconds to milliseconds
     )
   },
@@ -64,6 +50,21 @@ export default {
       min = Math.ceil(min)
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1)) + min
+    },
+    setRandomPosition() {
+      // only desktop
+      if (window.innerWidth > 800) {
+        // Top value between scroll position and window height - offset
+        this.top =
+          this.getRandomInt(window.pageYOffset, window.innerHeight - 200) + 'px'
+        // Right value is randomly choosen from 0 - 20 / 50 - 70 percent
+        // 30 - 60 is a dead zone
+        const right =
+          Math.random() < 0.5
+            ? this.getRandomInt(0, 15)
+            : this.getRandomInt(60, 75)
+        this.right = right + '%'
+      }
     },
   },
 }
