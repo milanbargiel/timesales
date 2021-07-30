@@ -679,13 +679,16 @@ var perfomanceKeeper_default = (resize) => {
     },
     end: () => {
       i++;
-      measurements = [...measurements.slice(-119), performance.now() - t];
+      if (t) {
+        measurements = [...measurements.slice(-119), performance.now() - t];
+      }
       if (i % 60 == 0) {
         let sum = 0;
         for (let i2 = 0; i2 < measurements.length; i2++) {
           sum += measurements[i2];
         }
         const avg = Math.floor(sum / measurements.length);
+        console.log("[PERF] average exec time", avg, "ms");
         if (avg > optimalMS - 20 && avg < optimalMS + 20)
           return;
         console.log("[PERF] ", avg, "ms");
@@ -769,6 +772,7 @@ async function init({
   wasmPath
 }) {
   let {width, height} = getDims_default();
+  console.log("INIT STREAM", {...arguments[0]});
   let pixels = new Uint8Array(width * height);
   window["sandPixelArray"] = pixels;
   backend = await createBackend_default(wasmPath);
@@ -800,25 +804,24 @@ async function init({
     updates = _promise;
     _promise = false;
   }
-  async function render() {
+  async function update2() {
     if (!simPaused && !isResizing && !isSimFinished) {
-      performanceKeeper.start();
-      updateSim();
+      await performanceKeeper.start();
+      await updateSim();
       timeKeeper_default.update();
-      sound.resume();
       sound.setVolume(Math.min(0.05, updates / 4e6));
       canvas.update();
-      performanceKeeper.end();
+      await performanceKeeper.end();
     } else {
       sound.pause();
     }
-    requestAnimationFrame(render);
+    requestAnimationFrame(update2);
   }
   window.addEventListener("resize", debounce_default(() => {
     const {width: _w, height: _h} = getDims_default();
     resize(_w, _h);
   }, 500));
-  render();
+  update2();
 }
 function pause2() {
   simPaused = !simPaused;
@@ -830,11 +833,23 @@ function pause2() {
     sound.resume();
   }
 }
+function play() {
+  if (simPaused) {
+    simPaused = false;
+    timeKeeper_default.resume();
+    sound.resume();
+  }
+}
 function getProgress2() {
   return timeKeeper_default.getProgress();
 }
+window.addEventListener("blur", pause2);
+window.addEventListener("focus", play);
+window.addEventListener("mouseover", play);
+window.addEventListener("mouseout", play);
 var frontend_default = {
   init,
+  play,
   pause: pause2,
   getProgress: getProgress2
 };

@@ -17,17 +17,21 @@ export default (resize) => {
     end: () => {
       i++;
 
-      // Make sure we only collect 120 measurements, eg 2 seconds
-      measurements = [...measurements.slice(-119), performance.now() - t];
+      if (t) {
+        // Make sure we only collect 120 measurements, eg 2 seconds
+        measurements = [...measurements.slice(-119), performance.now() - t];
+      }
 
       // Every second
       if (i % 60 == 0) {
-        // Calculate the average execution time
+        // Calculate the average execution time this is in milliseconds;
         let sum = 0;
         for (let i = 0; i < measurements.length; i++) {
           sum += measurements[i];
         }
         const avg = Math.floor(sum / measurements.length);
+
+        console.log("[PERF] average exec time", avg, "ms");
 
         // Dont do anything if we are around 20ms of the optimal ms
         if (avg > optimalMS - 20 && avg < optimalMS + 20) return;

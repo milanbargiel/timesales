@@ -78,3 +78,8 @@ _PERFOMANCE_
 - Teilweise bleibt nach dem Ablaufen der Animation noch etwas Sand übrig
     -> Könnte daran liegen das die Animation und der Timekeeper asynchron gestartet werden
     -> Evt. nach Ablauf der Zeit die Animation vortführen, damit die restlichen Sandkörner auch noch verschwinden
+
+
+# Meeting 8 
+- Hängt manchmal einfach kurz vor Ende ~5 Sekunden
+- 
