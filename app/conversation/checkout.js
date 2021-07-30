@@ -76,7 +76,7 @@ export default {
         if (price <= 0 || price > 9300) {
           // Limit is set by Stripe
           await this.botMessage(
-            'Your input is not valid. Please choose a more appropriate price.'
+            'Your inquiry qualifies for premium customer service, please contact us via email or choose a smaller price to continue.'
           )
           await this.priceInput() // recursion
         } else {
