@@ -470,11 +470,6 @@ body {
     width: 50%;
     justify-content: space-between;
     order: 3;
-    max-width: $column-width;
-  }
-
-  @media screen and (min-width: $bp-hd) {
-    max-width: 880px;
   }
 }
 
@@ -534,7 +529,7 @@ body {
     @media screen and (min-width: $bp-hd) {
       width: 165px;
       height: 33px;
-      margin-right: $space-xl;
+      margin-right: 1.5 * $space-xl;
     }
   }
 }
