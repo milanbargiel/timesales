@@ -69,9 +69,16 @@ export default {
       const words = this.response.orderSummary.split(' ')
       const timeString = words.slice(0, 2).join(' ')
       const timeDescription = words.slice(2).join(' ')
-      const timePrice = this.response.timePrice / 100 // convert to euro
+      const tax = Math.round(this.response.timePrice * 0.07) // 7% tax rounded to decimals
+      let timePrice = (this.response.timePrice + tax) / 100
 
-      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice}€</span>`
+      // Convert to EUR currency String
+      timePrice = timePrice.toLocaleString('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+      })
+
+      const html = `<span class="special-font">${timeString}</span> ${timeDescription} <span class="special-font">for ${timePrice.toLocaleString()}</span>`
       return html
     },
   },

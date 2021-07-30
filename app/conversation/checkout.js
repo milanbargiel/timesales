@@ -91,12 +91,19 @@ export default {
             )
             await this.priceInput() // recursion
           } else {
-            this.saveResponse({ timePrice: price * 100 }) // convert input to cents
             this.showTaxInfo = false
-            const tax = Math.round(price * 0.07 * 100) / 100 // 7% tax rounded to decimals
+            this.saveResponse({ timePrice: price * 100 }) // convert input to cents
+            let tax = Math.round(price * 0.07 * 100) / 100 // 7% tax rounded to decimals
+
+            // Convert to EUR currency String with always to decimals
+            tax = tax.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            })
+
             await this.botui.message.add({
               human: true, // show it as right aligned to UI
-              content: `${price}€ + ${tax}€ taxes`,
+              content: `${price} + ${tax} taxes`,
             })
           }
         })
