@@ -26,16 +26,19 @@ export default {
       return `Ah good choice, I like to ${keyword} too.`
     },
     keywordReply(text) {
-      const str = stemmer(text.toLowerCase())
-
-      // Word stems with porter stemmer
+      // Word stems with porter stemmer (only if applicable) e.g. Netlfix stays as it is
       // https://9ol.es/porter_js_demo.html
       const list = [
         'futur',
         'social media',
+        'netlfix',
+        'instagram',
+        'tiktok',
         'travel',
         'love',
         'distract',
+        'dispers',
+        'chill',
         'wast',
         'concentr',
         'think',
@@ -51,72 +54,66 @@ export default {
         'read',
       ]
 
-      const keyword = list.find((stem) => str.includes(stem))
+      let str = stemmer(text.toLowerCase())
+      // Add whitespace to the beginning of the String to allow for searching complete words only
+      str = ' ' + str
+
+      // Return fist keyword that is found in answer text
+      const keyword = list.find((stem) => str.includes(` ${stem}`))
 
       let reply
 
-      switch (keyword) {
-        case 'futur':
-          reply =
-            'That is the best investment you could have made: we need more people like you.'
-          break
-        case 'social media':
-          reply =
-            "You don't need time for that. But I'll sell it to you anyways."
-          break
-        case 'travel':
-          reply = 'Good choice, but keep the environment in mind.'
-          break
-        case 'love':
-          reply = "There's nothing more beautiful than love."
-          break
-        case 'distract':
-          reply = 'Yeah, we all need to get lost sometimes.'
-          break
-        case 'wast':
-          reply =
-            "Isn't it strange that it feels good to throw away the most precoius things we posses?"
-          break
-        case 'concentr':
-          reply = 'Concentrated time for concentration. Here you go.'
-          break
-        case 'think':
-          reply = "Good choice, that's one of our best selling products"
-          break
-        case 'eat':
-          reply = 'Mmmmh, the most delicious time you can get.'
-          break
-        case 'celebr':
-          reply = "You've earned that."
-          break
-        case 'buy':
-          reply = "Yeah, let's boost that economy."
-          break
-        case 'work':
-          reply = 'For work? are you sure?'
-          break
-        case 'play':
-          reply = 'A good investment! It will help you to stay young.'
-          break
-        case 'art':
-          reply = 'I love art'
-          break
-        case 'project':
-          reply =
-            'Cool idea, you are in the right place. This is the perfect starting point for your project'
-          break
-        case 'relax':
-          reply = this.standardReply('relax')
-          break
-        case 'be by myself':
-          reply = this.standardReply('be by myself')
-          break
-        case 'read':
-          reply = this.standardReply('read')
-          break
-        default:
-          reply = 'Excellent choice.'
-          break
+      if (keyword === 'futur') {
+        reply =
+          'The future, excellent, that’s the best possible investment. We need more people like you.'
+      } else if (
+        keyword === 'social media' ||
+        keyword === 'netflix' ||
+        keyword === 'instagram' ||
+        keyword === 'tiktok'
+      ) {
+        reply =
+          "You don't need more time for that. But, if you insist, I'll sell it to you anyway."
+      } else if (keyword === 'travel') {
+        reply = 'Good choice, but please keep the environment in mind.'
+      } else if (keyword === 'love') {
+        reply = "There's nothing more beautiful than love."
+      } else if (
+        keyword === 'distract' ||
+        keyword === 'dispers' ||
+        keyword === 'chill'
+      ) {
+        reply = 'Yeah, we all need to get lost sometimes.'
+      } else if (keyword === 'wast') {
+        reply =
+          "Isn't it strange that it feels good to throw away the most precious things we possess?"
+      } else if (keyword === 'concentr') {
+        reply = 'Concentrated time for concentration. Here you go.'
+      } else if (keyword === 'think') {
+        reply = "Good choice, that's one of our best selling products."
+      } else if (keyword === 'eat') {
+        reply = 'Mmmmh, the most delicious time on our menu.'
+      } else if (keyword === 'celebr') {
+        reply = "You've earned that."
+      } else if (keyword === 'buy') {
+        reply = "Yeah, let's boost that economy."
+      } else if (keyword === 'work') {
+        reply = 'For work? Are you sure?'
+      } else if (keyword === 'play') {
+        reply = 'A good investment! It will help you to stay young.'
+      } else if (keyword === 'art') {
+        reply = 'I love art!'
+      } else if (keyword === 'project') {
+        reply =
+          'Cool idea, you are in the right place. This is the perfect starting point for your project'
+      } else if (
+        keyword === 'relax' ||
+        keyword === 'be by myself' ||
+        keyword === 'read'
+      ) {
+        reply = this.standardReply(keyword)
+      } else {
+        reply = 'Excellent choice.'
       }
 
       return reply
