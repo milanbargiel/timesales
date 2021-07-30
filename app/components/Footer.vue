@@ -4,11 +4,27 @@
       <div></div>
       <div class="creators">
         <div class="creators-header">Partners:</div>
-        <a class="link link--underlined" href="#">Milan Bargiel</a>
-        <a class="link link--underlined" href="#">Jim-Fx</a>
-        <a class="link link--underlined" href="#">Katherina Gorodynska</a>
-        <a class="link link--underlined" href="#">Ludwig Lederer</a>
-        <a class="link link--underlined" href="#">Biomigrant</a>
+        <a
+          class="link link--underlined"
+          href="https://www.milanbargiel.com/"
+          target="_blank"
+          >Milan Bargiel</a
+        >
+        <a
+          class="link link--underlined"
+          href="https://jim-fx.com"
+          target="_blank"
+          >Jim-Fx</a
+        >
+        <a class="link link--underlined">Katherina Gorodynska</a>
+        <a class="link link--underlined">Ludwig Lederer</a>
+        <a
+          class="link link--underlined"
+          href="http://biomigrant.co"
+          target="_blank"
+          >Biomigrant</a
+        >
+        <a class="link link--underlined">Layla Ansari</a>
       </div>
       <div class="navigation">
         <NuxtLink class="link" to="/">Buy time</NuxtLink>
