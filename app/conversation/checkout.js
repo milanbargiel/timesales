@@ -14,19 +14,31 @@ export default {
     },
     // Function to generate a string that sums up the purpose and amount of time
     createOrderSummary(timePurpose, timeAmount, timeUnit) {
-      // Convert time purpose to lower case for case insensitive searches
-      const text = timePurpose.toLowerCase()
-
-      // Search for to 'to', 'for' and 'ing'
-      const containsTo = text.includes('to')
-      const containsFor = text.includes('for')
-      const containsIng = text.includes('ing')
-
       // Convert time
       const timeString = this.humanizeTime(
         this.response.timeAmount,
         this.response.timeUnit
       )
+
+      // Convert time purpose to lower case for case insensitive searches
+      const text = timePurpose.toLowerCase()
+      const firstWord = text.split(' ')[0]
+
+      // 0. Text begins with the indefine article "a" or "an"
+      const startsWithIndefiniteArticle =
+        firstWord === 'a' || firstWord === 'an'
+
+      if (startsWithIndefiniteArticle) {
+        return `${timeString} for ${
+          // First letter sentence in lower case
+          timePurpose.charAt(0).toLowerCase() + timePurpose.slice(1)
+        }`
+      }
+
+      // Search for to 'to', 'for' and 'ing'
+      const containsTo = text.includes('to')
+      const containsFor = text.includes('for')
+      const containsIng = text.includes('ing')
 
       // 1. Text contains the prepositions 'to' or 'for'
       let preposition
