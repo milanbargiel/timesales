@@ -20,9 +20,9 @@
         </div>
       </div>
       <div class="patrons">
-        <SvgsKulturNrw class="patron-logo patron-logo--nrw" />
-        <SvgsLabK class="patron-logo patron-logo--lab-k" />
-        <SvgsBergLawyers class="patron-logo patron-logo--advocates" />
+        <SvgsKulturNrw />
+        <SvgsLabK />
+        <SvgsBergLawyers />
         <div class="debug-toggle">
           <label class="switch">
             <input
