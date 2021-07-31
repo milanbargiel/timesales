@@ -153,7 +153,6 @@ body {
   max-width: $column-width;
 
   @media screen and (min-width: $bp-tablet) {
-    padding: 200px 0;
     width: 50%;
   }
 }
