@@ -20,7 +20,7 @@
         <a class="link link--underlined">Ludwig Lederer</a>
         <a
           class="link link--underlined"
-          href="http://biomigrant.co"
+          href="https://soundcloud.com/biomigrant"
           target="_blank"
           >Biomigrant</a
         >
