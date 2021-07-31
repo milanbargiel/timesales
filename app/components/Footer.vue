@@ -27,10 +27,14 @@
         <a class="link link--underlined">Layla Ansari</a>
       </div>
       <div class="navigation">
-        <NuxtLink class="link" to="/">Buy time</NuxtLink>
-        <NuxtLink v-for="link in links" :key="link.slug" :to="link.slug">{{
-          link.title
-        }}</NuxtLink>
+        <NuxtLink class="link link--undecorated" to="/">Buy time</NuxtLink>
+        <NuxtLink
+          v-for="link in links"
+          :key="link.slug"
+          class="link link--undecorated"
+          :to="link.slug"
+          >{{ link.title }}</NuxtLink
+        >
         <div class="footer-branding">
           World leaders in the time business since 2018.
         </div>
