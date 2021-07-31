@@ -13,15 +13,19 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Time Sales Online',
+    title: 'Time Sales Online | Buy time online',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'robots', content: 'noindex,nofollow' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Are you sometimes short on time? We offer custom solutions for your personal time management.',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     script: [{ src: 'https://js.stripe.com/v3', defer: true }],
