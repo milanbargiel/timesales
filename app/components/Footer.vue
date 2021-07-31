@@ -39,17 +39,6 @@
         <SvgsKulturNrw />
         <SvgsLabK />
         <SvgsBergLawyers />
-        <div class="debug-toggle">
-          <label class="switch">
-            <input
-              v-model="debugMode"
-              type="checkbox"
-              @click="toggleDebugMode"
-            />
-            <div></div>
-          </label>
-          Fast conversation
-        </div>
       </div>
     </footer>
     <Triangle
@@ -61,8 +50,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
-
 export default {
   data() {
     return {
@@ -78,19 +65,12 @@ export default {
     )
   },
   computed: {
-    debugMode() {
-      return this.$store.state.ui.debugMode
-    },
     // In sand simulation on the order page the footer is hidden
     showFooter() {
       return this.$store.state.ui.showFooter
     },
   },
   methods: {
-    ...mapMutations({
-      // Enables this.toggleDebugMode()
-      toggleDebugMode: 'ui/toggleDebugMode',
-    }),
     toggleFooter() {
       this.footerUnfolded = !this.footerUnfolded
     },

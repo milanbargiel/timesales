@@ -5,8 +5,8 @@ const state = () => ({
 })
 
 const mutations = {
-  toggleDebugMode(state) {
-    state.debugMode = !state.debugMode
+  enableDebugMode(state) {
+    state.debugMode = true
   },
   showHeader(state) {
     state.showHeader = true

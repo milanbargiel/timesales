@@ -61,7 +61,7 @@ export default {
       return this.$store.state.response.data
     },
     debugMode() {
-      return this.$store.state.ui.debugMode // In debug mode all delay is set to 0
+      return this.$store.state.ui.debugMode
     },
     reviews() {
       return this.$store.state.popUps.reviews
@@ -102,6 +102,11 @@ export default {
     // By doing so it is assured that stale data is not going to be stored in the database after a page refresh
     this.resetState()
 
+    // In debug mode all delay is set to 0
+    if (typeof this.$route.query.debugMode !== 'undefined') {
+      this.enableDebugMode()
+    }
+
     if (typeof this.$route.query.shortCheckout === 'undefined') {
       // Start welcome dialogue
       this.welcome()
@@ -119,6 +124,7 @@ export default {
     ...mapMutations({
       // Enables this.resetState()
       resetState: 'response/resetState',
+      enableDebugMode: 'ui/enableDebugMode',
     }),
     ...mapActions({
       // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
