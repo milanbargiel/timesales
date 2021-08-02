@@ -6,7 +6,6 @@ import PurposeOfTime from '../conversation/purposeOfTime.js'
 export default {
   mixins: [InControl, AmountOfTime, PurposeOfTime],
   methods: {
-    async timeForNeglectedPriorities() {},
     async prioritizationProblems() {
       await this.botMessage('Do you struggle to set your priorities?')
 
