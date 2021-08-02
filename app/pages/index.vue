@@ -24,7 +24,12 @@
         <button class="button" @click="stripeCheckout()">
           Proceed to checkout
         </button>
-        <p class="help">
+        <p v-if="showCheckoutError" class="error">
+          There is a problem with your order. Please retry and send an E-Mail to
+          <a href="mailto:hello@timesales.ltd">hello@timesales.ltd</a> if you
+          keep facing this issue.
+        </p>
+        <p v-else class="help">
           By clicking on the button "Proceed to checkout" I agree to our
           <a href="/terms-and-conditions" target="_blank"
             >Terms and conditions</a
@@ -53,6 +58,7 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      showCheckoutError: false,
       showPrivacyInfo: false,
       showTaxInfo: false,
     }
@@ -152,9 +158,13 @@ export default {
           .then((session) => {
             this.stripe.redirectToCheckout({ sessionId: session.id })
           })
-          .catch((error) => {
-            console.error('Error:', error)
+          .catch(() => {
+            this.showCheckoutError = true
           })
+      }
+
+      script.onerror = () => {
+        this.showCheckoutError = true
       }
     },
     scrollToBottom() {

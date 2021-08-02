@@ -251,10 +251,19 @@ body {
   }
 }
 
-.help {
+.help,
+.error {
   font-size: .75rem;
   margin: $space-s auto;
   max-width: 70%;
+}
+
+.error {
+  color: red;
+
+  a {
+    color: red;
+  }
 }
 
 .link {
