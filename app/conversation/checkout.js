@@ -1,4 +1,5 @@
 import timestring from 'timestring' // to convert time
+import pos from 'pos' // English speech tagger
 
 // Import conversation branches
 import Exit from '../conversation/exit.js'
@@ -23,15 +24,28 @@ export default {
       // Convert time purpose to lower case for case insensitive searches
       let text = timePurpose.toLowerCase()
       const firstWord = text.split(' ')[0]
+
+      // Replace personal pronouns
       text = text.replace(/\b(my)\b/i, 'your')
       text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
       text = text.replace(/\b(i)\b/i, 'you')
 
-      // 0. Text begins with the indefine article "a" or "an"
+      // 0. Text begins the indefine article "a" or "an" or is a noun
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
+      let wordIsNoun
 
-      if (startsWithIndefiniteArticle) {
+      // If only one word is entered, check wether it is a noun
+      if (text.split(' ').length === 1) {
+        const tagger = new pos.Tagger()
+        const word = new pos.Lexer().lex(firstWord)
+        const tag = tagger.tag(word)[0][1]
+
+        // word is a noun
+        wordIsNoun = tag.includes('NN')
+      }
+
+      if (startsWithIndefiniteArticle || wordIsNoun) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
