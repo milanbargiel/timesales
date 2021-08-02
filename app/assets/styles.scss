@@ -376,6 +376,7 @@ body {
 
 .pop-up {
   box-shadow: 0 1em 1em rgba(0,0,0,.1);
+  font-family: $special-font;
   font-size: 1.25rem; // For close button
   margin: 0 auto; // horizontally center
   position: relative;
