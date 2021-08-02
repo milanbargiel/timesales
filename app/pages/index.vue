@@ -117,9 +117,6 @@ export default {
       await this.botMessage('What would you like to have time for?')
       this.purposeOfTime()
     }
-
-    // load stripe
-    this.stripe = Stripe(this.$config.stripePublishableKey)
   },
   methods: {
     ...mapMutations({
@@ -134,20 +131,31 @@ export default {
       getAllPopUpData: 'popUps/fetchAllPopUpData',
     }),
     stripeCheckout() {
-      const data = {
-        ...this.response,
-        successUrl: `${this.$config.baseUrl}/order`,
-        cancelUrl: `${this.$config.baseUrl}/cancel`,
+      // Only load stripe script when user clicks on checkout button
+      const script = document.createElement('script')
+      script.src = 'https://js.stripe.com/v3'
+      script.defer = 'true'
+      document.head.appendChild(script)
+
+      // When script is loaded, continue.
+      script.onload = () => {
+        this.stripe = Stripe(this.$config.stripePublishableKey)
+
+        const data = {
+          ...this.response,
+          successUrl: `${this.$config.baseUrl}/order`,
+          cancelUrl: `${this.$config.baseUrl}/cancel`,
+        }
+        // Redirect to Stripe Checkout page
+        this.$axios
+          .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
+          .then((session) => {
+            this.stripe.redirectToCheckout({ sessionId: session.id })
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+          })
       }
-      // Redirect to Stripe Checkout page
-      this.$axios
-        .$post(`${this.$config.apiUrl}/create-checkout-session`, data)
-        .then((session) => {
-          this.stripe.redirectToCheckout({ sessionId: session.id })
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
     },
     scrollToBottom() {
       // Triggered by checkout

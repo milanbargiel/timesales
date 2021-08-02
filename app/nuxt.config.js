@@ -28,7 +28,6 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-    script: [{ src: 'https://js.stripe.com/v3', defer: true }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
