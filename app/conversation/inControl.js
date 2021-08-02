@@ -19,6 +19,7 @@ export default {
         )
 
         await this.botEmailInput('Your email').then((applicationEmail) => {
+          // Always save this answer, even when user does not want data collection.
           this.saveResponse({ applicationEmail })
         })
 
