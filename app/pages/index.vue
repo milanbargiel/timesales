@@ -30,16 +30,16 @@
           keep facing this issue.
         </p>
         <p v-else class="help">
-          By clicking on the button "Proceed to checkout" I agree to our
+          By clicking on the button "Proceed to checkout" I agree to the
           <a href="/terms-and-conditions" target="_blank"
             >Terms and conditions</a
           >
-          and our <a href="/data-privacy" target="_blank">privacy policy</a>. I
-          hereby confirm that Time Sales Online shall commence with the
-          execution of the contract before the expiration of the withdrawal
-          period. Furthermore, I confirm that I am aware of the fact that my
-          right of withdrawal expires with the conclusion of the purchase
-          contract.
+          and the <a href="/data-privacy" target="_blank">privacy policy</a> of
+          Time Sales Online. I hereby confirm that Time Sales Online shall
+          commence with the execution of the contract before the expiration of
+          the withdrawal period. Furthermore I confirm that I am aware of the
+          fact that my right of withdrawal expires with the conclusion of the
+          purchase contract.
         </p>
       </div>
     </div>
