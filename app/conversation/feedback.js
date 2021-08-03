@@ -12,8 +12,6 @@ export default {
       }
     },
     async feedback() {
-      await this.botMessage('Did you enjoy your time?')
-
       await this.botMessage(
         'Leave your thoughts, remarks, and suggestions. (We reserve the right to use them anonymously)'
       )

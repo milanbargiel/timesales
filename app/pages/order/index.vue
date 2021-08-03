@@ -69,6 +69,9 @@ export default {
 
           if (res.progress === 0) {
             // Start feedback dialogue
+            await this.botMessage(
+              'You have already spent your time. Did you enjoy it?'
+            )
             this.feedback()
           } else {
             // Start stream preamble dialogue
@@ -94,6 +97,8 @@ export default {
         this.showHeader()
         this.showFooter()
         await this.loadBot()
+        // Start feedback dialogue
+        await this.botMessage('Did you enjoy your time?')
         this.feedback()
 
         // Save value in database
