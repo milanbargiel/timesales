@@ -30,10 +30,12 @@ export default {
       text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
       text = text.replace(/\b(i)\b/i, 'you')
 
-      // 0. Text begins the indefine article "a" or "an" or is a noun
+      // 0. Text begins the indefine article "a" or "an" or "my" or is a noun
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
       let wordIsNoun
+
+      const startsWithMy = firstWord === 'my'
 
       // If only one word is entered, check wether it is a noun
       if (text.split(' ').length === 1) {
@@ -45,7 +47,7 @@ export default {
         wordIsNoun = tag.includes('NN')
       }
 
-      if (startsWithIndefiniteArticle || wordIsNoun) {
+      if (startsWithIndefiniteArticle || startsWithMy || wordIsNoun) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
