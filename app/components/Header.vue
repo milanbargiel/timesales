@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <header v-if="showHeader" class="header">
-      <button class="close-btn close-btn--header" @click="hideHeader">x</button>
+      <button class="close-btn close-btn--header" @click="hideHeader">×</button>
       <h1 class="header-title">Time Sales Online</h1>
     </header>
   </transition>
