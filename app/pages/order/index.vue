@@ -39,6 +39,9 @@ export default {
       order: {},
     }
   },
+  head: {
+    meta: [{ hid: 'robots', name: 'robots', content: 'noindex,nofollow' }],
+  },
   created() {
     this.fetchOrder(this.$route.query.key)
   },

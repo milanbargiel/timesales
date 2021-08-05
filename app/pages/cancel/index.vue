@@ -14,6 +14,9 @@ export default {
   data() {
     return { botui: '' }
   },
+  head: {
+    meta: [{ hid: 'robots', name: 'robots', content: 'noindex,nofollow' }],
+  },
   async mounted() {
     // load bot modules
     await this.$nextTick()
