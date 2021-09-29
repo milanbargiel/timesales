@@ -18,6 +18,7 @@ export default {
             )
             await this.timeInput() // recursion
           } else if (numberOfDigits > 10) {
+            // Do not save more than 10 digits because the timestring package cannot handle it.
             await this.botMessage(
               "More than a lifetime? That's excessive! It would be irresponsible on our part if we sold you that much time. Please choose a smaller amount of time."
             )
