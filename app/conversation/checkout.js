@@ -4,6 +4,9 @@ import pos from 'pos' // English speech tagger
 // Import conversation branches
 import Exit from '../conversation/exit.js'
 
+// Import word-prepositions list
+import wordsArray from '../static/word-prepositions.json'
+
 export default {
   mixins: [Exit],
   methods: {
@@ -30,15 +33,19 @@ export default {
       text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
       text = text.replace(/\b(i)\b/i, 'you')
 
-      // 0. Text begins the indefine article "a" or "an" or "my" or is a noun
-      const startsWithIndefiniteArticle =
-        firstWord === 'a' || firstWord === 'an'
       let wordIsNoun
+      let wordOnList
 
-      const startsWithMy = firstWord === 'my'
-
-      // If only one word is entered, check wether it is a noun
+      // 1. Input consists of only one word
       if (text.split(' ').length === 1) {
+        // Check wether word is on word-prepositions list
+        wordOnList = wordsArray.find((object) => object.word === firstWord)
+
+        if (wordOnList) {
+          return `${timeString} ${wordOnList.preposition} ${wordOnList.word}`
+        }
+
+        // If nothing was found check wether firstWord is a noun
         const tagger = new pos.Tagger()
         const word = new pos.Lexer().lex(firstWord)
         const tag = tagger.tag(word)[0][1]
@@ -46,6 +53,12 @@ export default {
         // word is a noun
         wordIsNoun = tag.includes('NN')
       }
+
+      // 2. Check if Text begins the indefine article "a" or "an" or "my" or is a noun
+      const startsWithIndefiniteArticle =
+        firstWord === 'a' || firstWord === 'an'
+
+      const startsWithMy = firstWord === 'my'
 
       if (startsWithIndefiniteArticle || startsWithMy || wordIsNoun) {
         return `${timeString} for ${
@@ -59,7 +72,7 @@ export default {
       const containsFor = text.includes('for')
       const containsIng = text.includes('ing')
 
-      // 1. Text contains the prepositions 'to' or 'for'
+      // 3. Text contains the prepositions 'to' or 'for'
       let preposition
 
       if (containsTo || containsFor) {
@@ -79,7 +92,7 @@ export default {
         )}`
       }
 
-      // 2. Text contains no prepositions but a verb in gerundium form 'ing'
+      // 4. Text contains no prepositions but a verb in gerundium form 'ing'
       if (containsIng) {
         // Find the index of the word with ing
         const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
@@ -87,7 +100,7 @@ export default {
         return `${timeString} for ${text.substring(wordIndex, text.length)}`
       }
 
-      // 3. Neither a preposition nor a gerundium
+      // 5. Neither a preposition nor a gerundium
       // First letter of timePurpose in lower case
       return `${timeString} to ${text.charAt(0).toLowerCase() + text.slice(1)}`
     },

@@ -1,0 +1,1826 @@
+[
+  {
+    "word": "access",
+    "preposition": "to"
+  },
+  {
+    "word": "ache",
+    "preposition": "for"
+  },
+  {
+    "word": "act",
+    "preposition": "to"
+  },
+  {
+    "word": "address",
+    "preposition": "to"
+  },
+  {
+    "word": "aim",
+    "preposition": "to"
+  },
+  {
+    "word": "alert",
+    "preposition": "for"
+  },
+  {
+    "word": "answer",
+    "preposition": "to"
+  },
+  {
+    "word": "arrest",
+    "preposition": "for"
+  },
+  {
+    "word": "attack",
+    "preposition": "to"
+  },
+  {
+    "word": "auction",
+    "preposition": "for"
+  },
+  {
+    "word": "back",
+    "preposition": "to"
+  },
+  {
+    "word": "bail",
+    "preposition": "to"
+  },
+  {
+    "word": "balance",
+    "preposition": "for"
+  },
+  {
+    "word": "balloon",
+    "preposition": "for"
+  },
+  {
+    "word": "ban",
+    "preposition": "to"
+  },
+  {
+    "word": "bandage",
+    "preposition": "for"
+  },
+  {
+    "word": "bank",
+    "preposition": "for the"
+  },
+  {
+    "word": "bare",
+    "preposition": "to"
+  },
+  {
+    "word": "bargain",
+    "preposition": "for a"
+  },
+  {
+    "word": "battle",
+    "preposition": "to"
+  },
+  {
+    "word": "beam",
+    "preposition": "to"
+  },
+  {
+    "word": "bear",
+    "preposition": "to"
+  },
+  {
+    "word": "beat",
+    "preposition": "to"
+  },
+  {
+    "word": "bend",
+    "preposition": "to"
+  },
+  {
+    "word": "benefit",
+    "preposition": "for a"
+  },
+  {
+    "word": "blame",
+    "preposition": "for"
+  },
+  {
+    "word": "blast",
+    "preposition": "to"
+  },
+  {
+    "word": "bleach",
+    "preposition": "to"
+  },
+  {
+    "word": "block",
+    "preposition": "to"
+  },
+  {
+    "word": "bloom",
+    "preposition": "to"
+  },
+  {
+    "word": "blow",
+    "preposition": "to"
+  },
+  {
+    "word": "board",
+    "preposition": "for the"
+  },
+  {
+    "word": "bomb",
+    "preposition": "to"
+  },
+  {
+    "word": "bother",
+    "preposition": "to"
+  },
+  {
+    "word": "bounce",
+    "preposition": "to"
+  },
+  {
+    "word": "bow",
+    "preposition": "to"
+  },
+  {
+    "word": "box",
+    "preposition": "for a"
+  },
+  {
+    "word": "bread",
+    "preposition": "for"
+  },
+  {
+    "word": "break",
+    "preposition": "for a"
+  },
+  {
+    "word": "breed",
+    "preposition": "to"
+  },
+  {
+    "word": "broadcast",
+    "preposition": "to"
+  },
+  {
+    "word": "brush",
+    "preposition": "to"
+  },
+  {
+    "word": "bump",
+    "preposition": "to"
+  },
+  {
+    "word": "burn",
+    "preposition": "to"
+  },
+  {
+    "word": "buy",
+    "preposition": "to"
+  },
+  {
+    "word": "cake",
+    "preposition": "for"
+  },
+  {
+    "word": "call",
+    "preposition": "for a"
+  },
+  {
+    "word": "camp",
+    "preposition": "to"
+  },
+  {
+    "word": "care",
+    "preposition": "to"
+  },
+  {
+    "word": "catch",
+    "preposition": "to"
+  },
+  {
+    "word": "cause",
+    "preposition": "for"
+  },
+  {
+    "word": "challenge",
+    "preposition": "to"
+  },
+  {
+    "word": "change",
+    "preposition": "for"
+  },
+  {
+    "word": "chant",
+    "preposition": "to"
+  },
+  {
+    "word": "charge",
+    "preposition": "to"
+  },
+  {
+    "word": "cheat",
+    "preposition": "to"
+  },
+  {
+    "word": "check",
+    "preposition": "to"
+  },
+  {
+    "word": "cheer",
+    "preposition": "to"
+  },
+  {
+    "word": "chip",
+    "preposition": "to"
+  },
+  {
+    "word": "claim",
+    "preposition": "to"
+  },
+  {
+    "word": "clip",
+    "preposition": "to"
+  },
+  {
+    "word": "cloud",
+    "preposition": "for the"
+  },
+  {
+    "word": "clue",
+    "preposition": "for a"
+  },
+  {
+    "word": "coach",
+    "preposition": "to"
+  },
+  {
+    "word": "color",
+    "preposition": "for"
+  },
+  {
+    "word": "comb",
+    "preposition": "to"
+  },
+  {
+    "word": "comfort",
+    "preposition": "for"
+  },
+  {
+    "word": "contrast",
+    "preposition": "for"
+  },
+  {
+    "word": "control",
+    "preposition": "for"
+  },
+  {
+    "word": "cook",
+    "preposition": "to"
+  },
+  {
+    "word": "coop",
+    "preposition": "for"
+  },
+  {
+    "word": "copy",
+    "preposition": "to"
+  },
+  {
+    "word": "cost",
+    "preposition": "to"
+  },
+  {
+    "word": "count",
+    "preposition": "to"
+  },
+  {
+    "word": "cover",
+    "preposition": "to"
+  },
+  {
+    "word": "crack",
+    "preposition": "to"
+  },
+  {
+    "word": "crash",
+    "preposition": "for the"
+  },
+  {
+    "word": "crate",
+    "preposition": "to"
+  },
+  {
+    "word": "credit",
+    "preposition": "for"
+  },
+  {
+    "word": "crush",
+    "preposition": "to"
+  },
+  {
+    "word": "cure",
+    "preposition": "to"
+  },
+  {
+    "word": "curl",
+    "preposition": "to"
+  },
+  {
+    "word": "curve",
+    "preposition": "to"
+  },
+  {
+    "word": "cut",
+    "preposition": "to"
+  },
+  {
+    "word": "cycle",
+    "preposition": "to"
+  },
+  {
+    "word": "dam",
+    "preposition": "to"
+  },
+  {
+    "word": "damage",
+    "preposition": "for"
+  },
+  {
+    "word": "dance",
+    "preposition": "to"
+  },
+  {
+    "word": "deal",
+    "preposition": "to"
+  },
+  {
+    "word": "decay",
+    "preposition": "for"
+  },
+  {
+    "word": "decrease",
+    "preposition": "for"
+  },
+  {
+    "word": "delay",
+    "preposition": "for"
+  },
+  {
+    "word": "delight",
+    "preposition": "to"
+  },
+  {
+    "word": "demand",
+    "preposition": "to"
+  },
+  {
+    "word": "design",
+    "preposition": "to"
+  },
+  {
+    "word": "dial",
+    "preposition": "to"
+  },
+  {
+    "word": "die",
+    "preposition": "to"
+  },
+  {
+    "word": "dislike",
+    "preposition": "to"
+  },
+  {
+    "word": "display",
+    "preposition": "to"
+  },
+  {
+    "word": "dive",
+    "preposition": "to"
+  },
+  {
+    "word": "divorce",
+    "preposition": "for"
+  },
+  {
+    "word": "dock",
+    "preposition": "to"
+  },
+  {
+    "word": "double",
+    "preposition": "to"
+  },
+  {
+    "word": "doubt",
+    "preposition": "for"
+  },
+  {
+    "word": "drain",
+    "preposition": "to"
+  },
+  {
+    "word": "draw",
+    "preposition": "to"
+  },
+  {
+    "word": "dream",
+    "preposition": "to"
+  },
+  {
+    "word": "dress",
+    "preposition": "to"
+  },
+  {
+    "word": "drill",
+    "preposition": "to"
+  },
+  {
+    "word": "drink",
+    "preposition": "to"
+  },
+  {
+    "word": "drive",
+    "preposition": "to"
+  },
+  {
+    "word": "duck",
+    "preposition": "to"
+  },
+  {
+    "word": "dump",
+    "preposition": "to"
+  },
+  {
+    "word": "dust",
+    "preposition": "for"
+  },
+  {
+    "word": "dye",
+    "preposition": "to"
+  },
+  {
+    "word": "echo",
+    "preposition": "for"
+  },
+  {
+    "word": "email",
+    "preposition": "for"
+  },
+  {
+    "word": "end",
+    "preposition": "for the"
+  },
+  {
+    "word": "escape",
+    "preposition": "to"
+  },
+  {
+    "word": "esteem",
+    "preposition": "for"
+  },
+  {
+    "word": "estimate",
+    "preposition": "to"
+  },
+  {
+    "word": "exchange",
+    "preposition": "for"
+  },
+  {
+    "word": "excuse",
+    "preposition": "to"
+  },
+  {
+    "word": "exhibit",
+    "preposition": "to"
+  },
+  {
+    "word": "experience",
+    "preposition": "for"
+  },
+  {
+    "word": "eye",
+    "preposition": "to"
+  },
+  {
+    "word": "face",
+    "preposition": "to"
+  },
+  {
+    "word": "fall",
+    "preposition": "to"
+  },
+  {
+    "word": "favor",
+    "preposition": "for a"
+  },
+  {
+    "word": "fax",
+    "preposition": "to"
+  },
+  {
+    "word": "fear",
+    "preposition": "for"
+  },
+  {
+    "word": "feel",
+    "preposition": "to"
+  },
+  {
+    "word": "fight",
+    "preposition": "to"
+  },
+  {
+    "word": "file",
+    "preposition": "to"
+  },
+  {
+    "word": "fill",
+    "preposition": "to"
+  },
+  {
+    "word": "film",
+    "preposition": "to"
+  },
+  {
+    "word": "finish",
+    "preposition": "to"
+  },
+  {
+    "word": "fish",
+    "preposition": "to"
+  },
+  {
+    "word": "fix",
+    "preposition": "to"
+  },
+  {
+    "word": "flap",
+    "preposition": "to"
+  },
+  {
+    "word": "flash",
+    "preposition": "to"
+  },
+  {
+    "word": "float",
+    "preposition": "to"
+  },
+  {
+    "word": "flood",
+    "preposition": "to"
+  },
+  {
+    "word": "floss",
+    "preposition": "to"
+  },
+  {
+    "word": "flow",
+    "preposition": "for"
+  },
+  {
+    "word": "flower",
+    "preposition": "to"
+  },
+  {
+    "word": "fly",
+    "preposition": "to"
+  },
+  {
+    "word": "fold",
+    "preposition": "to"
+  },
+  {
+    "word": "fool",
+    "preposition": "to"
+  },
+  {
+    "word": "force",
+    "preposition": "for"
+  },
+  {
+    "word": "form",
+    "preposition": "for"
+  },
+  {
+    "word": "frame",
+    "preposition": "to"
+  },
+  {
+    "word": "freeze",
+    "preposition": "to"
+  },
+  {
+    "word": "frown",
+    "preposition": "to"
+  },
+  {
+    "word": "function",
+    "preposition": "for"
+  },
+  {
+    "word": "garden",
+    "preposition": "for the"
+  },
+  {
+    "word": "gaze",
+    "preposition": "to"
+  },
+  {
+    "word": "gel",
+    "preposition": "to"
+  },
+  {
+    "word": "glue",
+    "preposition": "to"
+  },
+  {
+    "word": "grate",
+    "preposition": "to"
+  },
+  {
+    "word": "grease",
+    "preposition": "to"
+  },
+  {
+    "word": "grill",
+    "preposition": "to"
+  },
+  {
+    "word": "grimace",
+    "preposition": "to"
+  },
+  {
+    "word": "grin",
+    "preposition": "to"
+  },
+  {
+    "word": "grip",
+    "preposition": "to"
+  },
+  {
+    "word": "guarantee",
+    "preposition": "for"
+  },
+  {
+    "word": "guard",
+    "preposition": "to"
+  },
+  {
+    "word": "guess",
+    "preposition": "to"
+  },
+  {
+    "word": "guide",
+    "preposition": "to"
+  },
+  {
+    "word": "hammer",
+    "preposition": "to"
+  },
+  {
+    "word": "hand",
+    "preposition": "to"
+  },
+  {
+    "word": "handle",
+    "preposition": "to"
+  },
+  {
+    "word": "harm",
+    "preposition": "for"
+  },
+  {
+    "word": "harness",
+    "preposition": "to"
+  },
+  {
+    "word": "hate",
+    "preposition": "for"
+  },
+  {
+    "word": "head",
+    "preposition": "to"
+  },
+  {
+    "word": "heap",
+    "preposition": "to"
+  },
+  {
+    "word": "heat",
+    "preposition": "for"
+  },
+  {
+    "word": "help",
+    "preposition": "to"
+  },
+  {
+    "word": "hide",
+    "preposition": "to"
+  },
+  {
+    "word": "highlight",
+    "preposition": "to"
+  },
+  {
+    "word": "hike",
+    "preposition": "to"
+  },
+  {
+    "word": "hit",
+    "preposition": "to"
+  },
+  {
+    "word": "hold",
+    "preposition": "to"
+  },
+  {
+    "word": "hop",
+    "preposition": "to"
+  },
+  {
+    "word": "hope",
+    "preposition": "for"
+  },
+  {
+    "word": "hose",
+    "preposition": "to"
+  },
+  {
+    "word": "host",
+    "preposition": "to"
+  },
+  {
+    "word": "hug",
+    "preposition": "to"
+  },
+  {
+    "word": "humor",
+    "preposition": "for"
+  },
+  {
+    "word": "hunt",
+    "preposition": "to"
+  },
+  {
+    "word": "hurry",
+    "preposition": "to"
+  },
+  {
+    "word": "ice",
+    "preposition": "for"
+  },
+  {
+    "word": "impact",
+    "preposition": "for"
+  },
+  {
+    "word": "inch",
+    "preposition": "to"
+  },
+  {
+    "word": "increase",
+    "preposition": "for"
+  },
+  {
+    "word": "influence",
+    "preposition": "for"
+  },
+  {
+    "word": "insult",
+    "preposition": "to"
+  },
+  {
+    "word": "interest",
+    "preposition": "for"
+  },
+  {
+    "word": "iron",
+    "preposition": "to"
+  },
+  {
+    "word": "itch",
+    "preposition": "to"
+  },
+  {
+    "word": "jail",
+    "preposition": "for"
+  },
+  {
+    "word": "jam",
+    "preposition": "to"
+  },
+  {
+    "word": "joke",
+    "preposition": "to"
+  },
+  {
+    "word": "judge",
+    "preposition": "to"
+  },
+  {
+    "word": "jump",
+    "preposition": "to"
+  },
+  {
+    "word": "keep",
+    "preposition": "to"
+  },
+  {
+    "word": "kick",
+    "preposition": "to"
+  },
+  {
+    "word": "kiss",
+    "preposition": "to"
+  },
+  {
+    "word": "knit",
+    "preposition": "to"
+  },
+  {
+    "word": "knock",
+    "preposition": "to"
+  },
+  {
+    "word": "knot",
+    "preposition": "to"
+  },
+  {
+    "word": "label",
+    "preposition": "to"
+  },
+  {
+    "word": "land",
+    "preposition": "to"
+  },
+  {
+    "word": "last",
+    "preposition": "to"
+  },
+  {
+    "word": "laugh",
+    "preposition": "to"
+  },
+  {
+    "word": "lead",
+    "preposition": "to"
+  },
+  {
+    "word": "leap",
+    "preposition": "to"
+  },
+  {
+    "word": "level",
+    "preposition": "to"
+  },
+  {
+    "word": "license",
+    "preposition": "to"
+  },
+  {
+    "word": "lie",
+    "preposition": "to"
+  },
+  {
+    "word": "lift",
+    "preposition": "to"
+  },
+  {
+    "word": "light",
+    "preposition": "for"
+  },
+  {
+    "word": "limit",
+    "preposition": "to"
+  },
+  {
+    "word": "link",
+    "preposition": "to"
+  },
+  {
+    "word": "load",
+    "preposition": "to"
+  },
+  {
+    "word": "loan",
+    "preposition": "to"
+  },
+  {
+    "word": "lock",
+    "preposition": "to"
+  },
+  {
+    "word": "look",
+    "preposition": "to"
+  },
+  {
+    "word": "love",
+    "preposition": "for"
+  },
+  {
+    "word": "mail",
+    "preposition": "for"
+  },
+  {
+    "word": "make",
+    "preposition": "to"
+  },
+  {
+    "word": "man",
+    "preposition": "to"
+  },
+  {
+    "word": "march",
+    "preposition": "to"
+  },
+  {
+    "word": "mark",
+    "preposition": "to"
+  },
+  {
+    "word": "match",
+    "preposition": "to"
+  },
+  {
+    "word": "mate",
+    "preposition": "to"
+  },
+  {
+    "word": "matter",
+    "preposition": "for"
+  },
+  {
+    "word": "mean",
+    "preposition": "to"
+  },
+  {
+    "word": "measure",
+    "preposition": "to"
+  },
+  {
+    "word": "milk",
+    "preposition": "for"
+  },
+  {
+    "word": "mind",
+    "preposition": "to"
+  },
+  {
+    "word": "mine",
+    "preposition": "to"
+  },
+  {
+    "word": "miss",
+    "preposition": "to"
+  },
+  {
+    "word": "mistake",
+    "preposition": "for"
+  },
+  {
+    "word": "moor",
+    "preposition": "to"
+  },
+  {
+    "word": "move",
+    "preposition": "to"
+  },
+  {
+    "word": "mug",
+    "preposition": "to"
+  },
+  {
+    "word": "nail",
+    "preposition": "to"
+  },
+  {
+    "word": "name",
+    "preposition": "to"
+  },
+  {
+    "word": "need",
+    "preposition": "for"
+  },
+  {
+    "word": "nest",
+    "preposition": "to"
+  },
+  {
+    "word": "notch",
+    "preposition": "to"
+  },
+  {
+    "word": "note",
+    "preposition": "to"
+  },
+  {
+    "word": "notice",
+    "preposition": "to"
+  },
+  {
+    "word": "number",
+    "preposition": "to"
+  },
+  {
+    "word": "object",
+    "preposition": "to"
+  },
+  {
+    "word": "offer",
+    "preposition": "to"
+  },
+  {
+    "word": "oil",
+    "preposition": "for"
+  },
+  {
+    "word": "order",
+    "preposition": "to"
+  },
+  {
+    "word": "pack",
+    "preposition": "to"
+  },
+  {
+    "word": "pad",
+    "preposition": "to"
+  },
+  {
+    "word": "paddle",
+    "preposition": "to"
+  },
+  {
+    "word": "paint",
+    "preposition": "to"
+  },
+  {
+    "word": "park",
+    "preposition": "to"
+  },
+  {
+    "word": "part",
+    "preposition": "to"
+  },
+  {
+    "word": "pass",
+    "preposition": "to"
+  },
+  {
+    "word": "paste",
+    "preposition": "to"
+  },
+  {
+    "word": "pat",
+    "preposition": "to"
+  },
+  {
+    "word": "pause",
+    "preposition": "for a"
+  },
+  {
+    "word": "pay",
+    "preposition": "to"
+  },
+  {
+    "word": "pedal",
+    "preposition": "to"
+  },
+  {
+    "word": "peel",
+    "preposition": "to"
+  },
+  {
+    "word": "pelt",
+    "preposition": "for"
+  },
+  {
+    "word": "permit",
+    "preposition": "to"
+  },
+  {
+    "word": "phone",
+    "preposition": "to"
+  },
+  {
+    "word": "photograph",
+    "preposition": "to"
+  },
+  {
+    "word": "pick",
+    "preposition": "to"
+  },
+  {
+    "word": "pine",
+    "preposition": "to"
+  },
+  {
+    "word": "place",
+    "preposition": "to"
+  },
+  {
+    "word": "plan",
+    "preposition": "to"
+  },
+  {
+    "word": "plane",
+    "preposition": "to"
+  },
+  {
+    "word": "plant",
+    "preposition": "to"
+  },
+  {
+    "word": "play",
+    "preposition": "to"
+  },
+  {
+    "word": "plow",
+    "preposition": "to"
+  },
+  {
+    "word": "plug",
+    "preposition": "to"
+  },
+  {
+    "word": "point",
+    "preposition": "to"
+  },
+  {
+    "word": "poke",
+    "preposition": "to"
+  },
+  {
+    "word": "pop",
+    "preposition": "for"
+  },
+  {
+    "word": "post",
+    "preposition": "to"
+  },
+  {
+    "word": "practice",
+    "preposition": "for"
+  },
+  {
+    "word": "praise",
+    "preposition": "to"
+  },
+  {
+    "word": "present",
+    "preposition": "to"
+  },
+  {
+    "word": "process",
+    "preposition": "for"
+  },
+  {
+    "word": "produce",
+    "preposition": "to"
+  },
+  {
+    "word": "promise",
+    "preposition": "for"
+  },
+  {
+    "word": "protest",
+    "preposition": "for"
+  },
+  {
+    "word": "pull",
+    "preposition": "to"
+  },
+  {
+    "word": "pump",
+    "preposition": "to"
+  },
+  {
+    "word": "punch",
+    "preposition": "to"
+  },
+  {
+    "word": "push",
+    "preposition": "to"
+  },
+  {
+    "word": "question",
+    "preposition": "to"
+  },
+  {
+    "word": "quilt",
+    "preposition": "to"
+  },
+  {
+    "word": "quiz",
+    "preposition": "to"
+  },
+  {
+    "word": "race",
+    "preposition": "to"
+  },
+  {
+    "word": "rain",
+    "preposition": "for"
+  },
+  {
+    "word": "raise",
+    "preposition": "to"
+  },
+  {
+    "word": "rant",
+    "preposition": "to"
+  },
+  {
+    "word": "rate",
+    "preposition": "to"
+  },
+  {
+    "word": "reach",
+    "preposition": "for"
+  },
+  {
+    "word": "reason",
+    "preposition": "for"
+  },
+  {
+    "word": "record",
+    "preposition": "to"
+  },
+  {
+    "word": "reign",
+    "preposition": "to"
+  },
+  {
+    "word": "rent",
+    "preposition": "to"
+  },
+  {
+    "word": "repair",
+    "preposition": "to"
+  },
+  {
+    "word": "reply",
+    "preposition": "to"
+  },
+  {
+    "word": "report",
+    "preposition": "to"
+  },
+  {
+    "word": "request",
+    "preposition": "to"
+  },
+  {
+    "word": "rhyme",
+    "preposition": "to"
+  },
+  {
+    "word": "ring",
+    "preposition": "to"
+  },
+  {
+    "word": "riot",
+    "preposition": "for"
+  },
+  {
+    "word": "risk",
+    "preposition": "for"
+  },
+  {
+    "word": "rock",
+    "preposition": "to"
+  },
+  {
+    "word": "roll",
+    "preposition": "to"
+  },
+  {
+    "word": "row",
+    "preposition": "to"
+  },
+  {
+    "word": "ruin",
+    "preposition": "to"
+  },
+  {
+    "word": "rule",
+    "preposition": "to"
+  },
+  {
+    "word": "run",
+    "preposition": "to"
+  },
+  {
+    "word": "sail",
+    "preposition": "to"
+  },
+  {
+    "word": "sand",
+    "preposition": "for"
+  },
+  {
+    "word": "saw",
+    "preposition": "to"
+  },
+  {
+    "word": "scare",
+    "preposition": "to"
+  },
+  {
+    "word": "scratch",
+    "preposition": "to"
+  },
+  {
+    "word": "screw",
+    "preposition": "to"
+  },
+  {
+    "word": "search",
+    "preposition": "for"
+  },
+  {
+    "word": "season",
+    "preposition": "to"
+  },
+  {
+    "word": "sense",
+    "preposition": "for"
+  },
+  {
+    "word": "shampoo",
+    "preposition": "for"
+  },
+  {
+    "word": "shape",
+    "preposition": "to"
+  },
+  {
+    "word": "share",
+    "preposition": "to"
+  },
+  {
+    "word": "shelter",
+    "preposition": "for"
+  },
+  {
+    "word": "shock",
+    "preposition": "to"
+  },
+  {
+    "word": "shop",
+    "preposition": "to"
+  },
+  {
+    "word": "show",
+    "preposition": "to"
+  },
+  {
+    "word": "sign",
+    "preposition": "to"
+  },
+  {
+    "word": "signal",
+    "preposition": "for"
+  },
+  {
+    "word": "silence",
+    "preposition": "for"
+  },
+  {
+    "word": "sin",
+    "preposition": "for"
+  },
+  {
+    "word": "sip",
+    "preposition": "to"
+  },
+  {
+    "word": "skate",
+    "preposition": "to"
+  },
+  {
+    "word": "sketch",
+    "preposition": "to"
+  },
+  {
+    "word": "ski",
+    "preposition": "to"
+  },
+  {
+    "word": "slice",
+    "preposition": "to"
+  },
+  {
+    "word": "slide",
+    "preposition": "to"
+  },
+  {
+    "word": "slip",
+    "preposition": "to"
+  },
+  {
+    "word": "smell",
+    "preposition": "to"
+  },
+  {
+    "word": "smile",
+    "preposition": "to"
+  },
+  {
+    "word": "smirk",
+    "preposition": "to"
+  },
+  {
+    "word": "smoke",
+    "preposition": "to"
+  },
+  {
+    "word": "snack",
+    "preposition": "to"
+  },
+  {
+    "word": "snow",
+    "preposition": "for"
+  },
+  {
+    "word": "sound",
+    "preposition": "for"
+  },
+  {
+    "word": "span",
+    "preposition": "to"
+  },
+  {
+    "word": "spot",
+    "preposition": "to"
+  },
+  {
+    "word": "spray",
+    "preposition": "to"
+  },
+  {
+    "word": "sprout",
+    "preposition": "to"
+  },
+  {
+    "word": "squash",
+    "preposition": "to"
+  },
+  {
+    "word": "stain",
+    "preposition": "to"
+  },
+  {
+    "word": "stamp",
+    "preposition": "to"
+  },
+  {
+    "word": "stand",
+    "preposition": "to"
+  },
+  {
+    "word": "star",
+    "preposition": "to"
+  },
+  {
+    "word": "start",
+    "preposition": "to"
+  },
+  {
+    "word": "state",
+    "preposition": "to"
+  },
+  {
+    "word": "steer",
+    "preposition": "to"
+  },
+  {
+    "word": "step",
+    "preposition": "to"
+  },
+  {
+    "word": "sting",
+    "preposition": "to"
+  },
+  {
+    "word": "stop",
+    "preposition": "to"
+  },
+  {
+    "word": "store",
+    "preposition": "to"
+  },
+  {
+    "word": "storm",
+    "preposition": "for"
+  },
+  {
+    "word": "stress",
+    "preposition": "for"
+  },
+  {
+    "word": "strip",
+    "preposition": "to"
+  },
+  {
+    "word": "stroke",
+    "preposition": "to"
+  },
+  {
+    "word": "struggle",
+    "preposition": "to"
+  },
+  {
+    "word": "study",
+    "preposition": "to"
+  },
+  {
+    "word": "stuff",
+    "preposition": "for"
+  },
+  {
+    "word": "stunt",
+    "preposition": "to"
+  },
+  {
+    "word": "suit",
+    "preposition": "to"
+  },
+  {
+    "word": "supply",
+    "preposition": "for"
+  },
+  {
+    "word": "support",
+    "preposition": "for"
+  },
+  {
+    "word": "surf",
+    "preposition": "to"
+  },
+  {
+    "word": "surprise",
+    "preposition": "for"
+  },
+  {
+    "word": "swap",
+    "preposition": "to"
+  },
+  {
+    "word": "swing",
+    "preposition": "to"
+  },
+  {
+    "word": "swivel",
+    "preposition": "to"
+  },
+  {
+    "word": "tack",
+    "preposition": "to"
+  },
+  {
+    "word": "talk",
+    "preposition": "to"
+  },
+  {
+    "word": "taste",
+    "preposition": "for"
+  },
+  {
+    "word": "tear",
+    "preposition": "to"
+  },
+  {
+    "word": "tease",
+    "preposition": "to"
+  },
+  {
+    "word": "telephone",
+    "preposition": "to"
+  },
+  {
+    "word": "test",
+    "preposition": "to"
+  },
+  {
+    "word": "thought",
+    "preposition": "for"
+  },
+  {
+    "word": "thunder",
+    "preposition": "for"
+  },
+  {
+    "word": "tick",
+    "preposition": "to"
+  },
+  {
+    "word": "tie",
+    "preposition": "to"
+  },
+  {
+    "word": "time",
+    "preposition": "for"
+  },
+  {
+    "word": "tip",
+    "preposition": "to"
+  },
+  {
+    "word": "tire",
+    "preposition": "to"
+  },
+  {
+    "word": "toast",
+    "preposition": "for"
+  },
+  {
+    "word": "touch",
+    "preposition": "for"
+  },
+  {
+    "word": "tour",
+    "preposition": "to"
+  },
+  {
+    "word": "tow",
+    "preposition": "to"
+  },
+  {
+    "word": "trace",
+    "preposition": "to"
+  },
+  {
+    "word": "track",
+    "preposition": "to"
+  },
+  {
+    "word": "trade",
+    "preposition": "to"
+  },
+  {
+    "word": "train",
+    "preposition": "to"
+  },
+  {
+    "word": "transport",
+    "preposition": "for"
+  },
+  {
+    "word": "trap",
+    "preposition": "to"
+  },
+  {
+    "word": "travel",
+    "preposition": "to"
+  },
+  {
+    "word": "treat",
+    "preposition": "to"
+  },
+  {
+    "word": "trick",
+    "preposition": "to"
+  },
+  {
+    "word": "trim",
+    "preposition": "to"
+  },
+  {
+    "word": "trust",
+    "preposition": "for"
+  },
+  {
+    "word": "tug",
+    "preposition": "to"
+  },
+  {
+    "word": "turn",
+    "preposition": "to"
+  },
+  {
+    "word": "twist",
+    "preposition": "to"
+  },
+  {
+    "word": "type",
+    "preposition": "to"
+  },
+  {
+    "word": "upstage",
+    "preposition": "to"
+  },
+  {
+    "word": "use",
+    "preposition": "to"
+  },
+  {
+    "word": "vacuum",
+    "preposition": "for"
+  },
+  {
+    "word": "value",
+    "preposition": "for"
+  },
+  {
+    "word": "visit",
+    "preposition": "to"
+  },
+  {
+    "word": "voice",
+    "preposition": "to"
+  },
+  {
+    "word": "vote",
+    "preposition": "to"
+  },
+  {
+    "word": "wake",
+    "preposition": "to"
+  },
+  {
+    "word": "walk",
+    "preposition": "to"
+  },
+  {
+    "word": "waltz",
+    "preposition": "to"
+  },
+  {
+    "word": "watch",
+    "preposition": "to"
+  },
+  {
+    "word": "water",
+    "preposition": "for"
+  },
+  {
+    "word": "wave",
+    "preposition": "to"
+  },
+  {
+    "word": "wear",
+    "preposition": "to"
+  },
+  {
+    "word": "whip",
+    "preposition": "to"
+  },
+  {
+    "word": "whisper",
+    "preposition": "to"
+  },
+  {
+    "word": "whistle",
+    "preposition": "to"
+  },
+  {
+    "word": "wick",
+    "preposition": "to"
+  },
+  {
+    "word": "wink",
+    "preposition": "to"
+  },
+  {
+    "word": "wire",
+    "preposition": "to"
+  },
+  {
+    "word": "wish",
+    "preposition": "to"
+  },
+  {
+    "word": "work",
+    "preposition": "to"
+  },
+  {
+    "word": "worry",
+    "preposition": "to"
+  },
+  {
+    "word": "wrap",
+    "preposition": "to"
+  },
+  {
+    "word": "wreck",
+    "preposition": "to"
+  },
+  {
+    "word": "yawn",
+    "preposition": "to"
+  },
+  {
+    "word": "yell",
+    "preposition": "to"
+  },
+  {
+    "word": "yield",
+    "preposition": "for"
+  },
+  {
+    "word": "zone",
+    "preposition": "to"
+  }
+]
