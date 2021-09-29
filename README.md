@@ -16,7 +16,7 @@
 
 ##### Local development
 
-- Run the frontend Nuxt app with `npm run start`
+- Run the frontend Nuxt app with `yarn dev`
 - Run the Strapi backend with `yarn develop`
 - Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
 
