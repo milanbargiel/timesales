@@ -9,11 +9,19 @@ export default {
     async timeInput() {
       await this.botNumberInput(`Number of ${this.response.timeUnit}`).then(
         async (timeAmount) => {
+          // Count number of digits, take into account the scientific notation for great numbers (e.g. 1e+35).
+          const numberOfDigits = (Math.log(timeAmount) * Math.LOG10E + 1) | 0
+
           if (timeAmount <= 0) {
             await this.botMessage(
               'Your input was not correct. Please choose a value bigger than 0.'
             )
             await this.timeInput() // recursion
+          } else if (numberOfDigits > 10) {
+            await this.botMessage(
+              "More than a lifetime? That's excessive! It would be irresponsible on our part if we sold you that much time. Please choose a smaller amount of time."
+            )
+            await this.timeInput()
           } else {
             this.saveResponse({ timeAmount })
           }
