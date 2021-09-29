@@ -10,7 +10,7 @@
 - This is a git repository for the source code of Timesales Ltd.
 - For ⏳ installation instructions go to the readmes of the component's subfolders
 - Pushes to the `main` branch of this repository will:
-    - automatically be deployed to the frontend test environment at CDN netlify https://timesalesltd.netlify.app
+    - automatically be deployed to the frontend at CDN netlify https://www.timesales.ltd/
     - changes in the strapi-cms will automatically be deployed to the virtual linux server at strato https://xyz.timesales.ltd
 - The order backend can be accessed at https://xyz.timesales.ltd/admin
 
