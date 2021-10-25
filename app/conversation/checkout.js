@@ -55,13 +55,20 @@ export default {
         wordIsNoun = tag.includes('NN')
       }
 
-      // 2. Check if Text begins the indefine article "a" or "an" or "my" or is a noun
+      // 2. Check if Text begins the indefine article "a" or "an" or "my" or "the" is a noun
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
 
       const startsWithMy = firstWord === 'my'
 
-      if (startsWithIndefiniteArticle || startsWithMy || wordIsNoun) {
+      const startsWithThe = firstWord === 'the'
+
+      if (
+        startsWithIndefiniteArticle ||
+        startsWithMy ||
+        startsWithThe ||
+        wordIsNoun
+      ) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
