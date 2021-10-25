@@ -30,6 +30,7 @@ export default {
 
       // Replace personal pronouns
       text = text.replace(/\b(my)\b/i, 'your')
+      text = text.replace(/\b(myself)\b/i, 'yourself')
       text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
       text = text.replace(/\b(i)\b/i, 'you')
 
