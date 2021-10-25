@@ -26,13 +26,14 @@ export default {
 
       // Convert time purpose to lower case for case insensitive searches
       let text = timePurpose.toLowerCase()
-      const firstWord = text.split(' ')[0]
 
       // Replace personal pronouns
       text = text.replace(/\b(my)\b/i, 'your')
       text = text.replace(/\b(myself)\b/i, 'yourself')
       text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
       text = text.replace(/\b(i)\b/i, 'you')
+
+      const firstWord = text.split(' ')[0]
 
       let wordIsNoun
       let wordOnList
@@ -41,6 +42,7 @@ export default {
       if (text.split(' ').length === 1) {
         // Check wether word is on word-prepositions list
         wordOnList = wordsArray.find((object) => object.word === firstWord)
+        console.log(firstWord)
 
         if (wordOnList) {
           return `${timeString} ${wordOnList.preposition} ${wordOnList.word}`
