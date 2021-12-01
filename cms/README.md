@@ -3,6 +3,12 @@
 ## Build Setup
 
 ```bash
+# create a local postgresql database with the name timesales
+$ createdb timesales
+
+# download the remote database
+$ npm run downloadDump
+
 # install dependencies
 $ yarn
 
@@ -19,3 +25,4 @@ For detailed explanation on how things work, check out [Strapi docs](https://str
 │   └── email
 │       └── services/Email.js # Extend email plugin with renderTemplate function
 ``
+```
