@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/create-invoice",
+      "path": "/create-invoice/:key",
       "handler": "order.createInvoice",
       "config": {
         "policies": []
