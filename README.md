@@ -22,7 +22,7 @@
 
 ##### Installation for local dev
 
-- Install dev dependencies in `/app` and `/cms`
+- Install dev dependencies in `/app` and `/cms` with `yarn install`
 - Install Stripe CLI and login with your account
 - Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project
 
