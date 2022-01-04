@@ -1,5 +1,5 @@
 <p>
-    <img src="https://timesalesltd.netlify.app/favicon.ico"> <b>Timesales</b>
+    <img src="https://www.timesales.ltd/favicon.png"> <b>Timesales</b>
 </p>
 
 ```bash
