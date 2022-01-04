@@ -85,3 +85,10 @@
 
 - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment#web)
 - [Fullfill orders](https://stripe.com/docs/payments/checkout/fulfill-orders)
+
+##### Folder structure
+```
+├── app # The nuxtjs based frontend
+|   ├── conversation # The complete bot conversation
+|   └── store # Vuex Store files to share state among components
+```
