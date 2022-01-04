@@ -1,5 +1,5 @@
 <p>
-    <img src="https://www.timesales.ltd/favicon.png"> <b>Timesales</b>
+    <img src="https://www.timesales.ltd/favicon.png" width="200px"> <b>Timesales</b>
 </p>
 
 ```bash
