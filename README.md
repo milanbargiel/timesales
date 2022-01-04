@@ -90,5 +90,5 @@
 ```
 ├── app # The nuxtjs based frontend
 |   ├── conversation # The complete bot conversation
-|   └── store # Vuex Store files to share state among components
+|   └── store # Vuex Store files with actions that fetch and post data to the cms
 ```
