@@ -216,6 +216,34 @@ body {
   &:active {
     border-color: $light-grey;
   }
+
+  &:disabled {
+    // Disable hover styles when button is disabled
+    cursor: auto;
+    border-color: $light-grey;
+    opacity: .5;
+    box-shadow: 0 0 0 .075em $very-light-grey; // "active" state
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: -2.5em;
+      display: inline-block;
+      border: 2px solid $light-grey;
+      border-top: 2px solid $grey;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin .75s linear infinite;
+    }
+  }
+}
+
+// Css animation for the loading spinner
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .close-btn {
