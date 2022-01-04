@@ -1,5 +1,5 @@
 <p>
-    <img src="https://timesalesltd.netlify.app/favicon.ico"> <b>Timesales</b>
+    <img src="https://www.timesales.ltd/yellow-arrows.svg" width="200px">
 </p>
 
 ```bash
@@ -20,11 +20,14 @@
 - Run the Strapi backend in `/cms` with `yarn develop`
 - Run the Stripe CLI tool to redirect orders to the local webhook with `stripe listen --forward-to localhost:1337/orders`
 
-##### Installation for local dev
+##### Installation for local development
 
-- Install dev dependencies in `/app` and `/cms`
+- Install dev dependencies in `/app` and `/cms` with `yarn install`
 - Install Stripe CLI and login with your account
-- Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project
+- [Install the postgresql database software](https://wiki.postgresql.org/wiki/Homebrew) and start the psql service as described in the Homebrew formula
+- Create a database "timesales" with the command `createdb timesales`
+- Download a dump of the remote database by running `yarn downloadDump` within the `/cms` folder
+- Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project. Make sure to enter the test key for the stripe payment environment.
 
 ##### API-Endpoints for cms
 
@@ -82,3 +85,10 @@
 
 - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment#web)
 - [Fullfill orders](https://stripe.com/docs/payments/checkout/fulfill-orders)
+
+##### Folder structure
+```
+├── app # The nuxtjs based frontend
+|   ├── conversation # The complete bot conversation
+|   └── store # Vuex Store files with actions that fetch and post data to the cms
+```

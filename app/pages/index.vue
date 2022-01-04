@@ -21,7 +21,11 @@
       <div v-if="showCheckoutButton">
         <!-- eslint-disable vue/no-v-html -->
         <div class="order-summary" v-html="orderSummaryHtml"></div>
-        <button class="button" @click="stripeCheckout()">
+        <button
+          class="button"
+          :disabled="checkoutIsLoading"
+          @click="stripeCheckout()"
+        >
           Proceed to checkout
         </button>
         <p v-if="showCheckoutError" class="error">
@@ -58,6 +62,7 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      checkoutIsLoading: false, // to disable checkout button during the loading of the Stripe script
       showCheckoutError: false,
       showPrivacyInfo: false,
       showTaxInfo: false,
@@ -138,6 +143,7 @@ export default {
     }),
     stripeCheckout() {
       // Only load stripe script when user clicks on checkout button
+      this.checkoutIsLoading = true
       const script = document.createElement('script')
       script.src = 'https://js.stripe.com/v3'
       script.defer = 'true'
@@ -164,6 +170,8 @@ export default {
       }
 
       script.onerror = () => {
+        // On error reenable the checkoutbutton
+        this.checkoutIsLoading = false
         this.showCheckoutError = true
       }
     },
