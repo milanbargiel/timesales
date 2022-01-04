@@ -42,7 +42,6 @@ export default {
       if (text.split(' ').length === 1) {
         // Check wether word is on word-prepositions list
         wordOnList = wordsArray.find((object) => object.word === firstWord)
-        console.log(firstWord)
 
         if (wordOnList) {
           return `${timeString} ${wordOnList.preposition} ${wordOnList.word}`
