@@ -1,8 +1,12 @@
 import axios from 'axios'
+
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+
 // Dynamically generate routes
 // These routes will be statically generated and deployed to the CDN netlify
 const dynamicRoutes = () => {
-  return axios.get(`${process.env.API_URL}/pages`).then((res) => {
+  return axios.get(`${apiUrl}/pages`).then((res) => {
     return res.data.map((page) => `/${page.slug}`)
   })
 }
@@ -25,6 +29,28 @@ export default {
         name: 'description',
         content:
           'Are you sometimes short on time? We offer custom solutions for your personal time management.',
+      },
+      // Link preview information for sharing on Facebook, iMessage, Whatsapp etc.
+      // Based on the Open graph protocol.
+      {
+        property: 'og:title',
+        content: 'Buy time online',
+      },
+      {
+        property: 'og:site_name',
+        content: 'Time Sales Online',
+      },
+      {
+        property: 'og:url',
+        conntent: baseUrl,
+      },
+      {
+        property: 'og:image',
+        content: `${baseUrl}/timesales-poster.png`,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
       },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
@@ -75,10 +101,10 @@ export default {
     transpile: ['sand-simulation'],
   },
 
-  // Reads .env file
+  // Pass data from .env to the nuxt context
   publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-    apiUrl: process.env.API_URL,
+    baseUrl,
+    apiUrl,
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   },
 
