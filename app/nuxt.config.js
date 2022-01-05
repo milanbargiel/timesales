@@ -34,7 +34,7 @@ export default {
       // Based on the Open graph protocol.
       {
         property: 'og:title',
-        content: 'Time Sales Online',
+        content: 'Time Sales Online - World leader in the time business',
       },
       {
         property: 'og:site_name',
