@@ -42,7 +42,7 @@ export default {
       },
       {
         property: 'og:url',
-        conntent: baseUrl,
+        content: baseUrl,
       },
       {
         property: 'og:image',
