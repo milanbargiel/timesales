@@ -34,11 +34,15 @@ export default {
       // Based on the Open graph protocol.
       {
         property: 'og:title',
-        content: 'Buy time online',
+        content: 'Time Sales Online',
       },
       {
         property: 'og:site_name',
         content: 'Time Sales Online',
+      },
+      {
+        property: 'og:description',
+        content: 'Buy time online',
       },
       {
         property: 'og:url',
