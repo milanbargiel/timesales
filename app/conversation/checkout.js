@@ -60,16 +60,9 @@ export default {
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
 
-      const startsWithMy = firstWord === 'my'
-
       const startsWithThe = firstWord === 'the'
 
-      if (
-        startsWithIndefiniteArticle ||
-        startsWithMy ||
-        startsWithThe ||
-        wordIsNoun
-      ) {
+      if (startsWithIndefiniteArticle || startsWithThe || wordIsNoun) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
