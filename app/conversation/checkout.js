@@ -75,18 +75,16 @@ export default {
       const containsIng = text.includes('ing')
 
       // 3. Text contains the prepositions 'to' or 'for'
-      let preposition
-
       if (containsTo || containsFor) {
+        let preposition
+
         // If both preposition exist, take the first one in the sentence
         if (containsTo && containsFor) {
           preposition = text.indexOf('to') < text.indexOf('for') ? 'to' : 'for'
         } else {
           preposition = containsTo ? 'to' : 'for'
         }
-      }
 
-      if (preposition) {
         // Return [timeAmount] [timeUnit] + to / for + everything after preposition
         return `${timeString} ${text.substring(
           text.indexOf(preposition),
