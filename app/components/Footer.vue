@@ -1,7 +1,6 @@
 <template>
   <div v-if="showFooter" class="footer-container">
     <footer v-if="footerUnfolded" class="footer">
-      <div></div>
       <div class="creators">
         <div class="creators-header">Partners:</div>
         <a
