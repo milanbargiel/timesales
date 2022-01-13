@@ -42,11 +42,11 @@
 - Price and description is posted
 - The checkout redirects to a custom success page, that displays the sand simulation
 
-```json
+```bash
 {
     "name": "Kajetan di Napoli",
-    "time": "2000", // seconds
-    "price": "1222", // cents
+    "time": "2000", # seconds
+    "price": "1222", # cents
     "successUrl": "[base-url]/order",
     "cancelUrl": "[base-url]/cancel",
     ""
@@ -59,14 +59,14 @@
 - Can only be accessed in a Webhook from Stripe via authentication
 - Endpoint is triggered automatically when user buys time
 
-```json
+```bash
 {
     "email": "name@providerdotcom",
     "name": "Kajetan di Napoli",
     "time": "2000",
     "price": "1222",
     "description": "Precious time for myself alone",
-    "key": "_12msqid...", // Stripe CHECKOUT_SESSION_ID is used as the unique key
+    "key": "_12msqid...", # Stripe CHECKOUT_SESSION_ID is used as the unique key
     ""
 }
 ```
@@ -75,7 +75,7 @@
 
 - Enpoint to periodically save the progress of the simulation
 
-```json
+```bash
 {
   "progress": 0.2
 }
