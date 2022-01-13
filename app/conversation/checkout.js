@@ -69,31 +69,23 @@ export default {
         }`
       }
 
-      // Search for to 'to', 'for' and 'ing'
-      const containsTo = text.includes('to')
-      const containsFor = text.includes('for')
-      const containsIng = text.includes('ing')
+      // 3. Text contains the prepositions 'to', 'not to', or 'for'
+      const prepositions = [
+        text.indexOf('to'),
+        text.indexOf('not to'),
+        text.indexOf('for'),
+      ].filter((val) => val > -1) // Only consider indexes from text (index > -1 )
 
-      // 3. Text contains the prepositions 'to' or 'for'
-      if (containsTo || containsFor) {
-        let preposition
+      if (prepositions.length) {
+        // Get the index of the first preposition (if there is more than one)
+        const prepositionIndex = Math.min(...prepositions)
 
-        // If both preposition exist, take the first one in the sentence
-        if (containsTo && containsFor) {
-          preposition = text.indexOf('to') < text.indexOf('for') ? 'to' : 'for'
-        } else {
-          preposition = containsTo ? 'to' : 'for'
-        }
-
-        // Return [timeAmount] [timeUnit] + to / for + everything after preposition
-        return `${timeString} ${text.substring(
-          text.indexOf(preposition),
-          text.length
-        )}`
+        // Return [timeAmount] [timeUnit] + preposition + everything after preposition
+        return `${timeString} ${text.substring(prepositionIndex, text.length)}`
       }
 
       // 4. Text contains no prepositions but a verb in gerundium form 'ing'
-      if (containsIng) {
+      if (text.includes('ing')) {
         // Find the index of the word with ing
         const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
         // Include everything from the word with 'ing' to the end
