@@ -82,7 +82,9 @@ export default {
     toggleFooter() {
       // Show the Time Sales Online header when the footer unfolds
       if (!this.$store.state.ui.showHeader && !this.footerUnfolded) {
-        this.showHeader()
+        setTimeout(() => {
+          this.showHeader()
+        }, 100)
       }
 
       // Toogle the footer
