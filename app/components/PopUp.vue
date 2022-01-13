@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="showPopUp" class="pop-up" @click="showPopUp = false">
-      <button class="close-btn close-btn--pop-up">x</button>
+      <button class="close-btn close-btn--pop-up"></button>
       <img class="pop-up-image" :src="popUpImageUrl" alt="Image" />
     </div>
   </transition>

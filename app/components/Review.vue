@@ -6,7 +6,7 @@
       :style="{ top, right }"
       @click="showReview = false"
     >
-      <button class="close-btn close-btn--review">x</button>
+      <button class="close-btn close-btn--review"></button>
       <div>
         “{{ reviewText }}”
         <span class="review-author">– {{ reviewAuthor }}</span>

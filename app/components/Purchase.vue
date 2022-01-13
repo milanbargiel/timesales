@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="showPurchase" class="purchase" @click="showPurchase = false">
-      <button class="close-btn close-btn--purchase">x</button>
+      <button class="close-btn close-btn--purchase"></button>
       <!-- Paste parsed HTML content -->
       <!-- eslint-disable vue/no-v-html -->
       <span v-html="parsePurchaseText"></span>
