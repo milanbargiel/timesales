@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+
 export default {
   data() {
     return {
@@ -74,8 +76,17 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      showHeader: 'ui/showHeader', // Enables this.showHeader()
+    }),
     toggleFooter() {
+      // Toogle the footer
       this.footerUnfolded = !this.footerUnfolded
+
+      // Show the Time Sales Online header when the footer unfolds
+      if (!this.$store.state.ui.showHeader && !this.footerUnfolded) {
+        this.showHeader()
+      }
     },
   },
 }
