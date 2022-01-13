@@ -252,6 +252,12 @@ body {
   top: 0;
   right: 0;
 
+  // Add x icon as pseudo content
+  &::after {
+    display: inline-block;
+    content: "\00d7";
+  }
+
   &:hover,
   &:focus,
   &:active {
@@ -263,9 +269,12 @@ body {
   }
 
   &--review {
+    font-size: 1.5em;
+    line-height: .75em;
     right: $space-s;
 
     @media screen and (min-width: $bp-tablet) {
+      font-size: 1.3em;
       line-height: 1.3;
       top: 0;
       right: 0;
@@ -273,15 +282,24 @@ body {
   }
 
   &--pop-up {
-    line-height: 0.5; // adjust line-height for proper placement
+    font-size: 2em;
+    line-height: 0.25; // adjust line-height for proper placement
     top: $space-s;
     right: $space-s;
+
+    @media screen and (min-width: $bp-tablet) {
+      font-size: 1.5em;
+    }
   }
 
   &--purchase {
+    font-size: 1.5em;
     top: $space-xs;
-    right: $space-m;
-    font-family: $special-font;
+    right: $space-s;
+
+    @media screen and (min-width: $bp-tablet) {
+      right: $space-m;
+    }
   }
 }
 
