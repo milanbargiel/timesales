@@ -173,6 +173,8 @@ export default {
             this.stripe.redirectToCheckout({ sessionId: session.id })
           })
           .catch(() => {
+            // On error reenable the checkoutbutton
+            this.checkoutIsLoading = false
             this.showCheckoutError = true
           })
       }
