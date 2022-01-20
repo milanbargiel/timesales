@@ -28,6 +28,12 @@
         >
           Proceed to checkout
         </button>
+        <div class="checkbox-container">
+          <label class="checkbox">
+            <input v-model="userWishesInvoice" type="checkbox" />
+            I wish to receive the invoice by postal mail.
+          </label>
+        </div>
         <p v-if="showCheckoutError" class="error">
           There is a problem with your order. Please retry and send an E-Mail to
           <a href="mailto:hello@timesales.ltd">hello@timesales.ltd</a> if you
@@ -62,6 +68,7 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      userWishesInvoice: false, // The user wishes to receive an inbox via postal mail
       checkoutIsLoading: false, // to disable checkout button during the loading of the Stripe script
       showCheckoutError: false,
       showPrivacyInfo: false,
@@ -142,8 +149,8 @@ export default {
       getAllPopUpData: 'popUps/fetchAllPopUpData',
     }),
     stripeCheckout() {
-      // Only load stripe script when user clicks on checkout button
-      this.checkoutIsLoading = true
+      // Only load stripe script when user clicks on checkout button.
+      this.checkoutIsLoading = true // Disable checkout button & show loading spinner while script is loading.
       const script = document.createElement('script')
       script.src = 'https://js.stripe.com/v3'
       script.defer = 'true'
@@ -155,6 +162,7 @@ export default {
 
         const data = {
           ...this.response,
+          userWishesInvoice: this.userWishesInvoice,
           successUrl: `${this.$config.baseUrl}/order`,
           cancelUrl: `${this.$config.baseUrl}/cancel`,
         }
@@ -165,6 +173,8 @@ export default {
             this.stripe.redirectToCheckout({ sessionId: session.id })
           })
           .catch(() => {
+            // On error reenable the checkoutbutton
+            this.checkoutIsLoading = false
             this.showCheckoutError = true
           })
       }

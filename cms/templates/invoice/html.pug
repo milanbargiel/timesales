@@ -146,9 +146,22 @@ head
     .left
       div
         div.bold To:
-        | #{order.orderName}
-        br
-        |  #{order.orderEmail}
+        if customerAddress
+          | #{customerAddress.name}
+          br
+          | #{customerAddress.line1}
+          if customerAddress.line2
+            br
+            | #{customerAddress.line2}
+          br
+          | #{customerAddress.postal_code} #{customerAddress.city}
+          br
+          | #{customerAddress.country}
+          br
+        else
+          | #{order.orderName}
+          br
+          | #{order.orderEmail}
       div.thank-you
         div.bold Invoice
         | Thank you for your purchase at Time Sales Online.
