@@ -30,7 +30,7 @@
         </button>
         <div class="checkbox-container">
           <label class="checkbox">
-            <input v-model="userWishesInvoice," type="checkbox" />
+            <input v-model="userWishesInvoice" type="checkbox" />
             I wish to receive the invoice through postal mail.
           </label>
         </div>
