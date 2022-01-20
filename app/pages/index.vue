@@ -28,6 +28,12 @@
         >
           Proceed to checkout
         </button>
+        <div class="checkbox-container">
+          <label class="checkbox">
+            <input type="checkbox" />
+            I wish to receive the invoice through postal mail.
+          </label>
+        </div>
         <p v-if="showCheckoutError" class="error">
           There is a problem with your order. Please retry and send an E-Mail to
           <a href="mailto:hello@timesales.ltd">hello@timesales.ltd</a> if you
@@ -142,8 +148,8 @@ export default {
       getAllPopUpData: 'popUps/fetchAllPopUpData',
     }),
     stripeCheckout() {
-      // Only load stripe script when user clicks on checkout button
-      this.checkoutIsLoading = true
+      // Only load stripe script when user clicks on checkout button.
+      this.checkoutIsLoading = true // Disable checkout button & show loading spinner while script is loading.
       const script = document.createElement('script')
       script.src = 'https://js.stripe.com/v3'
       script.defer = 'true'

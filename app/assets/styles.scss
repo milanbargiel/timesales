@@ -680,3 +680,18 @@ svg {
     font-size: 30px;
   }
 }
+
+// Checkbox for receiving the invoice with postal mail
+.checkbox-container {
+  margin: $space-m 0;
+}
+
+.checkbox {
+  font-size: .925em;
+  color: $grey;
+
+  &:hover {
+    color: $black;
+    cursor: pointer;
+  }
+}
