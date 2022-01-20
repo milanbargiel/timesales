@@ -43,6 +43,14 @@ const createInvoice = async (order, response, templateFolder) => {
     bic: process.env.BIC
   };
 
+  const customerAdress = {
+    adress: 'Teststreet 66',
+    adressLineTwo: 'second floor',
+    postalCode: '50679',
+    city: 'Berlin',
+    country: 'Germany'
+  };
+
   // Create invoice HTML
   const html = compiledFunction({
     createdAt: dayjs(order.created_at).format('DD MMMM, YYYY'), // Format creation date
@@ -53,8 +61,9 @@ const createInvoice = async (order, response, templateFolder) => {
     price: toEur(timePrice),
     tax: toEur(Math.round(timePrice * (7 / 100))), // always 7% tax vat
     priceTotal: toEur(Math.round(timePrice + timePrice * (7 / 100))), // price + tax
-    bankInfo,
     qrcode,
+    bankInfo,
+    customerAdress,
     order,
     response
   });

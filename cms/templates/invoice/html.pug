@@ -148,7 +148,16 @@ head
         div.bold To:
         | #{order.orderName}
         br
-        |  #{order.orderEmail}
+        // Conditionally render the customer adress or the e-mail
+        if customerAdress
+          | #{customerAdress.adress} #{customerAdress.adressLineTwo} 
+          br
+          | #{customerAdress.postalCode} #{customerAdress.city}
+          br
+          | #{customerAdress.country}
+          br
+        else
+          |  #{order.orderEmail}
       div.thank-you
         div.bold Invoice
         | Thank you for your purchase at Time Sales Online.
