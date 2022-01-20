@@ -92,3 +92,14 @@
 |   ├── conversation # The complete bot conversation
 |   └── store # Vuex Store files with actions that fetch and post data to the cms
 ```
+
+##### FAQ
+
+**What to do when the deployment of the strapi cms does not happen automatically after a push to the main branch?**
+
+Unfortunately this happens quite often. Maybe there is something wrong with the github webhook to the linux vps. To do it manually:
+
+- Login into the VPS
+- Navigate to the project `/timesales`
+- Manually pull the latest commits from github with `git pull`
+- Restart the Strapi CMS with `pm2 restart strapi`
