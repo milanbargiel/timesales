@@ -30,7 +30,7 @@
         </button>
         <div class="checkbox-container">
           <label class="checkbox">
-            <input type="checkbox" />
+            <input v-model="userWishesInvoice," type="checkbox" />
             I wish to receive the invoice through postal mail.
           </label>
         </div>
@@ -68,6 +68,7 @@ export default {
     return {
       botui: '',
       showCheckoutButton: false,
+      userWishesInvoice: false, // The user wishes to receive an inbox via postal mail
       checkoutIsLoading: false, // to disable checkout button during the loading of the Stripe script
       showCheckoutError: false,
       showPrivacyInfo: false,
@@ -161,6 +162,7 @@ export default {
 
         const data = {
           ...this.response,
+          userWishesInvoice: this.userWishesInvoice,
           successUrl: `${this.$config.baseUrl}/order`,
           cancelUrl: `${this.$config.baseUrl}/cancel`,
         }
