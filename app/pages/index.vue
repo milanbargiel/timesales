@@ -31,7 +31,7 @@
         <div class="checkbox-container">
           <label class="checkbox">
             <input v-model="userWishesInvoice" type="checkbox" />
-            I wish to receive the invoice through postal mail.
+            I wish to receive the invoice by postal mail.
           </label>
         </div>
         <p v-if="showCheckoutError" class="error">
