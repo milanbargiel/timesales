@@ -167,34 +167,9 @@ module.exports = {
     const payload = ctx.request.body;
 
     try {
-      const session = await stripe.checkout.sessions.create({
+      const sessionObject = {
         payment_method_types: ['card', 'sepa_debit', 'sofort'],
         locale: 'en',
-        shipping_address_collection: {
-          allowed_countries: ['DE']
-        },
-        shipping_options: [
-          {
-            shipping_rate_data: {
-              type: 'fixed_amount',
-              fixed_amount: {
-                amount: 299,
-                currency: 'eur'
-              },
-              display_name: 'Shipping',
-              delivery_estimate: {
-                minimum: {
-                  unit: 'business_day',
-                  value: 2
-                },
-                maximum: {
-                  unit: 'business_day',
-                  value: 3
-                }
-              }
-            }
-          }
-        ],
         line_items: [
           {
             price_data: {
@@ -220,7 +195,28 @@ module.exports = {
         // TODO: Check wether URLs are either localhost:3000 or timesales.ltd to prevent fraud
         success_url: payload.successUrl + '?key={CHECKOUT_SESSION_ID}',
         cancel_url: payload.cancelUrl
-      });
+      };
+
+      // When user wishes postal invoice collect adress in checkout.
+      if (payload.userWishesInvoice === true) {
+        sessionObject.shipping_address_collection = {
+          allowed_countries: ['DE']
+        };
+        sessionObject.shipping_options = [
+          {
+            shipping_rate_data: {
+              type: 'fixed_amount',
+              fixed_amount: {
+                amount: 80,
+                currency: 'eur'
+              },
+              display_name: 'by postal mail'
+            }
+          }
+        ];
+      }
+
+      const session = await stripe.checkout.sessions.create(sessionObject);
 
       // Return session id for the link to the Stripe checkout page
       return { id: session.id };
