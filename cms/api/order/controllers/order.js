@@ -301,7 +301,7 @@ module.exports = {
       try {
         const session = event.data.object; // Get data from Stripe session
 
-        // Fetch customer object with Stripe API to get name field from checkout
+        // Fetch customer object with Stripe API to get name field from the checkout payment
         // https://stripe.com/docs/api/customers/retrieve?lang=node
         const customer = await stripe.customers.retrieve(session.customer);
 
@@ -326,9 +326,9 @@ module.exports = {
             }
           );
         } else {
-          // Allow recording is false
+          // When there is no response data, the user did not allow data recording
           response.allowRecording = false;
-          // Create entry
+          // Create entry with relevant data for the order
           responseEntity = await strapi.services.response.create(response);
         }
 
@@ -350,13 +350,16 @@ module.exports = {
           model: strapi.models.order
         });
 
-        // Update relation to response with id from order
+        // Connect the response data with the order
         await strapi.services.response.update(
           { id: responseEntity.id },
           {
             order: orderEntity.id
           }
         );
+
+        // Collect adress data (for optional shipping, empty object when shipping is not selected)
+        const shippingInfo = session.shipping;
 
         // Send invoice per E-mail
         if (orderEntity && responseEntity) {
@@ -373,7 +376,8 @@ module.exports = {
           ].services.email.createInvoice(
             orderEntity,
             responseEntity,
-            'invoice'
+            'invoice',
+            shippingInfo
           );
 
           // Send email

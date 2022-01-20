@@ -15,7 +15,7 @@ const renderMail = (order, response, templateFolder) => {
   return email.renderAll(`../templates/${templateFolder}`, { order, response });
 };
 
-const createInvoice = async (order, response, templateFolder) => {
+const createInvoice = async (order, response, templateFolder, shippingInfo) => {
   // Create invoice html from variables
   const compiledFunction = pug.compileFile(
     `templates/${templateFolder}/html.pug`
@@ -43,13 +43,14 @@ const createInvoice = async (order, response, templateFolder) => {
     bic: process.env.BIC
   };
 
-  const customerAdress = {
-    adress: 'Teststreet 66',
-    adressLineTwo: 'second floor',
-    postalCode: '50679',
-    city: 'Berlin',
-    country: 'Germany'
-  };
+  let customerAddress;
+
+  if (shippingInfo) {
+    customerAddress = {
+      ...shippingInfo.address,
+      name: shippingInfo.name // The shipping name may differ from the credit card name
+    };
+  }
 
   // Create invoice HTML
   const html = compiledFunction({
@@ -63,9 +64,9 @@ const createInvoice = async (order, response, templateFolder) => {
     priceTotal: toEur(Math.round(timePrice + timePrice * (7 / 100))), // price + tax
     qrcode,
     bankInfo,
-    customerAdress,
     order,
-    response
+    response,
+    customerAddress
   });
 
   return html;
