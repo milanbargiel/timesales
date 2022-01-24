@@ -56,13 +56,25 @@ export default {
         wordIsNoun = tag.includes('NN')
       }
 
-      // 2. Check if Text begins the indefine article "a" or "an" or "my" or "the" is a noun
+      // 2. Check if Text begins the indefine article "a" or "an" "the"
+      // Or with the possesive pronouns "your", "his", "her", "their"
+      // Or there is only one word and it is a noun
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
 
       const startsWithThe = firstWord === 'the'
 
-      if (startsWithIndefiniteArticle || startsWithThe || wordIsNoun) {
+      // Iterate over possessive pronouns and return true if one value meets the criteria
+      const startsWithPossessivePronoun = ['your', 'his', 'her', 'their'].some(
+        (word) => firstWord === word
+      )
+
+      if (
+        startsWithIndefiniteArticle ||
+        startsWithThe ||
+        startsWithPossessivePronoun ||
+        wordIsNoun
+      ) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
