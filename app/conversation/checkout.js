@@ -84,8 +84,8 @@ export default {
       // 3. Text contains the prepositions 'to', or 'for'
       // Search for entire words with regex
       // Only the first position in the text gets listed
-      const prepositionTo = text.search(/\b(to)\b/)
-      const prepositionFor = text.search(/\b(for)\b/)
+      const prepositionTo = text.search(/\b(to)\b/i)
+      const prepositionFor = text.search(/\b(for)\b/i)
 
       if (prepositionTo > -1 || prepositionFor > -1) {
         // Get the index of the first preposition (if there is more than one)
