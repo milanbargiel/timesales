@@ -99,8 +99,13 @@ export default {
       // 4. Text contains no prepositions but a verb in gerundium form 'ing'
       if (text.includes('ing')) {
         // Find the index of the word with ing
-        const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
-        // Include everything from the word with 'ing' to the end
+        let wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
+
+        // Check wether there is a "not" directly before the word and if so include it in the summarization
+        const containsNot =
+          wordIndex >= 4 && text.slice(wordIndex - 4, wordIndex - 1) === 'not'
+        wordIndex = containsNot ? wordIndex - 4 : wordIndex
+
         return `${timeString} for ${text.substring(wordIndex, text.length)}`
       }
 
