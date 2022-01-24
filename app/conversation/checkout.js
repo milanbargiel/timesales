@@ -56,29 +56,43 @@ export default {
         wordIsNoun = tag.includes('NN')
       }
 
-      // 2. Check if Text begins the indefine article "a" or "an" or "my" or "the" is a noun
+      // 2. Check if Text begins the indefine article "a" or "an" "the"
+      // Or with the possesive pronouns "your", "his", "her", "their"
+      // Or there is only one word and it is a noun
       const startsWithIndefiniteArticle =
         firstWord === 'a' || firstWord === 'an'
 
       const startsWithThe = firstWord === 'the'
 
-      if (startsWithIndefiniteArticle || startsWithThe || wordIsNoun) {
+      // Iterate over possessive pronouns and return true if one value meets the criteria
+      const startsWithPossessivePronoun = ['your', 'his', 'her', 'their'].some(
+        (word) => firstWord === word
+      )
+
+      if (
+        startsWithIndefiniteArticle ||
+        startsWithThe ||
+        startsWithPossessivePronoun ||
+        wordIsNoun
+      ) {
         return `${timeString} for ${
           // First letter sentence in lower case
           text.charAt(0).toLowerCase() + text.slice(1)
         }`
       }
 
-      // 3. Text contains the prepositions 'to', 'not to', or 'for'
-      const prepositions = [
-        text.indexOf('to'),
-        text.indexOf('not to'),
-        text.indexOf('for'),
-      ].filter((val) => val > -1) // Only consider indexes from text (index > -1 )
+      // 3. Text contains the prepositions 'to', or 'for'
+      // Search for entire words with regex
+      // Only the first position in the text gets listed
+      const prepositionTo = text.search(/\b(to)\b/i)
+      const prepositionFor = text.search(/\b(for)\b/i)
 
-      if (prepositions.length) {
+      if (prepositionTo > -1 || prepositionFor > -1) {
         // Get the index of the first preposition (if there is more than one)
-        const prepositionIndex = Math.min(...prepositions)
+        const prepositionIndex = Math.min(
+          0,
+          Math.min(prepositionTo, prepositionFor)
+        )
 
         // Return [timeAmount] [timeUnit] + preposition + everything after preposition
         return `${timeString} ${text.substring(prepositionIndex, text.length)}`
@@ -87,8 +101,13 @@ export default {
       // 4. Text contains no prepositions but a verb in gerundium form 'ing'
       if (text.includes('ing')) {
         // Find the index of the word with ing
-        const wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
-        // Include everything from the word with 'ing' to the end
+        let wordIndex = text.slice(0, text.indexOf('ing') + 3).search(/\S+$/)
+
+        // Check wether there is a "not" directly before the word and if so include it in the summarization
+        const containsNot =
+          wordIndex >= 4 && text.slice(wordIndex - 4, wordIndex - 1) === 'not'
+        wordIndex = containsNot ? wordIndex - 4 : wordIndex
+
         return `${timeString} for ${text.substring(wordIndex, text.length)}`
       }
 
