@@ -583,6 +583,21 @@ body {
       margin-right: 1.5 * $space-xl;
     }
   }
+
+  &--future-holding {
+    width: 130px;
+    height: 26px;
+  }
+
+  &--bbk {
+    width: 130px;
+    height: 26px;
+  }
+
+  &--neustart-kultur {
+    width: 130px;
+    height: 26px;
+  }
 }
 
 .footer-toggle {

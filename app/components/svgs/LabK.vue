@@ -10,7 +10,7 @@
       <title>Landesbüro für Bildende Kunst NRW</title>
       <defs>
         <style>
-          .cls-1 {
+          .patron-logo--lab-k .cls-1 {
             stroke: #000;
             stroke-width: 1px;
             fill-rule: evenodd;
