@@ -1,5 +1,8 @@
 <template>
-  <a href="https://www.labk.nrw/" target="_blank">
+  <a
+    href="https://www.bundesregierung.de/breg-de/bundesregierung/bundeskanzleramt/staatsministerin-fuer-kultur-und-medien"
+    target="_blank"
+  >
     <svg
       class="patron-logo patron-logo--bkm"
       xmlns="http://www.w3.org/2000/svg"
