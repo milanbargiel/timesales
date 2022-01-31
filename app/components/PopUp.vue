@@ -34,6 +34,10 @@ export default {
     const delay = this.popUpDelay * 1000
 
     setTimeout(() => {
+      // Do not trigger Pop-ups, when browser tab is inactive
+      if (document.hidden) {
+        return
+      }
       this.showPopUp = true // show pop up after delay
       setTimeout(() => (this.showPopUp = false), ttl) // kill pop up after ttl
     }, delay)

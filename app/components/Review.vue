@@ -48,6 +48,10 @@ export default {
     const delay = this.reviewDelay * 1000
 
     setTimeout(() => {
+      // Do not trigger Pop-ups, when browser tab is inactive
+      if (document.hidden) {
+        return
+      }
       this.setRandomPosition()
       this.showReview = true // show pop up after delay
       setTimeout(() => (this.showReview = false), ttl) // kill pop up after ttl

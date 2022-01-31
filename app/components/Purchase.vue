@@ -45,6 +45,10 @@ export default {
     const delay = this.purchaseDelay * 1000
 
     setTimeout(() => {
+      // Do not trigger Pop-ups, when browser tab is inactive
+      if (document.hidden) {
+        return
+      }
       this.showPurchase = true // show pop up after delay
       setTimeout(() => (this.showPurchase = false), ttl) // kill pop up after ttl
     }, delay)
