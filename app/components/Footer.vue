@@ -24,6 +24,12 @@
           >Biomigrant</a
         >
         <a class="link link--underlined">Layla Ansari</a>
+        <a
+          class="link link--underlined"
+          href="https://www.media-art-theory.com"
+          target="_blank"
+          >Alexander König</a
+        >
       </div>
       <div class="navigation">
         <NuxtLink class="link link--undecorated" to="/">Buy time</NuxtLink>
