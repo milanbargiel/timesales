@@ -1,5 +1,5 @@
 <template>
-  <a href="https://www.labk.nrw/" target="_blank">
+  <a class="patron-link" href="https://www.labk.nrw/" target="_blank">
     <svg
       class="patron-logo patron-logo--lab-k"
       xmlns="http://www.w3.org/2000/svg"

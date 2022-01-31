@@ -1,5 +1,9 @@
 <template>
-  <a href="https://soziokultur.neustartkultur.de/" target="_blank">
+  <a
+    class="patron-link"
+    href="https://soziokultur.neustartkultur.de/"
+    target="_blank"
+  >
     <svg
       class="patron-logo patron-logo--neustart-kultur"
       xmlns="http://www.w3.org/2000/svg"

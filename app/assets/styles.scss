@@ -514,56 +514,46 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   margin: $space-s 0;
+  justify-content: space-between;
   align-items: center;
 
   @media screen and (min-width: $bp-tablet) {
     margin: 0;
-    width: 50%;
-    justify-content: space-between;
+    width: 42%;
     order: 3;
   }
 }
 
-.patron-logo {
-  margin-top: $space-s;
+
+.patron-link {
+  margin-top: $space-l;
+  margin-left: $space-s;
   
   @media screen and (min-width: $bp-tablet) {
     margin-top: 0;
+    margin-left: $space-l;
   }
+}
 
+.patron-logo {
+  /* Sizes for logos are calculated by the rule of three, taking into account the original measurements to calculate the new sizes */
   &--nrw {
-    width: 170px;
-    height: 37px;
+    width: 120px;
+    height: 26px;
 
     @media screen and (min-width: $bp-desktop) {
-      width: 230px;
-      height: 50px;
-    }
-
-    @media screen and (min-width: $bp-hd) {
-      width: 280px;
-      height: 60px;
+      width: 220px;
+      height: 47px;
     }
   }
 
   &--lab-k {
     width: 50px;
     height: 17px;
-    margin-left: $space-l;
-    margin-right: $space-m;
-
-    @media screen and (min-width: $bp-tablet) {
-      margin: 0;
-    }
 
     @media screen and (min-width: $bp-desktop) {
       width: 60px;
       height: 20px;
-    }
-
-    @media screen and (min-width: $bp-hd) {
-      width: 70px;
-      height: 23px;
     }
   }
 
@@ -574,29 +564,37 @@ body {
     @media screen and (min-width: $bp-desktop) {
       width: 150px;
       height: 30px;
-      margin-right: $space-xl;
     }
+  }
 
-    @media screen and (min-width: $bp-hd) {
-      width: 165px;
-      height: 33px;
-      margin-right: 1.5 * $space-xl;
+  &--bkm {
+    width: 150px;
+    height: 61px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 170px;
+      height: 69px;
     }
   }
 
   &--future-holding {
-    width: 130px;
-    height: 26px;
+    width: 70px;
+    height: 52px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 70px;
+      height: 52px;
+    }
   }
 
   &--bbk {
-    width: 130px;
-    height: 26px;
+    width: 50px;
+    height: 60px;
   }
 
   &--neustart-kultur {
-    width: 130px;
-    height: 26px;
+    width: 55px;
+    height: 54px;
   }
 }
 

@@ -1,5 +1,9 @@
 <template>
-  <a href="https://www.bbk-bundesverband.de/" target="_blank">
+  <a
+    class="patron-link"
+    href="https://www.bbk-bundesverband.de/"
+    target="_blank"
+  >
     <svg
       class="patron-logo patron-logo--bbk"
       xmlns="http://www.w3.org/2000/svg"

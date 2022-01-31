@@ -1,5 +1,5 @@
 <template>
-  <a href="https://www.mkw.nrw/" target="_blank">
+  <a class="patron-link" href="https://www.mkw.nrw/" target="_blank">
     <svg
       class="patron-logo patron-logo--nrw"
       width="2063"
