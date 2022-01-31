@@ -551,20 +551,20 @@ body {
     width: 50px;
     height: 17px;
 
-    @media screen and (min-width: $bp-desktop) {
-      width: 60px;
-      height: 20px;
-    }
+    // @media screen and (min-width: $bp-desktop) {
+    //   width: 60px;
+    //   height: 20px;
+    // }
   }
 
   &--advocates {
     width: 130px;
     height: 26px;
 
-    @media screen and (min-width: $bp-desktop) {
-      width: 150px;
-      height: 30px;
-    }
+    // @media screen and (min-width: $bp-desktop) {
+    //   width: 150px;
+    //   height: 30px;
+    // }
   }
 
   &--bkm {
@@ -581,10 +581,10 @@ body {
     width: 70px;
     height: 52px;
 
-    @media screen and (min-width: $bp-desktop) {
-      width: 70px;
-      height: 52px;
-    }
+    // @media screen and (min-width: $bp-desktop) {
+    //   width: 70px;
+    //   height: 52px;
+    // }
   }
 
   &--bbk {
