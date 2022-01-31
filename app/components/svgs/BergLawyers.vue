@@ -1,5 +1,5 @@
 <template>
-  <a href="https://www.vomberg.org/" target="_blank">
+  <a class="patron-link" href="https://www.vomberg.org/" target="_blank">
     <svg
       class="patron-logo patron-logo--advocates"
       xmlns="http://www.w3.org/2000/svg"
@@ -10,12 +10,12 @@
       <title>Vom Berg & Partner Rechtsanwälte</title>
       <defs>
         <style>
-          .cls-1,
-          .cls-2 {
+          .patron-logo--advocates .cls-1,
+          .patron-logo--advocates .cls-2 {
             fill-rule: evenodd;
           }
 
-          .cls-2 {
+          .patron-logo--advocates .cls-2 {
             fill: #aa9c95;
           }
         </style>

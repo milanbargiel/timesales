@@ -1,5 +1,5 @@
 <template>
-  <a href="https://www.labk.nrw/" target="_blank">
+  <a class="patron-link" href="https://www.labk.nrw/" target="_blank">
     <svg
       class="patron-logo patron-logo--lab-k"
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@
       <title>Landesbüro für Bildende Kunst NRW</title>
       <defs>
         <style>
-          .cls-1 {
+          .patron-logo--lab-k .cls-1 {
             stroke: #000;
             stroke-width: 1px;
             fill-rule: evenodd;

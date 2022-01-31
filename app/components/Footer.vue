@@ -42,6 +42,10 @@
         <SvgsKulturNrw />
         <SvgsLabK />
         <SvgsBergLawyers />
+        <SvgsBBK />
+        <SvgsNeustartKultur />
+        <SvgsBKM />
+        <SvgsFutureHoldingGroup />
       </div>
     </footer>
     <Triangle
