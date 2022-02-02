@@ -49,7 +49,7 @@ export default {
 
     setTimeout(() => {
       // Do not trigger Pop-ups, when browser tab is inactive
-      if (document.hidden) {
+      if (this.$store.state.popUps.pageVisible === false) {
         return
       }
       this.setRandomPosition()

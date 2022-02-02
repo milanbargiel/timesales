@@ -13,6 +13,10 @@ const state = () => ({
     maxTimeToLive: null,
     showAllPopUps: false,
   },
+  // Determine wether the page is visible and the browser window is active
+  // Gets triggered by an event listener from the layout component
+  // Pop-ups only appear when the page is visible
+  pageVisible: true,
 })
 
 const mutations = {
@@ -27,6 +31,20 @@ const mutations = {
   },
   setConfig(state, config) {
     state.config = config
+  },
+  pageVisible(state) {
+    // Prevent double execution
+    if (state.pageVisible === true) {
+      return
+    }
+    state.pageVisible = true
+  },
+  pageInvisible(state) {
+    // Prevent double execution
+    if (state.pageVisible === false) {
+      return
+    }
+    state.pageVisible = false
   },
 }
 
