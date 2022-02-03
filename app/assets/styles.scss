@@ -524,7 +524,6 @@ body {
   }
 }
 
-
 .patron-link {
   margin-top: $space-l;
   margin-left: $space-s;
@@ -533,6 +532,20 @@ body {
     margin-top: 0;
     margin-left: $space-l;
   }
+}
+
+// Line break after 3rd element
+// Use a pseudo-element to seperate the first 3 logos from the folowing 4
+// https://stackoverflow.com/questions/29732575/how-to-specify-line-breaks-in-a-multi-line-flexbox-layout
+.patrons::after {
+  content: '';
+  display: block;
+  width: 100%;
+  order: 1;
+}
+
+.patron-link:nth-child(n + 4) {
+  order: 2;
 }
 
 .patron-logo {
