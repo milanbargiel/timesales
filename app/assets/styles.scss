@@ -585,7 +585,7 @@ body {
   }
 
   &--bkm {
-    width: 150px;
+    width: 140px;
     height: 61px;
 
     @media screen and (min-width: $bp-desktop) {
@@ -595,18 +595,33 @@ body {
   }
 
   &--future-holding {
-    width: 65px;
-    height: 48px;
+    width: 60px;
+    height: 44px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 65px;
+      height: 48px;
+    }
   }
 
   &--bbk {
-    width: 50px;
-    height: 60px;
+    width: 40px;
+    height: 48px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 50px;
+      height: 60px;
+    }
   }
 
   &--neustart-kultur {
-    width: 55px;
-    height: 54px;
+    width: 50px;
+    height: 49px;
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 55px;
+      height: 54px;
+    }
   }
 }
 
