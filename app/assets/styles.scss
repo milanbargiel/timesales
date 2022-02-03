@@ -516,6 +516,7 @@ body {
   margin: $space-s 0;
   justify-content: space-between;
   align-items: center;
+  align-content: center; // vertical centering
 
   @media screen and (min-width: $bp-tablet) {
     margin: 0;
@@ -524,15 +525,31 @@ body {
   }
 }
 
-
 .patron-link {
   margin-top: $space-l;
   margin-left: $space-s;
   
   @media screen and (min-width: $bp-tablet) {
-    margin-top: 0;
+    margin-top: $space-m;
+  }
+
+  @media screen and (min-width: $bp-desktop) {
     margin-left: $space-l;
   }
+}
+
+// Line break after 3rd element
+// Use a pseudo-element to seperate the first 3 logos from the folowing 4
+// https://stackoverflow.com/questions/29732575/how-to-specify-line-breaks-in-a-multi-line-flexbox-layout
+.patrons::after {
+  content: '';
+  display: block;
+  width: 100%;
+  order: 1;
+}
+
+.patron-link:nth-child(n + 4) {
+  order: 2;
 }
 
 .patron-logo {
@@ -551,10 +568,10 @@ body {
     width: 50px;
     height: 17px;
 
-    // @media screen and (min-width: $bp-desktop) {
-    //   width: 60px;
-    //   height: 20px;
-    // }
+    @media screen and (min-width: $bp-desktop) {
+      width: 60px;
+      height: 20px;
+    }
   }
 
   &--advocates {
@@ -578,13 +595,8 @@ body {
   }
 
   &--future-holding {
-    width: 70px;
-    height: 52px;
-
-    // @media screen and (min-width: $bp-desktop) {
-    //   width: 70px;
-    //   height: 52px;
-    // }
+    width: 65px;
+    height: 48px;
   }
 
   &--bbk {
