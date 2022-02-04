@@ -1,5 +1,5 @@
 <template>
-  <a class="patron-link" href="http://futureholdinggroup.com/" target="_blank">
+  <a class="patron-link" href="https://futureholdinggroup.com/" target="_blank">
     <svg
       class="patron-logo patron-logo--future-holding"
       xmlns="http://www.w3.org/2000/svg"
