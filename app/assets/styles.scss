@@ -2,6 +2,7 @@
 $white: #f7f8f8;
 $very-light-grey: #dbdbdb;
 $light-grey: #b5b5b5;
+$mid-grey:#7a7a7a;
 $grey: #495057;
 $black: #000;
 $coral: #e399a0;
@@ -192,10 +193,6 @@ body {
 }
 
 // Buttons
-// Footer active link
-.nuxt-link-exact-active {
-  font-weight: bold;
-}
 
 .button {
   align-items: center;
@@ -468,18 +465,6 @@ body {
   flex-wrap: wrap;
 }
 
-.navigation {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-
-  // Three columns layout
-  @media screen and (min-width: $bp-tablet) {
-    width: 25%;
-    order: 1;
-  }
-}
-
 .footer-branding {
   display: none;
 
@@ -490,15 +475,48 @@ body {
   }
 }
 
-.creators {
-  width: 50%;
-  // stack links on top of each other
+.navigation {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  margin-top: $space-l;
+  font-size: 20px;
+
+  // Three columns layout
+  @media screen and (min-width: $bp-tablet) {
+    text-align: left;
+    margin-top: 0;
+    font-size: inherit;
+    width: 25%;
+    order: 1;
+  }
+
+  // Custom styling for navigational links overwrites defaults
+  .link {
+    color: $mid-grey;
+    margin-bottom: 12px;
+
+    @media screen and (min-width: $bp-tablet) {
+      color: inherit;
+      margin-bottom: $space-xs;
+    }
+  }
+
+  // Footer active link
+  .nuxt-link-exact-active {
+    font-weight: bold;
+    color: $black;
+  }
+}
+
+.creators {
+  display: none;
 
   @media screen and (min-width: $bp-tablet) {
-    width: 25%;
     display: flex;
+    flex-direction: column;
+    width: 25%;
     order: 2;
   }
 }
