@@ -7,7 +7,7 @@
 $ createdb timesales
 
 # download the remote database
-$ npm run downloadDump
+$ yarn downloadDump
 
 # install dependencies
 $ yarn
