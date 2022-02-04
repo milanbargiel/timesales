@@ -139,9 +139,13 @@ body {
 }
 
 .page-content {
-  margin: $space-xl auto;
+  margin: $space-l auto;
   max-width: $column-width;
   width: 100%;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin: $space-xl auto;
+  }
 }
 
 // Botui
