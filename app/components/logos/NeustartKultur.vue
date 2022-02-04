@@ -1,7 +1,7 @@
 <template>
   <a
     class="patron-link"
-    href="https://soziokultur.neustartkultur.de/"
+    href="https://www.bbk-bundesverband.de/projekte/neustart-kultur"
     target="_blank"
   >
     <svg

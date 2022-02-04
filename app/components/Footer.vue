@@ -45,13 +45,13 @@
         </div>
       </div>
       <div class="patrons">
-        <SvgsKulturNrw />
-        <SvgsLabK />
-        <SvgsBergLawyers />
-        <SvgsBBK />
-        <SvgsNeustartKultur />
-        <SvgsBKM />
-        <SvgsFutureHoldingGroup />
+        <LogosKulturNrw />
+        <LogosLabK />
+        <LogosBergLawyers />
+        <LogosBBK />
+        <LogosNeustartKultur />
+        <LogosBKM />
+        <LogosFutureHoldingGroup />
       </div>
     </footer>
     <Triangle
