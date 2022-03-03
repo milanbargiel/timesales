@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_advertisement_pop_ups",
+  "info": {
+    "name": "Pop-up",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    }
+  }
+}
