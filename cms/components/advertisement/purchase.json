@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_advertisement_purchases",
+  "info": {
+    "name": "Purchase",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
