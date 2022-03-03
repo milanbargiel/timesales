@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_advertisement_reviews",
+  "info": {
+    "name": "Review",
+    "icon": "audio-description"
+  },
+  "options": {},
+  "attributes": {
+    "order": {
+      "private": true,
+      "model": "order"
+    },
+    "opinion": {
+      "type": "text",
+      "required": true
+    },
+    "fakeAuthor": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
