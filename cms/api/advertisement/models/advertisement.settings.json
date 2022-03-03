@@ -1,0 +1,57 @@
+{
+  "kind": "singleType",
+  "collectionName": "advertisements",
+  "info": {
+    "name": "Advertisement"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "reviewFirstAppearance": {
+      "type": "integer"
+    },
+    "reviewFrequency": {
+      "type": "integer"
+    },
+    "purchaseFirstAppearance": {
+      "type": "integer"
+    },
+    "purchaseFrequency": {
+      "type": "integer"
+    },
+    "popUpFirstAppearance": {
+      "type": "integer"
+    },
+    "popUpFrequency": {
+      "type": "integer"
+    },
+    "showAllAdvertisements": {
+      "type": "boolean",
+      "default": false
+    },
+    "minTimeToLive": {
+      "type": "integer"
+    },
+    "maxTimeToLive": {
+      "type": "integer"
+    },
+    "PopUps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.pop-up"
+    },
+    "Purchases": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.purchase"
+    },
+    "Reviews": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.review"
+    }
+  }
+}
