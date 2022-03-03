@@ -12,9 +12,9 @@
   },
   "attributes": {
     "order": {
+      "via": "feedbacks",
       "private": true,
-      "model": "order",
-      "via": "feedbacks"
+      "model": "order"
     },
     "opinion": {
       "type": "text",

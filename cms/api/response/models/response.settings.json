@@ -92,9 +92,9 @@
       "private": true
     },
     "order": {
+      "via": "response",
       "private": true,
-      "model": "order",
-      "via": "response"
+      "model": "order"
     }
   }
 }

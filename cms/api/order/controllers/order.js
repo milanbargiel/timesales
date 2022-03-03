@@ -263,7 +263,7 @@ module.exports = {
   },
 
   // Update progress field of an order
-  async update(ctx) {
+  async updateStreamProgress(ctx) {
     const { key } = ctx.params;
 
     let entity = await strapi.services.order.findOne({ key });
@@ -408,7 +408,7 @@ module.exports = {
 
   // Create Checkout Session in Stripe and return ID
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
-  async createCheckoutSession(ctx) {
+  async createStripeCheckoutSession(ctx) {
     const payload = ctx.request.body;
 
     try {
