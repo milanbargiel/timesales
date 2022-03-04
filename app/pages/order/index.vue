@@ -122,10 +122,12 @@ export default {
       }
     },
     saveFeedback(feedback) {
-      this.$axios.$post(`${this.$config.apiUrl}/feedbacks`, {
-        order: this.order.id,
-        opinion: feedback,
-      })
+      this.$axios.$post(
+        `${this.$config.apiUrl}/create-review/${this.order.key}`,
+        {
+          opinion: feedback,
+        }
+      )
     },
   },
 }
