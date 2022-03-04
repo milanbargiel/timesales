@@ -39,6 +39,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/create-review/:key",
+      "handler": "order.createReview",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

@@ -38,17 +38,17 @@
     "maxTimeToLive": {
       "type": "integer"
     },
-    "PopUps": {
+    "popUps": {
       "type": "component",
       "repeatable": true,
       "component": "advertisement.pop-up"
     },
-    "Purchases": {
+    "purchases": {
       "type": "component",
       "repeatable": true,
       "component": "advertisement.purchase"
     },
-    "Reviews": {
+    "reviews": {
       "type": "component",
       "repeatable": true,
       "component": "advertisement.review"
