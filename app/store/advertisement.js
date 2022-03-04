@@ -55,7 +55,7 @@ const getRandomInt = (min, max) => {
 }
 
 const actions = {
-  fetchAllPopUpData({ commit, dispatch }) {
+  fetchAdvertisementData({ commit, dispatch }) {
     dispatch('fetchConfig').then(() => {
       // Use .then() to wait for async dispatch function
       dispatch('fetchReviews')

@@ -83,13 +83,13 @@ export default {
       return this.$store.state.ui.debugMode
     },
     reviews() {
-      return this.$store.state.popUps.reviews
+      return this.$store.state.advertisement.reviews
     },
     purchases() {
-      return this.$store.state.popUps.purchases
+      return this.$store.state.advertisement.purchases
     },
     popUps() {
-      return this.$store.state.popUps.popUps
+      return this.$store.state.advertisement.popUps
     },
     orderSummaryHtml() {
       const words = this.response.orderSummary.split(' ')
@@ -109,8 +109,8 @@ export default {
     },
   },
   created() {
-    // Trigger vuex action that loads all data from backend
-    this.getAllPopUpData()
+    // Trigger vuex action that loads advertisements from the backend
+    this.getAdvertisementData()
   },
   async mounted() {
     // load bot modules
@@ -143,10 +143,10 @@ export default {
       enableDebugMode: 'ui/enableDebugMode',
     }),
     ...mapActions({
-      // Enables the action this.saveResponse({ key: value }) and this.getAllPopUpData()
+      // Enables the action this.saveResponse({ key: value }) and this.getAdvertisementData()
       // That saves data in vuex store and on remote databe if user opts in
       saveResponse: 'response/saveResponse',
-      getAllPopUpData: 'popUps/fetchAllPopUpData',
+      getAdvertisementData: 'advertisement/fetchAdvertisementData',
     }),
     stripeCheckout() {
       // Only load stripe script when user clicks on checkout button.
