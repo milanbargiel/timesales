@@ -36,8 +36,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      pageVisible: 'popUps/pageVisible',
-      pageInvisible: 'popUps/pageInvisible',
+      pageVisible: 'advertisement/pageVisible',
+      pageInvisible: 'advertisement/pageInvisible',
     }),
     handleVisibilityChange(event) {
       if (event.type === 'visibilitychange') {

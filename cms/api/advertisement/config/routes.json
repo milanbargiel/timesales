@@ -2,16 +2,16 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/feedbacks",
-      "handler": "feedback.find",
+      "path": "/advertisement",
+      "handler": "advertisement.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/feedbacks",
-      "handler": "feedback.create",
+      "path": "/create-review/:key",
+      "handler": "advertisement.createReview",
       "config": {
         "policies": []
       }

@@ -1,14 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "pop_ups",
+  "collectionName": "components_advertisement_pop_ups",
   "info": {
-    "name": "Pop-up"
+    "name": "Pop-up",
+    "icon": "ad"
   },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": true
-  },
+  "options": {},
   "attributes": {
     "image": {
       "model": "file",

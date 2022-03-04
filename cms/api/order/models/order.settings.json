@@ -43,7 +43,6 @@
       "private": true
     },
     "response": {
-      "unique": true,
       "model": "response",
       "via": "order"
     },
@@ -51,10 +50,6 @@
       "type": "string",
       "required": true,
       "private": true
-    },
-    "feedbacks": {
-      "via": "order",
-      "collection": "feedback"
     }
   }
 }

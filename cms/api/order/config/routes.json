@@ -26,16 +26,16 @@
     },
     {
       "method": "PUT",
-      "path": "/orders/:key",
-      "handler": "order.update",
+      "path": "/update-stream-progress/:key",
+      "handler": "order.updateStreamProgress",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/create-checkout-session",
-      "handler": "order.createCheckoutSession",
+      "path": "/create-stripe-checkout-session",
+      "handler": "order.createStripeCheckoutSession",
       "config": {
         "policies": []
       }

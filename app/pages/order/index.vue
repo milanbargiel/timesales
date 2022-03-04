@@ -105,21 +105,29 @@ export default {
         this.feedback()
 
         // Save value in database
-        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
-          progress: 0,
-        })
+        this.$axios.$put(
+          `${this.$config.apiUrl}/update-stream-progress/${this.order.key}`,
+          {
+            progress: 0,
+          }
+        )
       } else {
         // Save progress in db (only accepts numbers between 0 and 1)
-        this.$axios.$put(`${this.$config.apiUrl}/orders/${this.order.key}`, {
-          progress,
-        })
+        this.$axios.$put(
+          `${this.$config.apiUrl}/update-stream-progress/${this.order.key}`,
+          {
+            progress,
+          }
+        )
       }
     },
     saveFeedback(feedback) {
-      this.$axios.$post(`${this.$config.apiUrl}/feedbacks`, {
-        order: this.order.id,
-        opinion: feedback,
-      })
+      this.$axios.$post(
+        `${this.$config.apiUrl}/create-review/${this.order.key}`,
+        {
+          opinion: feedback,
+        }
+      )
     },
   },
 }

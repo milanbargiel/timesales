@@ -11,6 +11,7 @@ const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
 const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
 const taxRateId = strapi.config.get('server.stripeTaxRateId');
 const pdf = require('html-pdf');
+
 // All iso country codes that Stripe accepts
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 const stripeCountryCodes = [
@@ -263,7 +264,7 @@ module.exports = {
   },
 
   // Update progress field of an order
-  async update(ctx) {
+  async updateStreamProgress(ctx) {
     const { key } = ctx.params;
 
     let entity = await strapi.services.order.findOne({ key });
@@ -408,7 +409,7 @@ module.exports = {
 
   // Create Checkout Session in Stripe and return ID
   // Reference: https://stripe.com/docs/api/checkout/sessions/object
-  async createCheckoutSession(ctx) {
+  async createStripeCheckoutSession(ctx) {
     const payload = ctx.request.body;
 
     try {
@@ -465,8 +466,8 @@ module.exports = {
 
       // Return session id for the link to the Stripe checkout page
       return { id: session.id };
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   },
   // For testing purpose only

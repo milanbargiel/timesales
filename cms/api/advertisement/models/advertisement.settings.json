@@ -1,9 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "configs",
+  "collectionName": "advertisements",
   "info": {
-    "name": "Config",
-    "description": ""
+    "name": "Advertisement"
   },
   "options": {
     "increments": true,
@@ -29,7 +28,7 @@
     "popUpFrequency": {
       "type": "integer"
     },
-    "showAllPopUps": {
+    "showAllAdvertisements": {
       "type": "boolean",
       "default": false
     },
@@ -38,6 +37,21 @@
     },
     "maxTimeToLive": {
       "type": "integer"
+    },
+    "popUps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.pop-up"
+    },
+    "purchases": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.purchase"
+    },
+    "reviews": {
+      "type": "component",
+      "repeatable": true,
+      "component": "advertisement.review"
     }
   }
 }

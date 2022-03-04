@@ -57,15 +57,15 @@
     },
     "timePrice": {
       "type": "biginteger",
-      "private": true,
-      "min": 0
+      "private": true
     },
     "memberOfChurch": {
       "type": "boolean",
       "private": true
     },
     "afraidOfHell": {
-      "type": "boolean"
+      "type": "boolean",
+      "private": true
     },
     "timeManagementSecret": {
       "type": "text",
@@ -93,6 +93,7 @@
     },
     "order": {
       "via": "response",
+      "private": true,
       "model": "order"
     }
   }
