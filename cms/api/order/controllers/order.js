@@ -11,9 +11,7 @@ const stripe = require('stripe')(strapi.config.get('server.stripePrivateKey'));
 const endpointSecret = strapi.config.get('server.stripeEndpointSecret');
 const taxRateId = strapi.config.get('server.stripeTaxRateId');
 const pdf = require('html-pdf');
-// Use chance module to generate fake names for reviews
-const Chance = require('chance-de');
-const chance = new Chance();
+
 // All iso country codes that Stripe accepts
 // https://www.nationsonline.org/oneworld/country_code_list.htm
 const stripeCountryCodes = [
@@ -468,35 +466,6 @@ module.exports = {
 
       // Return session id for the link to the Stripe checkout page
       return { id: session.id };
-    } catch (error) {
-      console.log(error);
-    }
-  },
-  // Save a customer review for an order
-  async createReview(ctx) {
-    // Find order specified with key
-    const { key } = ctx.params;
-
-    try {
-      const order = await strapi.services.order.findOne({ key });
-      // Get the advertisement single-content type
-      let advertisement = await strapi.services.advertisement.find();
-
-      // Add a review to the advertisement single-content typ
-      advertisement = await strapi.services.advertisement.createOrUpdate({
-        reviews: [
-          ...advertisement.reviews,
-          {
-            order: order.id,
-            opinion: ctx.request.body.opinion,
-            fakeAuthor: chance.first({ nationality: 'de' })
-          }
-        ]
-      });
-
-      return sanitizeEntity(advertisement, {
-        model: strapi.models.advertisement
-      });
     } catch (error) {
       console.log(error);
     }

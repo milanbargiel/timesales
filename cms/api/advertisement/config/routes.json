@@ -9,17 +9,9 @@
       }
     },
     {
-      "method": "PUT",
-      "path": "/advertisement",
-      "handler": "advertisement.update",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "DELETE",
-      "path": "/advertisement",
-      "handler": "advertisement.delete",
+      "method": "POST",
+      "path": "/create-review/:key",
+      "handler": "advertisement.createReview",
       "config": {
         "policies": []
       }
