@@ -50,11 +50,6 @@
       "type": "string",
       "required": true,
       "private": true
-    },
-    "feedbacks": {
-      "private": true,
-      "collection": "feedback",
-      "via": "order"
     }
   }
 }
