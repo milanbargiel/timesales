@@ -5,6 +5,7 @@ const getDefaultState = () => {
       name: null,
       allowRecording: null,
       shortOnTime: null,
+      reasonShortOnTime: null,
       becauseOfCapitalism: null,
       timePurpose: null,
       timeAmount: null,

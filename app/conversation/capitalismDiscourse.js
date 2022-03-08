@@ -7,6 +7,10 @@ export default {
     async capitalismDiscourse() {
       await this.botMessage('Why?')
 
+      await this.botTextInput('Your answer').then((reasonShortOnTime) => {
+        this.saveResponse({ reasonShortOnTime })
+      })
+
       await this.botYesOrNo().then((becauseOfCapitalism) => {
         this.saveResponse({ becauseOfCapitalism })
       })
