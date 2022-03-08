@@ -6,15 +6,33 @@ import ProjectsToFinish from '../conversation/projectsToFinish.js'
 export default {
   mixins: [CapitalismDiscourse, InvestInArt, ProjectsToFinish],
   methods: {
-    async welcome() {
-      await this.botMessage('Hi, good to see you!')
-
-      await this.botMessage("What's your name?")
-
-      await this.botTextInput('Your name').then((name) => {
+    async nameInput() {
+      await this.botTextInput('Your name').then(async (name) => {
         // Save reponses in vuex store
         this.saveResponse({ name })
+
+        const evasiveAnswer = ['why', "won't", "don't"].some(
+          // Check if the evasive answers listed above are part of the name string
+          // Only look for whole words
+          (evasiveAnswer) =>
+            name.toLowerCase().split(' ').includes(evasiveAnswer)
+        )
+
+        if (evasiveAnswer) {
+          await this.botMessage(
+            'I just wanted to be polite, but I accept pseudonyms of course'
+          )
+          await this.nameInput() // recursion
+        }
       })
+    },
+    async welcome() {
+      await this.botMessage(
+        'Hello, I am here to guide you through our service. How may I call you?'
+      )
+
+      // Ask the user for his/her name
+      await this.nameInput()
 
       await this.botMessage(
         this.response.name +
