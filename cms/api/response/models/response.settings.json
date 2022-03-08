@@ -92,9 +92,14 @@
       "private": true
     },
     "order": {
-      "via": "response",
       "private": true,
-      "model": "order"
+      "model": "order",
+      "via": "response"
+    },
+    "reasonShortOnTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
     }
   }
 }

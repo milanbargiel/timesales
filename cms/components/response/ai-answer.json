@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_response_ai_answers",
+  "info": {
+    "name": "aiAnswer",
+    "icon": "box"
+  },
+  "options": {},
+  "attributes": {
+    "userInput": {
+      "type": "string",
+      "private": true,
+      "required": true
+    },
+    "aiOutput": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

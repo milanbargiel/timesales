@@ -5,9 +5,7 @@ export default {
   mixins: [PurposeOfTime],
   methods: {
     async capitalismDiscourse() {
-      await this.botMessage(
-        "Why don't you have enough time? Is it because of capitalism?"
-      )
+      await this.botMessage('Why?')
 
       await this.botYesOrNo().then((becauseOfCapitalism) => {
         this.saveResponse({ becauseOfCapitalism })
