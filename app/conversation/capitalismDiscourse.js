@@ -7,9 +7,14 @@ export default {
     async capitalismDiscourse() {
       await this.botMessage('Why?')
 
-      await this.botMessage(
-        "Why don't you have enough time? Is it because of capitalism?"
-      )
+      await this.botTextInput('Your answer').then(async (reasonShortOnTime) => {
+        // Use special generateAiComment functions for answers that trigger an ai comment
+        await this.generateAiComment({
+          reasonShortOnTime: {
+            userInput: reasonShortOnTime,
+          },
+        })
+      })
 
       await this.botYesOrNo().then((becauseOfCapitalism) => {
         this.saveResponse({ becauseOfCapitalism })

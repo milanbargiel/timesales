@@ -5,7 +5,6 @@
  * to customize this controller
  */
 
-const { sanitizeEntity } = require('strapi-utils');
 const axios = require('axios');
 
 module.exports = {
@@ -60,7 +59,7 @@ module.exports = {
       .catch((error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
         console.log(error);
-        aiOutput = 'ERROR';
+        aiOutput = 'ERROR THROWN IN CMS';
       });
 
     const aiComment = {

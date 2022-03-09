@@ -5,7 +5,7 @@ const getDefaultState = () => {
       name: null,
       allowRecording: null,
       shortOnTime: null,
-      reasonShortOnTime: null,
+      reasonShortOnTime: null, // aiAnswer component
       becauseOfCapitalism: null,
       timePurpose: null,
       timeAmount: null,
@@ -53,6 +53,7 @@ const actions = {
         })
     }
   },
+
   saveResponse({ commit, state, dispatch }, response) {
     // Save response data in vuex store
     commit('setResponse', response)
@@ -70,6 +71,22 @@ const actions = {
         }),
       })
     }
+  },
+  async generateAiComment({ commit, state }, userInput) {
+    // Send data to API to create a gpt2 based comment on the userInput
+    await this.$axios
+      .put(
+        `${this.$config.apiUrl}/generate-ai-comment/${state.data.id}`,
+        userInput
+      )
+      .then((response) => {
+        commit('setResponse', response.data)
+      })
+      .catch((error) => {
+        // When the requests runs into a timeout or when the gpt2 app is down save the userInput only
+        console.log(error)
+        commit('setResponse', userInput)
+      })
   },
 }
 
