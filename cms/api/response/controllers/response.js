@@ -5,4 +5,25 @@
  * to customize this controller
  */
 
-module.exports = {};
+const { sanitizeEntity } = require('strapi-utils');
+
+module.exports = {
+  /**
+   * Update a record.
+   *
+   * @return {Object}
+   */
+
+  async generateAiComment(ctx) {
+    const { id } = ctx.params;
+    // Request to the AI for generating an comment
+    // For now just paste dummy data
+
+    const entity = await strapi.services.response.update(
+      { id },
+      ctx.request.body
+    );
+
+    return sanitizeEntity(entity, { model: strapi.models.response });
+  }
+};
