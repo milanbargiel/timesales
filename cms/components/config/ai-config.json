@@ -22,7 +22,7 @@
       "required": true,
       "private": true
     },
-    "secondsToWait": {
+    "milliSecondsToWait": {
       "type": "integer",
       "required": true
     }
