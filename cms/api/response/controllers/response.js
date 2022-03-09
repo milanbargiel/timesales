@@ -16,8 +16,16 @@ module.exports = {
 
   async generateAiComment(ctx) {
     const { id } = ctx.params;
-    // Request to the AI for generating an comment
-    // For now just paste dummy data
+
+    // Get ai configuration
+    const config = await strapi.services.config.find();
+
+    // Check wether aiConfig is set
+    if (!config || !config.aiConfig) {
+      return ctx.badRequest('aiConfig is not set');
+    }
+
+    console.log(aiConfig);
 
     const entity = await strapi.services.response.update(
       { id },
