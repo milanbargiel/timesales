@@ -2,21 +2,25 @@
   "collectionName": "components_config_ai_configs",
   "info": {
     "name": "aiConfig",
-    "icon": "border-all"
+    "icon": "border-all",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "numberOfWords": {
       "type": "integer",
-      "required": true
+      "required": true,
+      "private": true
     },
     "temperature": {
       "type": "decimal",
-      "required": true
+      "required": true,
+      "private": true
     },
     "topK": {
       "type": "integer",
-      "required": true
+      "required": true,
+      "private": true
     },
     "secondsToWait": {
       "type": "integer",
