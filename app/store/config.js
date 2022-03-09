@@ -3,13 +3,13 @@ const state = () => ({
 })
 
 const mutations = {
-  setGpt2Timeout(state) {
-    state.milliSecondsToWaitForGpt2 = true
+  setGpt2Timeout(state, value) {
+    state.milliSecondsToWaitForGpt2 = value
   },
 }
 
 const actions = {
-  fetchConfigData({ commit, dispatch }) {
+  fetchConfigData({ commit }) {
     this.$axios.$get(`${this.$config.apiUrl}/config`).then((data) => {
       commit('setGpt2Timeout', data.aiConfig.milliSecondsToWait)
     })
