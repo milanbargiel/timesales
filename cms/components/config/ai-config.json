@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_config_ai_configs",
+  "info": {
+    "name": "aiConfig",
+    "icon": "border-all"
+  },
+  "options": {},
+  "attributes": {
+    "numberOfWords": {
+      "type": "integer",
+      "required": true
+    },
+    "temperature": {
+      "type": "decimal",
+      "required": true
+    },
+    "topK": {
+      "type": "integer",
+      "required": true
+    },
+    "secondsToWait": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

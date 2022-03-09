@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "name": "Config"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "aiConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "config.ai-config"
+    }
+  }
+}
