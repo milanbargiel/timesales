@@ -1,10 +1,12 @@
 const state = () => ({
-  milliSecondsToWaitForGpt2: 10000,
+  aiConfig: {
+    milliSecondsToWait: 5000,
+  },
 })
 
 const mutations = {
   setGpt2Timeout(state, value) {
-    state.milliSecondsToWaitForGpt2 = value
+    state.aiConfig.milliSecondsToWait = value
   },
 }
 

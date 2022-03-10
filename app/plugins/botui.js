@@ -79,7 +79,7 @@ vue.mixin({
 
       await this.botMessage(
         nextBotMessage,
-        this.gpt2WaitTime // custom delay
+        this.aiConfig.milliSecondsToWait // custom delay
       ).then(async (index) => {
         // If the ai comment generation suceeded
         // Show the ai comment before continue with the nextBotMessage

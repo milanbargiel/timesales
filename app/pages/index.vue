@@ -79,11 +79,12 @@ export default {
     response() {
       return this.$store.state.response.data
     },
+    aiConfig() {
+      // expose aiConfig
+      return this.$store.state.config.aiConfig
+    },
     debugMode() {
       return this.$store.state.ui.debugMode
-    },
-    gpt2WaitTime() {
-      return this.$store.state.config.milliSecondsToWaitForGpt2
     },
     reviews() {
       return this.$store.state.advertisement.reviews
