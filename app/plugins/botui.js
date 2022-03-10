@@ -64,33 +64,37 @@ vue.mixin({
       return res.value // only return value property
     },
     async botAiComment(userInput, fieldName, nextBotMessage) {
-      // Send userInput to API to create a gpt2 based comment on the userInput
-      // Store data in vuex store afterwards
-      let aiOutput
+      await this.botui.message
+        .add({
+          // Show loading indicator while waiting for an answer
+          loading: true,
+        })
+        .then(async (index) => {
+          // Send userInput to API to create a gpt2 based comment on the userInput
+          // The maximum time to wait is defined in the cms controller
+          await this.generateAiComment({
+            [fieldName]: {
+              userInput,
+            },
+          }).then(async (response) => {
+            // If ai comment generation suceeded
+            // Show ai comment before the next message
+            if (response[fieldName].aiOutput) {
+              this.botui.message.update(index, {
+                loading: false,
+                content: response[fieldName].aiOutput,
+              })
 
-      this.generateAiComment({
-        [fieldName]: {
-          userInput,
-        },
-      }).then((response) => {
-        // Assign a value to aiOutput
-        aiOutput = response[fieldName].aiOutput
-      })
-
-      await this.botMessage(
-        nextBotMessage,
-        this.aiConfig.milliSecondsToWait // custom delay
-      ).then(async (index) => {
-        // If the ai comment generation suceeded
-        // Show the ai comment before continue with the nextBotMessage
-        if (aiOutput) {
-          this.botui.message.update(index, {
-            content: aiOutput,
+              await this.botMessage(nextBotMessage)
+            } else {
+              // Show next message without further delay
+              this.botui.message.update(index, {
+                loading: false,
+                content: nextBotMessage,
+              })
+            }
           })
-
-          await this.botMessage(nextBotMessage)
-        }
-      })
+        })
     },
     async botNumberInput(placeholder) {
       const res = await this.botui.action.text({
