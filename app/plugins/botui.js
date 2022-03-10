@@ -63,8 +63,8 @@ vue.mixin({
       })
       return res.value // only return value property
     },
-    async botAiComment(userInput, fieldName, nextMessage) {
-      // Send userInput to API to create a gpt2 based comment on the input
+    async botAiComment(userInput, fieldName, nextBotMessage) {
+      // Send userInput to API to create a gpt2 based comment on the userInput
       // Store data in vuex store afterwards
       let aiOutput
 
@@ -73,22 +73,22 @@ vue.mixin({
           userInput,
         },
       }).then((response) => {
-        // generateAiComment is an ”always resolving” promise
-        // therefore it will always return a response, even if aiOutput might be "undefined"
+        // Assign a value to aiOutput
         aiOutput = response[fieldName].aiOutput
       })
-      // If ai comment generation suceeded, show it by updating the nextBotMessage
-      // Continue afterwards with the nextBotMessage
+
       await this.botMessage(
-        nextMessage,
+        nextBotMessage,
         this.gpt2WaitTime // custom delay
       ).then(async (index) => {
-        if (aiOutput !== 'undefined') {
+        // If the ai comment generation suceeded
+        // Show the ai comment before continue with the nextBotMessage
+        if (aiOutput) {
           this.botui.message.update(index, {
             content: aiOutput,
           })
 
-          await this.botMessage(nextMessage)
+          await this.botMessage(nextBotMessage)
         }
       })
     },

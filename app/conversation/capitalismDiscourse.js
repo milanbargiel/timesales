@@ -8,9 +8,11 @@ export default {
     async capitalismDiscourse() {
       await this.botMessage('Why?')
 
-      await this.botTextInput('Your answer').then(async (reasonShortOnTime) => {
+      await this.botTextInput('Your answer').then(async (response) => {
+        // botAiComment takes three parameters
+        // userInput, fieldName and nextBotMessage
         await this.botAiComment(
-          reasonShortOnTime,
+          response,
           'reasonShortOnTime',
           'Well, I think I can help you improve your time management'
         )
