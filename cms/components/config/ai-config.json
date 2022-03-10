@@ -10,7 +10,7 @@
     "numberOfWords": {
       "type": "integer",
       "required": true,
-      "private": false
+      "private": true
     },
     "temperature": {
       "type": "decimal",

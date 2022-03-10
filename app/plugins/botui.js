@@ -71,7 +71,7 @@ vue.mixin({
         })
         .then(async (index) => {
           // Send userInput to API to create a gpt2 based comment on the userInput
-          // The maximum time to wait is defined in the cms controller
+          // The maximum time to wait is defined in generateAiComment and the cms controller
           await this.generateAiComment({
             [fieldName]: {
               userInput,
@@ -79,7 +79,7 @@ vue.mixin({
           }).then(async (response) => {
             // If ai comment generation suceeded
             // Show ai comment before the next message
-            if (response[fieldName].aiOutput) {
+            if (response && response[fieldName].aiOutput) {
               this.botui.message.update(index, {
                 loading: false,
                 content: response[fieldName].aiOutput,

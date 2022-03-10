@@ -82,7 +82,7 @@ const actions = {
         `${this.$config.apiUrl}/generate-ai-comment/${state.data.id}`,
         userInput,
         // Set timeout bases on the threshold set in the strapi cms
-        { timeout: rootState.config.milliSecondsToWaitForGpt2 }
+        { timeout: rootState.config.aiConfig.milliSecondsToWait }
       )
       .then((response) => {
         commit('setResponse', response.data)
