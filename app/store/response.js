@@ -49,6 +49,7 @@ const actions = {
           commit('setResponse', { id: response.id })
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error('Error:', error)
         })
     }
@@ -72,20 +73,24 @@ const actions = {
       })
     }
   },
-  async generateAiComment({ commit, state }, userInput) {
-    // Send data to API to create a gpt2 based comment on the userInput
-    await this.$axios
+  // Send data to API to create a gpt2 based comment on text
+  // Store data in vuex store afterwards
+  generateAiComment({ commit, state, rootState }, userInput) {
+    return this.$axios
       .put(
         `${this.$config.apiUrl}/generate-ai-comment/${state.data.id}`,
-        userInput
+        userInput,
+        // Set timeout bases on the threshold set in the strapi cms
+        { timeout: rootState.config.milliSecondsToWaitForGpt2 }
       )
       .then((response) => {
         commit('setResponse', response.data)
+        return response.data
       })
-      .catch((error) => {
+      .catch(() => {
         // When the requests runs into a timeout or when the gpt2 app is down save the userInput only
-        console.log(error)
         commit('setResponse', userInput)
+        return undefined
       })
   },
 }

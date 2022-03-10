@@ -82,6 +82,9 @@ export default {
     debugMode() {
       return this.$store.state.ui.debugMode
     },
+    gpt2WaitTime() {
+      return this.$store.state.config.milliSecondsToWaitForGpt2
+    },
     reviews() {
       return this.$store.state.advertisement.reviews
     },

@@ -59,7 +59,7 @@ module.exports = {
       .catch((error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
         console.log(error);
-        aiOutput = 'ERROR THROWN IN CMS';
+        aiOutput = undefined;
       });
 
     const aiComment = {

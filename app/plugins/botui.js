@@ -33,7 +33,7 @@ vue.mixin({
 
       // Calculate time for bot to write a message
       // Min value is 2 seconds
-      return Math.max(sentence.length * 50, 2000)
+      return Math.max(sentence.length * 5, 500)
     },
     botMessage(content, customDelay) {
       // Returns html escaped content e.g. <i> becomes "&lti&lt"
