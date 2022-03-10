@@ -75,6 +75,7 @@ const actions = {
   },
   // Send data to API to create a gpt2 based comment on text
   // Store data in vuex store afterwards
+  // Returns a promise
   generateAiComment({ commit, state, rootState }, userInput) {
     return this.$axios
       .put(

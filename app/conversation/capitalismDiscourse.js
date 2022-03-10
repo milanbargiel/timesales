@@ -9,36 +9,11 @@ export default {
       await this.botMessage('Why?')
 
       await this.botTextInput('Your answer').then(async (reasonShortOnTime) => {
-        // Send userInput to API to create a gpt2 based comment on the input
-        // Store data in vuex store afterwards
-        let aiOutput
-
-        this.generateAiComment({
-          reasonShortOnTime: {
-            userInput: reasonShortOnTime,
-          },
-        }).then((response) => {
-          // generate comment is an ”always resolving” promise
-          // if the vuex action fails, it will return "undefined"
-          aiOutput = response.reasonShortOnTime.aiOutput
-        })
-
-        // If ai comment generation suceeded, show it by updating the nextBotMessage
-        // Continue afterwards with the nextBotMessage
-        await this.botMessage(
-          'Well, I think I can help you improve your time management',
-          this.gpt2WaitTime // custom delay
-        ).then(async (index) => {
-          if (aiOutput !== 'undefined') {
-            this.botui.message.update(index, {
-              content: aiOutput,
-            })
-
-            await this.botMessage(
-              'Well, I think I can help you improve your time management'
-            )
-          }
-        })
+        await this.botAiComment(
+          reasonShortOnTime,
+          'reasonShortOnTime',
+          'Well, I think I can help you improve your time management'
+        )
       })
 
       await this.botYesOrNo().then((becauseOfCapitalism) => {
