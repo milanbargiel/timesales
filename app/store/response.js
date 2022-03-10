@@ -39,10 +39,13 @@ const actions = {
   postResponse({ commit }, data) {
     // Update response
     if (data.id) {
-      this.$axios.put(`${this.$config.apiUrl}/responses/${data.id}`, data)
+      return this.$axios.put(
+        `${this.$config.apiUrl}/responses/${data.id}`,
+        data
+      )
     } else {
       // Create response
-      this.$axios
+      return this.$axios
         .$post(`${this.$config.apiUrl}/responses`, data)
         .then((response) => {
           // Save cms id to local storage
@@ -54,7 +57,6 @@ const actions = {
         })
     }
   },
-
   saveResponse({ commit, state, dispatch }, response) {
     // Save response data in vuex store
     commit('setResponse', response)
@@ -76,7 +78,12 @@ const actions = {
   // Send data to API to create a gpt2 based comment on text
   // Store data in vuex store afterwards
   // Returns a promise
-  generateAiComment({ commit, state, rootState }, userInput) {
+  async generateAiComment({ commit, state, rootState, dispatch }, userInput) {
+    if (!state.data.id) {
+      // Create an empty response to save Ai comments
+      // Even when user does not allow the recording of answers
+      await dispatch('postResponse', {})
+    }
     return this.$axios
       .put(
         `${this.$config.apiUrl}/generate-ai-comment/${state.data.id}`,
