@@ -312,7 +312,10 @@ module.exports = {
           timePrice: parseInt(session.amount_subtotal), // in cents, without tax
           timeAmount: parseInt(session.metadata.timeAmount),
           timeUnit: session.metadata.timeUnit, // 'seconds', 'minutes' etc
-          timePurpose: session.metadata.timePurpose, // purpose of the time
+          timePurpose: {
+            // Object because property is a component
+            userInput: session.metadata.timePurpose
+          },
           orderSummary: session.metadata.orderSummary // Order summary
         };
 
@@ -434,7 +437,7 @@ module.exports = {
           name: payload.name,
           timeAmount: payload.timeAmount,
           timeUnit: payload.timeUnit,
-          timePurpose: payload.timePurpose, // original user input
+          timePurpose: payload.timePurpose.userInput, // original user input
           orderSummary: payload.orderSummary
         },
         mode: 'payment',
