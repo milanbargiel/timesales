@@ -92,8 +92,16 @@ export default {
       // Generate an ai comment for the time input
       await this.botAiComment(time, 'timeValue')
 
-      // Go to member of church dialogue
-      this.memberOfChurch()
+      // Go to member of church dialogue if user comes from capitalismDiscourse dialogue
+      if (
+        this.response.becauseOfCapitalism === true ||
+        this.response.becauseOfCapitalism === false ||
+        this.response.reasonShortOnTime
+      ) {
+        this.memberOfChurch()
+      } else {
+        this.checkout()
+      }
     },
   },
 }
