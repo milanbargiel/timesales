@@ -10,6 +10,82 @@ import wordsArray from '../static/word-prepositions.json'
 export default {
   mixins: [Exit],
   methods: {
+    async checkout() {
+      // Create order summary
+      const orderSummary = this.createOrderSummary(
+        this.response.timePurpose.userInput,
+        this.response.timeAmount,
+        this.response.timeUnit
+      )
+
+      // Save it in DB
+      this.saveResponse({ orderSummary }) // convert input to cents
+
+      await this.botMessage(`${orderSummary}. What would that be worth to you?`)
+
+      await (async () => {
+        // Show message after 10 sec if user does not enter a value
+        const t1 = setTimeout(async () => {
+          await this.botMessageHtml(
+            'Some people base their decisions on their hourly income, others choose a more idealistic approximation. I always ask myself <i>what amount of money would hurt a little bit?</i> That should be enough to make your time precious to you.'
+          )
+        }, 10000)
+
+        // After 25 sec show another prompt
+        const t2 = setTimeout(async () => {
+          await this.botMessageHtml(
+            "Ultimately you'll have to ask yourself: <i>What am I willing to spend? What's appropriate and won't ruin me?</i>"
+          )
+        }, 25000)
+
+        // Ask for price in input field with basic validation
+        // Pass timeouts to function to cancel them, when user sets the price
+        await this.priceInput(t1, t2)
+      })()
+
+      // Only continue when user enters value
+      if (this.response.timePrice) {
+        const timePriceInEuro = this.response.timePrice / 100
+
+        let tax = Math.round(timePriceInEuro * 0.07 * 100) / 100 // 7% tax rounded to decimals
+
+        // Convert to EUR currency String with always to decimals
+        tax = tax.toLocaleString('de-DE', {
+          style: 'currency',
+          currency: 'EUR',
+        })
+
+        // Show price calculation with taxes as human input
+        await this.botui.message.add({
+          delay: 10,
+          human: true,
+          content: `${timePriceInEuro} + ${tax} taxes`,
+        })
+
+        const time = `${this.response.timeAmount} ${this.response.timeUnit}`
+        const timeInMinutes = timestring(time, 'm')
+        const timeQuotient = timeInMinutes / timePriceInEuro
+
+        if (timeQuotient <= 1) {
+          await this.botMessage(
+            'Very good, this will be some real quality time.'
+          )
+        } else if (timeQuotient > 1 && timeQuotient < 30) {
+          await this.botMessage("That's a reasonable price!")
+        } else {
+          await this.botMessage(
+            'Well, at that price I am not sure you will have a good time.'
+          )
+        }
+
+        this.showCheckoutButton = true
+
+        // Wait for next DOM rendering cycle so that checkout button is already rendered
+        this.$nextTick(() => {
+          this.scrollToBottom()
+        })
+      }
+    },
     humanizeTime(timeAmount, timeUnit) {
       // Singularize timeunit when 1 e.g second(s)
       return `${timeAmount} ${
@@ -19,10 +95,7 @@ export default {
     // Function to generate a string that sums up the purpose and amount of time
     createOrderSummary(timePurpose, timeAmount, timeUnit) {
       // Convert time
-      const timeString = this.humanizeTime(
-        this.response.timeAmount,
-        this.response.timeUnit
-      )
+      const timeString = this.humanizeTime(timeAmount, timeUnit)
 
       // Convert time purpose to lower case for case insensitive searches
       let text = timePurpose.toLowerCase()
@@ -147,84 +220,6 @@ export default {
             this.saveResponse({ timePrice: price * 100 }) // convert input to cents
           }
         })
-    },
-    async checkout() {
-      // Create order summary
-      const orderSummary = this.createOrderSummary(
-        this.response.timePurpose,
-        this.response.timeAmount,
-        this.response.timePurpose
-      )
-
-      // Save it in DB
-      this.saveResponse({ orderSummary }) // convert input to cents
-
-      await this.botMessage(
-        `${orderSummary}. What would that time be worth to you?`
-      )
-
-      await (async () => {
-        // Show message after 10 sec if user does not enter a value
-        const t1 = setTimeout(async () => {
-          await this.botMessageHtml(
-            'Some people base their decisions on their hourly income, others choose a more idealistic approximation. I always ask myself <i>what amount of money would hurt a little bit?</i> That should be enough to make your time precious to you.'
-          )
-        }, 10000)
-
-        // After 25 sec show another prompt
-        const t2 = setTimeout(async () => {
-          await this.botMessageHtml(
-            "Ultimately you'll have to ask yourself: <i>What am I willing to spend? What's appropriate and won't ruin me?</i>"
-          )
-        }, 25000)
-
-        // Ask for price in input field with basic validation
-        // Pass timeouts to function to cancel them, when user sets the price
-        await this.priceInput(t1, t2)
-      })()
-
-      // Only continue when user enters value
-      if (this.response.timePrice) {
-        const timePriceInEuro = this.response.timePrice / 100
-
-        let tax = Math.round(timePriceInEuro * 0.07 * 100) / 100 // 7% tax rounded to decimals
-
-        // Convert to EUR currency String with always to decimals
-        tax = tax.toLocaleString('de-DE', {
-          style: 'currency',
-          currency: 'EUR',
-        })
-
-        // Show price calculation with taxes as human input
-        await this.botui.message.add({
-          delay: 10,
-          human: true,
-          content: `${timePriceInEuro} + ${tax} taxes`,
-        })
-
-        const time = `${this.response.timeAmount} ${this.response.timeUnit}`
-        const timeInMinutes = timestring(time, 'm')
-        const timeQuotient = timeInMinutes / timePriceInEuro
-
-        if (timeQuotient <= 1) {
-          await this.botMessage(
-            'Very good, this will be some real quality time.'
-          )
-        } else if (timeQuotient > 1 && timeQuotient < 30) {
-          await this.botMessage("That's a reasonable price!")
-        } else {
-          await this.botMessage(
-            'Well, at that price I am not sure you will have a good time.'
-          )
-        }
-
-        this.showCheckoutButton = true
-
-        // Wait for next DOM rendering cycle so that checkout button is already rendered
-        this.$nextTick(() => {
-          this.scrollToBottom()
-        })
-      }
     },
   },
 }
