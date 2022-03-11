@@ -6873,11 +6873,6 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-porter-stemmer-english@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/porter-stemmer-english/-/porter-stemmer-english-1.0.1.tgz#98f3b164e27635d8e2177c7c503234e3a0956f21"
-  integrity sha512-Z4o2Pu4KvfnWZtrE/DA1xUOZRPnkbb+aTLMNS88TslJ9ZWkMRicNxOzs8JEAB1mwYS3ZBbrL+/WTgDjHIL3Zeg==
-
 pos@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/pos/-/pos-0.4.2.tgz#20e9c77fbeedcc356823cea63c7585cace93be2a"

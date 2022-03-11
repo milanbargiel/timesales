@@ -63,35 +63,43 @@ vue.mixin({
       })
       return res.value // only return value property
     },
+    // A function that generates an aiComment for userInput
+    // If a nextBotMessage is defined, it will be shown without additional delay, if ai comment generation fails
+    // (Due to a timeout of the gpt2 app)
     async botAiComment(userInput, fieldName, nextBotMessage) {
       await this.botui.message
         .add({
-          // Show loading indicator while waiting for an answer
+          // 1. Show loading indicator while waiting for an answer
           loading: true,
         })
         .then(async (index) => {
-          // Send userInput to API to create a gpt2 based comment on the userInput
+          // 2. Send userInput to API to create a gpt2 based comment on the userInput
           // The maximum time to wait is defined in generateAiComment and the cms controller
           await this.generateAiComment({
             [fieldName]: {
               userInput,
             },
           }).then(async (response) => {
-            // If ai comment generation suceeded
-            // Show ai comment before the next message
+            // 3. Show ai comment
+            // (When ai comment generation suceeded)
             if (response && response[fieldName].aiOutput) {
               this.botui.message.update(index, {
                 loading: false,
                 content: response[fieldName].aiOutput,
               })
 
-              await this.botMessage(nextBotMessage)
-            } else {
-              // Show next message without further delay
+              // 4. Continue with the next bot message
+              nextBotMessage && (await this.botMessage(nextBotMessage))
+            } else if (nextBotMessage) {
+              // If ai comment generation failed
+              // Show next bot message without additional delay
               this.botui.message.update(index, {
                 loading: false,
                 content: nextBotMessage,
               })
+            } else {
+              // If no next message is defined remove loading indicator
+              this.botui.message.remove(index)
             }
           })
         })

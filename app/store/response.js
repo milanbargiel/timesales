@@ -7,7 +7,7 @@ const getDefaultState = () => {
       shortOnTime: null,
       reasonShortOnTime: null, // aiAnswer component
       becauseOfCapitalism: null,
-      timePurpose: null,
+      timePurpose: null, // aiAnswer component
       timeAmount: null,
       orderSummary: null, // Is generated in checkout from timePurpose and timeAmount
       timePrice: null,

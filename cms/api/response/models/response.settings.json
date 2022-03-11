@@ -32,10 +32,6 @@
       "type": "boolean",
       "private": true
     },
-    "timePurpose": {
-      "type": "text",
-      "private": true
-    },
     "timeAmount": {
       "type": "biginteger",
       "private": false
@@ -97,6 +93,11 @@
       "via": "response"
     },
     "reasonShortOnTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "timePurpose": {
       "type": "component",
       "repeatable": false,
       "component": "response.ai-answer"
