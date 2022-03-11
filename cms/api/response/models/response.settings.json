@@ -101,6 +101,11 @@
       "type": "component",
       "repeatable": false,
       "component": "response.ai-answer"
+    },
+    "timeValue": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
     }
   }
 }

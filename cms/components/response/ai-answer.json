@@ -2,17 +2,18 @@
   "collectionName": "components_response_ai_answers",
   "info": {
     "name": "aiAnswer",
-    "icon": "box"
+    "icon": "box",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "userInput": {
-      "type": "string",
+      "type": "text",
       "private": true,
       "required": true
     },
     "aiOutput": {
-      "type": "string",
+      "type": "text",
       "private": true
     }
   }

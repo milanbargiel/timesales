@@ -9,6 +9,8 @@ const getDefaultState = () => {
       becauseOfCapitalism: null,
       timePurpose: null, // aiAnswer component
       timeAmount: null,
+      timeUnit: null,
+      timeValue: null, // aiAnswer component
       orderSummary: null, // Is generated in checkout from timePurpose and timeAmount
       timePrice: null,
       memberOfChurch: null,

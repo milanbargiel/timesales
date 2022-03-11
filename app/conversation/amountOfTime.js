@@ -89,15 +89,11 @@ export default {
         )
       }
 
-      // Go to member of church dialogue if user comes from capitalismDiscourse
-      if (
-        this.response.becauseOfCapitalism === true ||
-        this.response.becauseOfCapitalism === false
-      ) {
-        this.memberOfChurch()
-      } else {
-        this.checkout()
-      }
+      // Generate an ai comment for the time input
+      await this.botAiComment(time, 'timeValue')
+
+      // Go to member of church dialogue
+      this.memberOfChurch()
     },
   },
 }
