@@ -85,10 +85,10 @@ vue.mixin({
           }).then(async (response) => {
             // 3. Show ai comment
             // (When ai comment generation suceeded)
-            if (response && response[fieldName].aiOutput) {
+            if (response && response[fieldName].enhancedOutput) {
               this.botui.message.update(index, {
                 loading: false,
-                content: response[fieldName].aiOutput,
+                content: response[fieldName].enhancedOutput,
               })
 
               // 4. Continue with the next bot message

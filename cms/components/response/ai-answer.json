@@ -15,6 +15,10 @@
     "aiOutput": {
       "type": "text",
       "private": true
+    },
+    "enhancedOutput": {
+      "type": "text",
+      "private": true
     }
   }
 }

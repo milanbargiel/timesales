@@ -28,7 +28,7 @@ module.exports = {
     const requestBody = ctx.request.body;
 
     // Iterate over fields from the request data and get the userInput for ai comment generation
-    let fieldName, userInput, aiOutput;
+    let fieldName, userInput, aiOutput, enhancedOutput;
 
     for (var key in requestBody) {
       if (
@@ -55,6 +55,25 @@ module.exports = {
       )
       .then((response) => {
         aiOutput = response.data.text;
+
+        // enhance output to make it meaningfull
+        // check first 20 characters
+        // if there is a point or a comma, remove everything untill there
+        const firstPunctuationMark = aiOutput.search(/[.,]/g);
+        // remove everything from the end untill the last punctuation mark
+        const lastPunctuationMark = aiOutput.lastIndexOf('.');
+
+        // Only apply changes when the punctuation marks are not the same
+        if (lastPunctuationMark > firstPunctuationMark) {
+          enhancedOutput = aiOutput
+            .substring(
+              firstPunctuationMark + 1, // remove punctuation mark
+              lastPunctuationMark + 1 // keep last punctuation mark
+            )
+            .trim(); // remove whitespace from beginning
+        }
+        // Else use regular aiOutput
+        enhanceOutput = aiOutput;
       })
       .catch((error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
@@ -65,7 +84,8 @@ module.exports = {
     const aiComment = {
       [fieldName]: {
         userInput,
-        aiOutput
+        aiOutput,
+        enhancedOutput
       }
     };
 
@@ -80,7 +100,8 @@ module.exports = {
             ...response[fieldName],
             {
               userInput,
-              aiOutput
+              aiOutput,
+              enhancedOutput
             }
           ]
         }
