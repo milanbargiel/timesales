@@ -11,7 +11,7 @@ export default {
         .button({
           action: [
             {
-              text: 'No, thanks',
+              text: 'No, thank you',
               value: false,
             },
             {
