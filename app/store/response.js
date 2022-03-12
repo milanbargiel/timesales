@@ -21,6 +21,7 @@ const getDefaultState = () => {
       prioritizationProblems: null,
       workForUs: null,
       applicationEmail: null, // Is only set when user wants to work for TSO
+      isItGodComments: [], // Repeatable aiAnswer component
     },
   }
 }

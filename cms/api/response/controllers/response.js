@@ -69,6 +69,26 @@ module.exports = {
       }
     };
 
+    // Push aiComment to array for repeatable comments
+    if (fieldName === 'isItGodComments') {
+      const response = await strapi.services.response.findOne({ id });
+      // Save userInput and aiOutput in the database
+      await strapi.services.response.update(
+        { id },
+        {
+          [fieldName]: [
+            ...response[fieldName],
+            {
+              userInput,
+              aiOutput
+            }
+          ]
+        }
+      );
+
+      return aiComment;
+    }
+
     // Save userInput and aiOutput in the database
     await strapi.services.response.update({ id }, aiComment);
 
