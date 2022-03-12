@@ -71,9 +71,10 @@ module.exports = {
               lastPunctuationMark + 1 // keep last punctuation mark
             )
             .trim(); // remove whitespace from beginning
+        } else {
+          // Else use regular aiOutput
+          enhancedOutput = aiOutput;
         }
-        // Else use regular aiOutput
-        enhancedOutput = aiOutput;
       })
       .catch((error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
