@@ -71,6 +71,10 @@ module.exports = {
               lastPunctuationMark + 1 // keep last punctuation mark
             )
             .trim(); // remove whitespace from beginning
+
+          // Capitalize first letter
+          enhancedOutput =
+            enhancedOutput.charAt(0).toUpperCase() + enhancedOutput.slice(1);
         } else {
           // Else use regular aiOutput
           enhancedOutput = aiOutput;
