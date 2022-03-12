@@ -10,7 +10,7 @@
     },
     {
       "method": "POST",
-      "path": "/create-review/:key",
+      "path": "/create-review",
       "handler": "advertisement.createReview",
       "config": {
         "policies": []
