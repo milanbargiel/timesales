@@ -72,6 +72,8 @@ module.exports = {
             )
             .trim(); // remove whitespace from beginning
         }
+        // Else use regular aiOutput
+        enhanceOutput = aiOutput;
       })
       .catch((error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
