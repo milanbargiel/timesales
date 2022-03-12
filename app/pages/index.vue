@@ -115,7 +115,6 @@ export default {
   created() {
     // Trigger vuex action that loads advertisements from the backend
     this.getAdvertisementData()
-    this.getConfigData()
   },
   async mounted() {
     // load bot modules
@@ -153,7 +152,6 @@ export default {
       saveResponse: 'response/saveResponse',
       generateAiComment: 'response/generateAiComment',
       getAdvertisementData: 'advertisement/fetchAdvertisementData',
-      getConfigData: 'config/fetchConfigData', // Used for the gpt2api timeout
       postReview: 'advertisement/postReview',
     }),
     stripeCheckout() {

@@ -7,9 +7,13 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+import { mapMutations, mapActions } from 'vuex' // helper for mapping vuex store mutations to methods
 
 export default {
+  created() {
+    // Get timeout data for ai an config for the bot
+    this.getConfigData()
+  },
   mounted() {
     // Get viewport height to calculate the vertical position of pop-ups
     // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
@@ -38,6 +42,9 @@ export default {
     ...mapMutations({
       pageVisible: 'advertisement/pageVisible',
       pageInvisible: 'advertisement/pageInvisible',
+    }),
+    ...mapActions({
+      getConfigData: 'config/fetchConfigData', // Used for the gpt2api timeout
     }),
     handleVisibilityChange(event) {
       if (event.type === 'visibilitychange') {
