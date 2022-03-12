@@ -63,10 +63,6 @@
       "type": "boolean",
       "private": true
     },
-    "timeManagementSecret": {
-      "type": "text",
-      "private": true
-    },
     "readyForInvestment": {
       "type": "boolean",
       "private": true
@@ -110,6 +106,16 @@
     "isItGodComments": {
       "type": "component",
       "repeatable": true,
+      "component": "response.ai-answer"
+    },
+    "timeManagementSecret": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "artAsInvestment": {
+      "type": "component",
+      "repeatable": false,
       "component": "response.ai-answer"
     }
   }

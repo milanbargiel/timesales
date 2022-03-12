@@ -15,7 +15,8 @@ const getDefaultState = () => {
       timePrice: null,
       memberOfChurch: null,
       afraidOfHell: null,
-      timeManagementSecret: null,
+      timeManagementSecret: null, // aiAnswer component
+      artAsInvestment: null, // aiAnswer component
       readyForInvestment: null,
       projectsToFinish: null,
       prioritizationProblems: null,
