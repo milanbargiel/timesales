@@ -1,8 +1,9 @@
 // Import conversation branches
-import Exit from '../conversation/exit.js'
+import Feedback from '../conversation/feedback.js'
+import IsItGod from '../conversation/isItGod.js'
 
 export default {
-  mixins: [Exit],
+  mixins: [Feedback, IsItGod],
   methods: {
     async inControl() {
       await this.botMessage(
@@ -24,9 +25,12 @@ export default {
         })
 
         await this.botMessage('Thank you! You will hear from us')
+
+        // Go to feedback dialogue
+        this.feedback()
       } else {
         // Go to IsItGod dialogue
-        this.exit()
+        this.isItGod()
       }
     },
   },
