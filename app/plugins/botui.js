@@ -31,9 +31,12 @@ vue.mixin({
         return 100
       }
 
+      // The factor can be defined in the strapi backend
+      const { timeToWriteFactor } = this.$store.state.config
+
       // Calculate time for bot to write a message
       // Min value is 2 seconds
-      return Math.max(sentence.length * 5, 500)
+      return Math.max(sentence.length * timeToWriteFactor, 2000)
     },
     botMessage(content, customDelay) {
       // Returns html escaped content e.g. <i> becomes "&lti&lt"

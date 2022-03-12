@@ -15,6 +15,10 @@
       "type": "component",
       "repeatable": false,
       "component": "config.ai-config"
+    },
+    "timeToWriteFactor": {
+      "type": "integer",
+      "default": 50
     }
   }
 }
