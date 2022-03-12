@@ -148,12 +148,23 @@ const getRandomInt = (min, max) => {
 }
 
 const actions = {
-  fetchAdvertisementData({ commit, dispatch }) {
+  fetchAdvertisementData({ commit }) {
     this.$axios.$get(`${this.$config.apiUrl}/advertisement`).then((data) => {
       commit('setConfig', data)
       commit('setReviews', data.reviews)
       commit('setPurchases', data.purchases)
       commit('setPopUps', data.popUps)
+    })
+  },
+  postReview({ rootState }, review) {
+    // Post review to the backend
+    // Do not write it to store, it is not so important that review data is always fresh
+    return this.$axios.post(`${this.$config.apiUrl}/create-review`, {
+      // When a response exists, connect it to the review
+      ...(rootState.response.data.id && {
+        responseId: rootState.response.data.id,
+      }),
+      opinion: review,
     })
   },
 }
