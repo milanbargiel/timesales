@@ -22,7 +22,7 @@ export default {
 
       // On yes
       await this.botMessage(
-        'I know it seems difficult, but actually it can be pretty simple.'
+        'I know it seems difficult, but actually it can be pretty simple'
       )
 
       await this.botMessage('What are the most important things in your life?')
@@ -50,21 +50,21 @@ export default {
       })
 
       await this.botMessage(
-        "Sometimes we tend to underrate those things. I think it's time to boost their value."
+        "Sometimes we tend to underrate those things. I think it's time to boost their value"
       )
 
       await this.botMessage(
-        "In order to do that I'll sell you some time for your neglected priority. The price tag gives a greater incentive to use the time in it's intended way."
+        "In order to do that I'll sell you some time for your neglected priority. The price tag gives a greater incentive to use the time in it's intended way"
       )
 
       await this.botMessage(
-        "I know value is relative, that's why you set the price yourself. The rules are easy: if you feel that you can lose that amount of money without pain, the price is too low. If it will make your future impossible, it's too high."
+        "I know value is relative, that's why you set the price yourself. The rules are easy: if you feel that you can lose that amount of money without pain, the price is too low. If it will make your future impossible, it's too high"
       )
 
       // If purpose of time was already given
       if (this.response.timePurpose) {
         await this.botMessage(
-          'But first, I need to know how much time you need.'
+          'But first, I need to know how much time you need'
         )
         // Go to amount of time dialogue
         this.amountOfTime()
