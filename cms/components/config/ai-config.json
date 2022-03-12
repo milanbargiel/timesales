@@ -10,21 +10,25 @@
     "numberOfWords": {
       "type": "integer",
       "required": true,
-      "private": true
+      "private": true,
+      "default": 50
     },
     "temperature": {
       "type": "decimal",
       "required": true,
-      "private": true
+      "private": true,
+      "default": 0.7
     },
     "topK": {
       "type": "integer",
       "required": true,
-      "private": true
+      "private": true,
+      "default": 40
     },
     "milliSecondsToWait": {
       "type": "integer",
-      "required": true
+      "required": true,
+      "default": 15000
     }
   }
 }
