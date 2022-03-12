@@ -40,9 +40,8 @@ export default {
           })
 
         if (this.response.afraidOfHell === true) {
-          await this.botMessage('Our paths diverge here.')
-          await this.botMessage('Have a good time anyways.')
-          return this.exit()
+          // Go to the exit dialogue
+          this.exit()
         } else {
           // Go to checkout dialogue
           this.checkout()

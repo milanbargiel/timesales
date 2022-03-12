@@ -154,6 +154,7 @@ export default {
       generateAiComment: 'response/generateAiComment',
       getAdvertisementData: 'advertisement/fetchAdvertisementData',
       getConfigData: 'config/fetchConfigData', // Used for the gpt2api timeout
+      postReview: 'advertisement/postReview',
     }),
     stripeCheckout() {
       // Only load stripe script when user clicks on checkout button.
