@@ -32,10 +32,6 @@
       "type": "boolean",
       "private": true
     },
-    "timePurpose": {
-      "type": "text",
-      "private": true
-    },
     "timeAmount": {
       "type": "biginteger",
       "private": false
@@ -67,10 +63,6 @@
       "type": "boolean",
       "private": true
     },
-    "timeManagementSecret": {
-      "type": "text",
-      "private": true
-    },
     "readyForInvestment": {
       "type": "boolean",
       "private": true
@@ -92,9 +84,39 @@
       "private": true
     },
     "order": {
-      "via": "response",
       "private": true,
-      "model": "order"
+      "model": "order",
+      "via": "response"
+    },
+    "reasonShortOnTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "timePurpose": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "timeValue": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "isItGodComments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "response.ai-answer"
+    },
+    "timeManagementSecret": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
+    },
+    "artAsInvestment": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.ai-answer"
     }
   }
 }

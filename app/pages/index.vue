@@ -79,6 +79,10 @@ export default {
     response() {
       return this.$store.state.response.data
     },
+    aiConfig() {
+      // expose aiConfig
+      return this.$store.state.config.aiConfig
+    },
     debugMode() {
       return this.$store.state.ui.debugMode
     },
@@ -143,10 +147,12 @@ export default {
       enableDebugMode: 'ui/enableDebugMode',
     }),
     ...mapActions({
-      // Enables the action this.saveResponse({ key: value }) and this.getAdvertisementData()
-      // That saves data in vuex store and on remote databe if user opts in
+      // Enables actions for saving responses, generating ai comments and retrieving advertisement data from the api
+      // Actions are defined in the vuex store
       saveResponse: 'response/saveResponse',
+      generateAiComment: 'response/generateAiComment',
       getAdvertisementData: 'advertisement/fetchAdvertisementData',
+      postReview: 'advertisement/postReview',
     }),
     stripeCheckout() {
       // Only load stripe script when user clicks on checkout button.

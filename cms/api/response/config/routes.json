@@ -15,6 +15,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "PUT",
+      "path": "/generate-ai-comment/:id",
+      "handler": "response.generateAiComment",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

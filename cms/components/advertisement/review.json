@@ -2,13 +2,14 @@
   "collectionName": "components_advertisement_reviews",
   "info": {
     "name": "Review",
-    "icon": "ad"
+    "icon": "ad",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "order": {
+    "response": {
       "private": true,
-      "model": "order"
+      "model": "response"
     },
     "opinion": {
       "type": "text",

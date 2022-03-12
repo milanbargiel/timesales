@@ -43,8 +43,8 @@
       "private": true
     },
     "response": {
-      "model": "response",
-      "via": "order"
+      "via": "order",
+      "model": "response"
     },
     "stripePaymentId": {
       "type": "string",

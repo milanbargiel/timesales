@@ -11,13 +11,20 @@ const Chance = require('chance-de');
 const chance = new Chance();
 
 module.exports = {
-  // Save a customer review for an order
+  // Save a customer review
   async createReview(ctx) {
-    // Find order specified with key
-    const { key } = ctx.params;
-
     try {
-      const order = await strapi.services.order.findOne({ key });
+      let response;
+
+      // Get the order for the review if an order key was attached to the request
+      if (
+        Object.prototype.hasOwnProperty.call(ctx.request.body, 'responseId')
+      ) {
+        response = await strapi.services.response.findOne({
+          id: ctx.request.body.responseId
+        });
+      }
+
       // Get the advertisement single-content type
       let advertisement = await strapi.services.advertisement.find();
 
@@ -26,7 +33,8 @@ module.exports = {
         reviews: [
           ...advertisement.reviews,
           {
-            order: order.id,
+            // When an response exists, connect it to the review
+            ...(response && { response: response.id }),
             opinion: ctx.request.body.opinion,
             fakeAuthor: chance.first({ nationality: 'de' })
           }

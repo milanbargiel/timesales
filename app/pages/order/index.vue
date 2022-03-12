@@ -24,7 +24,7 @@ Opens when a user gets redirected from checkout or clicks on the link from the s
 </template>
 
 <script>
-import { mapMutations } from 'vuex' // helper for mapping vuex store mutations to methods
+import { mapMutations, mapActions } from 'vuex' // helper for mapping vuex store mutations to methods
 import timestring from 'timestring' // to convert time to sec for sand sim
 import StreamPreamble from '../../conversation/streamPreamble.js'
 import Feedback from '../../conversation/feedback.js'
@@ -52,6 +52,10 @@ export default {
       hideFooter: 'ui/hideFooter',
       showHeader: 'ui/showHeader',
       hideHeader: 'ui/hideHeader',
+      setResponse: 'response/setResponse',
+    }),
+    ...mapActions({
+      postReview: 'advertisement/postReview',
     }),
     async loadBot() {
       // load bot modules
@@ -68,6 +72,10 @@ export default {
             `${res.response.timeAmount} ${res.response.timeUnit}`,
             's'
           ) // sand sim need seconds
+
+          // set response id in vuexstore to connect feedback to response when given
+          this.setResponse({ id: res.response.id })
+
           await this.loadBot()
 
           if (res.progress === 0) {
@@ -75,6 +83,11 @@ export default {
             await this.botMessage(
               'You have already spent your time. Did you enjoy it?'
             )
+
+            await this.botMessage(
+              'Please leave your thoughts, remarks, and suggestions. (We reserve the right to use them anonymously)'
+            )
+
             this.feedback()
           } else {
             // Start stream preamble dialogue
@@ -120,14 +133,6 @@ export default {
           }
         )
       }
-    },
-    saveFeedback(feedback) {
-      this.$axios.$post(
-        `${this.$config.apiUrl}/create-review/${this.order.key}`,
-        {
-          opinion: feedback,
-        }
-      )
     },
   },
 }

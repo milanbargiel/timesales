@@ -6,12 +6,13 @@ module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
   url: 'https://xyz.timesales.ltd',
+  gpt2Api: env('GPT2_API'),
   stripePrivateKey: env('STRIPE_PRIVATE_KEY'),
   stripeEndpointSecret: env('STRIPE_ENDPOINT_SECRET'),
   stripeTaxRateId: env('STRIPE_TAX_RATE_ID'),
   admin: {
     auth: {
-      secret: env('ADMIN_JWT_SECRET'),
-    },
-  },
+      secret: env('ADMIN_JWT_SECRET')
+    }
+  }
 });

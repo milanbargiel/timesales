@@ -11,8 +11,8 @@ vue.mixin({
       }
 
       // Set timeout
-      let timeout = new Promise((resolve, reject) => {
-        let id = setTimeout(() => {
+      const timeout = new Promise((resolve, reject) => {
+        const id = setTimeout(() => {
           clearTimeout(id)
           resolve() // Return undefined if answer was not given in time
         }, ms)
@@ -22,10 +22,7 @@ vue.mixin({
       if (!promise) {
         return timeout
       } else {
-        return Promise.race([
-          promise,
-          timeout
-        ])
+        return Promise.race([promise, timeout])
       }
     },
     timeToWrite(sentence) {
@@ -34,9 +31,12 @@ vue.mixin({
         return 100
       }
 
+      // The factor can be defined in the strapi backend
+      const { timeToWriteFactor } = this.$store.state.config
+
       // Calculate time for bot to write a message
       // Min value is 2 seconds
-      return Math.max(sentence.length * 50, 2000)
+      return Math.max(sentence.length * timeToWriteFactor, 2000)
     },
     botMessage(content, customDelay) {
       // Returns html escaped content e.g. <i> becomes "&lti&lt"
@@ -46,7 +46,7 @@ vue.mixin({
         delay: customDelay || this.timeToWrite(content),
         loading: true,
         type: 'html',
-        content: escape(content), // Replace special characters e.g. < => "&lt;" 
+        content: escape(content), // Replace special characters e.g. < => "&lt;"
       })
     },
     botMessageHtml(content, customDelay) {
@@ -65,6 +65,47 @@ vue.mixin({
         },
       })
       return res.value // only return value property
+    },
+    // A function that generates an aiComment for userInput
+    // If a nextBotMessage is defined, it will be shown without additional delay, if ai comment generation fails
+    // (Due to a timeout of the gpt2 app)
+    async botAiComment(userInput, fieldName, nextBotMessage) {
+      await this.botui.message
+        .add({
+          // 1. Show loading indicator while waiting for an answer
+          loading: true,
+        })
+        .then(async (index) => {
+          // 2. Send userInput to API to create a gpt2 based comment on the userInput
+          // The maximum time to wait is defined in generateAiComment and the cms controller
+          await this.generateAiComment({
+            [fieldName]: {
+              userInput,
+            },
+          }).then(async (response) => {
+            // 3. Show ai comment
+            // (When ai comment generation suceeded)
+            if (response && response[fieldName].aiOutput) {
+              this.botui.message.update(index, {
+                loading: false,
+                content: response[fieldName].aiOutput,
+              })
+
+              // 4. Continue with the next bot message
+              nextBotMessage && (await this.botMessage(nextBotMessage))
+            } else if (nextBotMessage) {
+              // If ai comment generation failed
+              // Show next bot message without additional delay
+              this.botui.message.update(index, {
+                loading: false,
+                content: nextBotMessage,
+              })
+            } else {
+              // If no next message is defined remove loading indicator
+              this.botui.message.remove(index)
+            }
+          })
+        })
     },
     async botNumberInput(placeholder) {
       const res = await this.botui.action.text({
@@ -101,13 +142,15 @@ vue.mixin({
     },
     hidePushyQuestion() {
       // Get loading container of bot
-      const domElement = this.$el.querySelector('.botui-message-content.loading')
+      const domElement = this.$el.querySelector(
+        '.botui-message-content.loading'
+      )
 
       // Hide parent node
       if (domElement) {
         domElement.parentNode.style.display = 'none'
       }
-    }
+    },
   },
 })
 

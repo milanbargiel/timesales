@@ -1,12 +1,13 @@
 // Import conversation branches
-import Exit from '../conversation/exit.js'
+import Feedback from '../conversation/feedback.js'
+import IsItGod from '../conversation/isItGod.js'
 
 export default {
-  mixins: [Exit],
+  mixins: [Feedback, IsItGod],
   methods: {
     async inControl() {
       await this.botMessage(
-        'You seem to be very much in control over your life. Would you like to work for us?'
+        'You seem very much in control over your life. Would you work for us?'
       )
 
       await this.botYesOrNo().then((workForUs) => {
@@ -15,7 +16,7 @@ export default {
 
       if (this.response.workForUs === true) {
         await this.botMessage(
-          `${this.response.name}, please enter your email address here so we can get in touch with you.`
+          `${this.response.name}, please enter your email address here so we can get in touch with you`
         )
 
         await this.botEmailInput('Your email').then((applicationEmail) => {
@@ -24,12 +25,12 @@ export default {
         })
 
         await this.botMessage('Thank you! You will hear from us')
-      } else {
-        await this.botMessage('Looks like our paths diverge here.')
-        await this.botMessage('Have a good time anyways.')
 
-        // Go to exit dialogue
-        this.exit()
+        // Go to feedback dialogue
+        this.feedback()
+      } else {
+        // Go to IsItGod dialogue
+        this.isItGod()
       }
     },
   },
