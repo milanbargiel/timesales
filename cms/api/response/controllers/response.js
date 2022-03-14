@@ -21,27 +21,46 @@ const processAiOutput = (aiOutput, fieldName) => {
   if (fieldName === 'timePurpose') {
     // Remove the augmented string from the beginning
     const augmenterString = 'Time for, ';
-    return aiOutput.substring(augmenterString.length, lastPunctuationMark);
+    processedOutput = aiOutput.substring(
+      augmenterString.length,
+      lastPunctuationMark
+    );
   } else if (lastPunctuationMark > firstPunctuationMark) {
     // B. For texts with more than one punctuation marks
     processedOutput = aiOutput
       // Extract text between the first and the last punctuation mark
-      .substring(firstPunctuationMark + 1, lastPunctuationMark)
-      .trim(); // remove whitespace from beginning
+      .substring(firstPunctuationMark + 1, lastPunctuationMark);
   }
 
-  // Capitalize first letter
+  // If there is a punctuation mark at the beginning, remove it
+  if (processedOutput.charAt(0) === ',') {
+    processedOutput = processedOutput.substring(1, processedOutput.length);
+  }
+
+  // Remove whitespaces
+  processedOutput = processedOutput.trim();
+
+  // Return processed text and capitalize first letter
   return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
 };
 
 // Function to augment user input to increase the relevance of ai comments
 const augmentUserInput = (userInput, fieldName) => {
-  if (fieldName === 'timePurpose') {
-    // Remove everything from the end untill the last punctuation mark
-    return 'Time for, ' + userInput;
+  let augment;
+
+  switch (fieldName) {
+    case 'timePurpose':
+      // Remove everything from the end untill the last punctuation mark
+      augment = 'Time for, ';
+      break;
+    case 'artAsInvestment':
+      augment = 'Art investment ';
+      break;
+    default:
+      augment = '';
   }
 
-  return userInput;
+  return augment + userInput;
 };
 
 module.exports = {
