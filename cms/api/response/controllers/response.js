@@ -7,6 +7,25 @@
 
 const axios = require('axios');
 
+// Function to augment user input to increase the relevance of ai comments
+const augmentUserInput = (userInput, fieldName) => {
+  let augment;
+
+  switch (fieldName) {
+    case 'timePurpose':
+      // Remove everything from the end untill the last punctuation mark
+      augment = 'Time for, ';
+      break;
+    case 'artAsInvestment':
+      augment = 'Art investment ';
+      break;
+    default:
+      augment = '';
+  }
+
+  return augment + userInput;
+};
+
 const processAiOutput = (aiOutput, fieldName) => {
   let processedOutput = aiOutput;
 
@@ -42,25 +61,6 @@ const processAiOutput = (aiOutput, fieldName) => {
 
   // Return processed text and capitalize first letter
   return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
-};
-
-// Function to augment user input to increase the relevance of ai comments
-const augmentUserInput = (userInput, fieldName) => {
-  let augment;
-
-  switch (fieldName) {
-    case 'timePurpose':
-      // Remove everything from the end untill the last punctuation mark
-      augment = 'Time for, ';
-      break;
-    case 'artAsInvestment':
-      augment = 'Art investment ';
-      break;
-    default:
-      augment = '';
-  }
-
-  return augment + userInput;
 };
 
 module.exports = {
