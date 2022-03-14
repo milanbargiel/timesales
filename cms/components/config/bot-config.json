@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_config_bot_configs",
+  "info": {
+    "name": "botConfig",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "timeToWriteFactor": {
+      "default": 50,
+      "required": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    }
+  }
+}

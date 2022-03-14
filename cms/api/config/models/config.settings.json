@@ -16,9 +16,10 @@
       "repeatable": false,
       "component": "config.ai-config"
     },
-    "timeToWriteFactor": {
-      "type": "integer",
-      "default": 50
+    "botConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "config.bot-config"
     }
   }
 }
