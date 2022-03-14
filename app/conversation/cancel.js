@@ -6,7 +6,7 @@ export default {
   mixins: [Exit],
   methods: {
     async cancelConversation() {
-      await this.botMessage('No time for you today?')
+      await this.botMessageHtml('No <i>time</i> for you today?')
       await this.botui.action
         .button({
           action: [
