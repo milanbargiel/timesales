@@ -17,8 +17,9 @@ const processAiOutput = (aiOutput, fieldName) => {
 
   // A. Special rule for field timePurpose
   if (fieldName === 'timePurpose') {
-    // Remove everything from the end untill the last punctuation mark
-    return aiOutput.substring(0, lastPunctuationMark);
+    // Remove the augmented string from the beginning
+    const augmenterString = 'Time for, ';
+    return aiOutput.substring(augmenterString.length, lastPunctuationMark);
   }
 
   // B. For texts with sufficient punctuation marks
@@ -34,6 +35,15 @@ const processAiOutput = (aiOutput, fieldName) => {
 
   // C. For texts with only one punctuation mark
   return aiOutput;
+};
+
+const augmentUserInput = (userInput, fieldName) => {
+  if (fieldName === 'timePurpose') {
+    // Remove everything from the end untill the last punctuation mark
+    return 'Time for, ' + userInput;
+  }
+
+  return userInput;
 };
 
 module.exports = {
@@ -76,12 +86,15 @@ module.exports = {
       }
     };
 
-    // 2. Send userInput to the GPT2 app to generate an ai comment
+    // 2. Augment the user input for specific fields to increase the relevance of the ai comment
+    const augmentedUserInput = augmentUserInput(userInput, fieldName);
+
+    // 3. Send input to the GPT2 app to generate an ai comment
     await axios
       .post(
         strapi.config.get('server.gpt2Api'),
         {
-          prefix: userInput,
+          prefix: augmentedUserInput,
           length: config.aiConfig.numberOfWords, // number of words that ai shall respond withs
           temperature: config.aiConfig.temperature,
           top_k: config.aiConfig.topK
@@ -109,7 +122,7 @@ module.exports = {
       return userInputOnly;
     }
 
-    // 3. Process aiOutput and make it meaningful
+    // 4. Process aiOutput and strip content
     enhancedOutput = processAiOutput(aiOutput, fieldName);
 
     const aiGeneratedData = {
@@ -118,10 +131,10 @@ module.exports = {
       enhancedOutput
     };
 
-    // 4. Save data in database
+    // 5. Save data in database
     const response = await strapi.services.response.findOne({ id });
 
-    // 4A. If field type is a repeatable component (e.g. isItGodComments), add to array
+    // 5A. If field type is a repeatable component (e.g. isItGodComments), add to array
     if (Array.isArray(response[fieldName])) {
       await strapi.services.response.update(
         { id },
@@ -132,7 +145,7 @@ module.exports = {
 
       return { [fieldName]: aiGeneratedData };
     }
-    // 4B. If field type is a single component update response
+    // 5B. If field type is a single component update response
     await strapi.services.response.update(
       { id },
       { [fieldName]: aiGeneratedData }
