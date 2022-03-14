@@ -27,7 +27,9 @@
 - [Install the postgresql database software](https://wiki.postgresql.org/wiki/Homebrew) and start the psql service as described in the Homebrew formula
 - Create a database "timesales" with the command `createdb timesales`
 - Download a dump of the remote database by running `yarn downloadDump` within the `/cms` folder
-- Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project. Make sure to enter the test key for the stripe payment environment.
+- Get `cms/templates/invoice/signature.pug` and `.env` files from the server and include them into the project.
+- Exchange the stripe keys `STRIPE_PRIVATE_KEY, STRIPE_ENDPOINT_SECRET, STRIPE_TAX_RATE_ID` in the `env` file to match the test environment
+- Delete `DATABASE_USERNAME` and `DATABASE_PASSWORD` as they are not needed for local development
 
 ##### API-Endpoints for cms
 
