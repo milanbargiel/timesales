@@ -21,8 +21,11 @@ export default {
       // botAiComment takes three parameters
       // userInput, fieldName and nextBotMessage
       await this.botTextInput('Your answer').then(async (response) => {
+        // Add keywords to the user input to make the ai generated comment more relevant
+        const augmentedUserInput = 'Art investment ' + response
+
         await this.botAiComment(
-          response,
+          augmentedUserInput,
           'artAsInvestment',
           "Many people believe it's good to invest in art because it only increases in value"
         )
