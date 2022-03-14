@@ -9,19 +9,23 @@ const axios = require('axios');
 
 const processAiOutput = (aiOutput, fieldName) => {
   const firstPunctuationMark = aiOutput.search(/[.,]/g);
-  const lastPunctuationMark = aiOutput.lastIndexOf('.');
+  // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ','
+  const lastPunctuationMark = Math.max(
+    aiOutput.lastIndexOf('.'),
+    aiOutput.lastIndexOf(',')
+  );
 
   // A. Special rule for field timePurpose
   if (fieldName === 'timePurpose') {
     // Remove everything from the end untill the last punctuation mark
-    return aiOutput.substring(0, lastPunctuationMark + 1);
+    return aiOutput.substring(0, lastPunctuationMark);
   }
 
   // B. For texts with sufficient punctuation marks
   if (lastPunctuationMark > firstPunctuationMark) {
     const processedOutput = aiOutput
       // Extract text between the first and the last punctuation mark
-      .substring(firstPunctuationMark + 1, lastPunctuationMark + 1)
+      .substring(firstPunctuationMark + 1, lastPunctuationMark)
       .trim(); // remove whitespace from beginning
 
     // Capitalize first letter
