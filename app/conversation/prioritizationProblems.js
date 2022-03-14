@@ -33,18 +33,14 @@ export default {
 
       await this.botMessage('Something else?')
 
-      // Ask for purpose of time but do not wait for answer
-      this.botTextInput('Your answer').then((timePurpose) => {
-        // Save answer
-        this.saveResponse({ timePurpose })
-      })
+      // Ask for purpose of time
 
       // Wait for 15 seconds. If user does not answers by then, remove input field and continue.
       const question = this.timeout(15000, this.botTextInput('Your answer'))
 
-      await question.then((response) => {
+      await question.then(async (response) => {
         if (response !== undefined) {
-          this.saveResponse({ timePurpose: response })
+          await this.botAiComment(response, 'timePurpose')
         }
         this.botui.action.hide() // hide question
       })
