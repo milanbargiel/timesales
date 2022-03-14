@@ -10,7 +10,7 @@ export default {
       await this.botTextInput('Your answer').then(async (response) => {
         // Add keywords to the user input to make the ai generated comment more relevant
         const augmentedUserInput =
-          'Gods invisible hand of the market ' + response
+          'Gods invisible hand of the market, ' + response
 
         await this.botAiComment(
           augmentedUserInput,
@@ -20,7 +20,7 @@ export default {
       })
 
       await this.botTextInput('Your answer').then(async (response) => {
-        const augmentedUserInput = 'Belief in value ' + response
+        const augmentedUserInput = 'Belief in value, ' + response
 
         await this.botAiComment(
           augmentedUserInput,
@@ -30,7 +30,7 @@ export default {
       })
 
       await this.botTextInput('Your answer').then(async (response) => {
-        const augmentedUserInput = 'Can money be sacred ' + response
+        const augmentedUserInput = 'Can money be sacred, ' + response
         await this.botAiComment(augmentedUserInput, 'isItGodComments')
       })
 
@@ -38,7 +38,7 @@ export default {
     },
     async recursivelyContinue() {
       await this.botTextInput('Your answer').then(async (response) => {
-        const augmentedUserInput = 'Can money be sacred ' + response
+        const augmentedUserInput = 'Can money be sacred, ' + response
         await this.botAiComment(augmentedUserInput, 'isItGodComments')
 
         this.recursivelyContinue()

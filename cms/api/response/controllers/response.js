@@ -17,7 +17,7 @@ const augmentUserInput = (userInput, fieldName) => {
       augment = 'Time for, ';
       break;
     case 'artAsInvestment':
-      augment = 'Art investment ';
+      augment = 'Art investment, ';
       break;
     default:
       augment = '';
