@@ -8,6 +8,8 @@
 const axios = require('axios');
 
 const processAiOutput = (aiOutput, fieldName) => {
+  let processedOutput = aiOutput;
+
   const firstPunctuationMark = aiOutput.search(/[.,]/g);
   // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ','
   const lastPunctuationMark = Math.max(
@@ -20,23 +22,19 @@ const processAiOutput = (aiOutput, fieldName) => {
     // Remove the augmented string from the beginning
     const augmenterString = 'Time for, ';
     return aiOutput.substring(augmenterString.length, lastPunctuationMark);
-  }
-
-  // B. For texts with sufficient punctuation marks
-  if (lastPunctuationMark > firstPunctuationMark) {
-    const processedOutput = aiOutput
+  } else if (lastPunctuationMark > firstPunctuationMark) {
+    // B. For texts with more than one punctuation marks
+    processedOutput = aiOutput
       // Extract text between the first and the last punctuation mark
       .substring(firstPunctuationMark + 1, lastPunctuationMark)
       .trim(); // remove whitespace from beginning
-
-    // Capitalize first letter
-    return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
   }
 
-  // C. For texts with only one punctuation mark
-  return aiOutput;
+  // Capitalize first letter
+  return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
 };
 
+// Function to augment user input to increase the relevance of ai comments
 const augmentUserInput = (userInput, fieldName) => {
   if (fieldName === 'timePurpose') {
     // Remove everything from the end untill the last punctuation mark
@@ -67,7 +65,7 @@ module.exports = {
     // 1. Iterate over fields from the request data and get the userInput for ai comment generation
     const requestBody = ctx.request.body;
 
-    let fieldName, userInput, aiOutput, enhancedOutput;
+    let fieldName, userInput;
 
     for (var key in requestBody) {
       if (
@@ -80,17 +78,11 @@ module.exports = {
       }
     }
 
-    const userInputOnly = {
-      [fieldName]: {
-        userInput
-      }
-    };
-
     // 2. Augment the user input for specific fields to increase the relevance of the ai comment
     const augmentedUserInput = augmentUserInput(userInput, fieldName);
 
     // 3. Send input to the GPT2 app to generate an ai comment
-    await axios
+    const aiComment = await axios
       .post(
         strapi.config.get('server.gpt2Api'),
         {
@@ -102,39 +94,26 @@ module.exports = {
         { timeout: config.aiConfig.milliSecondsToWait }
       )
       .then((response) => {
-        aiOutput = response.data.text;
+        return response.data.text;
       })
-      .catch(async () => {
+      .catch(async (error) => {
         // When the requests runs into a timeout or when the gpt2 app is down
-        // Only save the userInput for the specific field
-        try {
-          await strapi.services.response.update({ id }, userInputOnly);
-          return userInputOnly;
-        } catch (error) {
-          console.log(error);
-          // Throw an error when userInput could not be saved
-          return ctx.badImplementation(error);
-        }
+        console.log(error);
+        return undefined;
       });
-
-    // When out of any reason the aiOutput stays undefined, return the user input only
-    if (!aiOutput) {
-      return userInputOnly;
-    }
-
-    // 4. Process aiOutput and strip content
-    enhancedOutput = processAiOutput(aiOutput, fieldName);
 
     const aiGeneratedData = {
       userInput,
-      aiOutput,
-      enhancedOutput
+      aiOutput: aiComment ? aiComment : undefined,
+      enhancedOutput: aiComment
+        ? processAiOutput(aiComment, fieldName) // Process aiOutput and strip content
+        : undefined
     };
 
-    // 5. Save data in database
+    // 4. Save data in database
     const response = await strapi.services.response.findOne({ id });
 
-    // 5A. If field type is a repeatable component (e.g. isItGodComments), add to array
+    // 4A. If field type is a repeatable component (e.g. isItGodComments), add to array
     if (Array.isArray(response[fieldName])) {
       await strapi.services.response.update(
         { id },
@@ -145,7 +124,7 @@ module.exports = {
 
       return { [fieldName]: aiGeneratedData };
     }
-    // 5B. If field type is a single component update response
+    // 4B. If field type is a single component update response
     await strapi.services.response.update(
       { id },
       { [fieldName]: aiGeneratedData }
