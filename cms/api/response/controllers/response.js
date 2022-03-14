@@ -66,6 +66,12 @@ module.exports = {
       }
     }
 
+    const userInputOnly = {
+      [fieldName]: {
+        userInput
+      }
+    };
+
     // 2. Send userInput to the GPT2 app to generate an ai comment
     await axios
       .post(
@@ -85,18 +91,19 @@ module.exports = {
         // When the requests runs into a timeout or when the gpt2 app is down
         // Only save the userInput for the specific field
         try {
-          const userInput = {
-            [fieldName]: {
-              userInput
-            }
-          };
-          await strapi.services.response.update({ id }, userInput);
-          return userInput;
+          await strapi.services.response.update({ id }, userInputOnly);
+          return userInputOnly;
         } catch (error) {
+          console.log(error);
           // Throw an error when userInput could not be saved
           return ctx.badImplementation(error);
         }
       });
+
+    // When out of any reason the aiOutput stays undefined, return the user input only
+    if (!aiOutput) {
+      return userInputOnly;
+    }
 
     // 3. Process aiOutput and make it meaningful
     enhancedOutput = processAiOutput(aiOutput, fieldName);
