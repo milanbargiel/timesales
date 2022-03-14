@@ -31,6 +31,25 @@
 - Exchange the stripe keys `STRIPE_PRIVATE_KEY, STRIPE_ENDPOINT_SECRET, STRIPE_TAX_RATE_ID` in the `env` file to match the test environment
 - Delete `DATABASE_USERNAME` and `DATABASE_PASSWORD` as they are not needed for local development
 
+##### Folder structure
+```
+├── app # The nuxtjs based frontend
+|   ├── conversation # The complete bot conversation
+|   └── store # Vuex Store files with actions that fetch and post data to the cms
+|       └── response.js
+├── cms # The strapi based backend
+|   └── api # The complete bot conversation
+|       └── response
+|           └── controllers/response.js # Definition of generateAiComment action that posts userInput to the gpt2 app
+└── sand-simulation # Sand stream animation build with the go programming language and integrated with web assembly
+```
+
+
+##### AI comment generation
+- The strapi backend communicates with a server to generate [gpt2](https://huggingface.co/docs/transformers/model_doc/gpt2) based comments on user input
+- To connect strapi to the gpt2 app set the `GPT2_API` environment variable in `cms/.env` and restart the Strapi backend
+- The code and logic for the ai comment generation can be found in the controller action for responses of the cms `generateAiComment(ctx)`
+
 ##### API-Endpoints for cms
 
 `GET https://xyz.timesales.ltd/orders/:key`
@@ -87,14 +106,6 @@
 
 - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment#web)
 - [Fullfill orders](https://stripe.com/docs/payments/checkout/fulfill-orders)
-
-##### Folder structure
-```
-├── app # The nuxtjs based frontend
-|   ├── conversation # The complete bot conversation
-|   └── store # Vuex Store files with actions that fetch and post data to the cms
-```
-
 ##### FAQ
 
 **What to do when the deployment of the strapi cms does not happen automatically after a push to the main branch?**
