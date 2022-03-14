@@ -7,33 +7,29 @@
 
 const axios = require('axios');
 
-const processAiOutput = (aiOutput) => {
-  let processedOutput;
-
-  // Check first 20 characters
-  // If there is a point or a comma, remove everything untill there
+const processAiOutput = (aiOutput, fieldName) => {
   const firstPunctuationMark = aiOutput.search(/[.,]/g);
-  // Remove everything from the end untill the last punctuation mark
   const lastPunctuationMark = aiOutput.lastIndexOf('.');
 
-  // Only apply changes when the punctuation marks are not the same
+  // A. Special rule for field timePurpose
+  if (fieldName === 'timePurpose') {
+    // Remove everything from the end untill the last punctuation mark
+    return aiOutput.substring(0, lastPunctuationMark + 1);
+  }
+
+  // B. For texts with sufficient punctuation marks
   if (lastPunctuationMark > firstPunctuationMark) {
-    processedOutput = aiOutput
-      .substring(
-        firstPunctuationMark + 1, // remove punctuation mark
-        lastPunctuationMark + 1 // keep last punctuation mark
-      )
+    const processedOutput = aiOutput
+      // Extract text between the first and the last punctuation mark
+      .substring(firstPunctuationMark + 1, lastPunctuationMark + 1)
       .trim(); // remove whitespace from beginning
 
     // Capitalize first letter
-    processedOutput =
-      processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
-  } else {
-    // Else use regular aiOutput
-    processedOutput = aiOutput;
+    return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
   }
 
-  return processedOutput;
+  // C. For texts with only one punctuation mark
+  return aiOutput;
 };
 
 module.exports = {
@@ -103,7 +99,7 @@ module.exports = {
       });
 
     // 3. Process aiOutput and make it meaningful
-    enhancedOutput = processAiOutput(aiOutput);
+    enhancedOutput = processAiOutput(aiOutput, fieldName);
 
     const aiGeneratedData = {
       userInput,
