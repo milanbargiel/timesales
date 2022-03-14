@@ -48,8 +48,8 @@ export default {
 
       await this.botMessage('Are you sometimes short on time?')
 
-      // When user does not answer question afters 15 secs proceed to projects to finish dialogue
-      const question = this.timeout(15000, this.botYesOrNo())
+      // When user does not answer question afters 12 secs proceed to projects to finish dialogue
+      const question = this.timeout(12000, this.botYesOrNo())
 
       question.then((response) => {
         if (response === undefined) {

@@ -18,13 +18,15 @@ export default {
         'By the way, do you like art? Ever thought about it as an investment?'
       )
 
+      // botAiComment takes three parameters
+      // userInput, fieldName and nextBotMessage
       await this.botTextInput('Your answer').then(async (response) => {
-        await this.botAiComment(response, 'artAsInvestment')
+        await this.botAiComment(
+          response,
+          'artAsInvestment',
+          "Many people believe it's good to invest in art because it only increases in value"
+        )
       })
-
-      await this.botMessage(
-        "Many people believe it's good to invest in art because it only increases in value"
-      )
 
       await this.botMessage(
         'I know storage can be pretty challenging. Art pieces require a lot of space, special temperatures, humidity control, costly insurance, and so forth'

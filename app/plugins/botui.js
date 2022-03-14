@@ -72,36 +72,33 @@ vue.mixin({
     async botAiComment(userInput, fieldName, nextBotMessage) {
       await this.botui.message
         .add({
-          // 1. Show loading indicator while waiting for an answer
+          // 1. Add an empty dummy message to show the loading indicator
           loading: true,
         })
         .then(async (index) => {
-          // 2. Send userInput to API to create a gpt2 based comment on the userInput
-          // The maximum time to wait is defined in generateAiComment and the cms controller
+          // 2. Create a gpt2 based ai comment by posting the userInput to the backend
           await this.generateAiComment({
             [fieldName]: {
               userInput,
             },
           }).then(async (response) => {
-            // 3. Show ai comment
-            // (When ai comment generation suceeded)
+            // 3A. When ai comment generation suceeded update the dummy message with content
             if (response && response[fieldName].enhancedOutput) {
               this.botui.message.update(index, {
                 loading: false,
                 content: response[fieldName].enhancedOutput,
               })
 
-              // 4. Continue with the next bot message
               nextBotMessage && (await this.botMessage(nextBotMessage))
             } else if (nextBotMessage) {
-              // If ai comment generation failed
-              // Show next bot message without additional delay
+              // 3B. If ai comment generation failed, show next bot message without additional delay
               this.botui.message.update(index, {
                 loading: false,
                 content: nextBotMessage,
               })
             } else {
-              // If no next message is defined remove loading indicator
+              // 3C. If ai comment generation failed an no next message is defined,
+              // remove message and continue with the regular dialogue
               this.botui.message.remove(index)
             }
           })

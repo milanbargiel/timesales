@@ -27,7 +27,28 @@
 - [Install the postgresql database software](https://wiki.postgresql.org/wiki/Homebrew) and start the psql service as described in the Homebrew formula
 - Create a database "timesales" with the command `createdb timesales`
 - Download a dump of the remote database by running `yarn downloadDump` within the `/cms` folder
-- Get `cms/templates/invoice/signature.pug` and `.env` files and include them into the project. Make sure to enter the test key for the stripe payment environment.
+- Get `cms/templates/invoice/signature.pug` and `.env` files from the server and include them into the project.
+- Exchange the stripe keys `STRIPE_PRIVATE_KEY, STRIPE_ENDPOINT_SECRET, STRIPE_TAX_RATE_ID` in the `env` file to match the test environment
+- Delete `DATABASE_USERNAME` and `DATABASE_PASSWORD` as they are not needed for local development
+
+##### Folder structure
+```
+├── app # The nuxtjs based frontend
+|   ├── conversation # The complete bot conversation
+|   └── store # Vuex Store files with actions that fetch and post data to the cms
+|       └── response.js
+├── cms # The strapi based backend
+|   └── api # The complete bot conversation
+|       └── response
+|           └── controllers/response.js # Definition of generateAiComment action that posts userInput to the gpt2 app
+└── sand-simulation # Sand stream animation build with the go programming language and integrated with web assembly
+```
+
+
+##### AI comment generation
+- The strapi backend communicates with a server to generate [gpt2](https://huggingface.co/docs/transformers/model_doc/gpt2) based comments on user input
+- To connect strapi to the gpt2 app set the `GPT2_API` environment variable in `cms/.env` and restart the Strapi backend
+- The code and logic for the ai comment generation can be found in the controller action for responses of the cms `generateAiComment(ctx)`
 
 ##### API-Endpoints for cms
 
@@ -85,14 +106,6 @@
 
 - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment#web)
 - [Fullfill orders](https://stripe.com/docs/payments/checkout/fulfill-orders)
-
-##### Folder structure
-```
-├── app # The nuxtjs based frontend
-|   ├── conversation # The complete bot conversation
-|   └── store # Vuex Store files with actions that fetch and post data to the cms
-```
-
 ##### FAQ
 
 **What to do when the deployment of the strapi cms does not happen automatically after a push to the main branch?**
