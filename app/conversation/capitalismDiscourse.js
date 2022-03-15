@@ -8,8 +8,8 @@ export default {
     async capitalismDiscourse() {
       await this.botMessage('Why?')
 
-      // When user does not answer question afters 20 secs proceed to becauseOfCapitalism dialogue
-      const question = this.timeout(20000, this.botTextInput('Your answer'))
+      // When user does not answer question afters 30 secs proceed to becauseOfCapitalism dialogue
+      const question = this.timeout(30000, this.botTextInput('Your answer'))
 
       await question.then(async (response) => {
         // If response was given perform AI comment otherwise ask if capitalism is the reason
