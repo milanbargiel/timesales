@@ -56,6 +56,7 @@ export default {
     }),
     ...mapActions({
       postReview: 'advertisement/postReview',
+      generateAiComment: 'response/generateAiComment',
     }),
     async loadBot() {
       // load bot modules

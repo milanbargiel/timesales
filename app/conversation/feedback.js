@@ -8,9 +8,13 @@ export default {
         )
       }
 
-      await this.botTextInput('Your answer').then((review) => {
+      await this.botTextInput('Your answer').then(async (review) => {
         // Save user feedback in the backend
+        // The corresponding vuex action is defined in store/advertisement.js
         this.postReview(review)
+
+        // Generate aiComment
+        await this.botAiComment(review, 'reviewComment')
       })
 
       await this.botMessageHtml('Would you like to have some more <i>time</i>?')

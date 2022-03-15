@@ -83,7 +83,11 @@ vue.mixin({
             },
           }).then(async (response) => {
             // 3A. When ai comment generation suceeded update the dummy message with content
-            if (response && response[fieldName].enhancedOutput) {
+            if (
+              response &&
+              Object.prototype.hasOwnProperty.call(response, fieldName) &&
+              response[fieldName].enhancedOutput
+            ) {
               this.botui.message.update(index, {
                 loading: false,
                 content: response[fieldName].enhancedOutput,
@@ -97,7 +101,7 @@ vue.mixin({
                 content: nextBotMessage,
               })
             } else {
-              // 3C. If ai comment generation failed an no next message is defined,
+              // 3C. If ai comment generation failed and no next message is defined,
               // remove message and continue with the regular dialogue
               this.botui.message.remove(index)
             }
