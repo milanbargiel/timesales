@@ -38,8 +38,7 @@ export default {
     },
     async recursivelyContinue() {
       await this.botTextInput('Your answer').then(async (response) => {
-        const augmentedUserInput = 'Can money be sacred ' + response
-        await this.botAiComment(augmentedUserInput, 'isItGodComments')
+        await this.botAiComment(response, 'isItGodComments')
 
         this.recursivelyContinue()
       })
