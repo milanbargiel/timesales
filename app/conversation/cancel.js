@@ -23,7 +23,11 @@ export default {
         .then((changeOrder) => {
           if (changeOrder.value) {
             // Go to checkout short checkout flow on index page
-            this.$router.push('/?shortCheckout')
+            // Use window history workaround
+            // https://stackoverflow.com/questions/66317718/nuxtjs-change-query-params-and-reload-page
+            window.history.pushState({}, '', '/?shortCheckout')
+            // Reload page
+            window.location.reload()
           } else {
             // Start exit dialogue
             this.exit()

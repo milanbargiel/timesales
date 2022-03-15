@@ -25,8 +25,12 @@ export default {
           ],
         })
         .then(() => {
-          // Reloads the component
-          this.$router.go()
+          // Go to the beginning of the conversation
+          // Use window history workaround
+          // https://stackoverflow.com/questions/66317718/nuxtjs-change-query-params-and-reload-page
+          window.history.pushState({}, '', '/')
+          // Reload page
+          window.location.reload()
         })
     },
   },
