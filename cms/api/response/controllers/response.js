@@ -14,10 +14,10 @@ const augmentUserInput = (userInput, fieldName) => {
   switch (fieldName) {
     case 'timePurpose':
       // Remove everything from the end untill the last punctuation mark
-      augment = 'Time for, ';
+      augment = 'Time for ';
       break;
     case 'artAsInvestment':
-      augment = 'Art investment, ';
+      augment = 'Art investment ';
       break;
     default:
       augment = '';
@@ -30,16 +30,16 @@ const processAiOutput = (aiOutput, fieldName) => {
   let processedOutput = aiOutput;
 
   const firstPunctuationMark = aiOutput.search(/[.,]/g);
-  // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ','
+  // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ';'
   const lastPunctuationMark = Math.max(
     aiOutput.lastIndexOf('.'),
-    aiOutput.lastIndexOf(',')
+    aiOutput.lastIndexOf(';')
   );
 
   // A. Special rule for field timePurpose
   if (fieldName === 'timePurpose') {
     // Remove the augmented string from the beginning
-    const augmenterString = 'Time for, ';
+    const augmenterString = 'Time for ';
     processedOutput = aiOutput.substring(
       augmenterString.length,
       lastPunctuationMark
