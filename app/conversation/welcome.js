@@ -11,7 +11,7 @@ export default {
         // Save reponses in vuex store
         this.saveResponse({ name })
 
-        const evasiveAnswer = ['why', "won't", "don't"].some(
+        const evasiveAnswer = ['why', "won't", "don't", 'not'].some(
           // Check if the evasive answers listed above are part of the name string
           // Only look for whole words
           (evasiveAnswer) =>
