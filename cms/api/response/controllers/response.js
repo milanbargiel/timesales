@@ -26,7 +26,7 @@ const augmentUserInput = (userInput, fieldName) => {
   return augment + userInput;
 };
 
-const processAiOutput = (aiOutput, fieldName) => {
+const processAiOutput = (aiOutput, fieldName, userInput) => {
   let processedOutput = aiOutput;
   let augmenterString;
 
@@ -53,21 +53,33 @@ const processAiOutput = (aiOutput, fieldName) => {
   }
 
   // Remove user input from the beginning of the processed output
+  // Only remove it, if it hasn't been changed by the AI (therefore it ends with the character space)
+  if (processedOutput.includes(`${userInput} `)) {
+    processedOutput = processedOutput.substring(
+      userInput.length + 1,
+      processedOutput.length
+    );
+  }
+
+  // Remove special characters from the beginning until the first appearance of a letter
+  // Remove symbols and punctuation marks at the beginning (-,; etc.)
+  const firstLetterIndex = processedOutput
+    .split('')
+    .findIndex((c) => c.toLowerCase() != c.toUpperCase()); // test if a regular character from the alphabet is found
+
+  if (firstLetterIndex > 1) {
+    processedOutput = processedOutput.substring(
+      firstLetterIndex,
+      processedOutput.length
+    );
+  }
 
   // For texts with more than one punctuation marks, shorten the output from first to last punctuation mark
   if (lastPunctuationMark > firstPunctuationMark) {
-    processedOutput = aiOutput
+    processedOutput = processedOutput
       // Extract text between the first and the last punctuation mark
       .substring(firstPunctuationMark + 1, lastPunctuationMark);
   }
-
-  // If there is a punctuation mark at the beginning, remove it
-  if (processedOutput.charAt(0) === ',') {
-    processedOutput = processedOutput.substring(1, processedOutput.length);
-  }
-
-  // Remove whitespaces
-  processedOutput = processedOutput.trim();
 
   // Return processed text and capitalize first letter
   return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
@@ -135,7 +147,7 @@ module.exports = {
       userInput,
       aiOutput: aiComment ? aiComment : undefined,
       enhancedOutput: aiComment
-        ? processAiOutput(aiComment, fieldName) // Process aiOutput and strip content
+        ? processAiOutput(aiComment, fieldName, userInput) // Process aiOutput and strip content
         : undefined
     };
 
