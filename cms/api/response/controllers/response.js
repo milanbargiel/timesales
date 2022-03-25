@@ -28,6 +28,7 @@ const augmentUserInput = (userInput, fieldName) => {
 
 const processAiOutput = (aiOutput, fieldName) => {
   let processedOutput = aiOutput;
+  let augmenterString;
 
   const firstPunctuationMark = aiOutput.search(/[.,]/g);
   // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ';'
@@ -36,16 +37,23 @@ const processAiOutput = (aiOutput, fieldName) => {
     aiOutput.lastIndexOf(';')
   );
 
-  // A. Special rule for field timePurpose
+  // Remove augmenter strings from the beginning of processed output
   if (fieldName === 'timePurpose') {
-    // Remove the augmented string from the beginning
-    const augmenterString = 'Time for ';
+    augmenterString = 'Time for ';
     processedOutput = aiOutput.substring(
       augmenterString.length,
-      lastPunctuationMark
+      processedOutput.length
     );
-  } else if (lastPunctuationMark > firstPunctuationMark) {
-    // B. For texts with more than one punctuation marks
+  } else if (fieldName === 'artAsInvestment') {
+    augmenterString = 'Art investment ';
+    processedOutput = aiOutput.substring(
+      augmenterString.length,
+      processedOutput.length
+    );
+  }
+
+  if (lastPunctuationMark > firstPunctuationMark) {
+    // C. For texts with more than one punctuation marks
     processedOutput = aiOutput
       // Extract text between the first and the last punctuation mark
       .substring(firstPunctuationMark + 1, lastPunctuationMark);
