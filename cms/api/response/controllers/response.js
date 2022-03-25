@@ -30,13 +30,6 @@ const processAiOutput = (aiOutput, fieldName, userInput) => {
   let processedOutput = aiOutput;
   let augmenterString;
 
-  const firstPunctuationMark = aiOutput.search(/[.,]/g);
-  // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ';'
-  const lastPunctuationMark = Math.max(
-    aiOutput.lastIndexOf('.'),
-    aiOutput.lastIndexOf(';')
-  );
-
   // Remove augmenter strings from the beginning of processed output
   if (fieldName === 'timePurpose') {
     augmenterString = 'Time for ';
@@ -79,6 +72,13 @@ const processAiOutput = (aiOutput, fieldName, userInput) => {
   }
 
   // For texts with more than one punctuation marks, shorten the output from first to last punctuation mark
+  const firstPunctuationMark = processedOutput.search(/[.,]/g);
+  // lastIndexOf does not allow for regex, therefore use math.max to find the last occurence of '.' or ';'
+  const lastPunctuationMark = Math.max(
+    processedOutput.lastIndexOf('.'),
+    processedOutput.lastIndexOf(';')
+  );
+
   if (lastPunctuationMark > firstPunctuationMark) {
     processedOutput = processedOutput
       // Extract text between the first and the last punctuation mark
