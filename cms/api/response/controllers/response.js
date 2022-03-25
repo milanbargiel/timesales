@@ -54,7 +54,11 @@ const processAiOutput = (aiOutput, fieldName, userInput) => {
 
   // Remove user input from the beginning of the processed output
   // Only remove it, if it hasn't been changed by the AI (therefore it ends with the character space)
-  if (processedOutput.includes(`${userInput} `)) {
+  // and it is not part of the timePurpose answer
+  if (
+    processedOutput.includes(`${userInput} `) &&
+    fieldName !== 'timePurpose'
+  ) {
     processedOutput = processedOutput.substring(
       userInput.length + 1,
       processedOutput.length
