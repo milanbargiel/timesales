@@ -81,6 +81,8 @@ const processAiOutput = (aiOutput, fieldName, userInput) => {
       .substring(firstPunctuationMark + 1, lastPunctuationMark);
   }
 
+  processedOutput = processedOutput.trim();
+
   // Return processed text and capitalize first letter
   return processedOutput.charAt(0).toUpperCase() + processedOutput.slice(1);
 };
