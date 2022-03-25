@@ -52,8 +52,10 @@ const processAiOutput = (aiOutput, fieldName) => {
     );
   }
 
+  // Remove user input from the beginning of the processed output
+
+  // For texts with more than one punctuation marks, shorten the output from first to last punctuation mark
   if (lastPunctuationMark > firstPunctuationMark) {
-    // C. For texts with more than one punctuation marks
     processedOutput = aiOutput
       // Extract text between the first and the last punctuation mark
       .substring(firstPunctuationMark + 1, lastPunctuationMark);
