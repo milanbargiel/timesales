@@ -196,6 +196,19 @@ export default {
       const pageHeight = this.$refs.entirePage.clientHeight
       window.scrollTo(0, pageHeight)
     },
+    // Helper function for replacing pronouns in the 'checkout' and 'timePurpose' branch
+    replacePersonalPronouns(userInput) {
+      let processedInput = userInput
+      processedInput = processedInput.replace(/\b(my)\b/i, 'your')
+      processedInput = processedInput.replace(/\b(myself)\b/i, 'yourself')
+      processedInput = processedInput.replace(/\b(me)\b/i, 'yourself')
+      processedInput = processedInput.replace(
+        /\b(you)\b/i,
+        'the Time Sales bot'
+      )
+      processedInput = processedInput.replace(/\b(i)\b/i, 'you')
+      return processedInput
+    },
   },
 }
 </script>
