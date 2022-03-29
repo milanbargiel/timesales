@@ -77,6 +77,7 @@ vue.mixin({
         })
         .then(async (index) => {
           // 2. Create a gpt2 based ai comment by posting the userInput to the backend
+          // generateAiComment saves the userInput in the vuex store, even when the request fails
           await this.generateAiComment({
             [fieldName]: {
               userInput,

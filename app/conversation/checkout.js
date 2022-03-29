@@ -100,11 +100,9 @@ export default {
       // Convert time purpose to lower case for case insensitive searches
       let text = timePurpose.toLowerCase()
 
-      // Replace personal pronouns
-      text = text.replace(/\b(my)\b/i, 'your')
-      text = text.replace(/\b(myself)\b/i, 'yourself')
-      text = text.replace(/\b(you)\b/i, 'the Time Sales bot')
-      text = text.replace(/\b(i)\b/i, 'you')
+      // The personal pronouns replacement function is defined in pages/index.vue
+      // as it is also used in the purposeOfTime conversation branch
+      text = this.replacePersonalPronouns(text)
 
       const firstWord = text.split(' ')[0]
 
