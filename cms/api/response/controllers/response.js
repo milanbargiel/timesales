@@ -82,7 +82,10 @@ const processAiOutput = (aiOutput, fieldName, userInput) => {
   if (lastPunctuationMark > firstPunctuationMark) {
     processedOutput = processedOutput
       // Extract text between the first and the last punctuation mark
-      .substring(firstPunctuationMark + 1, lastPunctuationMark);
+      .substring(
+        fieldName === 'timePurpose' ? 0 : firstPunctuationMark + 1, // For timePurpose start from beginning
+        lastPunctuationMark
+      );
   }
 
   processedOutput = processedOutput.trim();
