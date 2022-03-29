@@ -31,7 +31,9 @@ export default {
       })
 
       await this.botMessage(
-        `But why don't you ${this.response.timePurpose.userInput.toLowerCase()} in this world of finite lifespans? Is it not important enough?`
+        `But why don't you ${this.replacePersonalPronouns(
+          this.response.timePurpose.userInput.toLowerCase()
+        )} in this world of finite lifespans? Is it not important enough?`
       )
 
       await this.botMessage('Shall we give it a little bit of extra value?')
@@ -40,7 +42,9 @@ export default {
 
       if (response === true) {
         await this.botMessage(
-          `Ok, then I'll sell you some time for ${this.response.timePurpose.userInput.toLowerCase()}.`
+          `Ok, then I'll sell you some time for ${this.replacePersonalPronouns(
+            this.response.timePurpose.userInput.toLowerCase()
+          )}.`
         )
 
         await this.botMessage('How much is it going to be?')

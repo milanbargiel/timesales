@@ -9,21 +9,23 @@ const axios = require('axios');
 
 // Function to augment user input to increase the relevance of ai comments
 const augmentUserInput = (userInput, fieldName) => {
-  let augment;
+  let augmentedInput = userInput;
 
-  switch (fieldName) {
-    case 'timePurpose':
-      // Remove everything from the end untill the last punctuation mark
-      augment = 'Time for ';
-      break;
-    case 'artAsInvestment':
-      augment = 'Art investment ';
-      break;
-    default:
-      augment = '';
+  if (fieldName === 'timePurpose') {
+    // Remove everything from the end untill the last punctuation mark
+    augmentedInput = 'Time for ' + augmentedInput;
+
+    // Replace personal pronouns
+    augmentedInput = augmentedInput.replace(/\b(my)\b/i, 'your');
+    augmentedInput = augmentedInput.replace(/\b(myself)\b/i, 'yourself');
+    augmentedInput = augmentedInput.replace(/\b(me)\b/i, 'yourself');
+    augmentedInput = augmentedInput.replace(/\b(you)\b/i, 'the Time Sales bot');
+    augmentedInput = augmentedInput.replace(/\b(i)\b/i, 'you');
+  } else if (fieldName === 'artAsInvestment') {
+    augmentedInput = 'Art investment ' + augmentedInput;
   }
 
-  return augment + userInput;
+  return augmentedInput;
 };
 
 const processAiOutput = (aiOutput, fieldName, userInput) => {

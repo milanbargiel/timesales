@@ -7,10 +7,7 @@ export default {
   methods: {
     async purposeOfTime() {
       await this.botTextInput('Your answer').then(async (response) => {
-        await this.botAiComment(
-          this.replacePersonalPronouns(response),
-          'timePurpose'
-        )
+        await this.botAiComment(response, 'timePurpose')
       })
 
       // Show hold On dialogue
